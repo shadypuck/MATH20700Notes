@@ -1,0 +1,106 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+
+\begin{document}
+
+
+
+
+\chapter{Basic Notions}
+\begin{itemize}
+    \item \marginnote{9/27:}\textbf{Vector space}: Basically, a set for which you have an addition and multiplication.
+    \item $\F^d$ is used for $\R^d$ or $\C^d$ in \textcite{bib:Treil}.
+    \item $\Pm_n$ is the vector space of polynomials up to degree $n$.
+    \item $C([0,1])$ is the set of continuous functions defined on $[0,1]$, an infinite-dimensional vector space.
+    \item \textbf{Generating set}: A subset of a vector space, all linear combinations of which generate the vector space. \emph{Also known as} \textbf{spanning set}.
+    \begin{itemize}
+        \item Any element of VS is a linear comb. of elements of the generating set.
+    \end{itemize}
+    \item \textbf{Linearly independent} (list): A list of vectors $\vm_1,\dots,\vm_k\in V$ such that $\sum_{i=1}^k\alpha_i\vm_i=0$ implies $\alpha_i=0$ for all $i$.
+    \item \textbf{Base}: A generating set consisting of linearly independent vectors.
+    \item Any element of a VS can be written as a \emph{unique} linear combination of the vectors in a base.
+    \begin{itemize}
+        \item If $\x=\sum_{i=1}^k\alpha_i\vm_i=\sum_{i=1}^k\beta_i\vm_i$, then $\alpha_i=\beta_i$ for all $i$.
+    \end{itemize}
+    \item \textbf{Linear transformation}: A function $T:X\to Y$, where $X,Y$ are VSs, such that
+    \begin{equation*}
+        T(\alpha\x+\beta\y) = \alpha T\x+\beta T\y
+    \end{equation*}
+    for all $\x\in X$, $\y\in Y$.
+    \item Examples of linear transformations:
+    \begin{itemize}
+        \item Consider $\Pm_n$. Let $Tp_n=p_n'$. This $T$ is linear.
+        \item Rotation in $\R^d$.
+        \begin{itemize}
+            \item Think graphically about two vectors $\x,\y$.
+            \item Rotating and summing them is the same as summing and rotating. Same for scaling.
+            \item Thus, rotation is actually linear!
+        \end{itemize}
+        \item Reflection as well.
+    \end{itemize}
+    \item Consider $T:\R\to\R$.
+    \begin{itemize}
+        \item Any linear map on the line is a line.
+        \item We must have $Tx=\alpha x$: $Tx=T(1x)=xT(1)=x\alpha$.
+    \end{itemize}
+    \item Consider $T:\R^n\to\R^m$ linear.
+    \begin{itemize}
+        \item Any linear map between $\R^n$ and $\R^m$ is linear.
+        \item Thus, $T(\x)=A\x$ for all $\x\in\R^n$, where $A$ is an $m\times n$ matrix.
+    \end{itemize}
+    \item To find $A$, do the same calculation as for $Tx=\alpha x$ but more carefully:
+    \begin{itemize}
+        \item Let $\{\eb_1,\dots,\eb_n\}$ be a basis.
+        \item So $\x=\sum_{i=1}^n\alpha_i\eb_i$.
+        \item Thus, $T\x=\sum_{i=1}^n\alpha_iT(\eb_i)$.
+        \item Each $T(\eb_i)$ is part of the matrix that we multiply by the column vector representing $\x$.
+    \end{itemize}
+    \item Multiplication of matrices is equivalent to composition of linear maps.
+    \item Consider $T_1:\R^n\to\R^m$ and $T_2:\R^m\to\F^r$.
+    \begin{itemize}
+        \item $T_2\circ T_1$ is equivalent to $BA$, if $A$ represents $T_1$ and $B$ represents $T_2$. In other words, $(T_2\circ T_1)(\x)=BA\x$ for all $\x$.
+    \end{itemize}
+    \item Recall that if $A=(\alpha_{ij})$ and $B=(\beta_{ij})$, then $(BA)_{ij}=(\sum\beta_{ik}\alpha_{kj})$.
+    \item Properties of multiplication:
+    \begin{gather*}
+        (AB)C = A(BC)\\
+        A(B+C) = AB+AC\\
+        (A+B)C = AC+BC
+    \end{gather*}
+    \begin{itemize}
+        \item However, it is not true in general that $AB=BA$.
+    \end{itemize}
+    \item \textbf{Trace} (of an $n\times n$ matrix $A$): The sum of the diagonal entries of $A$. \emph{Denoted by} $\bm{\trace(A)}$. \emph{Given by}
+    \begin{equation*}
+        \trace(A) = \sum\alpha_{ii}
+    \end{equation*}
+    \item It is true that $\trace(AB)=\trace(BA)$.
+    \begin{itemize}
+        \item Indeed, on the diagonals, multiplication is commutative; it's the other terms that mess you up in general.
+    \end{itemize}
+    \item Invertibility of matrices.
+    \begin{itemize}
+        \item In general, matrices are not invertible: Not every system of equations is solveable; $Ax=b$ does not always have a solution $x=A^{-1}b$.
+    \end{itemize}
+    \item $C$ is the inverse from the left: $CA=I$. $B$ is the inverse from the right: $AB=I$. A matrix can have a left and a right inverse and still not be invertible. A matrix is invertible iff $C=B$.
+    \item Any time we write "inverse," we do so under the assumption that it exists.
+    \item $(AB)^{-1}=B^{-1}A^{-1}$ --- easy proof by multiplication.
+    \item If $A=(a_{ij})$, $A^T=(a_{ji})$.
+    \begin{itemize}
+        \item $(A^{-1})^T=(A^T)^{-1}$.
+        \item $(AB)^T=B^TA^T$.
+    \end{itemize}
+    \item Let $X,Y$ VS.
+    \begin{itemize}
+        \item $X\cong Y$\footnote{"$X$ is isomorphic to $Y$."} if there exists a linear $T:X\to Y$ that is one-to-one and onto.
+        \item Check: $A(\text{basis of }X)=\text{basis of }Y$. Prove by definition and expression of elements as linear combinations.
+    \end{itemize}
+    \item \textbf{Subspace}: A subset of a vector space which happens to be a vector space, itself.
+\end{itemize}
+
+
+
+
+\end{document}

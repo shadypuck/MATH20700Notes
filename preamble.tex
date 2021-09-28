@@ -1,11 +1,16 @@
 \usepackage[margin=1in]{geometry}
+\usepackage{csquotes}
 \usepackage{fancyhdr}
 \usepackage{marginnote}
 \usepackage[style=apa]{biblatex}
 \usepackage{enumitem}
+\usepackage{scrextend}
+\usepackage[bottom]{footmisc}
 \usepackage{amsmath,amssymb}
 \usepackage{bm}
 \usepackage[hidelinks]{hyperref}
+
+\MakeOuterQuote{"}
 
 \fancypagestyle{main}{
     \fancyhf{}
@@ -23,9 +28,15 @@
 \addbibresource{../main.bib}
 \DefineBibliographyStrings{english}{bibliography={References}}
 
+\setlist[itemize,3]{label={\scriptsize$\blacksquare$}}
+
+\deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
+\deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
+
 \DeclareMathOperator{\rank}{rank}
 \DeclareMathOperator{\Ran}{Ran}
 \DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\trace}{trace}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
@@ -34,6 +45,8 @@
 
 \newcommand{\vm}{\mathbf{v}}
 \newcommand{\wm}{\mathbf{w}}
+\newcommand{\eb}{\mathbf{e}}
 \newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
 
 \usepackage{subfiles}
