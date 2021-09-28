@@ -1,0 +1,223 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+
+\begin{document}
+
+
+
+
+\section{Matrix Basics and Linear Systems}
+\emph{From \textcite{bib:Treil}.}
+\subsection*{Chapter 1}
+\begin{enumerate}[label={\textbf{1.\arabic*.}}]
+    \stepcounter{enumi}
+    \item \marginnote{10/4:}Which of the following sets (with natural addition and multiplication by a scalar) are vector spaces? Justify your answer.
+    \begin{enumerate}
+        \item The set of all continuous functions on the interval $[0,1]$.
+        \item The set of all non-negative functions on the interval $[0,1]$.
+        \item The set of all polynomials of degree \emph{exactly} $n$.
+        \item The set of all symmetric $n\times n$ matrices, i.e., the set of matrices $A=\{a_{j,k}\}_{j,k=1}^n$ such that $A^T=A$.
+    \end{enumerate}
+    \item True or false:
+    \begin{enumerate}
+        \item Every vector space contains a zero vector.
+        \item A vector space can have more than one zero vector.
+        \item An $m\times n$ matrix has $m$ rows and $n$ columns.
+        \item If $f$ and $g$ are polynomials of degree $n$, then $f+g$ is also a polynomial of degree $n$.
+        \item If $f$ and $g$ are polynomials of degree at most $n$, then $f+g$ is also a polynomial of degree at most $n$.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{2.\arabic*.}}]
+    \stepcounter{enumi}
+    \item True or false:
+    \begin{enumerate}
+        \item Any set containing a zero vector is linearly dependent.
+        \item A basis must contain $\bm{0}$.
+        \item Subsets of linearly dependent sets are linearly dependent.
+        \item Subsets of linearly independent sets are linearly independent.
+        \item If $\alpha_1\vm_1+\alpha_2\vm_2+\cdots+\alpha_n\vm_n=\mathbf{0}$, then all scalars $\alpha_k$ are zero.
+    \end{enumerate}
+    \setcounter{enumi}{4}
+    \item Let a system of vectors $\vm_1,\vm_2,\dots,\vm_r$ be linearly independent but not generating. Show that it is possible to find a vector $\vm_{r+1}$ such that the system $\vm_1,\vm_2,\dots,\vm_r,\vm_{r+1}$ is linearly independent. (Hint: Take for $\vm_{r+1}$ any vector that cannot be represented as a linear combination $\sum_{k=1}^r\alpha_k\vm_k$ and show that the system $\vm_1,\vm_2,\dots,\vm_r,\vm_{r+1}$ is linearly independent.)
+    \item Is it possible that vectors $\vm_1,\vm_2,\vm_3$ are linearly dependent, but the vectors $\wm_1=\vm_1+\vm_2,\wm_2=\vm_2+\vm_3,\wm_3=\vm_3+\vm_1$ are linearly \emph{independent}?
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{3.\arabic*.}}]
+    \setcounter{enumi}{2}
+    \item For each linear transformation below, find its matrix.
+    \begin{enumerate}
+        \item $T:\R^2\to\R^3$ defined by $T(x,y)^T=(x+2y,2x-5y,7y)^T$.
+        \item $T:\R^4\to\R^3$ defined by $T(x_1,x_2,x_3,x_4)^T=(x_1+x_2+x_3+x_4,x_2-x_4,x_1+3x_2+6x_4)^T$.
+        \item $T:\Pm_n\to\Pm_n$ defined by $Tf(t)=f'(t)$ (find the matrix with respect to the standard basis $1,t,t^2,\dots,t^n$).
+        \item $T:\Pm_n\to\Pm_n$ defined by $Tf(t)=2f(t)+3f'(t)-4f''(t)$ (again with respect to the standard basis $1,t,t^2,\dots,t^n$).
+    \end{enumerate}
+    \setcounter{enumi}{5}
+    \item The set $\C$ of complex numbers can be canonically identified with the space $\R^2$ by treating each $z=x+iy\in\C$ as a column $(x,y)^T\in\R^2$.
+    \begin{enumerate}
+        \item Treating $\C$ as a complex vector space, show that the multiplication by $\alpha=a+ib\in\C$ is a linear transformation in $\C$. What is its matrix?
+        \item Treating $\C$ as the real vector space $\R^2$, show that the multiplication by $\alpha=a+ib$ defines a linear transformation there. What is its matrix?
+        \item Define $T(x+iy)=2x-y+i(x-3y)$. Show that this transformation is not a linear transformation in the complex vector space $\C$, but if we treat $\C$ as the real vector space $\R^2$, then it is a linear transformation there (i.e., that $T$ is a \emph{real linear} but not a \emph{complex linear} transformation). Find the matrix of the real linear transformation $T$.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{5.\arabic*.}}]
+    \setcounter{enumi}{2}
+    \item Multiply two rotation matrices $T_\alpha$ and $T_\beta$ (it is a rare case when the multiplication is commutative, i.e., $T_\alpha T_\beta=T_\beta T_\alpha$, so the order is not essential). Deduce formulas for $\sin(\alpha+\beta)$ and $\cos(\alpha+\beta)$ from here.
+    \setcounter{enumi}{4}
+    \item Find linear transformations $A,B:\R^2\to\R^2$ such that $AB=\bm{0}$ but $BA\neq\bm{0}$.
+    \setcounter{enumi}{7}
+    \item Find the matrix of the reflection through the line $y=-2x/3$. Perform all the multiplications.
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{6.\arabic*.}}]
+    \setcounter{enumi}{2}
+    \item Find all left inverses of the column $(1,2,3)^T$.
+    \setcounter{enumi}{5}
+    \item Suppose the product $AB$ is invertible. Show that $A$ is right invertible and $B$ is left invertible. (Hint: You can just write formulas for right and left inverses.)
+    \stepcounter{enumi}
+    \item Let $A$ be an $n\times n$ matrix. Prove that if $A^2=\bm{0}$, then $A$ is not invertible.
+    \stepcounter{enumi}
+    \item Write matrices of the linear transformations $T_1$ and $T_2$ in $\F^5$, defined as follows: $T_1$ interchanges the coordinates $x_2$ and $x_4$ of the vector $\x$, and $T_2$ just adds to the coordinate $x_2$ the quantity $a$ times the coordinate $x_4$, and does not change other coordinates, i.e.,
+    \begin{align*}
+        T_1
+        \begin{pmatrix}
+            x_1\\
+            x_2\\
+            x_3\\
+            x_4\\
+            x_5\\
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+            x_1\\
+            x_4\\
+            x_3\\
+            x_2\\
+            x_5\\
+        \end{pmatrix}&
+        T_2
+        \begin{pmatrix}
+            x_1\\
+            x_2\\
+            x_3\\
+            x_4\\
+            x_5\\
+        \end{pmatrix}
+        &=
+        \begin{pmatrix}
+            x_1\\
+            x_2+ax_4\\
+            x_3\\
+            x_4\\
+            x_5\\
+        \end{pmatrix}
+    \end{align*}
+    where $a$ is some fixed number. Show that $T_1$ and $T_2$ are invertible transformations, and write the matrices of the inverses. (Hint: It may be simpler, if you first describe the inverse transformation, and then find its matrix, rather than trying to guess [or compute] the inverses of the matrices $T_1,T_2$.)
+    \setcounter{enumi}{12}
+    \item Let $A$ be an invertible symmetric ($A^T=A$) matrix. Is the inverse of $A$ symmetric? Justify.
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{7.\arabic*.}}]
+    \setcounter{enumi}{2}
+    \item Let $X$ be a subspace of a vector space $V$, and let $\vm\in V$, $\vm\notin X$. Prove that if $\x\in X$, then $\x+\vm\notin X$.
+    \item Let $X$ and $Y$ be subspaces of a vector space $V$. Using the previous exercise, show that $X\cup Y$ is a subspace if and only if $X\subset Y$ or $Y\subset X$.
+    \item What is the smallest subspace of the space of $4\times 4$ matrices which contains all upper triangular matrices ($a_{j,k}=0$ for all $j>k$), and all symmetric matrices $(A=A^T)$? What is the largest subspace contained in both of those subspaces?
+\end{enumerate}
+
+
+\subsection*{Chapter 2}
+\begin{enumerate}[label={\textbf{3.\arabic*.}}]
+    \setcounter{enumi}{3}
+    \item Do the polynomials $x^3+2x$, $x^2+x+1$, $x^3+5$ generate (span) $\Pm_3$? Justify your answer.
+    \item Can 5 vectors in $\F^4$ be linearly independent? Justify your answer.
+    \stepcounter{enumi}
+    \item Prove or disprove: If the columns of a square ($n\times n$) matrix $A$ are linearly independent, so are the rows of $A^3=AAA$.
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{5.\arabic*.}}]
+    \item True or false:
+    \begin{enumerate}
+        \item Every vector space that is generated by a finite set has a basis.
+        \item Every vector space has a (finite) basis.
+        \item A vector space cannot have more than one basis.
+        \item If a vector space has a finite basis, then the number of vectors in every basis is the same.
+        \item The dimension of $\Pm_n$ is $n$.
+        \item The dimension on $M_{m\times n}$ is $m+n$.
+        \item If vectors $\vm_1,\vm_2,\dots,\vm_n$ generate (span) the vector space $V$, then every vector in $V$ can be written as a linear combination of vectors $\vm_1,\vm_2,\dots,\vm_n$ in only one way.
+        \item Every subspace of a finite-dimensional space is finite-dimensional.
+        \item If $V$ is a vector space having dimension $n$, then $V$ has exactly one subspace of dimension 0 and exactly one subspace of dimension $n$.
+    \end{enumerate}
+    \item Prove that if $V$ is a vector space having dimension $n$, then a system of vectors $\vm_1,\vm_2,\dots,\vm_n$ in $V$ is linearly independent if and only if it spans $V$.
+    \setcounter{enumi}{5}
+    \item Consider in the space $\R^5$ vectors $\vm_1=(2,-1,1,5,-3)^T$, $\vm_2=(3,-2,0,0,0)^T$, $\vm_3=(1,1,50,-921,0)^T$. (Hint: If you do part (b) first, you can do everything without any computations.)
+    \begin{enumerate}
+        \item Prove that these vectors are linearly independent.
+        \item Complete the system of vectors to a basis.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{6.\arabic*.}}]
+    \item True or false:
+    \begin{enumerate}
+        \item Any system of linear equations has at least one solution.
+        \item Any system of linear equations has at most one solution.
+        \item Any homogeneous system of linear equations has at least one solution.
+        \item Any system of $n$ linear equations in $n$ unknowns has at least one solution.
+        \item Any system of $n$ linear equations in $n$ unknowns has at most one solution.
+        \item If the homogeneous system corresponding to a given system of linear equations has a solution, then the given system has a solution.
+        \item If the coefficient matrix of a homogeneous system of $n$ linear equations in $n$ unknowns is invertible, then the system has no non-zero solutions.
+        \item The solution set of any system of $m$ equations in $n$ unknowns is a subspace of $\R^n$.
+        \item The solution set of any homogeneous system of $m$ equations in $n$ unknowns is a subspace of $\R^n$.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{7.\arabic*.}}]
+    \item True or false:
+    \begin{enumerate}
+        \item The rank of a matrix is equal to the number of its non-zero columns.
+        \item The $m\times n$ zero matrix is the only $m\times n$ matrix having rank 0.
+        \item Elementary row operations preserve rank.
+        \item Elementary column operations do not necessarily preserve rank.
+        \item The rank of a matrix is equal to the maximum number of linearly independent columns in the matrix.
+        \item The rank of a matrix is equal to the maximum number of linearly independent rows in the matrix.
+        \item The rank of an $n\times n$ matrix is at most $n$.
+        \item An $n\times n$ matrix having rank $n$ is invertible.
+    \end{enumerate}
+    \setcounter{enumi}{3}
+    \item Prove that if $A:X\to Y$ and $V$ is a subspace of $X$, then $\dim AV\leq\rank A$. ($AV$ here means the subspace $V$ transformed by the transformation $A$, i.e., any vector in $AV$ can be represented as $A\vm$, $\vm\in V$.) Deduce from here that $\rank AB\leq\rank A$. (Remark: Here, one can use the fact that if $V\subset W$, then $\dim V\leq\dim W$. Do you understand why it is true?)
+    \stepcounter{enumi}
+    \item Prove that if the product $AB$ of two $n\times n$ matrices is invertible, then both $A$ and $B$ are invertible. Even if you know about determinants, do not use them (we did not cover them yet). (Hint: Use the previous 2 problems.)
+    \setcounter{enumi}{8}
+    \item If $A$ has the same four fundamental subspaces as $B$, does $A=B$?
+    \setcounter{enumi}{13}
+    \item Is it possible for a real matrix $A$ that $\Ran A=\Ker A^T$? Is it possible for a complex $A$?
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{8.\arabic*.}}]
+    \setcounter{enumi}{2}
+    \item Find the change of coordinates matrix that changes the coordinates in the basis $1,1+t$ in $\Pm_1$ to the coordinates in the basis $1-t,2t$.
+    \setcounter{enumi}{5}
+    \item Are the matrices $
+        \left(
+        \begin{smallmatrix}
+            1 & 3\\
+            2 & 2\\
+        \end{smallmatrix}
+        \right)
+    $ and $
+        \left(
+        \begin{smallmatrix}
+            0 & 2\\
+            4 & 2\\
+        \end{smallmatrix}
+        \right)
+    $ similar? Justify.
+\end{enumerate}
+
+
+
+
+\end{document}
