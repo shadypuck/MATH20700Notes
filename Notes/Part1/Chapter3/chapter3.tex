@@ -1,0 +1,29 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{2}
+
+\begin{document}
+
+
+
+
+\chapter{Determinants}
+\begin{itemize}
+    \item \marginnote{9/29:}The determinant, geometrically, is the volume of the object (in $\R^3$) you get when you take linear combinations of the vectors.
+    \item In 2D:
+    \begin{itemize}
+        \item Let $v_1,v_2$ be two vectors. Put tail to tail and forming a parallelogram, the determinant of the matrix $(v_1,v_2)$ is the area of said parallelogram.
+        \item Linearity 1: $D(av_1,v_2,\dots,v_n)=aD(v_1,\dots,v_n)$ is the same as saying that if you stretch one vector by $a$, you scale up the area by that much, too.
+        \item Linearity 2: $D(v_1,\dots,v_{k+}+v_{k-},\dots,v_n)=D(-)+D(+)$.
+        \item Antisymmetry: $D(v_1,\dots,v_k,\dots,v_j,\dots,v_n)=-D(v_1,\dots,v_j,\dots,v_k,\dots,v_n)$. Interchanging columns flips the sign of the determinant.
+        \item Basis: $D(e_1,\dots,e_n)=1$.
+    \end{itemize}
+    \item Determinant: Denoted by $D(v_1,\dots,v_n)$, where $(v_1,\dots,v_n)$ is an $n\times n$ matrix.
+\end{itemize}
+
+
+
+
+\end{document}

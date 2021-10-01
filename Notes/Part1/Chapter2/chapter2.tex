@@ -1,0 +1,110 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{1}
+
+\begin{document}
+
+
+
+
+\chapter{Systems of Linear Equations}
+\begin{itemize}
+    \item \marginnote{9/29:}Row elimination:
+    \begin{itemize}
+        \item Let
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                1 & 2 & 3 & 1\\
+                3 & 1 & 2 & 7\\
+                2 & 1 & 2 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+        \item Then the \textbf{eschelon form} matrix
+        \begin{equation*}
+            A_e =
+            \begin{pmatrix}
+                1 & 2 & 3 & 1\\
+                0 & 1 & 2 & -1\\
+                0 & 0 & 2 & -4\\
+            \end{pmatrix}
+        \end{equation*}
+        \item Lastly, the \textbf{reduced eschelon form} matrix
+        \begin{equation*}
+            A_{re} =
+            \begin{pmatrix}
+                1 & 0 & 0 & 7\\
+                0 & 1 & 0 & 3\\
+                0 & 0 & 1 & -2\\
+            \end{pmatrix}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Eschelon form}:
+    \begin{itemize}
+        \item All zero rows are below nonzero rows.
+        \item For any nonzero row, its leading element is strictly to the left of the nonzero entry of the next row.
+    \end{itemize}
+    \item \textbf{Reduced eschelon form}:
+    \begin{itemize}
+        \item All pivots are 1.
+        \item Used to solve systems of the form $Ax=b$.
+    \end{itemize}
+    \item \textbf{Inconsistent} (system of equations): A system with no solution.
+    \begin{itemize}
+        \item If the last row is of the form $(0,\dots,0,b)$ where $b\neq 0$, then there is no solution.
+    \end{itemize}
+    \item Unique solution if $A_e$ has a pivot in every column.
+    \item There exists a solution for every $b$ if there is a pivot in every row?
+    \item Let $A:\R^n\to\R^m$ be a matrix. Then $\ker A=\{x\in\R^n:Ax=0\}$ (subspace of $\R^n$) and $\range A=\{Ax:x\in\R^n\}$ (subspace of $\R^m$).
+    \item Also consider $\ker(A^T)$ and $\range(A^T)$, the basis of the kernel and range, and dimension.
+    \item Finite-dimensional vector spaces:
+    \begin{itemize}
+        \item A basis is a generating set (so every element of $V$ can be written uniquely as a linear combination of the basis) the length of which is equal to the dimension of $V$.
+        \item All bases of finite-dimensional vector spaces have the same number of elements.
+        \begin{itemize}
+            \item Let $v_1,v_2,v_3$ and $w_1,w_2$ be two generating sets of $V$.
+            \item Then
+            \begin{gather*}
+                v_1 = \lambda_{11}w_1+\lambda_{12}w_2\\
+                v_2 = \lambda_{21}w_1+\lambda_{22}w_2\\
+                v_3 = \lambda_{31}w_1+\lambda_{32}w_2
+            \end{gather*}
+            \item Suppose the only solution to $\alpha_1v_1+\alpha_2v_2+\alpha_3v_3=0$ is $\alpha_1=\alpha_2=\alpha_3=0$.
+            \item But this is not true, as we can find another one in terms of the $\lambda$s.
+        \end{itemize}
+        \item If you have a list of linearly independent vectors, you can complete it into a basis.
+        \begin{itemize}
+            \item If there exists a vector that can't be written as a linear combination of the list, add it to the list.
+        \end{itemize}
+        \item If you find any particular solution to a system $Ax=b$, and you add to it any element of $\ker A$, you will obtain another solution.
+        \begin{itemize}
+            \item $Ax_1=b$ and $Ax_h=0$ implies that $A(x_1+x_h)=b$.
+            \item $Ax_1=b$ and $Ax_2=b$ imply that $A(x_1-x_2)=0$, i.e., that $x_1-x_2\in\ker A$.
+        \end{itemize}
+        \item If $A:\R^n\to\R^m$ and $\dim\range A=m$, then $Ax=b$ is solveable for all $b\in\R^m$.
+        \item Let $\rank A=\dim\range A$.
+        \item Rank theorem:
+        \begin{itemize}
+            \item $\rank A=\rank A^T$.
+            \item Let $A:\R^n\to\R^m$. We know that $\dim\ker A+\dim\range A=n$.
+            \item $\dim\ker A^T+\rank A^T=m$.
+            \item This theorem survives linear algebra and enters functional analysis under the name \textbf{Fredholm's alternative}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Fredholm's alternative}: $Ax=b$ has a solution for all $b\in\R^n$ iff $\dim\ker A^T=0$.
+    \begin{itemize}
+        \item $\dim\ker A^T=0$ implies $\rank A^T=m$ implies $\rank A=m$ implies $\dim\range A=m$, as desired.
+    \end{itemize}
+    \item \textbf{Pivot column} (of $A$): A column of $A$ where $A_e$ has pivots.
+    \item The \textbf{pivot columns} of $A$ give a basis for $\range A$.
+    \item The pivot rows of $A_e$ give a basis for $\range A^T$.
+    \item A basis for the kernel is enough to solve $Ax=0$.
+    \item If you take these three things as givens, you can prove the rank theorem.
+\end{itemize}
+
+
+
+
+\end{document}
