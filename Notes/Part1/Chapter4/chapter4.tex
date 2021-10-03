@@ -1,0 +1,35 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{3}
+
+\begin{document}
+
+
+
+
+\chapter{Introduction to Spectral Theory}
+\begin{itemize}
+    \item \marginnote{10/1:}\textbf{Difference equation}: Like a differential equation, but instead of writing a differentials, you write differences.
+    \item Suppose we want to solve $x_{n+1}=Ax_n$ with $x_0$ given.
+    \begin{itemize}
+        \item You will find that $x_n=A^nx_0$.
+        \item This gets hard to compute, so we want to find a way to simplify the computation.
+    \end{itemize}
+    \item Thus, we want to diagonalize the matrix, and this concept is inherently linked to eigenvalues and eigenvectors.
+    \begin{itemize}
+        \item If you can decompose the $x_0$ into a linear combination of eigenvectors, then you can simplify the computation a lot:
+        \begin{equation*}
+            x_n = \sum\alpha_iA^nv_i = \sum\alpha_i\lambda_i^nv_i
+        \end{equation*}
+        \item An $n\times n$ matrix will have $n$ eigenvalues. You want $n$ linearly independent eigenvectors, creating an eigenbasis.
+    \end{itemize}
+    \item To find eigenvalues and eigenvectors, we need to solve $Ax=\lambda x$, i.e., $(A-\lambda I)x=0$. Thus, $\ker(A-\lambda I)\neq\{0\}$, so $\det(A-\lambda I)=0$.
+    \item The eigenvalues of $A$ are independent of the choice of basis of the domain of $A$ or the range.
+\end{itemize}
+
+
+
+
+\end{document}
