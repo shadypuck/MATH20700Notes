@@ -27,6 +27,122 @@
     \end{itemize}
     \item To find eigenvalues and eigenvectors, we need to solve $Ax=\lambda x$, i.e., $(A-\lambda I)x=0$. Thus, $\ker(A-\lambda I)\neq\{0\}$, so $\det(A-\lambda I)=0$.
     \item The eigenvalues of $A$ are independent of the choice of basis of the domain of $A$ or the range.
+    \item \marginnote{10/4:}We need to know everything in \textcite{bib:Treil}.
+    \begin{itemize}
+        \item We don't need to know the applications sections, but you should be interested.
+    \end{itemize}
+    \item \textbf{Spectral theory}: Decomposing a linear operator.
+    \item Let $A:V\to V$ be a linear operator. $\lambda\in\C$ is an eigenvalue if there exists $x\in V$ nonzero such that $Ax=\lambda x$.
+    \begin{itemize}
+        \item Let $A$ be an $n\times n$ matrix over $\C$ or $\R$.
+        \item The eigenvalues are the roots of the polynomial $\det(A-\lambda I)=0$ in $\lambda$.
+    \end{itemize}
+    \item Things we want to do:
+    \begin{itemize}
+        \item Given $A$, find the eigenvalues and eigenvectors (solve $(A-\lambda I)x=0$).
+        \item In order to simplify $A$, make it a diagonal matrix:
+        \begin{equation*}
+            A = S
+            \begin{pmatrix}
+                \lambda_1 &  & 0\\
+                 & \ddots & \\
+                0 &  & \lambda_n\\
+            \end{pmatrix}
+            S^{-1}
+        \end{equation*}
+    \end{itemize}
+    \item Eigenvalues are independent of the choice of basis.
+    \begin{itemize}
+        \item From the book, we have that
+        \begin{equation*}
+            [A]_{\mathcal{A}\mathcal{A}} = [S]_{\mathcal{A}\mathcal{B}}[B]_{\mathcal{B}\mathcal{B}}[S]_{\mathcal{A}\mathcal{B}}^{-1}
+        \end{equation*}
+        \item It follows that
+        \begin{equation*}
+            A-\lambda I = [S]_{\mathcal{A}\mathcal{B}}(B-\lambda I)[S]_{\mathcal{A}\mathcal{B}}^{-1}
+        \end{equation*}
+        so
+        \begin{equation*}
+            \det(A-\lambda I) = \det([S]_{\mathcal{A}\mathcal{B}}(B-\lambda I)[S]_{\mathcal{A}\mathcal{B}}^{-1})
+            = \det([S]_{\mathcal{A}\mathcal{B}}[S]_{\mathcal{A}\mathcal{B}}^{-1}(B-\lambda I))
+            = \det(B-\lambda I)
+        \end{equation*}
+    \end{itemize}
+    \item If $p(z)=(z-\lambda)^kq(z)$, then $k$ is the \textbf{algebraic multiplicity} of $\lambda$. The \textbf{geometric multiplicity} of $\lambda$ is $\dim\ker(A-\lambda I)$.
+    \begin{itemize}
+        \item These terms are not always the same, but they are related.
+    \end{itemize}
+    \item Diagonalization:
+    \begin{itemize}
+        \item Given $A$ that corresponds to $T:V\to V$, can we find a basis of $V$ in which the operator is a diagonal matrix?
+        \item $A=SDS^{-1}$ iff there exists a basis of $V$ consisting of the eigenvectors of $A$.
+        \item Proves $A^N=SD^NS^{-1}$ via $A^2=SDS^{-1}SDS^{-1}=SDIDS^{-1}=SD^2S^{-1}$.
+    \end{itemize}
+    \item Let $A$ be an $n\times n$ matrix over $\F$. If $\lambda_1,\dots,\lambda_r$ are distinct eigenvalues, then their eigenvectors are linearly independent.
+    \begin{itemize}
+        \item Prove with induction contradiction argument. Assume true for $\vm_{r-1}$. Then
+        \begin{equation*}
+            0 = (A-\lambda_rI)[\vm_1+\cdots+\vm_r] = (\lambda_1-\lambda_r)\vm_1+\cdots+(\lambda_{r-1}-\lambda_r)\vm_{r-1}
+        \end{equation*}
+        \item Implies $\lambda_r=\lambda_i$ for all $i\in[r-1]$, a contradiction.
+        \item If $A$ has $n$ distinct eigenvalues, then $A$ is diagonalizable.
+    \end{itemize}
+    \item If $A:V\to V$ has $n$ complex eigenvalues, then $A$ is diagonalizable iff the algebraic multiplicity equals the geometric multiplicity for each eigenvalue.
+    \item Goes through a sample diagonalization with $
+        \left(
+            \begin{smallmatrix}
+                1 & 2\\
+                8 & 1\\
+            \end{smallmatrix}
+        \right)
+    $.
+    \begin{itemize}
+        \item We have
+        \begin{equation*}
+            A-\lambda I =
+            \begin{pmatrix}
+                1-\lambda & 2\\
+                8 & 1-\lambda\\
+            \end{pmatrix}
+        \end{equation*}
+        so
+        \begin{equation*}
+            0 = \det(A-\lambda I) = (1-\lambda)^2-16
+        \end{equation*}
+        \item It follows that $\lambda=5,-3$.
+        \item This yields
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & 2\\
+                8 & 1\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1 & 1\\
+                2 & -2\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                5 & 0\\
+                0 & -3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 1\\
+                2 & -2\\
+            \end{pmatrix}^{-1}
+        \end{equation*}
+        by inspection.
+    \end{itemize}
+    \item As another example, consider $
+        \left(
+            \begin{smallmatrix}
+                1 & 2\\
+                -2 & 1\\
+            \end{smallmatrix}
+        \right)
+    $.
+    \begin{itemize}
+        \item Here, we have $\lambda=1\pm 2i$.
+    \end{itemize}
 \end{itemize}
 
 
