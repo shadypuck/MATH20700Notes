@@ -16,17 +16,70 @@
     \item \marginnote{10/4:}Which of the following sets (with natural addition and multiplication by a scalar) are vector spaces? Justify your answer.
     \begin{enumerate}
         \item The set of all continuous functions on the interval $[0,1]$.
+        \begin{proof}[Answer]
+            This IS a vector space.\par\smallskip
+            Commutativity: If $f,g$ are continuous functions on $[0,1]$, then $f+g$ is continuous on $[0,1]$ with $f+g=g+f$.\par
+            Associativity: If $f,g,h$ are continuous functions on $[0,1]$, then $(f+g)+h$ and $f+(g+h)$ are continuous functions on $[0,1]$ with $(f+g)+h=f+(g+h)$.\par
+            Zero vector: Let $\bm{0}:[0,1]\to[0,1]$ be defined by $\bm{0}(x)=0$ for all $x\in[0,1]$. Then if $f$ is any continuous function on $[0,1]$, $f+\bm{0}=f$.\par
+            Additive inverse: Let $f$ be a continuous function on $[0,1]$. Define $g:[0,1]\to[0,1]$ by $g(x)=-f(x)$ for all $x\in[0,1]$. Clearly $g$ is still continuous on $[0,1]$, and $f+g=\bm{0}$.\par
+            Multiplicative identity: Let $f$ be a continuous function on $[0,1]$. Then naturally $1f=f$.\par
+            Multiplicative associativity: Let $f$ be a continuous function on $[0,1]$, and let $\alpha,\beta\in\F$. Then $(\alpha\beta)f=\alpha(\beta f)$.\par
+            Distributive (vectors): Let $f,g$ be continuous on $[0,1]$, and let $\alpha\in\F$. Then $\alpha(f+g)$ and $\alpha f+\alpha g$ are continuous on $[0,1]$ and equal.\par
+            Distributive (scalars): Let $f$ be continuous on $[0,1]$, and let $\alpha,\beta\in\F$. Then $(\alpha+\beta)f$ and $\alpha f+\beta f$ are continuous on $[0,1]$ and equal.
+        \end{proof}
         \item The set of all non-negative functions on the interval $[0,1]$.
+        \begin{proof}[Answer]
+            This IS NOT a vector space.\par
+            Not closed under inverses --- $f:[0,1]\to\R$ defined by $f(x)=1$ for all $x$ would be a non-negative function on this interval, and $g:[0,1]\to\R$ defined by $g(x)=-1$ for all $x$ is naturally its inverse, but not an element of the set.
+        \end{proof}
         \item The set of all polynomials of degree \emph{exactly} $n$.
+        \begin{proof}[Answer]
+            This IS NOT a vector space.\par
+            Not closed under summation --- the inverse of $x^n$ is $-x^n$, but their sum is 0, a polynomial of degree 0.
+        \end{proof}
         \item The set of all symmetric $n\times n$ matrices, i.e., the set of matrices $A=\{a_{j,k}\}_{j,k=1}^n$ such that $A^T=A$.
+        \begin{proof}[Answer]
+            This IS a vector space.\par
+            The condition for symmetric is $a_{j,k}=a_{k,j}$. Assume this is true for $A$ and $B$. Then naturally
+            \begin{align*}
+                (a+b)_{j,k} &= a_{j,k}+b_{j,k}\\
+                &= a_{k,j}+b_{k,j}\\
+                &= (a+b)_{k,j}
+            \end{align*}
+            A symmetric argument verifies scalar multiplication.
+        \end{proof}
     \end{enumerate}
     \item True or false:
     \begin{enumerate}
         \item Every vector space contains a zero vector.
+        \begin{proof}[Answer]
+            True.\par
+            By definition.
+        \end{proof}
         \item A vector space can have more than one zero vector.
+        \begin{proof}[Answer]
+            False.\par
+            Suppose for the sake of contradiction that $0,0'$ are two distinct zero vectors. Then
+            \begin{equation*}
+                0 = 0+0' = 0'
+            \end{equation*}
+            a contradiction.
+        \end{proof}
         \item An $m\times n$ matrix has $m$ rows and $n$ columns.
+        \begin{proof}[Answer]
+            True.\par
+            By definition.
+        \end{proof}
         \item If $f$ and $g$ are polynomials of degree $n$, then $f+g$ is also a polynomial of degree $n$.
+        \begin{proof}[Answer]
+            False.\par
+            $x^n$ and $-x^n$ are both polynomials of degree $n$, but their sum ($0$) is a polynomial of degree 0.
+        \end{proof}
         \item If $f$ and $g$ are polynomials of degree at most $n$, then $f+g$ is also a polynomial of degree at most $n$.
+        \begin{proof}[Answer]
+            True.\par
+            Suppose for the sake of contradiction that there exist $f,g$ of degree at most $n$ such that $f+g$ has degree $m>n$. Then $f+g$ has an $ax^m$ term. Since $f$ has degree $n$, it has no $bx^m$ term. Thus, $(f+g)-f=g$ retains the $ax^m$ term, and is of degree $m>n$, a contradiction.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -35,14 +88,110 @@
     \item True or false:
     \begin{enumerate}
         \item Any set containing a zero vector is linearly dependent.
+        \begin{proof}[Answer]
+            True.\par
+            Let $\vm_1,\dots,\vm_n$ be a list of vectors. If $\vm_i=0$, then
+            \begin{equation*}
+                0\vm_1+\cdots+0\vm_{i-1}+1\vm_i+0\vm_{i+1}+\cdots+0\vm_n = \bm{0}
+            \end{equation*}
+            even though one of the coefficients isn't 0. Thus, the list is linearly dependent.
+        \end{proof}
         \item A basis must contain $\bm{0}$.
+        \begin{proof}[Answer]
+            False.\par
+            $\{1\}$ is a basis of $\R^1$.
+        \end{proof}
         \item Subsets of linearly dependent sets are linearly dependent.
+        \begin{proof}
+            False.\par
+            $
+                \left\{ \left[
+                    \begin{smallmatrix}
+                        0\\
+                        0\\
+                    \end{smallmatrix}
+                \right],\left[
+                    \begin{smallmatrix}
+                        1\\
+                        0\\
+                    \end{smallmatrix}
+                \right] \right\}
+            $ is linearly dependent, but $
+                \left\{ \left[
+                    \begin{smallmatrix}
+                        1\\
+                        0\\
+                    \end{smallmatrix}
+                \right] \right\}
+            $ is linearly independent.
+        \end{proof}
         \item Subsets of linearly independent sets are linearly independent.
+        \begin{proof}
+            True.\par
+            Suppose for the sake of contradiction that there exists a linearly dependent subset of a linearly independent list. Then there are nonzero coefficients that make a linear combination of the linearly dependent equal to zero. Thus, if we pair these coefficients to their respective vectors in a sum of the whole list, and use zero everywhere else, we will have a set of coefficients, not all zero, that make the supposedly linearly independent list sum to zero, a contradiction.
+        \end{proof}
         \item If $\alpha_1\vm_1+\alpha_2\vm_2+\cdots+\alpha_n\vm_n=\mathbf{0}$, then all scalars $\alpha_k$ are zero.
+        \begin{proof}[Answer]
+            False.\par
+            Let $\vm_1,\vm_2$ be defined by
+            \begin{align*}
+                \vm_1 &=
+                \begin{pmatrix}
+                    1\\
+                    0\\
+                \end{pmatrix}&
+                \vm_2 &=
+                \begin{pmatrix}
+                    -1\\
+                    0\\
+                \end{pmatrix}
+            \end{align*}
+            Then $1\vm_1+1\vm_2=\bm{0}$.
+        \end{proof}
     \end{enumerate}
     \setcounter{enumi}{4}
     \item Let a system of vectors $\vm_1,\vm_2,\dots,\vm_r$ be linearly independent but not generating. Show that it is possible to find a vector $\vm_{r+1}$ such that the system $\vm_1,\vm_2,\dots,\vm_r,\vm_{r+1}$ is linearly independent. (Hint: Take for $\vm_{r+1}$ any vector that cannot be represented as a linear combination $\sum_{k=1}^r\alpha_k\vm_k$ and show that the system $\vm_1,\vm_2,\dots,\vm_r,\vm_{r+1}$ is linearly independent.)
+    \begin{proof}[Answer]
+        Let $\vm_{r+1}$ be any vector that cannot be represented as a linear combination $\sum_{k=1}^r\alpha_k\vm_k$ (we are guaranteed that one exists, because otherwise $\vm_1,\dots,\vm_r$ would be generating). Now suppose for the sake of contradiction that the new list is linearly dependent. Then there exist coefficients $\alpha_1,\dots,\alpha_{r+1}$, not all zero, such that
+        \begin{equation*}
+            \alpha_1\vm_1+\cdots+\alpha_{r+1}\vm_{r+1} = \bm{0}
+        \end{equation*}
+        But then
+        \begin{equation*}
+            \vm_{r+1} = -\frac{\alpha_1}{\alpha_{r+1}}\vm_1-\cdots-\frac{\alpha_r}{\alpha_{r+1}}\vm_r
+        \end{equation*}
+        so $\vm_{r+1}$ can be expressed as a linear combination of $\vm_1,\dots,\vm_r$, a contradiction.
+    \end{proof}
     \item Is it possible that vectors $\vm_1,\vm_2,\vm_3$ are linearly dependent, but the vectors $\wm_1=\vm_1+\vm_2,\wm_2=\vm_2+\vm_3,\wm_3=\vm_3+\vm_1$ are linearly \emph{independent}?
+    \begin{proof}[Answer]
+        No.\par
+        Suppose $\vm_1,\vm_2,\vm_3$ are linearly dependent. Then there exist coefficients $\alpha_1,\alpha_2,\alpha_3$, not all zero, such that
+        \begin{equation*}
+            \alpha_1\vm_1+\alpha_2\vm_2+\alpha_3\vm_3 = \bm{0}
+        \end{equation*}
+        To prove that $\wm_1,\wm_2,\wm_3$ must be linearly dependent, as defined, it will suffice to show that there exist coefficients $\beta_1,\beta_2,\beta_3$, not all zero, such that
+        \begin{equation*}
+            \beta_1\wm_1+\beta_2\wm_2+\beta_3\wm_3 = \bm{0}
+        \end{equation*}
+        But we have that
+        \begin{align*}
+            \beta_1\wm_1+\beta_2\wm_2+\beta_3\wm_3 &= \beta_1(\vm_1+\vm_2)+\beta_2(\vm_2+\vm_3)+\beta_3(\vm_3+\vm_1)\\
+            &= (\beta_1+\beta_3)\vm_1+(\beta_1+\beta_2)\vm_2+(\beta_2+\beta_3)\vm_3
+        \end{align*}
+        so to have $(\beta_1+\beta_3)\vm_1+(\beta_1+\beta_2)\vm_2+(\beta_2+\beta_3)\vm_3=\bm{0}$, we need only require that
+        \begin{align*}
+            \beta_1+\beta_3 &= \alpha_1&
+            \beta_1+\beta_2 &= \alpha_2&
+            \beta_2+\beta_3 &= \alpha_3
+        \end{align*}
+        Thus, choose
+        \begin{align*}
+            \beta_1 &= \frac{1}{2}(\alpha_1+\alpha_2-\alpha_3)&
+            \beta_2 &= \frac{1}{2}(-\alpha_1+\alpha_2+\alpha_3)&
+            \beta_3 &= \frac{1}{2}(\alpha_1-\alpha_2+\alpha_3)
+        \end{align*}
+        Lastly, note that we do not have $\beta_1=\beta_2=\beta_3=0$ because if we did, we could prove from that condition that $\alpha_1=\alpha_2=\alpha_3=0$, a contradiction.
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{3.\arabic*.}}]
@@ -50,35 +199,373 @@
     \item For each linear transformation below, find its matrix.
     \begin{enumerate}
         \item $T:\R^2\to\R^3$ defined by $T(x,y)^T=(x+2y,2x-5y,7y)^T$.
+        \begin{proof}[Answer]
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 2\\
+                    2 & -5\\
+                    0 & 7\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
         \item $T:\R^4\to\R^3$ defined by $T(x_1,x_2,x_3,x_4)^T=(x_1+x_2+x_3+x_4,x_2-x_4,x_1+3x_2+6x_4)^T$.
+        \begin{proof}[Answer]
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 1 & 1 & 1\\
+                    0 & 1 & 0 & -1\\
+                    1 & 3 & 0 & 6
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
         \item $T:\Pm_n\to\Pm_n$ defined by $Tf(t)=f'(t)$ (find the matrix with respect to the standard basis $1,t,t^2,\dots,t^n$).
+        \begin{proof}[Answer]
+            \begin{equation*}
+                \begin{pmatrix}
+                    0 & 1 & 0 &        & 0\\
+                    0 & 0 & 2 &        & 0\\
+                      &   &   & \ddots &  \\
+                    0 & 0 & 0 &        & n\\
+                    0 & 0 & 0 &        & 0\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
         \item $T:\Pm_n\to\Pm_n$ defined by $Tf(t)=2f(t)+3f'(t)-4f''(t)$ (again with respect to the standard basis $1,t,t^2,\dots,t^n$).
+        \begin{proof}[Answer]
+            \begin{equation*}
+                \begin{pmatrix}
+                    2 & 3 & -8 &  & 0\\
+                    0 & 2 & 6 & \ddots & 0\\
+                    0 & 0 & 2 & \ddots & -4n(n-1)\\
+                    \vdots & \vdots &  & \ddots & 3n\\
+                    0 & 0 & 0 &  & 2\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
     \end{enumerate}
     \setcounter{enumi}{5}
     \item The set $\C$ of complex numbers can be canonically identified with the space $\R^2$ by treating each $z=x+iy\in\C$ as a column $(x,y)^T\in\R^2$.
     \begin{enumerate}
         \item Treating $\C$ as a complex vector space, show that the multiplication by $\alpha=a+ib\in\C$ is a linear transformation in $\C$. What is its matrix?
+        \begin{proof}[Answer]
+            Let $T:\C\to\C$ be defined by $Tx=\alpha x$. Then
+            \begin{align*}
+                T(x+y) &= \alpha(x+y)&
+                    T(\beta x) &= \alpha(\beta x)\\
+                &= \alpha x+\alpha y&
+                    &= \beta(\alpha x)\\
+                &= Tx+Ty&
+                    &= \beta Tx
+            \end{align*}
+            so $T$ is linear. The matrix of $T$ is $[\alpha]$.
+        \end{proof}
         \item Treating $\C$ as the real vector space $\R^2$, show that the multiplication by $\alpha=a+ib$ defines a linear transformation there. What is its matrix?
+        \begin{proof}[Answer]
+            Let $T:\R^2\to\R^2$ be defined by $T(x,y)^T=(ax-by,ay+bx)^T$. Then
+            \begin{align*}
+                T\left( 
+                    \begin{pmatrix}
+                        x_1\\
+                        x_2\\
+                    \end{pmatrix}
+                    +
+                    \begin{pmatrix}
+                        y_1\\
+                        y_2\\
+                    \end{pmatrix}
+                \right) &= T\left( 
+                    \begin{pmatrix}
+                        x_1+y_1\\
+                        x_2+y_2\\
+                    \end{pmatrix}
+                \right)&
+                    T\left( c
+                        \begin{pmatrix}
+                            x_1\\
+                            x_2\\
+                        \end{pmatrix}
+                    \right) &= T\left( 
+                        \begin{pmatrix}
+                            cx_1\\
+                            cx_2\\
+                        \end{pmatrix}
+                    \right)\\
+                &=
+                \begin{pmatrix}
+                    a(x_1+y_1)-b(x_2+y_2)\\
+                    a(x_2+y_2)+b(x_1+y_1)\\
+                \end{pmatrix}&
+                    &=
+                    \begin{pmatrix}
+                        a(cx_1)-b(cx_2)\\
+                        a(cx_2)+b(cx_1)\\
+                    \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    ax_1-bx_2\\
+                    ax_2+bx_1\\
+                \end{pmatrix}
+                +
+                \begin{pmatrix}
+                    ay_1-by_2\\
+                    ay_2+by_1\\
+                \end{pmatrix}&
+                    &= c
+                    \begin{pmatrix}
+                        ax_1-bx_2\\
+                        ax_2+bx_1\\
+                    \end{pmatrix}\\
+                &= T
+                \begin{pmatrix}
+                    x_1\\
+                    x_2\\
+                \end{pmatrix}
+                +T
+                \begin{pmatrix}
+                    y_1\\
+                    y_2\\
+                \end{pmatrix}&
+                    &= cT
+                    \begin{pmatrix}
+                        x_1\\
+                        x_2\\
+                    \end{pmatrix}
+            \end{align*}
+            so $T$ is linear. The matrix of $T$ is
+            \begin{equation*}
+                \begin{pmatrix}
+                    a & -b\\
+                    b & a\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
         \item Define $T(x+iy)=2x-y+i(x-3y)$. Show that this transformation is not a linear transformation in the complex vector space $\C$, but if we treat $\C$ as the real vector space $\R^2$, then it is a linear transformation there (i.e., that $T$ is a \emph{real linear} but not a \emph{complex linear} transformation). Find the matrix of the real linear transformation $T$.
+        \begin{proof}[Answer]
+            To prove that $T$ is not complex linear, note that
+            \begin{equation*}
+                T(i\cdot 1) = T(i) = -1-3i \neq -1+2i = i(2+i) = iT(1)
+            \end{equation*}
+            We can verify the $T$ is real linear with the following.
+            \begin{align*}
+                T\left( 
+                    \begin{pmatrix}
+                        x_1\\
+                        x_2\\
+                    \end{pmatrix}
+                    +
+                    \begin{pmatrix}
+                        y_1\\
+                        y_2\\
+                    \end{pmatrix}
+                \right) &= T
+                \begin{pmatrix}
+                    x_1+y_1\\
+                    x_2+y_2\\
+                \end{pmatrix}&
+                    T\left( c
+                        \begin{pmatrix}
+                            x_1\\
+                            x_2\\
+                        \end{pmatrix}
+                    \right) &= T
+                    \begin{pmatrix}
+                        cx_1\\
+                        cx_2\\
+                    \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    2(x_1+y_1)-(x_2+y_2)\\
+                    (x_1+y_1)-3(x_2+y_2)\\
+                \end{pmatrix}&
+                    &=
+                    \begin{pmatrix}
+                        2(cx_1)-(cx_2)\\
+                        (cx_1)-3(cx_2)\\
+                    \end{pmatrix}\\
+                &=
+                \begin{pmatrix}
+                    2x_1-x_2\\
+                    x_1-3x_2\\
+                \end{pmatrix}
+                +
+                \begin{pmatrix}
+                    2y_1-y_2\\
+                    y_1-3y_2\\
+                \end{pmatrix}&
+                    &= c
+                    \begin{pmatrix}
+                        2x_1-x_2\\
+                        x_1-3x_2\\
+                    \end{pmatrix}\\
+                &= T
+                \begin{pmatrix}
+                    x_1\\
+                    x_2\\
+                \end{pmatrix}
+                +T
+                \begin{pmatrix}
+                    y_1\\
+                    y_2\\
+                \end{pmatrix}&
+                    &= cT
+                    \begin{pmatrix}
+                        x_1\\
+                        x_2\\
+                    \end{pmatrix}
+            \end{align*}
+            The matrix of the real linear transformation is the following.
+            \begin{equation*}
+                \begin{pmatrix}
+                    2 & -1\\
+                    1 & -3\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{5.\arabic*.}}]
     \setcounter{enumi}{2}
     \item Multiply two rotation matrices $T_\alpha$ and $T_\beta$ (it is a rare case when the multiplication is commutative, i.e., $T_\alpha T_\beta=T_\beta T_\alpha$, so the order is not essential). Deduce formulas for $\sin(\alpha+\beta)$ and $\cos(\alpha+\beta)$ from here.
+    \begin{proof}[Answer]
+        \begin{align*}
+            T_\alpha T_\beta &=
+            \begin{pmatrix}
+                \cos\alpha & -\sin\alpha\\
+                \sin\alpha & \cos\alpha\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \cos\beta & -\sin\beta\\
+                \sin\beta & \cos\beta\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                \cos\alpha\cos\beta-\sin\alpha\sin\beta & -\cos\alpha\sin\beta-\sin\alpha\cos\beta\\
+                \sin\alpha\cos\beta+\cos\alpha\sin\beta & -\sin\alpha\sin\beta+\cos\alpha\cos\beta\\
+            \end{pmatrix}
+        \end{align*}
+        Since $T_{\alpha+\beta}=T_\alpha T_\beta$, we have that
+        \begin{gather*}
+            \sin(\alpha+\beta) = \sin\alpha\cos\beta+\cos\alpha\sin\beta\\
+            \cos(\alpha+\beta) = \cos\alpha\cos\beta-\sin\alpha\sin\beta
+        \end{gather*}
+    \end{proof}
     \setcounter{enumi}{4}
     \item Find linear transformations $A,B:\R^2\to\R^2$ such that $AB=\bm{0}$ but $BA\neq\bm{0}$.
+    \begin{proof}[Answer]
+        Let
+        \begin{align*}
+            A &=
+            \begin{pmatrix}
+                1 & 1\\
+                0 & 0\\
+            \end{pmatrix}&
+            B &=
+            \begin{pmatrix}
+                1 & 0\\
+                -1 & 0\\
+            \end{pmatrix}
+        \end{align*}
+        Then
+        \begin{align*}
+            AB &=
+            \begin{pmatrix}
+                0 & 0\\
+                0 & 0\\
+            \end{pmatrix}&
+            BA &=
+            \begin{pmatrix}
+                1 & 1\\
+                -1 & -1\\
+            \end{pmatrix}
+        \end{align*}
+    \end{proof}
     \setcounter{enumi}{7}
     \item Find the matrix of the reflection through the line $y=-2x/3$. Perform all the multiplications.
+    \begin{proof}[Answer]
+        The reflection matrix $T$ can be obtained by composing a rotation of $\R^2$ such that $y=-2x/3$ lines up with the $x$-axis, a reflection over the $x$-axis (a super simple reflection), and a rotation back. Let $\gamma$ be the angle between the $x$-axis and the line $y=-2x/3$. Then
+        \begingroup
+        \renewcommand{\arraystretch}{1.4}
+        \begin{align*}
+            T &= R_{-\gamma}T_0R_\gamma\\
+            &=
+            \begin{pmatrix}
+                \cos(-\gamma) & -\sin(-\gamma)\\
+                \sin(-\gamma) & \cos(-\gamma)\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & -1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \cos\gamma & -\sin\gamma\\
+                \sin\gamma & \cos\gamma\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                \cos\gamma & \sin\gamma\\
+                -\sin\gamma & \cos\gamma\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & -1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \cos\gamma & -\sin\gamma\\
+                \sin\gamma & \cos\gamma\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                \frac{3}{\sqrt{13}} & \frac{2}{\sqrt{13}}\\
+                -\frac{2}{\sqrt{13}} & \frac{3}{\sqrt{13}}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & -1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \frac{3}{\sqrt{13}} & -\frac{2}{\sqrt{13}}\\
+                \frac{2}{\sqrt{13}} & \frac{3}{\sqrt{13}}\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                \frac{3}{\sqrt{13}} & \frac{2}{\sqrt{13}}\\
+                -\frac{2}{\sqrt{13}} & \frac{3}{\sqrt{13}}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \frac{3}{\sqrt{13}} & -\frac{2}{\sqrt{13}}\\
+                -\frac{2}{\sqrt{13}} & -\frac{3}{\sqrt{13}}\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                \frac{5}{13} & -\frac{12}{13}\\
+                -\frac{12}{13} & -\frac{5}{13}\\
+            \end{pmatrix}
+        \end{align*}
+        \endgroup
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{6.\arabic*.}}]
     \setcounter{enumi}{2}
     \item Find all left inverses of the column $(1,2,3)^T$.
+    \begin{proof}[Answer]
+        The set of all left inverses of $(1,2,3)^T$ is the set of all $1\times 3$ matrices $(a,b,c)$ such that $(a,b,c)\cdot(1,2,3)^T=(1)$. In other words, it's the set of all $(a,b,c)$ such that $a+2b+3c=1$.
+    \end{proof}
     \setcounter{enumi}{5}
     \item Suppose the product $AB$ is invertible. Show that $A$ is right invertible and $B$ is left invertible. (Hint: You can just write formulas for right and left inverses.)
+    \begin{proof}[Answer]
+        If $AB$ is invertible, then there exists $(AB)^{-1}$. It follows that $(AB)(AB)^{-1}=A(B(AB)^{-1})=I$, so $A$ is right invertible, and $(AB)^{-1}(AB)=((AB)^{-1}A)B=I$, so $B$ is left invertible.
+    \end{proof}
     \stepcounter{enumi}
     \item Let $A$ be an $n\times n$ matrix. Prove that if $A^2=\bm{0}$, then $A$ is not invertible.
+    \begin{proof}[Answer]
+        Suppose for the sake of contradiction there exists an $A^{-1}$. Then
+        \begin{equation*}
+            I = AAA^{-1}A^{-1} = A^2A^{-2} = \bm{0}A^{-2} = \bm{0}
+        \end{equation*}
+        a contradiction.
+    \end{proof}
     \stepcounter{enumi}
     \item Write matrices of the linear transformations $T_1$ and $T_2$ in $\F^5$, defined as follows: $T_1$ interchanges the coordinates $x_2$ and $x_4$ of the vector $\x$, and $T_2$ just adds to the coordinate $x_2$ the quantity $a$ times the coordinate $x_4$, and does not change other coordinates, i.e.,
     \begin{align*}
@@ -116,15 +603,74 @@
         \end{pmatrix}
     \end{align*}
     where $a$ is some fixed number. Show that $T_1$ and $T_2$ are invertible transformations, and write the matrices of the inverses. (Hint: It may be simpler, if you first describe the inverse transformation, and then find its matrix, rather than trying to guess [or compute] the inverses of the matrices $T_1,T_2$.)
+    \begin{proof}[Answer]
+        \begin{align*}
+            T_1 &=
+            \begin{pmatrix}
+                1 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 1 & 0\\
+                0 & 0 & 1 & 0 & 0\\
+                0 & 1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 1\\
+            \end{pmatrix}&
+            T_2 &=
+            \begin{pmatrix}
+                1 & 0 & 0 & 0 & 0\\
+                0 & 1 & 0 & a & 0\\
+                0 & 0 & 1 & 0 & 0\\
+                0 & 0 & 0 & 1 & 0\\
+                0 & 0 & 0 & 0 & 1\\
+            \end{pmatrix}
+        \end{align*}
+        The inverse transformation of $T_1$ exchanges $x_2$ and $x_4$ back, leaving everything else the same. The inverse transformation of $T_2$ subtracts $ax_4$ from the second slot, leaving everything else the same. Thus,
+        \begin{align*}
+            T_1^{-1} &=
+            \begin{pmatrix}
+                1 & 0 & 0 & 0 & 0\\
+                0 & 0 & 0 & 1 & 0\\
+                0 & 0 & 1 & 0 & 0\\
+                0 & 1 & 0 & 0 & 0\\
+                0 & 0 & 0 & 0 & 1\\
+            \end{pmatrix}&
+            T_2^{-1} &=
+            \begin{pmatrix}
+                1 & 0 & 0 & 0 & 0\\
+                0 & 1 & 0 & -a & 0\\
+                0 & 0 & 1 & 0 & 0\\
+                0 & 0 & 0 & 1 & 0\\
+                0 & 0 & 0 & 0 & 1\\
+            \end{pmatrix}
+        \end{align*}
+    \end{proof}
     \setcounter{enumi}{12}
     \item Let $A$ be an invertible symmetric ($A^T=A$) matrix. Is the inverse of $A$ symmetric? Justify.
+    \begin{proof}[Answer]
+        We have that
+        \begin{align*}
+            A^{-1} &= ((A^{-1})^T)^T\\
+            &= ((A^T)^{-1})^T\\
+            &= (A^{-1})^T
+        \end{align*}
+        as desired.
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{7.\arabic*.}}]
     \setcounter{enumi}{2}
     \item Let $X$ be a subspace of a vector space $V$, and let $\vm\in V$, $\vm\notin X$. Prove that if $\x\in X$, then $\x+\vm\notin X$.
+    \begin{proof}[Answer]
+        Suppose for the sake of contradiction that $\x+\vm\in X$. Then $\x+\vm$ can be expressed as a linear combination of a basis of $X$. Similarly, $\x$ can be expressed as a linear combination of a basis of $X$. But this implies that $\vm=\x+\vm-\x$ can be written as a linear combination of the basis of $X$, a contradiction since $\vm\notin X$, so it shouldn't be able to be written as a linear combination of a basis of $X$.
+    \end{proof}
     \item Let $X$ and $Y$ be subspaces of a vector space $V$. Using the previous exercise, show that $X\cup Y$ is a subspace if and only if $X\subset Y$ or $Y\subset X$.
+    \begin{proof}[Answer]
+        Suppose that $X\cup Y$ is a subspace of $V$. Suppose for the sake of contradiction that $X\not\subset Y$ and $Y\not\subset X$. Then there exists $\x\in X$ such that $\x\notin Y$ and $\y\in Y$ such that $\y\notin X$. Consider $\x+\y$. Since $\x\in X$ and $\y\notin X$, we have by 7.3 that $\x+\y\notin X$. Similarly, we have that $\x+\y\notin Y$. But this implies that $\x+\y\notin X\cup Y$, contradiction the hypothesis that $X\cup Y$ is a subspace (and thus closed under addition).\par
+        Suppose that $X\subset Y$. To prove that $X\cup Y$ is a subspace, it will suffice to check that $\vm\in X\cup Y$ implies $\alpha\vm\in X\cup Y$, and $\vm,\wm\in X\cup Y$ implies $\vm+\wm\in X\cup Y$. Let $\vm\in X\cup Y$. Then $\vm\in X$ or $\vm\in Y$. Either way, the fact that $X$ and $Y$ are subspaces guarantees that $\alpha\vm\in X\cup Y$. Now let $\vm,\wm\in X\cup Y$. Since $X\subset Y$, this implies that $\vm,\wm\in Y$, so $\vm+\wm\in Y$, so $\vm+\wm\in X\cup Y$. The proof is symmetric if $Y\subset X$.
+    \end{proof}
     \item What is the smallest subspace of the space of $4\times 4$ matrices which contains all upper triangular matrices ($a_{j,k}=0$ for all $j>k$), and all symmetric matrices $(A=A^T)$? What is the largest subspace contained in both of those subspaces?
+    \begin{proof}[Answer]
+        Out of the vector space $V$ of $4\times 4$ matrices, the smallest subspace which contains all upper triangular matrices and all symmetric matrices is $V$, itself. This is because any matrix can be decomposed into the sum of a symmetric matrix and an upper triangular matrix (fix the values in the lower triangle, and modify the upper triangle as needed with the upper triangular matrix), so every $4\times 4$ matrix is in this subspace.\par
+        The largest subspace contained in both the subspace of upper triangular matrices and the subspace of all symmetric matrices is the subspace of all diagonal matrices. Adding another dimension by making a value \emph{below} the diagonal nonzero makes the matrix in question not upper triangular, and adding another dimension by making a value \emph{above} the diagonal nonzero makes the matrix not symmetric (as we would have to add a value below the diagonal to make it so and that would run into the problem described first).
+    \end{proof}
 \end{enumerate}
 
 
@@ -132,30 +678,101 @@
 \begin{enumerate}[label={\textbf{3.\arabic*.}}]
     \setcounter{enumi}{3}
     \item Do the polynomials $x^3+2x$, $x^2+x+1$, $x^3+5$ generate (span) $\Pm_3$? Justify your answer.
+    \begin{proof}[Answer]
+        $1,x,x^2,x^3$ is the standard basis of $\Pm_3$. Thus, it spans $\Pm_3$. But since the given list has fewer vectors, Proposition 3.5 asserts that it cannot span $\Pm_3$.
+    \end{proof}
     \item Can 5 vectors in $\F^4$ be linearly independent? Justify your answer.
+    \begin{proof}[Answer]
+        No --- see Proposition 3.2.
+    \end{proof}
     \stepcounter{enumi}
     \item Prove or disprove: If the columns of a square ($n\times n$) matrix $A$ are linearly independent, so are the rows of $A^3=AAA$.
+    \begin{proof}[Answer]
+        Suppose $A$ is $n\times n$ with linearly independent columns. Then by Proposition 3.1, $A_e$ has a pivot in every column. But since $A_e$ is square, this means it also has a pivot in every row. It follows by 3.6 that $A$ is invertible. Thus $A^{-1}$ exists. Consequently, $A^{-3}$ is the inverse of $A^3$ since
+        \begin{align*}
+            A^3A^{-3} &= AAAA^{-1}A^{-1}A^{-1} = I&
+            A^{-3}A^3 &= A^{-1}A^{-1}A^{-1}AAA = I
+        \end{align*}
+        so $A^3$ is invertible. Thus, 3.6 implies $A_e^3$ has a pivot in every row and column. But this implies that $(A^3)^T$ has a pivot in every row and column, meaning by 3.1 that the columns of $(A^3)^T$ are linearly independent, i.e., the rows of $A^3$ are linearly independent.
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{5.\arabic*.}}]
     \item True or false:
     \begin{enumerate}
         \item Every vector space that is generated by a finite set has a basis.
+        \begin{proof}[Answer]
+            True.\par
+            See Proposition 2.8, Chapter 1.
+        \end{proof}
         \item Every vector space has a (finite) basis.
+        \begin{proof}[Answer]
+            False.\par
+            Consider the vector space of polynomials of any degree.
+        \end{proof}
         \item A vector space cannot have more than one basis.
+        \begin{proof}[Answer]
+            False.\par
+            Both 1 and 2 are bases of $\R^1$.
+        \end{proof}
         \item If a vector space has a finite basis, then the number of vectors in every basis is the same.
+        \begin{proof}[Answer]
+            True.\par
+            See Proposition 3.3, Chapter 2
+        \end{proof}
         \item The dimension of $\Pm_n$ is $n$.
+        \begin{proof}[Answer]
+            False.\par
+            The standard basis of $\Pm_n$ is $1,t,t^2,\dots,t^n$, which has $n+1$ vectors. Thus, $\dim\Pm_n=n+1$.
+        \end{proof}
         \item The dimension on $M_{m\times n}$ is $m+n$.
+        \begin{proof}[Answer]
+            False.\par
+            The standard basis of $M_{m\times n}$ is the set of all matrices with a 1 in one slot and a 0 everywhere else. Thus, $\dim M_{m\times n}=m\times n$.
+        \end{proof}
         \item If vectors $\vm_1,\vm_2,\dots,\vm_n$ generate (span) the vector space $V$, then every vector in $V$ can be written as a linear combination of vectors $\vm_1,\vm_2,\dots,\vm_n$ in only one way.
+        \begin{proof}[Answer]
+            False.\par
+            The vectors $1,2\in\R^1$ span $\R^1$, but $3=1+2$ and $3=-1(1)+2(2)$.
+        \end{proof}
         \item Every subspace of a finite-dimensional space is finite-dimensional.
+        \begin{proof}[Answer]
+            True.\par
+            See Theorem 5.5.
+        \end{proof}
         \item If $V$ is a vector space having dimension $n$, then $V$ has exactly one subspace of dimension 0 and exactly one subspace of dimension $n$.
+        \begin{proof}[Answer]
+            True.\par
+            $\{0\}$ is THE unique VS of dimension 0 and a subspace of every vector space, so that part is true. On the other hand, any subspace of $\dim n$ has a basis consisting of $n$ linearly independent, spanning elements of $V$. But any such list is also a basis of $V$, so the subspace is $V$.
+        \end{proof}
     \end{enumerate}
     \item Prove that if $V$ is a vector space having dimension $n$, then a system of vectors $\vm_1,\vm_2,\dots,\vm_n$ in $V$ is linearly independent if and only if it spans $V$.
+    \begin{proof}[Answer]
+        Suppose first that $\vm_1,\dots,\vm_n$ is linearly independent. Then the $n\times n$ matrix $A$ with these vectors as columns has a pivot in every column by 3.1. But since $A$ is square, this means that it has a pivot in every row. Thus, by 3.1 again, the columns (i.e, the list $\vm_1,\dots,\vm_n$) spans $V$.\par
+        The proof is the same in the reverse direction.
+    \end{proof}
     \setcounter{enumi}{5}
     \item Consider in the space $\R^5$ vectors $\vm_1=(2,-1,1,5,-3)^T$, $\vm_2=(3,-2,0,0,0)^T$, $\vm_3=(1,1,50,-921,0)^T$. (Hint: If you do part (b) first, you can do everything without any computations.)
     \begin{enumerate}
         \item Prove that these vectors are linearly independent.
+        \begin{proof}[Answer]
+            If we add in $\eb_1$ and $\eb_3$ to the mix, then we can create the matrix
+            \begin{equation*}
+                A =
+                \begin{pmatrix}
+                    1 & 3  & 0 & 1    & 2\\
+                    0 & -2 & 0 & 1    & -1\\
+                    0 & 0  & 1 & 50   & 1\\
+                    0 & 0  & 0 & -921 & 5\\
+                    0 & 0  & 0 & 0    & -3\\
+                \end{pmatrix}
+            \end{equation*}
+            $A$ is already in eschelon form ($A=A_e$) and $A=A_e$ has a pivot in every column, so 3.1 implies that the vectors of $A$ are linearly independent.
+        \end{proof}
         \item Complete the system of vectors to a basis.
+        \begin{proof}[Answer]
+            Using the same matrix as above, we can see that $A$ has a pivot in every row and column, so 3.1 implies that its columns form a basis. Thus, the two vectors we added complete the system to a basis of $\R^5$.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -163,14 +780,64 @@
     \item True or false:
     \begin{enumerate}
         \item Any system of linear equations has at least one solution.
+        \begin{proof}[Answer]
+            False.\par
+            $y=x$ and $y=x+1$ has no solution.
+        \end{proof}
         \item Any system of linear equations has at most one solution.
+        \begin{proof}[Answer]
+            False.\par
+            $y=x$ and $y=x$ has infinite solutions.
+        \end{proof}
         \item Any homogeneous system of linear equations has at least one solution.
+        \begin{proof}[Answer]
+            True.\par
+            $\bm{0}$ is always a solution.
+        \end{proof}
         \item Any system of $n$ linear equations in $n$ unknowns has at least one solution.
+        \begin{proof}[Answer]
+            False.\par
+            $y=x$ and $y=x+1$ is a system of 2 linear equations in 2 unknowns but has no solution.
+        \end{proof}
         \item Any system of $n$ linear equations in $n$ unknowns has at most one solution.
+        \begin{proof}[Answer]
+            False.\par
+            $y=x$ and $y=x$ is a system of 2 linear equations in 2 unknowns but has infinite solutions.
+        \end{proof}
         \item If the homogeneous system corresponding to a given system of linear equations has a solution, then the given system has a solution.
+        \begin{proof}[Answer]
+            False.\par
+            $y=x$ and $y=x$ is the homogeneous system corresponding to $y=x$ and $y=x+1$, and it has a solution, but the system itself does not.
+        \end{proof}
         \item If the coefficient matrix of a homogeneous system of $n$ linear equations in $n$ unknowns is invertible, then the system has no non-zero solutions.
+        \begin{proof}[Answer]
+            True.\par
+            Invertible implies pivots in every row/column by 3.1. This implies that $A_{re}$ gives $\bm{0}$ as a particular solution, and the only solution to $A\x=\bb=\bm{0}$. Thus, 6.1 implies that the set of all solutions is $\{\x+\y:\x\in\{\bm{0}\},\y\in\{\bm{0}\}\}=\{\bm{0}\}$.
+        \end{proof}
         \item The solution set of any system of $m$ equations in $n$ unknowns is a subspace of $\R^n$.
+        \begin{proof}[Answer]
+            False.\par
+            The system $x+y=1$ and $2x+y=1$ has one solution in $\R^2$, namely $
+                \left( 
+                    \begin{smallmatrix}
+                        0\\
+                        1\\
+                    \end{smallmatrix}
+                \right)
+            $. Since $
+                \bm{0}\notin\{\left( 
+                    \begin{smallmatrix}
+                        0\\
+                        1\\
+                    \end{smallmatrix}
+                \right)\}
+            $, the solution set is not a \emph{subspace} of $\R^2$, a contradiction.
+        \end{proof}
         \item The solution set of any homogeneous system of $m$ equations in $n$ unknowns is a subspace of $\R^n$.
+        \begin{proof}[Answer]
+            True.\par
+            Let $X$ be the solution set and let $A$ be the coefficient matrix. The answer to Problem 6.1c shows that $\bm{0}\in X$. If $\x\in X$ and $\alpha\in\F$, then $A(\alpha\x)=\alpha A\x=\alpha\bm{0}=\bm{0}$, so $\alpha\x\in X$. If $\x,\y\in X$, then $A(\x+\y)=A\x+A\y=\bm{0}+\bm{0}=\bm{0}$, so $\x+\y\in X$.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -178,27 +845,152 @@
     \item True or false:
     \begin{enumerate}
         \item The rank of a matrix is equal to the number of its non-zero columns.
+        \begin{proof}[Answer]
+            False.\par
+            The rank of a matrix is equal to the number of its pivot columns since each pivot column of $A$ is a vector in the basis of $\Ran A$. In particular, note that non-zero columns can still be linearly dependent.
+        \end{proof}
         \item The $m\times n$ zero matrix is the only $m\times n$ matrix having rank 0.
+        \begin{proof}[Answer]
+            True.\par
+            Suppose for the sake of contradiction that there exists a nonzero matrix with rank 0. The first column from the left with a nonzero entry will be a pivot column. Thus, this column will be part of the basis of $\Ran A$. But since this column exists, $\Ran A\geq 1$, a contradiction.
+        \end{proof}
         \item Elementary row operations preserve rank.
+        \begin{proof}[Answer]
+            True.\par
+            Elementary row operations, as left multiplictions by invertible matrices, do not affect linear independence.
+        \end{proof}
         \item Elementary column operations do not necessarily preserve rank.
+        \begin{proof}[Answer]
+            False.\par
+            Elementary column operations are the same as elementary row operations on the transpose, which we know preserve rank by the above.
+        \end{proof}
         \item The rank of a matrix is equal to the maximum number of linearly independent columns in the matrix.
+        \begin{proof}[Answer]
+            True.\par
+            Each pivot column is linearly independent, and the rank is equal to the number of pivot columns.
+        \end{proof}
         \item The rank of a matrix is equal to the maximum number of linearly independent rows in the matrix.
+        \begin{proof}[Answer]
+            True.\par
+            Each pivot row is linearly independent, and the rank is equal to the number of pivot rows/columns.
+        \end{proof}
         \item The rank of an $n\times n$ matrix is at most $n$.
+        \begin{proof}[Answer]
+            True.\par
+            Each linearly independent column contributes $+1$ to the rank, and since an $n\times n$ matrix can have at most $n$ \emph{columns}, it certainly cannot have more than $n$ \emph{linearly independent columns}.
+        \end{proof}
         \item An $n\times n$ matrix having rank $n$ is invertible.
+        \begin{proof}[Answer]
+            True.\par
+            If an $n\times n$ matrix has rank $n$, then it has $n$ pivot columns. But this implies by 3.6 that it is invertible.
+        \end{proof}
     \end{enumerate}
     \setcounter{enumi}{3}
     \item Prove that if $A:X\to Y$ and $V$ is a subspace of $X$, then $\dim AV\leq\rank A$. ($AV$ here means the subspace $V$ transformed by the transformation $A$, i.e., any vector in $AV$ can be represented as $A\vm$, $\vm\in V$.) Deduce from here that $\rank AB\leq\rank A$. (Remark: Here, one can use the fact that if $V\subset W$, then $\dim V\leq\dim W$. Do you understand why it is true?)
+    \begin{proof}[Answer]
+        We have that $AV\subset AX$, and that $AX=\Ran A$. Thus, by the hint, since $AV\subset\Ran A$, we have that $\dim AV\leq\dim\Ran A$. But this implies that $\dim AV\leq\rank A$, as desired.\par
+        The column space of $B$ will be a subspace of $X$. Additionally, we naturally have that $\Ran AB=A\cdot C(B)$, where $C(B)$ is the colunn space of $B$ ($AB\x\in A\cdot C(B)$ since $B\x\in C(B)$ and vice versa). Thus, by the previous result, $\rank AB=\dim\Ran AB=\dim A\cdot C(B)\leq\rank A$, as desired.
+    \end{proof}
     \stepcounter{enumi}
     \item Prove that if the product $AB$ of two $n\times n$ matrices is invertible, then both $A$ and $B$ are invertible. Even if you know about determinants, do not use them (we did not cover them yet). (Hint: Use the previous 2 problems.)
+    \begin{proof}[Answer]
+        If $AB$ is invertible, then it has a pivot in every column and row. Thus, $\rank AB=n$. It follows by Problem 7.4 that $n=\rank AB\leq\rank A\leq n$, implying that $\rank A=n$. Similarly, Problem 7.5 implies that $\rank B=n$. But these two results imply that $A$ and $B$ both have pivots in every colunn and row, i.e., both are invertible.
+    \end{proof}
     \setcounter{enumi}{8}
     \item If $A$ has the same four fundamental subspaces as $B$, does $A=B$?
+    \begin{proof}[Answer]
+        % Same kernels imply $A,B$ map the same vectors to $\bm{0}$.
+        No --- consider the following two matrices.
+        \begin{align*}
+            A &=
+            \begin{pmatrix}
+                1 & 0\\
+                0 & 1\\
+            \end{pmatrix}&
+            B &=
+            \begin{pmatrix}
+                2 & 0\\
+                0 & 2\\
+            \end{pmatrix}
+        \end{align*}
+        Both of these matrices have
+        \begin{align*}
+            \Ker X &= \{\bm{0}\}&
+            \Ran X &= \R^2&
+            \Ker X^T &= \{\bm{0}\}&
+            \Ran X^T &= \R^2
+        \end{align*}
+        where $X=A\text{ or }B$. However, we also clearly have $A\neq B$.
+    \end{proof}
     \setcounter{enumi}{13}
     \item Is it possible for a real matrix $A$ that $\Ran A=\Ker A^T$? Is it possible for a complex $A$?
+    \begin{proof}[Answer]
+        Suppose for the sake of contradiction that for a real $m\times n$ matrix $A:V\to W$, $\Ran A=\Ker A^T$. Then $A\vm\in\Ran A=\Ker A^T$ for all $\vm\in V$. It follows that $A^T(A\vm)=\bm{0}$ for all $\vm\in V$. Thus, $A^TA=0$. Consequently,
+        \begin{align*}
+            0 &= \trace(0)\\
+            &= \trace(A^TA)\\
+            &= \sum_{j=1}^n(A^TA)_{ii}\\
+            &= \sum_{j=1}^n\sum_{i=1}^mA_{ij}^2
+        \end{align*}
+        It follows that $A_{ij}=0$ for all $i,j$, i.e., that $A=0$. But this implies that $\Ran A=\{\bm{0}\}\neq W=\Ker A^T$, a contradiction.\par
+        It is possible for a complex matrix: Consider
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                0 & 1\\
+                0 & i\\
+            \end{pmatrix}
+        \end{equation*}
+        Clearly
+        \begin{equation*}
+            \Ran A = \spn
+            \begin{pmatrix}
+                1\\
+                i\\
+            \end{pmatrix}
+        \end{equation*}
+        and it can be shown that $\Ker A^T$ is the same.
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{8.\arabic*.}}]
     \setcounter{enumi}{2}
     \item Find the change of coordinates matrix that changes the coordinates in the basis $1,1+t$ in $\Pm_1$ to the coordinates in the basis $1-t,2t$.
+    \begin{proof}[Answer]
+        Let $\mathcal{A}=\{1,1+t\}$, $\mathcal{B}=\{1-t,2t\}$, and 
+        $\mathcal{S}=\{1,t\}$. Then following the procedure from \textcite{bib:Treil}, we have that
+        \begin{align*}
+            [I]_{\mathcal{S}\mathcal{A}} &=
+            \begin{pmatrix}
+                1 & 1\\
+                0 & 1\\
+            \end{pmatrix}&
+            [I]_{\mathcal{S}\mathcal{B}} &=
+            \begin{pmatrix}
+                1 & 0\\
+                -1 & 2\\
+            \end{pmatrix}
+        \end{align*}
+        so
+        \begin{align*}
+            [I]_{\mathcal{B}\mathcal{A}} &= [I]_{\mathcal{B}\mathcal{S}}[I]_{\mathcal{S}\mathcal{A}}\\
+            &= ([I]_{\mathcal{S}\mathcal{B}})^{-1}[I]_{\mathcal{S}\mathcal{A}}\\
+            &= \frac{1}{2}
+            \begin{pmatrix}
+                2 & 0\\
+                1 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 1\\
+                0 & 1\\
+            \end{pmatrix}\\
+            &= \frac{1}{2}
+            \begin{pmatrix}
+                2 & 2\\
+                1 & 2\\
+            \end{pmatrix}
+        \end{align*}
+    \end{proof}
     \setcounter{enumi}{5}
     \item Are the matrices $
         \left(
@@ -215,6 +1007,30 @@
         \end{smallmatrix}
         \right)
     $ similar? Justify.
+    \begin{proof}[Answer]
+        We will first prove that if $A$ and $B$ are similar, then $\trace(A)=\trace(B)$. Let $A,B$ be similar. Then $A=Q^{-1}BQ$, so
+        \begin{align*}
+            \trace(A) &= \trace(Q^{-1}BQ)\\
+            &= \trace(Q^{-1}QB)\\
+            &= \trace(B)
+        \end{align*}
+        as desired.\par
+        Now observe that $
+            \trace\left(
+                \begin{smallmatrix}
+                    1 & 3\\
+                    2 & 2\\
+                \end{smallmatrix}
+            \right)=3
+        $ while $
+            \trace\left(
+                \begin{smallmatrix}
+                    0 & 2\\
+                    4 & 2\\
+                \end{smallmatrix}
+            \right)=2
+        $. Thus, by the contrapositive of the lemma, we have that the two matrices aren't similar.
+    \end{proof}
 \end{enumerate}
 
 
