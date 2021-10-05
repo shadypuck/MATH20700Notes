@@ -1,0 +1,126 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{1}
+
+\begin{document}
+
+
+
+
+\section{Eigenvalues and Eigenvectors}
+\emph{From \textcite{bib:Treil}.}
+\subsection*{Chapter 4}
+\begin{enumerate}[label={\textbf{1.\arabic*.}}]
+    \item \marginnote{10/11:}True or false:
+    \begin{enumerate}
+        \item Every linear operator in an $n$-dimensional vector space has $n$ distinct eigenvalues.
+        \item If a matrix has one eigenvector, it has infinitely many eigenvectors.
+        \item There exists a square real matrix with no real eigenvalues.
+        \item There exists a square matrix with no (complex) eigenvectors.
+        \item Similar matrices always have the same eigenvalues.
+        \item Similar matrices always have the same eigenvectors.
+        \item A non-zero sum of two eigenvectors of a matrix $A$ is always an eigenvector.
+        \item A non-zero sum of two eigenvectors of a matrix $A$ corresponding to the same eigenvalue $\lambda$ is always an eigenvectors.
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Compute eigenvalues and eigenvectors of the rotation matrix
+    \begin{equation*}
+        \begin{pmatrix}
+            \cos\alpha & -\sin\alpha\\
+            \sin\alpha & \cos\alpha\\
+        \end{pmatrix}
+    \end{equation*}
+    Note that the eigenvalues (and eigenvectors) do not need to be real.
+    \stepcounter{enumi}
+    \item Prove that eigenvalues (counting multiplicities) of a triangular matrix coincide with its diagonal entries.
+    \item An operator $A$ is called \textbf{nilpotent} if $A^k=\bm{0}$ for some $k$. Prove that if $A$ is nilpotent, then $\sigma(A)=\{0\}$ (i.e., that 0 is the only eigenvalue of $A$).
+    \item Show that the characteristic polynomial of a block triangular matrix
+    \begin{equation*}
+        \begin{pmatrix}
+            A & *\\
+            \bm{0} & B\\
+        \end{pmatrix}
+    \end{equation*}
+    where $A$ and $B$ are square matrices coincides with $\det(A-\lambda I)\det(B-\lambda I)$. (Hint: Use Exercise 3.11 from Chapter 3.)
+    \item Let $\vm_1,\dots,\vm_n$ be a basis in a vector space $V$. Assume also that the first $k$ vectors $\vm_1,\dots,\vm_k$ of the basis are eigenvectors of an operator $A$, corresponding to an eigenvalue $\lambda$ (i.e., that $A\vm_j=\lambda\vm_j$, $j=1,\dots,k$). Show that in this basis, the matrix of the operator $A$ has block triangular form
+    \begin{equation*}
+        \begin{pmatrix}
+            \lambda I_k & *\\
+            \bm{0} & B\\
+        \end{pmatrix}
+    \end{equation*}
+    where $I_k$ is the $k\times k$ identity matrix and $B$ is some $(n-k)\times(n-k)$ matrix.
+    \stepcounter{enumi}
+    \item Prove that the determinant of a matrix $A$ is the product of its eigenvalues (counting multiplicities). (Hint: First show that $\det(A-\lambda I)=(\lambda_1-\lambda)\cdots(\lambda_n-\lambda)$, where $\lambda_1,\dots,\lambda_n$ are eigenvalues (counting multiplicities). Then compare the free terms (terms without $\lambda$) or plug in $\lambda=0$ to get the conclusion.)
+    \item Prove that the trace of a matrix equals the sum of its eigenvalues in three steps. First, compute the coefficient of $\lambda^{n-1}$ in the right side of the equality
+    \begin{equation*}
+        \det(A-\lambda I) = (\lambda_1-\lambda)\cdots(\lambda_n-\lambda)
+    \end{equation*}
+    Then show that $\det(A-\lambda I)$ can be represented as
+    \begin{equation*}
+        \det(A-\lambda I) = (a_{1,1}-\lambda)(a_{2,2}-\lambda)\cdots(a_{n,n}-\lambda)+q(\lambda)
+    \end{equation*}
+    where $q(\lambda)$ is a polynomial of degree at most $n-2$. And finally, compare the coefficients of $\lambda^{n-1}$ to get the conclusion.
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{2.\arabic*.}}]
+    \item Let $A$ be an $n\times n$ matrix. True or false (justify your conclusions):
+    \begin{enumerate}
+        \item $A^T$ has the same eigenvalues as $A$.
+        \item $A^T$ has the same eigenvectors as $A$.
+        \item If $A$ is diagonalizable, then so is $A^T$.
+    \end{enumerate}
+    \item Let $A$ be a square matrix with real entries, and let $\lambda$ be its complex eigenvalue. Suppose $\vm=(v_1,\dots,v_n)^T$ is a corresponding eigenvector, i.e., $A\vm=\lambda\vm$. Prove that the $\bar{\lambda}$ is an eigenvalue of $A$ and $A\bar{\vm}=\bar{\lambda}\bar{\vm}$, where $\bar{\vm}=(\bar{v}_1,\dots,\bar{v}_n)^T$ is the complex conjugate of the vector $\vm$.
+    \item Let
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            4 & 3\\
+            1 & 2\\
+        \end{pmatrix}
+    \end{equation*}
+    Find $A^{2004}$ by diagonalizing $A$.
+    \item Construct a matrix $A$ with eigenvalues 1 and 3 and corresponding eigenvectors $(1,2)^T$ and $(1,1)^T$. Is such a matrix unique?
+    \stepcounter{enumi}
+    \item Consider the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            2 & 6 & -6\\
+            0 & 5 & -2\\
+            0 & 0 & 4\\
+        \end{pmatrix}
+    \end{equation*}
+    \begin{enumerate}
+        \item Find its eigenvalues. Is it possible to find the eigenvalues without computing?
+        \item Is this matrix diagonalizable? Find out without computing anything.
+        \item If the matrix is diagonalizable, diagonalize it.
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Find all square roots of the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            5 & 2\\
+            -3 & 0\\
+        \end{pmatrix}
+    \end{equation*}
+    i.e., find all matrices $B$ such that $B^2=A$. (Hint: Finding a square root of a diagonal matrix is easy. You can leave your answer as a product.)
+    \stepcounter{enumi}
+    \item Let $A$ be a $5\times 5$ matrix with 3 eigenvalues (not counting multiplicities). Suppose we know that one eigenspace is three-dimensional. Can you say if $A$ is diagonalizable?
+    \item Give an example of a $3\times 3$ matrix which cannot be diagonalized. After you construct the matrix, can you make it "generic," so no special structure of the matrix can be seen?
+    \stepcounter{enumi}
+    \item Eigenvalues of a transposition:
+    \begin{enumerate}
+        \item Consider the transformation $T$ in the space $M_{2\times 2}$ of $2\times 2$ matrices defined by $T(A)=A^T$. Find all its eigenvalues and eigenvectors. Is it possible to diagonalize this transformation? (Hint: While it is possible to write a matrix of this linear transformation in some basis, compute the characteristic polynomial, and so on, it is easier to find eigenvalues and eigenvectors directly from the definition.)
+        \item Can you do the same problem but in the space of $n\times n$ matrices?
+    \end{enumerate}
+    \item Prove that two subspaces $V_1$ and $V_2$ are linearly independent if and only if $V_1\cap V_2=\{\bm{0}\}$.
+\end{enumerate}
+
+
+
+
+\end{document}
