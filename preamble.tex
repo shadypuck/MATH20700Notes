@@ -9,7 +9,7 @@
 \usepackage{subcaption}
 \usepackage{tikz}
 \usepackage{amsmath,amssymb,amsthm}
-\usepackage{bm}
+\usepackage{bm,physics}
 \usepackage[hidelinks]{hyperref}
 
 \MakeOuterQuote{"}
@@ -35,13 +35,16 @@
 \deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[2.1em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
 
-\DeclareMathOperator{\rank}{rank}
+\colorlet{grx}{green!50!black!90!yellow!80}
+\colorlet{orx}{orange!80!black!90!yellow!80}
+\colorlet{rex}{red!80!black!90!orange!80}
+
 \DeclareMathOperator{\Ran}{Ran}
 \DeclareMathOperator{\Ker}{Ker}
-\DeclareMathOperator{\trace}{trace}
 \DeclareMathOperator{\range}{range}
 \DeclareMathOperator{\spn}{span}
 
+\newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\F}{\mathbb{F}}
@@ -53,5 +56,6 @@
 \newcommand{\bb}{\mathbf{b}}
 \newcommand{\x}{\mathbf{x}}
 \newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{z}}
 
 \usepackage{subfiles}

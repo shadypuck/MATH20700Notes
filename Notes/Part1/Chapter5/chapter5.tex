@@ -1,0 +1,145 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{4}
+
+\begin{document}
+
+
+
+
+\chapter{Inner Product Spaces}
+\begin{itemize}
+    \item \marginnote{10/6:}We define
+    \begin{equation*}
+        \ell^2(\R) = \left\{ \{a_n\}_{n\geq 1}\subset\R:\sum_1^\infty|a_n|^2<\infty \right\}
+    \end{equation*}
+    \item \textbf{Inner product}: A map $V\times V\to\F$ that takes $(\x,\y)\mapsto\x\cdot\y$. \emph{Denoted by} $\cdot,(\cdot,\cdot),\langle\cdot,\cdot\rangle$.
+    \item Properties of the inner product:
+    \begin{itemize}
+        \item $(\x,\y)=\overline{(\y,\x)}$ (symmetry).
+        \item $(\alpha\x+\beta\y,\z)=\alpha(\x,\z)+\beta(\y,\z)$ (linearity).
+        \item $(\x,\x)\geq 0$.
+        \item $(\x,\x)=0$ iff $\x=0$.
+    \end{itemize}
+    \item If $\x,\y\in\R^n$, then
+    \begin{equation*}
+        (\x,\y) = \sum_{i=1}^nx_iy_i
+    \end{equation*}
+    \item If $\x,\y\in\C^n$, then
+    \begin{equation*}
+        (\x,\y) = \sum_{i=1}^nx_i\bar{y}_i
+    \end{equation*}
+    \item If $f,g\in\Pm_n(t)$, then
+    \begin{equation*}
+        (f,g) = \int_{-1}^1f\bar{g}\dd{t}
+    \end{equation*}
+    \begin{itemize}
+        \item The conjugate of a polynomial is the polynomial with the conjugate of the coefficients of the original polynomial. Symbolically, if $f=\sum_{i=0}^n\alpha_it^i$ is a polynomial, then $\bar{f}=\sum_{i=0}^n\bar{\alpha}_it^i$.
+    \end{itemize}
+    \item It is a fact that
+    \begin{equation*}
+        \left| \sum^\infty a_n\bar{b}_n \right| \leq \norm{(a_n)_{n\geq 1}}\norm{(b_n)_{n\geq 1}}
+    \end{equation*}
+    \item Suppose we want to define the inner product between two matrices.
+    \begin{itemize}
+        \item A common one is
+        \begin{equation*}
+            (A,B) = \trace(B^*A)
+        \end{equation*}
+        where $B^*=\bar{B}^T=\overline{B^T}$ is the conjugate transpose.
+    \end{itemize}
+    \item We define the norm as a function $V\to[0,\infty)$ given by
+    \begin{equation*}
+        \norm{\x} = \sqrt{(\x,\x)}
+    \end{equation*}
+    \item Properties of the norm.
+    \begin{itemize}
+        \item $\norm{\alpha\x}=|\alpha|\norm{\x}$.
+        \item $\norm{\x+\y}\leq\norm{\x}+\norm{\y}$.
+        \item $\norm{\x}=0$ iff $\x=0$.
+    \end{itemize}
+    \item In $\R^n$,
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \path (-6,0) -- (6,0);
+            \draw [->] (-1.5,0) -- (1.5,0);
+            \draw [->] (0,-1.5) -- (0,1.5);
+    
+            \draw [rex,thick] (1,0) -- (0,1) -- (-1,0) -- (0,-1) -- cycle;
+            \draw [orx,thick] circle (1cm);
+            \draw [grx,thick] (1,1) -- (-1,1) -- (-1,-1) -- (1,-1) -- cycle;
+    
+            \begin{scope}[xshift=2.5cm,yshift=0.5cm]
+                \node [right] at (0,0.8) {${\color{grx}\blacksquare}\ p=\infty$};
+                \node [right] at (0,0.4) {${\color{orx}\blacksquare}\ p=2$};
+                \node [right] at (0,0) {${\color{rex}\blacksquare}\ p=1$};
+            \end{scope}
+        \end{tikzpicture}
+        \caption{The unit ball of norms corresponding to $p=1,2,\infty$.}
+        \label{fig:normUnitBall}
+    \end{figure}
+    \begin{itemize}
+        \item The standard norm is
+        \begin{equation*}
+            \norm{\x} = \sqrt{\sum|x_i|^2}
+        \end{equation*}
+        \item We can also define
+        \begin{equation*}
+            \norm{\x}_p = \sqrt[p]{\sum|x_i|^p}
+        \end{equation*}
+        \item We can even define
+        \begin{equation*}
+            \norm{\x}_\infty = \max|x_i|
+        \end{equation*}
+        \item And we can prove that all of these are valid norms.
+        \item Only the norm corresponding to $\ell^2$ is given by an inner product, but all the other quantities are still norms as defined by the properties (see \textcite{bib:Treil}).
+        \item Figure \ref{fig:normUnitBall} shows the unit ball of each norm, i.e., the set of all points which have norm 1.
+    \end{itemize}
+    \item The parallelogram rule:
+    \begin{equation*}
+        \norm{\x+\y}^2+\norm{\x-\y}^2 = 2(\norm{\x}^2+\norm{\y}^2)
+    \end{equation*}
+    \item Orthogonality: Given $\vm,\wm$, if $\vm\perp\wm$, then $(\vm,\wm)=0$.
+    \item In particular, if $\vm\perp\wm$, then
+    \begin{equation*}
+        \norm{\vm+\wm}^2 = \norm{\vm}^2+\norm{\wm}^2
+    \end{equation*}
+    \item Let $E$ be a subspace of $V$. If $\vm\perp E$, then $\vm\perp\eb$ for all $\eb\in E$, i.e., $\vm\perp\text{a set of vectors spanning }E$.
+    \item Any set of orthogonal vectors is linearly independent. Thus, if $V$ is $n$ dimensional, then $\vm_1,\dots,\vm_n$ orthogonal is a basis.
+    \item Let $E$ be a subspace of $V$. Take $\vm\in V$. We want to define the projection $P_E\vm$ of $\vm$ onto $E$.
+    \begin{itemize}
+        \item We have that $P_E\vm\in E$ and $v-P_E\vm\perp E$.
+        \item Additionally, we have that
+        \begin{equation*}
+            \norm{\vm-P_E\vm} \leq \norm{\vm-\eb}
+        \end{equation*}
+        for all $\eb\in E$.
+        \item Lastly, we have that $P_E\vm$ is unique.
+    \end{itemize}
+    \item If we receive a basis of a vector space, how do we create out of that a basis that is orthogonal? The process of doing this is called \textbf{Gram-Schmidt orthogonalization}.
+    \begin{itemize}
+        \item We keep $\vm_1$, subtract $P_{\vm_1}\vm_2$ from $\vm_2$, subtract $P_{\{\vm_1,\vm_2\}}\vm_3$ from $\vm_3$, and on and on.
+    \end{itemize}
+    \item If we are given a set of orthogonal vectors, we can normalize them by dividing each by its norm. This creates an orthonormal list. The standard basis is orthonormal.
+    \item Let
+    \begin{equation*}
+        E^\perp = \{v\in V:v\perp E\}
+    \end{equation*}
+    \begin{itemize}
+        \item It follows that $V=E\oplus E^\perp$.
+    \end{itemize}
+    \item How close can we come to solving $A\x=\bb$ if we cannot solve it exactly (i.e., if the columns are not linearly independent)?
+    \begin{itemize}
+        \item Let $A$ be an $m\times n$ matrix, and let $\bb\in\R^m$.
+        \item Then the best solution is given by minimizing $\norm{A\x-\bb}$. We minimize this with projections. A special case of this is least squares regression! More details in \textcite{bib:Treil}.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
