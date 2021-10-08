@@ -156,7 +156,13 @@
         \begin{equation*}
             \alpha_1\vm_1+\cdots+\alpha_{r+1}\vm_{r+1} = \bm{0}
         \end{equation*}
-        But then
+        We divide into two cases ($\alpha_{r+1}=0$ and $\alpha_{r+1}\neq 0$). If $\alpha_{r+1}=0$, then it must be at least one of $\alpha_1,\dots,\alpha_r$ is nonzero by hypothesis. But then
+        \begin{align*}
+            \bm{0} &= \alpha_1\vm_1+\cdots+\alpha_r\vm_r+\alpha_{r+1}\vm_{r+1}\\
+            \bm{0}-0\vm_{r+1} &= \alpha_1\vm_1+\cdots+\alpha_r\vm_r\\
+            \bm{0} &= \alpha_1\vm_1+\cdots+\alpha_r\vm_r
+        \end{align*}
+        for a set of coefficients $\alpha_1,\dots,\alpha_r\in\F$, not all zero, contradicting the fact that $\vm_1,\dots,\vm_r$ are linearly independent. On the other hand, if $\alpha_{r+1}\neq 0$, then
         \begin{equation*}
             \vm_{r+1} = -\frac{\alpha_1}{\alpha_{r+1}}\vm_1-\cdots-\frac{\alpha_r}{\alpha_{r+1}}\vm_r
         \end{equation*}
