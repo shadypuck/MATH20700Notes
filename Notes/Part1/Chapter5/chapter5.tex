@@ -137,6 +137,100 @@
         \item Let $A$ be an $m\times n$ matrix, and let $\bb\in\R^m$.
         \item Then the best solution is given by minimizing $\norm{A\x-\bb}$. We minimize this with projections. A special case of this is least squares regression! More details in \textcite{bib:Treil}.
     \end{itemize}
+    \item \marginnote{10/8:}Soug is gonna send us a hefty amount of reading for the weekend.
+    \item Least square approximation:
+    \begin{itemize}
+        \item If we want to minimize $\norm{A\x-\bb}$, the best we can do is project $\bb$ onto the range of $A$.
+        \item Let $\vm_1,\dots,\vm_k$ be an orthogonal basis of $\range A$.
+        \item Then
+        \begin{equation*}
+            \text{Proj}|_{\range A}\bb = \sum^k\frac{(\bb,\vm_k)}{\norm{v_k}^2}\vm_k
+        \end{equation*}
+        \item Matrix equation form:
+        \begin{equation*}
+            \text{Projection}_{\range A} = A(A^*A)^{-1}A^*
+        \end{equation*}
+        if $A^*A$ is invertible, where $A^*=\bar{A}^T$.
+        \begin{itemize}
+            \item Soug never uses this though.
+        \end{itemize}
+        \item The minimum is found when $\bb-A\x\perp\range A$. Implies that $\bb-A\x\perp\ab_k$ for all $k$. Implies $(\bb-A\x,\ab_k)={\bar{\ab}_k}^T(\bb-A\x)=0$.
+        \item Note that we're letting $\bar{\ab}_k^T$ be the row vector
+        \begin{equation*}
+            \bar{\ab}_k^T =
+            \begin{pmatrix}
+                \bar{a}_{1,k} & \cdots & \bar{a}_{n,k}
+            \end{pmatrix}
+        \end{equation*}
+        \item We also have $\bar{A}^T(\bb-A\x)=0$, from which it follows that $A^*A\x=A^*\bb$, so $\x=(A^*A)^{-1}A^*\bb$. Thus, $\text{Proj}|_{\range A}=Ax$, so $\text{Proj}|_{\range A}=A(A^*A)^{-1}A^*\bb$.
+    \end{itemize}
+    \item Adjoint of a linear map $T:V\to W$ is the $A^*$ discussed above.
+    \begin{itemize}
+        \item First, we'll do this for matrices. And then we'll do it for any finite-dimensional vector space.
+        \item Let $A$ be an $m\times n$ matrix. We claim then that
+        \begin{equation*}
+            (A\x,\y) = (\x,A^*\y)
+        \end{equation*}
+        for all $\x\in\C^n$, $\y\in\C^m$. Proof:
+        \begin{align*}
+            (A\x,\y) &= \bar{\y}^TA\x\\
+            &= \y^*A\x\\
+            &= (A^*\y)^*\x\\
+            &= (\x,A^*\y)
+        \end{align*}
+        \item Properties of the adjoint:
+        \begin{gather*}
+            (AB)^T = B^TA^T\\
+            (AB)^* = B^*A^*\\
+            (A^*)^* = A
+        \end{gather*}
+        \item $A^*$ is the unique matrix $B$ such that $(A\x,\y)=(\x,B\y)$.
+        \item Let $\vm_1,\dots,\vm_n$ be a basis of $V$, and let $\wm_1,\dots,\wm_m$ be a basis of $W$.
+        \item Definition of $A^*$: If $(A\x,\y)=(y,A^*\x)$ for all $\x\in V$ and $\y\in W$.
+        \item But it's not enough to define something; we have to check that it exists.
+        \item If $[A]_{\mathcal{A}\mathcal{B}}$, then $[A^*]_{\mathcal{A}\mathcal{B}}$.
+        \item More properties (give criteria for solving systems of equations):
+        \begin{gather*}
+            \ker A^* = (\range A)^\perp\\
+            \ker A = (\range A^*)^\perp\\
+            \range A = (\ker A^*)^\perp\\
+            \range A^* = (\ker A)^\perp
+        \end{gather*}
+        \begin{itemize}
+            \item Soug proves these.
+        \end{itemize}
+    \end{itemize}
+    \item Isometries and unitary operators.
+    \begin{itemize}
+        \item $U:X\to Y$ is an isometry if $\norm{\x}=\norm{U\x}$ for all $\x\in X$. It is an isometry because it preserves the distance between points.
+        \item It immediately follows that $\norm{\x_1-\x_2}=\norm{U\x_1-U\x_2}=\norm{U(\x_1-\x_2)}$.
+        \item This definition is equivalent to an inner product one: $(\x,\y)=(U\x,U\y)$. This follows from the definition of the norm.
+        \item We have
+        \begin{equation*}
+            (\ab,\bb) = \frac{1}{4}\sum_{\alpha=\pm 1,\pm i}\alpha\norm{\ab+\alpha\bb}^2
+        \end{equation*}
+        \begin{itemize}
+            \item $(a+b)^2-(a-b)^2=4ab$ for any $a,b\in\R$, so $ab=\frac{1}{4}[(a+b)^2-(a-b)^2]$. Thus, in a real inner product space,
+            \begin{equation*}
+                (\ab,\bb) = \frac{1}{4}\left( \norm{\ab+\bb}^2-\norm{\ab-\bb}^2 \right)
+            \end{equation*}
+            \item It follows that isometries preserve inner products.
+        \end{itemize}
+        \item $U$ is an isometry if and only if $U^*U=I$. Proof:
+        \begin{gather*}
+            (\x,\x) = (U\x,U\y) = (U^*U\x,\x)\\
+            (\x,\y) = (U\x,U\y) = (U^*U\x,\y)\\
+            (\x,\y) = (U\x,U\y) = (\x,\y)
+        \end{gather*}
+        for all $\y$.
+        \item An isometry is unitary if it is invertible.
+        \begin{itemize}
+            \item Thus, $U:X\to Y$ an isometry is unitary iff $\dim X=\dim Y$.
+        \end{itemize}
+        \item Note that it follows that $U^*=U^{-1}$ for $U$ an isometry.
+        \item $U$ unitary implies $|\det U|=1$, so $\lambda$ an eigenvalue of $U$ implies that $|\lambda|=1$.
+        \item $A$ is diagonalizable iff it has an orthogonal basis of eigenvectors.
+    \end{itemize}
 \end{itemize}
 
 
