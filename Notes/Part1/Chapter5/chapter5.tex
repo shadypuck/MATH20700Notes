@@ -231,6 +231,54 @@
         \item $U$ unitary implies $|\det U|=1$, so $\lambda$ an eigenvalue of $U$ implies that $|\lambda|=1$.
         \item $A$ is diagonalizable iff it has an orthogonal basis of eigenvectors.
     \end{itemize}
+    \item \marginnote{10/11:}Spectral decomposition of self-adjoint linear maps.
+    \begin{itemize}
+        \item Can we write a map in term of the eigenvalues only?
+        \item Let $A:X\to X$ be linear and self-adjoint. Where $\dim X<\infty$.
+        \item Let $A$ have eigenvalues $\lambda_1,\dots,\lambda_n$ and eigenvectors $\vm_1,\dots,\vm_n$. The there is an orthonormal basis of $X$ consisting of eigenvectors of $A$. An operator is self-adjoint if $A=A^*$.
+        \item If $A$ is self-adjoint, then $A$ can be written as diagonal with the eigenvalues on the diagonal with respect to some orthonormal basis of eigenvectors.
+        \item Let $\F=\C$.
+    \end{itemize}
+    \item If there exists an orthonormal basis $u_1,\dots,u_n$ of $X$ such that $A$ is triangular, then $A=UTU^*$ where $U$ is unitary and $T$ is upper triangular.
+    \begin{itemize}
+        \item Proved with induction on $\dim X$.
+        \item $\dim X=1$ is clear.
+        \item Assume for $\dim X=n-1$, WTS for $\dim X=n$.
+        \item The subspace has a basis $\vm_1,\dots,\vm_{n-1}$ such that $A$ has a diagonal form.
+        \item Let $u\in X$ be linearly independent of $\vm_1,\dots,\vm_{n-1}$.
+        \item Let $\lambda$ be the remaining eigenvalue and $u$ the corresponding eigenvector. Let $E=\spn(u)$. Then make the matrix $\lambda$ in the upper left corner, and block diagonal with "$A_{n-1}$" in the bottom right corner, zeroes everywhere else.
+    \end{itemize}
+    \item \textbf{Self-adjoint} (matrix $A$): A linear map $A:X\to X$ where $\dim X<\infty$ such that $A=A^*$.
+    \begin{itemize}
+        \item Similarly, $(Ax,y)=(x,Ay)$.
+        \item $A$ self-adjoint implies all eigenvalues are real, eigenvectors corresponding to different eigenvalues are orthogonal.
+        \begin{itemize}
+            \item Soug proves this.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Strictly positive} (operator $A$): A self-adjoint operator $A:X\to X$ such that $(Ax,x)>0$ for all $x\neq 0$. \emph{Also known as} \textbf{positive definite}.
+    \begin{itemize}
+        \item Implies that all eigenvalues are strictly positive.
+    \end{itemize}
+    \item \textbf{Nonnegative} (operator $A$): A self-adjoint operator $A:X\to X$ such that $(Ax,x)\geq 0$ for all $x\neq 0$. \emph{Also known as} \textbf{definite}.
+    \begin{itemize}
+        \item All eigenvalues are nonnegative.
+    \end{itemize}
+    \item Suppose $A\geq 0$ is self-adjoint. Then there exists a unique self-adjoint $B\geq 0$ such that $B^2=A$.
+    \begin{itemize}
+        \item $A$ self-adjoint is diagonal (wrt. some basis).
+        \item $A$ positive means that all eigenvalues (diagonal entries) are positive.
+        \item Thus, take
+        \begin{equation*}
+            B =
+            \begin{pmatrix}
+                \sqrt{\lambda_1} & 0 & 0\\
+                0 & \ddots & 0\\
+                0 & 0 & \sqrt{\lambda_n}\\
+            \end{pmatrix}
+        \end{equation*}
+        \item Suppose $B^2=A$, $C^2=A$. Then we have an orthonormal basis corresponding to $B$ and an orthonormal basis corresponding to $C$. It follows that $B^2=C^2=A$. Write $B^2x$ and $C^2x$ in terms of their bases; will necessitate that the bases are the same.
+    \end{itemize}
 \end{itemize}
 
 
