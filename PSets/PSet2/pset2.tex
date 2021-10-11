@@ -16,13 +16,139 @@
     \item \marginnote{10/11:}True or false:
     \begin{enumerate}
         \item Every linear operator in an $n$-dimensional vector space has $n$ distinct eigenvalues.
+        \begin{proof}[Answer]
+            False.\par
+            The identity linear operator $I_2$ in $\R^2$  has the sole eigenvalue $\lambda=1$, since $I_2\x=1\x$ for any $\x\in\R^2$.
+        \end{proof}
         \item If a matrix has one eigenvector, it has infinitely many eigenvectors.
+        \begin{proof}[Answer]
+            True.\par
+            Let $A\x=\lambda\x$. Then $\alpha\x$ is also an eigenvector of $A$ for any $\alpha\in\F$ since
+            \begin{equation*}
+                A(\alpha\x) = \alpha A\x = \alpha\lambda\x = \lambda(\alpha\x)
+            \end{equation*}
+        \end{proof}
         \item There exists a square real matrix with no real eigenvalues.
+        \begin{proof}[Answer]
+            True.\par
+            Consider
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 2\\
+                    -2 & 1\\
+                \end{pmatrix}
+            \end{equation*}
+            for which we have $\lambda=1\pm 2i$. Since the two eigenvalues $1+2i$ and $1-2i$ are distinct, and the square matrix given is $2\times 2$, there are no more eigenvalues. Therefore, every eigenvalue of this matrix is not real.
+        \end{proof}
         \item There exists a square matrix with no (complex) eigenvectors.
+        \begin{proof}[Answer]
+            False.\par
+            Let $\x$ be an eigenvector of $A$. If $\x$ is complex, then we are done. If $\x$ is real, then multiply $\x$ by the scalar $i$. It follows by the proof of part (b) that $i\x$ is an eigenvector if $A$.
+        \end{proof}
         \item Similar matrices always have the same eigenvalues.
+        \begin{proof}[Answer]
+            True.\par
+            The characteristic polynomials of similar matrices coincide.
+        \end{proof}
         \item Similar matrices always have the same eigenvectors.
+        \begin{proof}[Answer]
+            % True.\par
+            % Similar matrices refer to the same linear transformation, and a single linear transformation only has one set of eigenvectors (albeit possibly expressed in different bases). Thus, even though
+            % \begin{equation*}
+            %     BS\x = SA\x = S(\lambda\x) = \lambda S\x
+            % \end{equation*}
+            % describes $S\x$ as the appropriate eigenvector of $B$ (if $A\x=\lambda\x$), noting that $S$ is simply a change of basis matrix implies that $S\x$ in the new basis is the \emph{same abstract eigenvector} that $\x$ was in the original basis.
+
+
+            False.\par
+            The matrix
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 2\\
+                    8 & 1\\
+                \end{pmatrix}
+            \end{equation*}
+            has eigenvectors
+            \begin{align*}
+                \begin{pmatrix}
+                    1\\
+                    2\\
+                \end{pmatrix}&&
+                \begin{pmatrix}
+                    1\\
+                    -2\\
+                \end{pmatrix}
+            \end{align*}
+            while its similar matrix
+            \begin{equation*}
+                \begin{pmatrix}
+                    5 & 0\\
+                    0 & -3\\
+                \end{pmatrix}
+            \end{equation*}
+            has eigenvectors
+            \begin{align*}
+                \begin{pmatrix}
+                    1\\
+                    0\\
+                \end{pmatrix}&&
+                \begin{pmatrix}
+                    0\\
+                    1\\
+                \end{pmatrix}
+            \end{align*}
+            Note that since similar matrices refer to the same linear transformation, a single linear transformation technically only has one set of eigenvectors (albeit possibly expressed in different bases).
+        \end{proof}
         \item A non-zero sum of two eigenvectors of a matrix $A$ is always an eigenvector.
-        \item A non-zero sum of two eigenvectors of a matrix $A$ corresponding to the same eigenvalue $\lambda$ is always an eigenvectors.
+        \begin{proof}[Answer]
+            False.\par
+            Consider
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & 2\\
+                \end{pmatrix}
+            \end{equation*}
+            with eigenvalues $\lambda=1,2$ and respective eigenvectors
+            \begin{align*}
+                \begin{pmatrix}
+                    1\\
+                    0\\
+                \end{pmatrix}&&
+                \begin{pmatrix}
+                    0\\
+                    1\\
+                \end{pmatrix}
+            \end{align*}
+            Note that
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & 2\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1\\
+                    1\\
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    1\\
+                    2\\
+                \end{pmatrix}
+            \end{equation*}
+            where the "$\bb$" vector is not a scalar multiple of the "$\x$" vector.
+        \end{proof}
+        \item A non-zero sum of two eigenvectors of a matrix $A$ corresponding to the same eigenvalue $\lambda$ is always an eigenvector.
+        \begin{proof}[Answer]
+            True.\par
+            Let $A\x=\lambda\x$ and $A\y=\lambda\y$. Then
+            \begin{align*}
+                A(\alpha\x+\beta\y) &= \alpha A\x+\beta A\y\\
+                &= \alpha\lambda\x+\beta\lambda\y\\
+                &= \lambda(\alpha\x+\beta\y)
+            \end{align*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \stepcounter{enumi}
     \item Compute eigenvalues and eigenvectors of the rotation matrix
@@ -33,9 +159,53 @@
         \end{pmatrix}
     \end{equation*}
     Note that the eigenvalues (and eigenvectors) do not need to be real.
+    \begin{proof}[Answer]
+        The characteristic polynomial of $A-\lambda I$ is
+        \begin{align*}
+            0 &= \det(A-\lambda I)\\
+            &= (\cos\alpha-\lambda)^2+\sin^2\alpha\\
+            -\sin^2\alpha &= (\cos\alpha-\lambda)^2\\
+            \pm i\sin\alpha &= \pm\cos\alpha-\lambda\\
+            \lambda &= \cos\alpha+i\sin\alpha = \e[i\alpha]\\
+            &= \cos\alpha-i\sin\alpha = \e[-i\alpha]
+        \end{align*}
+        Thus, $\lambda=\e[i\alpha],\e[-i\alpha]$. It follows by solving the systems of equations
+        \begin{align*}
+            x_1\cos\alpha-x_2\sin\alpha &= \e[i\alpha]x_1&
+                y_1\cos\alpha-y_2\sin\alpha &= \e[-i\alpha]y_1\\
+            x_1\sin\alpha+x_2\cos\alpha &= \e[i\alpha]x_2&
+                y_1\sin\alpha+y_2\cos\alpha &= \e[-i\alpha]y_2\\
+        \end{align*}
+        that the eigenvectors are
+        \begin{align*}
+            x &=
+            \begin{pmatrix}
+                1\\
+                -i\\
+            \end{pmatrix}&
+            y &=
+            \begin{pmatrix}
+                1\\
+                i\\
+            \end{pmatrix}
+        \end{align*}
+    \end{proof}
     \stepcounter{enumi}
     \item Prove that eigenvalues (counting multiplicities) of a triangular matrix coincide with its diagonal entries.
+    \begin{proof}[Answer]
+        % Let $A$ be upper triangular, and let $\lambda$ be an eigenvalue of $A$. Suppose for the sake of contradiction that $\lambda$ is not on the diagonal of $A$. Then $A-\lambda I$ has all nonzero entries, so $\det(A-\lambda I)\neq 0$, so $\lambda$ is not an eigenvalue of $A$, a contradiction.\par
+        % Now suppose that $\lambda$ is a diagonal entry of $A$. Then $\det(A-\lambda I)=0$ because there is a zero on the diagonal of $A-\lambda I$, so $(A-\lambda I)\x=\bm{0}$ has a solution, so $\lambda$ is an eigenvalue of $A$.
+
+        Since the determinant of a triangular matrix is the product of its diagonal entries, we have that
+        \begin{equation*}
+            \det(A-\lambda I) = (a_{1,1}-\lambda)(a_{2,2}-\lambda)\cdots(a_{n,n}-\lambda)
+        \end{equation*}
+        But this polynomial is zero only if and only if $\lambda$ is a diagonal entry, so the eigenvalues must be the diagonal entries.
+    \end{proof}
     \item An operator $A$ is called \textbf{nilpotent} if $A^k=\bm{0}$ for some $k$. Prove that if $A$ is nilpotent, then $\sigma(A)=\{0\}$ (i.e., that 0 is the only eigenvalue of $A$).
+    \begin{proof}[Answer]
+        Suppose for the sake of contradiction that $\lambda$ is a nonzero eigenvalue of $A$ with corresponding eigenvector $\x$. Then since $A\x=\lambda\x$, $A^k\x=\lambda^k\x\neq\bm{0}=0\x$, so $A^k\neq 0$, a contradiction.
+    \end{proof}
     \item Show that the characteristic polynomial of a block triangular matrix
     \begin{equation*}
         \begin{pmatrix}
@@ -44,6 +214,24 @@
         \end{pmatrix}
     \end{equation*}
     where $A$ and $B$ are square matrices coincides with $\det(A-\lambda I)\det(B-\lambda I)$. (Hint: Use Exercise 3.11 from Chapter 3.)
+    \begin{proof}[Answer]
+        It follows from Chapter 3, Exercise 3.11 that
+        \begin{align*}
+            \det\left(
+                \begin{pmatrix}
+                    A & *\\
+                    \bm{0} & B\\
+                \end{pmatrix}
+                -\lambda I
+            \right) &= \det
+            \begin{pmatrix}
+                A-\lambda I & *\\
+                \bm{0} & B-\lambda I\\
+            \end{pmatrix}\\
+            &= \det(A-\lambda I)\det(B-\lambda I)
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Let $\vm_1,\dots,\vm_n$ be a basis in a vector space $V$. Assume also that the first $k$ vectors $\vm_1,\dots,\vm_k$ of the basis are eigenvectors of an operator $A$, corresponding to an eigenvalue $\lambda$ (i.e., that $A\vm_j=\lambda\vm_j$, $j=1,\dots,k$). Show that in this basis, the matrix of the operator $A$ has block triangular form
     \begin{equation*}
         \begin{pmatrix}
@@ -52,8 +240,42 @@
         \end{pmatrix}
     \end{equation*}
     where $I_k$ is the $k\times k$ identity matrix and $B$ is some $(n-k)\times(n-k)$ matrix.
+    \begin{proof}[Answer]
+        We will first show that if $\vm_i$ is an eigenvector of $A$ \emph{and} a part of the basis $\vm_1,\dots,\vm_n$ of $V$, then it's matrix with respect to $\vm_1,\dots,\vm_n$ has zeros in every slot except the $i^\text{th}$ slot, which is 1. This is easily shown as follows.
+        \begin{align*}
+            A\vm_i &= \lambda\vm_i\\
+            A\vm_i &= \lambda(0\vm_1+\cdots+0\vm_{i-1}+1\vm_i+0\vm_{i+1}+\cdots+0\vm_n)
+        \end{align*}
+        This combined with the observations that the $i^\text{th}$ column of $A$ is equal to $A\vm_i$ and $A\vm_i=\lambda\vm_i$ proves that
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                A\vm_1 & \cdots & A\vm_n\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                \lambda\vm_1 & \cdots & \lambda\vm_k & A\vm_{k+1} & \cdots & A\vm_n\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                \lambda I_k & *\\
+                \bm{0} & B\\
+            \end{pmatrix}
+        \end{equation*}
+        as desired.
+    \end{proof}
     \stepcounter{enumi}
     \item Prove that the determinant of a matrix $A$ is the product of its eigenvalues (counting multiplicities). (Hint: First show that $\det(A-\lambda I)=(\lambda_1-\lambda)\cdots(\lambda_n-\lambda)$, where $\lambda_1,\dots,\lambda_n$ are eigenvalues (counting multiplicities). Then compare the free terms (terms without $\lambda$) or plug in $\lambda=0$ to get the conclusion.)
+    \begin{proof}[Answer]
+        % We know that the roots of the characteristic polynomial $\det(A-\lambda I)$ of $A$ are exactly the eigenvalues $\lambda_1,\dots,\lambda_n$ of $A$. In other words, $\det(A-\lambda I)$ must go to zero exactly when $\lambda=\lambda_i$ for some $i$. Thus, $\det(A-\lambda I)$ must be of the form
+        % \begin{equation*}
+        %     c(\lambda_1-\lambda)\cdots(\lambda_n-\lambda)
+        % \end{equation*}
+        % for some $c\in\F$. But since $\lambda$ only occurs in $A-\lambda I$ with the coefficient $-1$, the $\lambda^n$ term must have coefficient $\pm 1$. It follows that 
+
+
+        We can row reduce $A$ to an upper triangular matrix $A_r$ without changing its determinant. We know that the determinant of the row-reduced matrix is equal to the product of its diagonal entries, and we know that the product of the diagonal entries of an upper-triangular matrix is equal to the product of its eigenvalues, so therefore, the determinant of $A$ is equal to the product of the eigenvalues.
+    \end{proof}
     \item Prove that the trace of a matrix equals the sum of its eigenvalues in three steps. First, compute the coefficient of $\lambda^{n-1}$ in the right side of the equality
     \begin{equation*}
         \det(A-\lambda I) = (\lambda_1-\lambda)\cdots(\lambda_n-\lambda)
@@ -63,16 +285,108 @@
         \det(A-\lambda I) = (a_{1,1}-\lambda)(a_{2,2}-\lambda)\cdots(a_{n,n}-\lambda)+q(\lambda)
     \end{equation*}
     where $q(\lambda)$ is a polynomial of degree at most $n-2$. And finally, compare the coefficients of $\lambda^{n-1}$ to get the conclusion.
+    \begin{proof}[Answer]
+        Consider $(\lambda_1-\lambda)\cdots(\lambda_n-\lambda)$. We have that every $\lambda^{n-1}$ term in the expansion of this product must take the $\lambda$ from $n-1$ of the terms and the $\lambda_i$ from the remaining term. Thus, our expansion should contain the terms $\lambda_1\lambda^{n-1},\dots,\lambda_n\lambda^{n-1}$, which, when we sum, gives $(\lambda_1+\cdots+\lambda_n)\lambda^{n-1}$.\par
+        In the permutation sum form of the determinant, we have that $(a_{1,1}-\lambda)(a_{2,2}-\lambda)\cdots(a_{n,n}-\lambda)$ will be one of the terms in the sum. In particular, it is the \emph{only} term to contain all the $\lambda$-containing entries in the matrix, so it solely determines the $\lambda^n$ term. Additionally, the term containing the next-highest number of $\lambda$'s must contain $n-2$ $\lambda$'s, not $n-1$, since any product with $n-1$ diagonal entries and 1 non-diagonal entry necessarily contains two terms that are in the same row or column. Thus, the term given solely determines the $\lambda^{n-1}$ term as well. All of the other terms, having degree at most $\lambda^{n-2}$, can be defined equal to $q(\lambda)$.\par
+        Therefore, since the first part of the proof gives
+        \begin{equation*}
+            (\lambda_1+\cdots+\lambda_n)\lambda^{n-1}
+        \end{equation*}
+        as the $\lambda^{n-1}$ term, and the second part of the proof (by a similar argument) gives
+        \begin{equation*}
+            (a_{1,1}+a_{2,2}+\cdots+a_{n,n})\lambda^{n-1}
+        \end{equation*}
+        as the $\lambda^{n-1}$ term, we have by comparing terms (rigorously, subtract all terms of other degrees to preserve the equality) that
+        \begin{equation*}
+            \trace A = a_{1,1}+a_{2,2}+\cdots+a_{n,n} = \lambda_1+\cdots+\lambda_n
+        \end{equation*}
+        as desired.
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{2.\arabic*.}}]
     \item Let $A$ be an $n\times n$ matrix. True or false (justify your conclusions):
     \begin{enumerate}
         \item $A^T$ has the same eigenvalues as $A$.
+        \begin{proof}[Answer]
+            True.\par
+            Since $\det B=\det B^T$ for any matrix $B$ and the transpose operation does not affect the diagonal, we have that
+            \begin{align*}
+                \det(A-\lambda I) &= \det((A-\lambda I)^T)\\
+                &= \det(A^T-(\lambda I)^T)\\
+                &= \det(A^T-\lambda I)
+            \end{align*}
+            as desired.
+        \end{proof}
         \item $A^T$ has the same eigenvectors as $A$.
+        \begin{proof}[Answer]
+            False.\par
+            Let
+            \begin{equation*}
+                A =
+                \begin{pmatrix}
+                    1 & 2\\
+                    8 & 1\\
+                \end{pmatrix}
+            \end{equation*}
+            Then we can calculate that $A$ has eigenvectors
+            \begin{align*}
+                \begin{pmatrix}
+                    1\\
+                    2\\
+                \end{pmatrix}&&
+                \begin{pmatrix}
+                    -1\\
+                    2\\
+                \end{pmatrix}
+            \end{align*}
+            but $A^T$ has eigenvectors
+            \begin{align*}
+                \begin{pmatrix}
+                    2\\
+                    1\\
+                \end{pmatrix}&&
+                \begin{pmatrix}
+                    -2\\
+                    1\\
+                \end{pmatrix}
+            \end{align*}
+        \end{proof}
         \item If $A$ is diagonalizable, then so is $A^T$.
+        \begin{proof}[Answer]
+            True.\par
+            Suppose $A=SDS^{-1}$. Then
+            \begin{align*}
+                A^T &= (SDS^{-1})^T\\
+                &= (S^{-1})^TD^TS^T\\
+                &= (S^{-1})^TD((S^{-1})^T)^{-1}
+            \end{align*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \item Let $A$ be a square matrix with real entries, and let $\lambda$ be its complex eigenvalue. Suppose $\vm=(v_1,\dots,v_n)^T$ is a corresponding eigenvector, i.e., $A\vm=\lambda\vm$. Prove that the $\bar{\lambda}$ is an eigenvalue of $A$ and $A\bar{\vm}=\bar{\lambda}\bar{\vm}$, where $\bar{\vm}=(\bar{v}_1,\dots,\bar{v}_n)^T$ is the complex conjugate of the vector $\vm$.
+    \begin{proof}[Answer]
+        Let $\vm=\ab+i\bb$ where $a_j=\text{Re}\,v_j$ and $b_j=\text{Im}\,v_j$. It follows that
+        \begin{equation*}
+            A\ab+iA\bb = A\vm
+            = \lambda\vm
+            = \lambda\ab+i\lambda\bb
+        \end{equation*}
+        This combined with the fact that all entries in $A,\ab,\bb$ are real implies by matching corresponding parts that
+        \begin{align*}
+            A\ab &= \lambda\ab&
+            A\bb &= \lambda\bb
+        \end{align*}
+        Therefore,
+        \begin{equation*}
+            A\bar{\vm} = A(\ab-i\bb)
+            = A\ab-iA\bb
+            = \lambda\ab-i\lambda\bb
+            = \lambda(\ab-i\bb)
+            = \lambda\bar{\vm}
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Let
     \begin{equation*}
         A =
@@ -82,7 +396,121 @@
         \end{pmatrix}
     \end{equation*}
     Find $A^{2004}$ by diagonalizing $A$.
+    \begin{proof}[Answer]
+        We have that
+        \begin{align*}
+            0 &= \det(A-\lambda I)\\
+            &= (4-\lambda)(2-\lambda)-3\\
+            &= \lambda^2-6\lambda+5\\
+            &= (\lambda-5)(\lambda-1)
+        \end{align*}
+        Thus, $\lambda=5,1$. It follows by inspection that
+        \begin{align*}
+            x_1 &=
+            \begin{pmatrix}
+                -1\\
+                1\\
+            \end{pmatrix}&
+            x_2 &=
+            \begin{pmatrix}
+                3\\
+                1\\
+            \end{pmatrix}
+        \end{align*}
+        Consequently,
+        \begin{align*}
+            S &=
+            \begin{pmatrix}
+                -1 & 3\\
+                1 & 1\\
+            \end{pmatrix}&
+            S^{-1} &= \frac{1}{4}
+            \begin{pmatrix}
+                -1 & 3\\
+                1 & 1\\
+            \end{pmatrix}
+        \end{align*}
+        Hence
+        \begin{equation*}
+            A = \frac{1}{4}
+            \begin{pmatrix}
+                -1 & 3\\
+                1 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & 5\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -1 & 3\\
+                1 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+        Therefore,
+        \begin{align*}
+            A^{2004} &= \frac{1}{4}
+            \begin{pmatrix}
+                -1 & 3\\
+                1 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & 5^{2004}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -1 & 3\\
+                1 & 1\\
+            \end{pmatrix}\\
+            &= \frac{1}{4}
+            \begin{pmatrix}
+                -1 & 3\\
+                1 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -1 & 3\\
+                5^{2004} & 5^{2004}\\
+            \end{pmatrix}\\
+            &= \frac{1}{4}
+            \begin{pmatrix}
+                1+3\cdot 5^{2004} & -3+3\cdot 5^{2004}\\
+                -1+5^{2004} & 3+5^{2004}\\
+            \end{pmatrix}
+        \end{align*}
+    \end{proof}
     \item Construct a matrix $A$ with eigenvalues 1 and 3 and corresponding eigenvectors $(1,2)^T$ and $(1,1)^T$. Is such a matrix unique?
+    \begin{proof}[Answer]
+        Let
+        \begin{align*}
+            A &=
+            \begin{pmatrix}
+                1 & 1\\
+                2 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & 3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -1 & 1\\
+                2 & -1\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                1 & 1\\
+                2 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -1 & 1\\
+                6 & -3\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                5 & -2\\
+                4 & -1\\
+            \end{pmatrix}
+        \end{align*}
+        Suppose $A'$ has eigenvalues $1,3$ with corresponding eigenvectors $(1,2)^T$ and $(1,1)^T$. Then since the eigenvectors are linearly independent and form a basis of $\R^2$, Theorem 2.1 implies that $A'$ is diagonal with diagonal matrix equal to the middle matrix in the first line above and change of basis matrices equal to the other two in the first line above. Therefore, $A=A'$.
+    \end{proof}
     \stepcounter{enumi}
     \item Consider the matrix
     \begin{equation*}
@@ -95,8 +523,56 @@
     \end{equation*}
     \begin{enumerate}
         \item Find its eigenvalues. Is it possible to find the eigenvalues without computing?
+        \begin{proof}[Answer]
+            It's eigenvalues are $\lambda=2,5,4$, since this is an upper-triangular matrix and those are the diagonal entries.
+        \end{proof}
         \item Is this matrix diagonalizable? Find out without computing anything.
+        \begin{proof}[Answer]
+            Yes. Since the eigenvalues are all distinct and there are 3 for this $3\times 3$ matrix, Corollary 2.3 implies that $A$ is diagonalizable.
+        \end{proof}
         \item If the matrix is diagonalizable, diagonalize it.
+        \begin{proof}[Answer]
+            If $\lambda_1=2$, $\lambda_2=5$, and $\lambda_3=4$, then the corresponding eigenvectors are
+            \begin{align*}
+                x_1 &=
+                \begin{pmatrix}
+                    1\\
+                    0\\
+                    0\\
+                \end{pmatrix}&
+                x_2 &=
+                \begin{pmatrix}
+                    2\\
+                    1\\
+                    0\\
+                \end{pmatrix}&
+                x_3 &=
+                \begin{pmatrix}
+                    3\\
+                    2\\
+                    1\\
+                \end{pmatrix}
+            \end{align*}
+            It follows that
+            \begin{equation*}
+                A =
+                \begin{pmatrix}
+                    1 & 2 & 3\\
+                    0 & 1 & 2\\
+                    0 & 0 & 1\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    2 & 0 & 0\\
+                    0 & 5 & 0\\
+                    0 & 0 & 4\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & -2 & 1\\
+                    0 & 1 & -2\\
+                    0 & 0 & 1\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
     \end{enumerate}
     \stepcounter{enumi}
     \item Find all square roots of the matrix
@@ -108,16 +584,160 @@
         \end{pmatrix}
     \end{equation*}
     i.e., find all matrices $B$ such that $B^2=A$. (Hint: Finding a square root of a diagonal matrix is easy. You can leave your answer as a product.)
+    \begin{proof}[Answer]
+        % We first prove that any diagonal matrix with distinct values on its diagonal has only diagonal square roots. Let's begin. Let $D$ be an $n\times n$ diagonal matrix with distinct values on its diagonal $\lambda_1,\dots,\lambda_n$, and let $B$ be a matrix such that $B^2=D$. Since the diagonal values of a diagonal matrix are the eigenvalues, we know that $D$ has $n$ distinct eigenvalues, too. It follows by Theorem 2.2 that $D$ has $n$ linearly independent eigenvectors $\vm_1,\dots,\vm_n$. Now suppose for the sake of contradiction that $B$ does \emph{not} have $n$ distinct eigenvalues and eigenvectors.
+
+        % We know it has at least one eigenvalue.
+        % We know that any eigenvalue it does have corresponds to exactly one eigenvector.
+        % Suppose $B\vm_i\neq\lambda\vm_i$. Then $B\vm_i$ is in the span of the other eigenvectors of $A$. It follows that $A(B\vm_i)=\alpha_1\lambda_1\vm_1$ We know that $B^2\vm_i=\lambda_i\vm_i$. Then $B(B\vm_i)=\lambda_i\vm_i$.
+
+
+        % Let $B$ have eigenvalues $\lambda_1,\dots,\lambda_n$. Then $D$ has eigenvalues $\lambda_1^2,\dots,\lambda_n^2$. Eigenvectors must correspond as well. $E_{\lambda_1}=E_{\lambda_1^2}$.
+
+
+        We have that
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                -1 & -2\\
+                1 & 3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                3 & 0\\
+                0 & 2\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -3 & -2\\
+                1 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+        Therefore, we have four possibilities for $B$:
+        \begin{gather*}
+            B_1 =
+            \begin{pmatrix}
+                -1 & -2\\
+                1 & 3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \sqrt{3} & 0\\
+                0 & \sqrt{2}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -3 & -2\\
+                1 & 1\\
+            \end{pmatrix}\\
+            B_2 =
+            \begin{pmatrix}
+                -1 & -2\\
+                1 & 3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -\sqrt{3} & 0\\
+                0 & \sqrt{2}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -3 & -2\\
+                1 & 1\\
+            \end{pmatrix}\\
+            B_3 =
+            \begin{pmatrix}
+                -1 & -2\\
+                1 & 3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                \sqrt{3} & 0\\
+                0 & -\sqrt{2}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -3 & -2\\
+                1 & 1\\
+            \end{pmatrix}\\
+            B_4 =
+            \begin{pmatrix}
+                -1 & -2\\
+                1 & 3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -\sqrt{3} & 0\\
+                0 & -\sqrt{2}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -3 & -2\\
+                1 & 1\\
+            \end{pmatrix}
+        \end{gather*}
+    \end{proof}
     \stepcounter{enumi}
     \item Let $A$ be a $5\times 5$ matrix with 3 eigenvalues (not counting multiplicities). Suppose we know that one eigenspace is three-dimensional. Can you say if $A$ is diagonalizable?
+    \begin{proof}[Answer]
+        Yes, it is diagonalizable. Let $\lambda_1,\lambda_2,\lambda_3$ be the 3 eigenvalues of $A$, let $\vm_1,\vm_2$ be the eigenvectors corresponding to $\lambda_1,\lambda_2$, and let $\vm_{3a},\vm_{3b},\vm_{3c}$ be a basis of the eigenvectors corresponding to $\lambda_3$. Since the eigenspace of $\lambda_3$ is three dimensional, we know that $\vm_{3a},\vm_{3b},\vm_{3c}$ is linearly independent. Additionally, we have by consecutive applications of Theorem 2.2 that $\vm_1,\vm_2,\vm_{3a}$, $\vm_1,\vm_2,\vm_{3b}$, and $\vm_1,\vm_2,\vm_{3c}$ are linearly independent lists. Hence $\vm_1,\vm_2,\vm_{3a},\vm_{3b},\vm_{3c}$ is a linearly independent list of length 5, so it must form a basis of $\F^5$. Therefore, by Theorem 2.1, $A$ is diagonalizable.
+    \end{proof}
     \item Give an example of a $3\times 3$ matrix which cannot be diagonalized. After you construct the matrix, can you make it "generic," so no special structure of the matrix can be seen?
+    \begin{proof}[Answer]
+        Generalizing from the given example, we can show that
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & 1 & 1\\
+                0 & 1 & 1\\
+                0 & 0 & 1\\
+            \end{pmatrix}
+        \end{equation*}
+        is not diagonalizable. Applying row operations can put the matrix in the more generic form
+        \begin{equation*}
+            \begin{pmatrix}
+                0 & 1 & 4\\
+                1 & 2 & 3\\
+                -1 & 0 & 4\\
+            \end{pmatrix}
+        \end{equation*}
+    \end{proof}
     \stepcounter{enumi}
     \item Eigenvalues of a transposition:
     \begin{enumerate}
         \item Consider the transformation $T$ in the space $M_{2\times 2}$ of $2\times 2$ matrices defined by $T(A)=A^T$. Find all its eigenvalues and eigenvectors. Is it possible to diagonalize this transformation? (Hint: While it is possible to write a matrix of this linear transformation in some basis, compute the characteristic polynomial, and so on, it is easier to find eigenvalues and eigenvectors directly from the definition.)
+        \begin{proof}[Answer]
+            The symmetric matrices are eigenvectors of this transformation with eigenvalue 1. A basis of them would be
+            \begin{align*}
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & 0\\
+                \end{pmatrix}&&
+                \begin{pmatrix}
+                    0 & 0\\
+                    0 & 1\\
+                \end{pmatrix}&&
+                \begin{pmatrix}
+                    0 & 1\\
+                    1 & 0\\
+                \end{pmatrix}
+            \end{align*}
+            The antisymmetric matrices are eigenvectors of this transformation with eigenvalue $-1$. A basis of them would be
+            \begin{equation*}
+                \begin{pmatrix}
+                    0 & -1\\
+                    1 & 0\\
+                \end{pmatrix}
+            \end{equation*}
+            Since these four matrices are linearly independent, there exists a basis of $M_{2\times 2}$ of eigenvectors of $T$. Therefore, $T$ is diagonalizable.
+        \end{proof}
         \item Can you do the same problem but in the space of $n\times n$ matrices?
+        \begin{proof}[Answer]
+            Yes. A basis of the $n\times n$ symmetric matrices includes all of the matrices that are zero everywhere except for one 1 in a diagonal entry, and all of the matrices that are zero everywhere except for two 1's in off-diagonal symmetric positions. There are $\frac{n}{2}(n+1)$ of these basis "vectors." A basis of the $n\times n$ antisymmetric matrices includes all of the matrices that are zero everywhere except for a $-1$ in an off-diagonal position in the upper triangle and a 1 in the symmetric position in the lower triangle. There are $\frac{n}{2}(n-1)$ of these. Together, we have
+            \begin{equation*}
+                \frac{n}{2}(n+1)+\frac{n}{2}(n-1) = n^2
+            \end{equation*}
+            basis "vectors," meaning that we have a complete eigenbasis of $M_{n\times n}$.
+        \end{proof}
     \end{enumerate}
     \item Prove that two subspaces $V_1$ and $V_2$ are linearly independent if and only if $V_1\cap V_2=\{\bm{0}\}$.
+    \begin{proof}[Answer]
+        Suppose first that $V_1,V_2$ are linearly independent. Let $\vm_{11},\dots,\vm_{1n}$ be a basis of $V_1$, and let $\vm_{21},\dots,\vm_{2m}$ be a basis of $V_2$. Then by Lemma 2.7, $\vm_{11},\dots,\vm_{1n},\vm_{21},\dots,\vm_{2m}$ is linearly independent. Now suppose $\vm\in V_1\cap V_2$. Since $\vm\in V_1$, $\vm=\alpha_{11}\vm_{11}+\cdots+\alpha_{1n}\vm_{1n}$. Similarly, $\vm=\alpha_{21}\vm_{21}+\cdots+\alpha_{2m}\vm_{2m}$. Thus,
+        \begin{equation*}
+            \bm{0} = \vm-\vm = \alpha_{11}\vm_{11}+\cdots+\alpha_{1n}\vm_{1n}-\alpha_{21}\vm_{21}-\cdots-\alpha_{2m}\vm_{2m}
+        \end{equation*}
+        But since $\vm_{11},\dots,\vm_{1n},\vm_{21},\dots,\vm_{2m}$ is linearly independent, it follows that all the $\alpha$'s are 0. Therefore, $\vm=0\vm_{11}+\cdots+0\vm_{1n}=\bm{0}$, so $V_1\cap V_2\subset\{\bm{0}\}$. The inclusion in the other direction is obvious, since $V_1,V_2$ are subspaces.\par
+        Now suppose that $V_1\cap V_2=\{\bm{0}\}$. To prove that $V_1,V_2$ are linearly independent, it will suffice to show that $\vm_1+\vm_2=\bm{0}$ where $\vm_i\in V_i$ for all $i$ implies $\vm_i=\bm{0}$ for all $i$. Let $\vm_1+\vm_2=\bm{0}$ where $\vm_i\in V_i$ for all $i$. Suppose for the sake of contradiction that $\vm_1\neq\bm{0}$. Then we must have $\vm_2=-\vm_1\neq\bm{0}$. But by closure under scalar multiplication, this implies that $-1\cdot-\vm_1=\vm_1\in V_2$ since $\vm_2\in V_2$. Therefore, $\vm_1\in V_1\cap V_2$ as well, a contradiction. The proof is symmetric if we let $\vm_2\neq\bm{0}$ first.
+    \end{proof}
 \end{enumerate}
 
 
