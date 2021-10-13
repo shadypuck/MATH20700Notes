@@ -1,0 +1,246 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{2}
+
+\begin{document}
+
+
+
+
+\section{Inner Product Spaces}
+\emph{From \textcite{bib:Treil}.}
+\subsection*{Chapter 5}
+\begin{enumerate}[label={\textbf{3.\arabic*.}}]
+    \stepcounter{enumi}
+    \item \marginnote{10/18:}Apply Gram-Schmidt orthogonalization to the system of vectors $(1,2,3)^T$, $(1,3,1)^T$. Write the matrix of the orthogonal projection onto the 2-dimensional subspace spanned by these vectors.
+    \setcounter{enumi}{4}
+    \item Find the orthogonal projection of a vector $(1,1,1,1)^T$ onto the subspace spanned by the vectors $\vm_1=(1,3,1,1)^T$ and $\vm_2=(2,-1,1,0)^T$ (note that $\vm_1\perp\vm_2$).
+    \item Find the distance from a vector $(1,2,3,4)$ to the subspace spanned by the vectors $\vm_1=(1,-1,1,0)^T$ and $\vm_2=(1,2,1,1)^T$ (note that $\vm_1\perp\vm_2$). Can you find the distance without actually computing the projection? That would simplify the calculations.
+    \item True or false: If $E$ is a subspace of $V$, then $\dim E+\dim(E^\perp)=\dim V$? Justify.
+    \item Let $P$ be the orthogonal projection onto a subspace $E$ of an inner product space $V$, let $\dim V=n$, and let $\dim E=r$. Find the eigenvalues and the eigenvectors (eigenspaces). Find the algebraic and geometric multiplicities of each eigenvalue.
+    \item Using eigenvalues to compute determinants:
+    \begin{enumerate}
+        \item Find the matrix of the orthogonal projection onto the one-dimensional subspace in $\R^n$ spanned by the vector $(1,\dots,1)^T$.
+        \item Let $A$ be the $n\times n$ matrix with all entries equal to 1. Compute its eigenvalues and their multiplicities (use the previous problem).
+        \item Compute eigenvalues (and multiplicities) of the matrix $A-I$, i.e., of the matrix with zeroes on the main diagonal and ones everywhere else.
+        \item Compute $\det(A-I)$.
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Let $P=P_E$ be the matrix of an orthogonal projection onto a subspace $E$. Show that
+    \begin{enumerate}
+        \item The matrix $P$ is self-adjoint, meaning that $P^*=P$.
+        \item $P^2=P$.
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Suppose $P$ is the orthogonal projection onto a subspace $E$, and $Q$ is the orthogonal projection onto the orthogonal complement $E^\perp$.
+    \begin{enumerate}
+        \item What are $P+Q$ and $PQ$?
+        \item Show that $P-Q$ is its own inverse.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{4.\arabic*.}}]
+    \stepcounter{enumi}
+    \item Find the matrix of the orthogonal projection $P$ onto the column space of
+    \begin{equation*}
+        \begin{pmatrix}
+            1 & 1\\
+            2 & -1\\
+            -2 & 4\\
+        \end{pmatrix}
+    \end{equation*}
+    Use two methods: Gram-Schmidt orthogonalization and the formula for the projection. Compare the results.
+    \stepcounter{enumi}
+    \item Fit a plane $z=a+bx+cy$ to four points $(1,1,3)$, $(0,3,6)$, $(2,1,5)$, and $(0,0,0)$. To do that
+    \begin{enumerate}
+        \item Find 4 equations with 3 unknowns $a,b,c$ such that the plane passes through all 4 points (this system does not have to have a solution).
+        \item Find the least squares solution of the system.
+    \end{enumerate}
+    \item Minimal norm solution. Let an equation $A\x=\bb$ have a solution, and let $A$ have a non-trivial kernel (so the solution is not unique). Prove that
+    \begin{enumerate}
+        \item There exists a unique solution $\x_0$ of $A\x=\bb$ minimizing the norm $\norm{\x}$, i.e., that there exists a unique $\x_0$ such that $A\x_0=\bb$ and $\norm{\x_0}\leq\norm*{\x}$ for any $\x$ satisfying $A\x=\bb$.
+        \item $\x_0=P_{(\ker A)^\perp}\x$ for any $\x$ satisfying $A\x=\bb$.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{5.\arabic*.}}]
+    \stepcounter{enumi}
+    \item Find matrices of orthogonal projections onto all 4 fundamental subspaces of the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            1 & 1 & 1\\
+            1 & 3 & 2\\
+            2 & 4 & 3\\
+        \end{pmatrix}
+    \end{equation*}
+    Note that you only really need to compute 2 of the projections. If you pick an appropriate 2, the other 2 are easy to obtain from them (recall how the projections onto $E$ and $E^\perp$ are related).
+    \item Let $A$ be an $m\times n$ matrix. Show that $\ker A=\ker(A^*A)$. (Hint: To do this, you need to prove 2 inclusions, namely $\ker(A^*A)\subset\ker A$ and $\ker A\subset\ker(A^*A)$. One of the inclusions is trivial, and for the other one, use the fact that $\norm*{A\x}^2=(A\x,A\x)=(A^*A\x,\x)$.)
+    \item Use the equality $\ker A=\ker(A^*A)$ to prove that
+    \begin{enumerate}
+        \item $\rank A=\rank(A^*A)$.
+        \item If $A\x=\bm{0}$ has only the trivial solution, $A$ is left invertible. (Hint: You can just write a formula for the left inverse.)
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Let a matrix $P$ be self-adjoint ($P^*=P$) and let $P^2=P$. Show that $P$ is the matrix of an orthogonal projection. (Hint: Consider the decomposition $\x=\x_1+\x_2$, $\x_1\in\range P$ and $\x_2\perp\range P$, and show that $P\x_1=\x_1$, $P\x_2=\bm{0}$. For one of the equalities, you will need self-adjointness; for the other one, the property $P^2=P$.)
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{6.\arabic*.}}]
+    \item Orthogonally diagonalize the following matrices
+    \begin{align*}
+        \begin{pmatrix}
+            1 & 2\\
+            2 & 1\\
+        \end{pmatrix}&&
+        \begin{pmatrix}
+            0 & -1\\
+            1 & 0\\
+        \end{pmatrix}&&
+        \begin{pmatrix}
+            0 & 2 & 2\\
+            2 & 0 & 2\\
+            2 & 2 & 0\\
+        \end{pmatrix}
+    \end{align*}
+    i.e., for each matrix $A$, find a unitary matrix $U$ and a diagonal matrix $D$ such that $A=UDU^*$.
+    \item True or false: A matrix is unitarily equivalent to a diagonal one if and only if it has an orthogonal basis of eigenvectors.
+    \setcounter{enumi}{4}
+    \item Let $U:X\to X$ be a linear transformation on a finite-dimensional inner product space. True or false:
+    \begin{enumerate}
+        \item If $\norm{U\x}=\norm{\x}$ for all $\x\in X$, then $U$ is unitary.
+        \item If $\norm{U\eb_k}=\norm{\eb_k}$ for each $k=1,\dots,n$ for some orthonormal basis $\eb_1,\dots,\eb_n$, then $U$ is unitary.
+    \end{enumerate}
+    \item Let $A$ and $B$ be unitarily equivalent $n\times n$ matrices.
+    \begin{enumerate}
+        \item Prove that $\trace(A^*A)=\trace(B^*B)$.
+        \item Use (a) to prove that
+        \begin{equation*}
+            \sum_{j,k=1}^n|A_{j,k}|^2 = \sum_{j,k=1}^n|B_{j,k}|^2
+        \end{equation*}
+        \item Use (b) to prove that the matrices
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 2\\
+                2 & i\\
+            \end{pmatrix}&&
+            \begin{pmatrix}
+                i & 4\\
+                1 & 1\\
+            \end{pmatrix}
+        \end{align*}
+        are not unitarily equivalent.
+    \end{enumerate}
+    \item Which of the following pairs of matrices are unitarily equivalent? (Hint: It is easy to eliminate matrices that are not unitarily equivalent: Remember that unitarily equivalent matrices are similar, and recall that the trace, determinant, and eigenvalues of similar matrices coincide. Also, the previous problem helps in eliminating non-unitarily equivalent matrices. Finally, a matrix is unitarily equivalent to a diagonal one if and only if it has an orthogonal basis of eigenvectors.)
+    \begin{enumerate}
+        \item 
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & 1\\
+            \end{pmatrix}&&
+            \begin{pmatrix}
+                0 & 1\\
+                1 & 0\\
+            \end{pmatrix}
+        \end{align*}
+        \item 
+        \begin{align*}
+            \begin{pmatrix}
+                0 & 1\\
+                1 & 0\\
+            \end{pmatrix}&&
+            \begin{pmatrix}
+                0 & 1/2\\
+                1/2 & 0\\
+            \end{pmatrix}
+        \end{align*}
+        \item 
+        \begin{align*}
+            \begin{pmatrix}
+                0 & 1 & 0\\
+                -1 & 0 & 0\\
+                0 & 0 & 1\\
+            \end{pmatrix}&&
+            \begin{pmatrix}
+                2 & 0 & 0\\
+                0 & -1 & 0\\
+                0 & 0 & 0\\
+            \end{pmatrix}
+        \end{align*}
+        \item 
+        \begin{align*}
+            \begin{pmatrix}
+                0 & 1 & 0\\
+                -1 & 0 & 0\\
+                0 & 0 & 1\\
+            \end{pmatrix}&&
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & -i & 0\\
+                0 & 0 & i\\
+            \end{pmatrix}
+        \end{align*}
+        \item 
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 1 & 0\\
+                0 & 2 & 2\\
+                0 & 0 & 3\\
+            \end{pmatrix}&&
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & 2 & 0\\
+                0 & 0 & 3\\
+            \end{pmatrix}
+        \end{align*}
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Let $U$ be a $3\times 3$ orthogonal matrix with $\det U=1$. Prove that
+    \begin{enumerate}
+        \item 1 is an eigenvalue of $U$.
+        \item If $\vm_1,\vm_2,\vm_3$ is an orthonormal basis, such that $U\vm_1=\vm_1$ (remember that 1 is an eigenvalue), then in this basis, the matrix of $U$ is
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & \cos\alpha & -\sin\alpha\\
+                0 & \sin\alpha & \cos\alpha\\
+            \end{pmatrix}
+        \end{equation*}
+        where $\alpha$ is some angle. (Hint: Show that since $\vm_1$ is an eigenvector of $U$, all entries below 1 must be zero, and since $\vm_1$ is also an eigenvector of $U^*$ [why?], all entries right of 1 must also be zero. Then show that the lower right $2\times 2$ matrix is an orthogonal one with determinant 1, and use the previous problem.)
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{8.\arabic*.}}]
+    \item Prove the following formula.
+    \begin{equation*}
+        (\x,\y)_\R = \re(\x,\y)_\C
+    \end{equation*}
+    Namely, show that if
+    \begin{align*}
+        \x &=
+        \begin{pmatrix}
+            z_1\\
+            \vdots\\
+            z_n\\
+        \end{pmatrix}&
+        \y &=
+        \begin{pmatrix}
+            w_1\\
+            \vdots\\
+            w_n\\
+        \end{pmatrix}
+    \end{align*}
+    where $z_k=x_k+iy_k$, $w_k=u_k+iv_k$, $x_k,y_k,u_k,v_k\in\R$, then
+    \begin{equation*}
+        \re\left( \sum_{k=1}^nz_k\bar{w}_k \right) = \sum_{k=1}^nx_ku_k+\sum_{k=1}^ny_kv_k
+    \end{equation*}
+    \setcounter{enumi}{3}
+    \item Show that if $U$ is an orthogonal transformation satisfying $U^2=-I$, then $U^*=-U$.
+\end{enumerate}
+
+
+
+
+\end{document}
