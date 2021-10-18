@@ -15,29 +15,266 @@
 \begin{enumerate}[label={\textbf{3.\arabic*.}}]
     \stepcounter{enumi}
     \item \marginnote{10/18:}Apply Gram-Schmidt orthogonalization to the system of vectors $(1,2,3)^T$, $(1,3,1)^T$. Write the matrix of the orthogonal projection onto the 2-dimensional subspace spanned by these vectors.
+    \begin{proof}[Answer]
+        We define
+        \begin{align*}
+            \vm_1 &=
+            \begin{pmatrix}
+                1\\
+                2\\
+                3\\
+            \end{pmatrix}&
+                \vm_2 &=
+                \begin{pmatrix}
+                    1\\
+                    3\\
+                    1\\
+                \end{pmatrix}
+                -\frac{((1,3,1)^T,(1,2,3)^T)}{\norm{(1,2,3)^T}^2}
+                \begin{pmatrix}
+                    1\\
+                    2\\
+                    3\\
+                \end{pmatrix}\\
+            &&
+                &=
+                \begin{pmatrix}
+                    1\\
+                    3\\
+                    1\\
+                \end{pmatrix}
+                -\frac{10}{14}
+                \begin{pmatrix}
+                    1\\
+                    2\\
+                    3\\
+                \end{pmatrix}\\
+            &&
+                &= \frac{1}{7}
+                \begin{pmatrix}
+                    2\\
+                    11\\
+                    -8\\
+                \end{pmatrix}
+        \end{align*}
+        Thus, we have that
+        \begin{align*}
+            P_{\{\vm_1,\vm_2\}} &= \sum_{k=1}^2\frac{1}{\norm{\vm_k}^2}\vm_k\vm_k^*\\
+            &= \frac{1}{1^2+2^2+3^2}
+            \begin{pmatrix}
+                1\\
+                2\\
+                3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 2 & 3\\
+            \end{pmatrix}
+            +\frac{1}{2^2+11^2+(-8)^2}
+            \begin{pmatrix}
+                2\\
+                11\\
+                -8\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                2 & 11 & -8
+            \end{pmatrix}\\
+            &= \frac{1}{14}
+            \begin{pmatrix}
+                1 & 2 & 3\\
+                2 & 4 & 6\\
+                3 & 6 & 9\\
+            \end{pmatrix}
+            +\frac{1}{189}
+            \begin{pmatrix}
+                4 & 22 & -16\\
+                22 & 121 & -88\\
+                -16 & -88 & 64\\
+            \end{pmatrix}\\
+            &= \frac{1}{54}
+            \begin{pmatrix}
+                5 & 14 & 7\\
+                14 & 50 & -2\\
+                7 & -2 & 53\\
+            \end{pmatrix}
+        \end{align*}
+    \end{proof}
     \setcounter{enumi}{4}
     \item Find the orthogonal projection of a vector $(1,1,1,1)^T$ onto the subspace spanned by the vectors $\vm_1=(1,3,1,1)^T$ and $\vm_2=(2,-1,1,0)^T$ (note that $\vm_1\perp\vm_2$).
-    \item Find the distance from a vector $(1,2,3,4)$ to the subspace spanned by the vectors $\vm_1=(1,-1,1,0)^T$ and $\vm_2=(1,2,1,1)^T$ (note that $\vm_1\perp\vm_2$). Can you find the distance without actually computing the projection? That would simplify the calculations.
-    \item True or false: If $E$ is a subspace of $V$, then $\dim E+\dim(E^\perp)=\dim V$? Justify.
+    \begin{proof}[Answer]
+        If $\vm=(1,1,1,1)^T$,
+        \begingroup
+        \allowdisplaybreaks
+        \begin{align*}
+            P_{\{\vm_1,\vm_2\}}\vm &= \sum_{k=1}^2\frac{(\vm,\vm_k)}{\norm{\vm_k}^2}\vm_k\\
+            &= \frac{((1,1,1,1)^T,(1,3,1,1)^T)}{1^2+3^2+1^2+1^2}
+            \begin{pmatrix}
+                1\\
+                3\\
+                1\\
+                1\\
+            \end{pmatrix}
+            +\frac{((1,1,1,1)^T,(2,-1,1,0)^T)}{2^2+(-1)^2+1^2+0^2}
+            \begin{pmatrix}
+                2\\
+                -1\\
+                1\\
+                0\\
+            \end{pmatrix}\\
+            &= \frac{6}{12}
+            \begin{pmatrix}
+                1\\
+                3\\
+                1\\
+                1\\
+            \end{pmatrix}
+            +\frac{2}{6}
+            \begin{pmatrix}
+                2\\
+                -1\\
+                1\\
+                0\\
+            \end{pmatrix}\\
+            &= \frac{1}{6}
+            \begin{pmatrix}
+                7\\
+                7\\
+                5\\
+                3\\
+            \end{pmatrix}
+        \end{align*}
+        \endgroup
+    \end{proof}
+    \item Find the distance from a vector $(1,2,3,4)^T$ to the subspace spanned by the vectors $\vm_1=(1,-1,1,0)^T$ and $\vm_2=(1,2,1,1)^T$ (note that $\vm_1\perp\vm_2$). Can you find the distance without actually computing the projection? That would simplify the calculations.
+    \begin{proof}[Answer]
+        Let $\vm=(1,2,3,4)^T$. Suppose $\vm=\um+\wm$, where $\um\in\spn(\vm_1,\vm_2)$ and $\wm\perp\spn(\vm_1,\vm_2)$. Clearly $\um\perp\wm$. Consequently, by the Pythagorean theorem,
+        \begin{equation*}
+            \norm{\vm}^2 = \norm{\um}^2+\norm{\wm}^2
+        \end{equation*}
+        where $\norm{\wm}$ is the desired distance from $\vm$ to $\spn(\vm_1,\vm_2)$. $\norm{\vm}$ is easy to find, but $\norm{\um}$ presents a bit more of a challenge. However, since $\vm_1\perp\vm_2$, we can project $\vm$ onto $\vm_1$ and $\vm_2$ separately (an easier process than computing the whole projection), and know that
+        \begin{equation*}
+            \norm{\um}^2 = \norm{\alpha_1\vm_1}^2+\norm{\alpha_2\vm_2}^2
+        \end{equation*}
+        Combining the above two equations, we have that
+        \begin{equation*}
+            \norm{\vm}^2 = \norm{\alpha_1\vm_1}^2+\norm{\alpha_2\vm_2}^2+\norm{\wm}^2
+        \end{equation*}
+        But since $\alpha_k=(\vm,\vm_k)/\norm{\vm_k}^2$ for $k=1,2$, we have that
+        \begin{align*}
+            \norm{\wm} &= \sqrt{\norm{\vm}^2-\norm{\frac{(\vm,\vm_1)}{\norm{\vm_1}^2}\vm_1}^2-\norm{\frac{(\vm,\vm_2)}{\norm{\vm_2}^2}\vm_2}^2}\\
+            &= \sqrt{\norm{\vm}^2-\frac{(\vm,\vm_1)^2}{\norm{\vm_1}^2}-\frac{(\vm,\vm_2)^2}{\norm{\vm_2}^2}}\\
+            &= \sqrt{30-\frac{2^2}{3}-\frac{12^2}{7}}\\
+            &= \sqrt{170/21}
+        \end{align*}
+    \end{proof}
+    \item True or false: If $E$ is a subspace of $V$, then $\dim E+\dim(E^\perp)=\dim V$. Justify.
+    \begin{proof}[Answer]
+        True.\par
+        Let $E$ be a subspace of $V$ with orthonormal basis $\vm_1,\dots,\vm_n$, and let $E^\perp$ have orthonormal basis $\wm_1,\dots,\wm_m$. To prove that $\vm_1,\dots,\vm_n,\wm_1,\dots,\wm_n$ is a basis of $V$, it will suffice to show that the list is linearly independent and spanning. Let $k\in[m]$. Since $\wm_k\in E^\perp$ and $\vm_1,\dots,vm_n\in E$, we have that $\wm_k\perp\vm_l$ for each $l=1,\dots,n$. Thus, by Corollary 2.6, $\vm_1,\dots,\vm_n,\wm_k$ is linearly independent. It follows by combining these $k$ results that $\vm_1,\dots,\vm_n,\wm_1,\dots,\wm_m$ is linearly independent, as desired. On the other hand, by definition any vector $\um\in V$ admits a unique representation $\um=\um_1+\um_2$ where $\um_1\in E$ and $\um_2\in E^\perp$. Additionally, $\um_1=\sum_{k=1}^n\alpha_k\vm_k$ for some $\alpha_1,\dots,\alpha_n\in\F$ and $\um_2=\sum_{k=1}^m\beta\wm_k$ for some $\beta_1,\dots,\beta_n\in\F$. Thus, $\um=\um_1+\um_2$ can be expressed as a linear combination of $\vm_1,\dots,\vm_n,\wm_1,\dots,\wm_n$, so the list is spanning, as desired.
+    \end{proof}
     \item Let $P$ be the orthogonal projection onto a subspace $E$ of an inner product space $V$, let $\dim V=n$, and let $\dim E=r$. Find the eigenvalues and the eigenvectors (eigenspaces). Find the algebraic and geometric multiplicities of each eigenvalue.
+    \begin{proof}[Answer]
+        The eigenvalues are 1 and 0, with corresponding eigenspaces $E$ and $E^\perp$. It follows that the geometric multiplicity of 1 is $r$, and the geometric multiplicity of 0 is $n-r$. We will now prove that the algebraic multiplicities are the same. First off, Proposition 1.1 (Chapter 4) states that the algebraic multiplicity is greater than or equal to the geometric multiplicity. It follows that the algebraic multiplicity of 1 is greater than or equal to $r$ and the algebraic multiplicity of 0 is greater than or equal to $n-r$. But since the total multiplicity cannot exceed $n$ and $n-r+r=n$, we must have that the algebraic multiplicity of 1 is \emph{equal} to $r$, and likewise for 0 and $n-r$.
+    \end{proof}
     \item Using eigenvalues to compute determinants:
     \begin{enumerate}
         \item Find the matrix of the orthogonal projection onto the one-dimensional subspace in $\R^n$ spanned by the vector $(1,\dots,1)^T$.
+        \begin{proof}[Answer]
+            We have that
+            \begin{align*}
+                P_\vm &= \frac{1}{\norm{\vm}^2}\vm\vm^*\\
+                &= \frac{1}{\sum_{i=1}^n1^2}
+                \begin{pmatrix}
+                    1\\
+                    \vdots\\
+                    1\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & \cdots & 1\\
+                \end{pmatrix}\\
+                &= \frac{1}{n}
+                \begin{pmatrix}
+                    1 & \cdots & 1\\
+                    \vdots & \ddots & \vdots\\
+                    1 & \cdots & 1\\
+                \end{pmatrix}
+            \end{align*}
+            In other words, the desired matrix is the $n\times n$ matrix with $a_{i,j}=\frac{1}{n}$ for each $i,j=1,\dots,n$.
+        \end{proof}
         \item Let $A$ be the $n\times n$ matrix with all entries equal to 1. Compute its eigenvalues and their multiplicities (use the previous problem).
+        \begin{proof}[Answer]
+            It's eigenvalues are $n$ and 0, with respective geometric and algebraic multiplicities 1 and $n-1$.
+        \end{proof}
         \item Compute eigenvalues (and multiplicities) of the matrix $A-I$, i.e., of the matrix with zeroes on the main diagonal and ones everywhere else.
+        \begin{proof}[Answer]
+            It's eigenvalues are $n-1$ and $-1$, with respective geometric and algebraic multiplicities 1 and $n-1$.
+        \end{proof}
         \item Compute $\det(A-I)$.
+        \begin{proof}[Answer]
+            By part (b), $\det(A-\lambda I)=(n-\lambda)^1(0-\lambda)^{n-1}$. Thus,
+            \begin{equation*}
+                \det(A-I) = (n-1)(-1)^{n-1}
+            \end{equation*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \stepcounter{enumi}
     \item Let $P=P_E$ be the matrix of an orthogonal projection onto a subspace $E$. Show that
     \begin{enumerate}
         \item The matrix $P$ is self-adjoint, meaning that $P^*=P$.
+        \begin{proof}[Answer]
+            We have that
+            \begingroup
+            \allowdisplaybreaks
+            \begin{align*}
+                p_{ij} &= \sum_{k=1}^r\frac{\vm_{k_i}\bar{\vm}_{k_j}}{\norm{\vm_k}}\\
+                &= \sum_{k=1}^r\frac{\bar{\vm}_{k_j}\overline{\bar{\vm}}_{k_i}}{\norm{\vm_k}}\\
+                &= \sum_{k=1}^r\overline{\frac{\vm_{k_j}\bar{\vm}_{k_i}}{\norm{\vm_k}}}\\
+                &= \overline{\sum_{k=1}^r\frac{\vm_{k_j}\bar{\vm}_{k_i}}{\norm{\vm_k}}}\\
+                &= \bar{p}_{ji}
+            \end{align*}
+            \endgroup
+            as desired.
+        \end{proof}
         \item $P^2=P$.
+        \begin{proof}[Answer]
+            Let $\vm=\um+\wm$ where $\um\in E$ and $\wm\in E^\perp$. Then
+            \begin{equation*}
+                P^2\vm = P(P\vm) = P\um = \um = P\vm
+            \end{equation*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \stepcounter{enumi}
     \item Suppose $P$ is the orthogonal projection onto a subspace $E$, and $Q$ is the orthogonal projection onto the orthogonal complement $E^\perp$.
     \begin{enumerate}
         \item What are $P+Q$ and $PQ$?
+        \begin{proof}[Answer]
+            Let $\vm=\um+\wm$, where $\um\in E$ and $\wm\in E^\perp$. Then
+            \begin{align*}
+                (P+Q)\vm &= P\vm+Q\vm&
+                    (PQ)\vm &= P(Q\vm)\\
+                &= \um+\wm&
+                    &= P\wm\\
+                &= \vm&
+                    &= \bm{0}\\
+                &= I\vm&
+                    &= 0\vm
+            \end{align*}
+            so $P+Q=I$ and $PQ=0$.
+        \end{proof}
         \item Show that $P-Q$ is its own inverse.
+        \begin{proof}[Answer]
+            To show that $P-Q$ is its own inverse, it will suffice to show that $(P-Q)^2=I$. Let $\vm=\um+\wm$ as in part (a). Then
+            \begin{align*}
+                (P-Q)^2\vm &= (P-Q)(P\vm-Q\vm)\\
+                &= (P-Q)(\um-\wm)\\
+                &= P(\um-\wm)-Q(\um-\wm)\\
+                &= \um-(-\wm)\\
+                &= \vm\\
+                &= I\vm
+            \end{align*}
+            as desired.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -52,16 +289,276 @@
         \end{pmatrix}
     \end{equation*}
     Use two methods: Gram-Schmidt orthogonalization and the formula for the projection. Compare the results.
+    \begin{proof}[Answer]
+        \emph{Gram-Schmidt orthogonalization}: We have that
+        \begin{align*}
+            \vm_1 &=
+            \begin{pmatrix}
+                1\\
+                2\\
+                -2\\
+            \end{pmatrix}&
+                \vm_2 &=
+                \begin{pmatrix}
+                    1\\
+                    -1\\
+                    4\\
+                \end{pmatrix}
+                -\frac{((1,-1,4)^T,(1,2,-2)^T)}{\norm{(1,2,-2)^T}^2}
+                \begin{pmatrix}
+                    1\\
+                    2\\
+                    -2\\
+                \end{pmatrix}\\
+            &&
+                &=
+                \begin{pmatrix}
+                    1\\
+                    -1\\
+                    4\\
+                \end{pmatrix}
+                -\frac{-9}{9}
+                \begin{pmatrix}
+                    1\\
+                    2\\
+                    -2\\
+                \end{pmatrix}\\
+            &&
+                &=
+                \begin{pmatrix}
+                    2\\
+                    1\\
+                    2\\
+                \end{pmatrix}
+        \end{align*}
+        so that
+        \begin{align*}
+            P &= \sum_{k=1}^2\frac{1}{\norm{\vm_k}^2}\vm_k\vm_k^*\\
+            &= \frac{1}{1^2+2^2+(-2)^2}
+            \begin{pmatrix}
+                1\\
+                2\\
+                -2\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 2 & -2\\
+            \end{pmatrix}
+            +\frac{1}{2^2+1^2+2^2}
+            \begin{pmatrix}
+                2\\
+                1\\
+                2\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                2 & 1 & 2\\
+            \end{pmatrix}\\
+            &= \frac{1}{9}
+            \begin{pmatrix}
+                1 & 2 & -2\\
+                2 & 4 & -4\\
+                -2 & -4 & 4\\
+            \end{pmatrix}
+            +\frac{1}{9}
+            \begin{pmatrix}
+                4 & 2 & 4\\
+                2 & 1 & 2\\
+                4 & 2 & 4\\
+            \end{pmatrix}\\
+            &= \frac{1}{9}
+            \begin{pmatrix}
+                5 & 4 & 2\\
+                4 & 5 & -2\\
+                2 & -2 & 8\\
+            \end{pmatrix}
+        \end{align*}
+        \emph{Formula}: We have that
+        \begin{align*}
+            P &= A(A^*A)^{-1}A^*\\
+            &=
+            \begin{pmatrix}
+                1 & 1\\
+                2 & -1\\
+                -2 & 4\\
+            \end{pmatrix}
+            \left(
+                \begin{pmatrix}
+                    1 & 2 & -2\\
+                    1 & -1 & 4\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 1\\
+                    2 & -1\\
+                    -2 & 4\\
+                \end{pmatrix}
+            \right)^{-1}
+            \begin{pmatrix}
+                1 & 2 & -2\\
+                1 & -1 & 4\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                1 & 1\\
+                2 & -1\\
+                -2 & 4\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                9 & -9\\
+                -9 & 18\\
+            \end{pmatrix}^{-1}
+            \begin{pmatrix}
+                1 & 2 & -2\\
+                1 & -1 & 4\\
+            \end{pmatrix}\\
+            &= \frac{1}{9}
+            \begin{pmatrix}
+                1 & 1\\
+                2 & -1\\
+                -2 & 4\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                2 & 1\\
+                1 & 1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1 & 2 & -2\\
+                1 & -1 & 4\\
+            \end{pmatrix}\\
+            &= \frac{1}{9}
+            \begin{pmatrix}
+                1 & 1\\
+                2 & -1\\
+                -2 & 4\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                3 & 3 & 0\\
+                2 & 1 & 2\\
+            \end{pmatrix}\\
+            &= \frac{1}{9}
+            \begin{pmatrix}
+                5 & 4 & 2\\
+                4 & 5 & -2\\
+                2 & -2 & 8\\
+            \end{pmatrix}
+        \end{align*}
+        The results are identical in both cases.
+    \end{proof}
     \stepcounter{enumi}
     \item Fit a plane $z=a+bx+cy$ to four points $(1,1,3)$, $(0,3,6)$, $(2,1,5)$, and $(0,0,0)$. To do that
     \begin{enumerate}
         \item Find 4 equations with 3 unknowns $a,b,c$ such that the plane passes through all 4 points (this system does not have to have a solution).
+        \begin{proof}[Answer]
+            \begin{align*}
+                3 &= a+1b+1c\\
+                6 &= a+0b+3c\\
+                5 &= a+2b+1c\\
+                0 &= a+0b+0c
+            \end{align*}
+        \end{proof}
         \item Find the least squares solution of the system.
+        \begin{proof}[Answer]
+            Consider the system
+            \begin{equation*}
+                \underbrace{
+                    \begin{pmatrix}
+                        1 & 1 & 1\\
+                        1 & 0 & 3\\
+                        1 & 2 & 1\\
+                        1 & 0 & 0\\
+                    \end{pmatrix}
+                }_A\underbrace{
+                    \begin{pmatrix}
+                        a\\
+                        b\\
+                        c\\
+                    \end{pmatrix}
+                }_\x=\underbrace{
+                    \begin{pmatrix}
+                        3\\
+                        6\\
+                        5\\
+                        0\\
+                    \end{pmatrix}
+                }_\bb
+            \end{equation*}
+            It follows from solving the normal equation that the least squares solution is
+            \begin{align*}
+                \x &= (A^*A)^{-1}A^*\bb\\
+                &= \left(
+                    \begin{pmatrix}
+                        1 & 1 & 1 & 1\\
+                        1 & 0 & 2 & 0\\
+                        1 & 3 & 1 & 0\\
+                    \end{pmatrix}
+                    \begin{pmatrix}
+                        1 & 1 & 1\\
+                        1 & 0 & 3\\
+                        1 & 2 & 1\\
+                        1 & 0 & 0\\
+                    \end{pmatrix}
+                \right)^{-1}
+                \begin{pmatrix}
+                    1 & 1 & 1 & 1\\
+                    1 & 0 & 2 & 0\\
+                    1 & 3 & 1 & 0\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    3\\
+                    6\\
+                    5\\
+                    0\\
+                \end{pmatrix}\\
+                &= 
+                \begin{pmatrix}
+                    4 & 3 & 5\\
+                    3 & 5 & 3\\
+                    4 & 3 & 8\\
+                \end{pmatrix}^{-1}
+                \begin{pmatrix}
+                    14\\
+                    13\\
+                    26\\
+                \end{pmatrix}\\
+                &= \frac{1}{33}
+                \begin{pmatrix}
+                    31 & -9 & -16\\
+                    -12 & 12 & 3\\
+                    -11 & 0 & 11\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    14\\
+                    13\\
+                    26\\
+                \end{pmatrix}\\
+                &= \frac{1}{50}
+                \begin{pmatrix}
+                    -6\\
+                    73\\
+                    101\\
+                \end{pmatrix}
+            \end{align*}
+        \end{proof}
     \end{enumerate}
     \item Minimal norm solution. Let an equation $A\x=\bb$ have a solution, and let $A$ have a non-trivial kernel (so the solution is not unique). Prove that
     \begin{enumerate}
         \item There exists a unique solution $\x_0$ of $A\x=\bb$ minimizing the norm $\norm{\x}$, i.e., that there exists a unique $\x_0$ such that $A\x_0=\bb$ and $\norm{\x_0}\leq\norm*{\x}$ for any $\x$ satisfying $A\x=\bb$.
+        \begin{proof}[Answer]
+            Let $\x$ be a solution to $A\x=\bb$, and choose $\x_0=P_{(\ker A)^\perp}\x$. Then by Definition 3.1, $\x-\x_0\in((\ker A)^\perp)^\perp=\ker A$. Thus, since
+            \begin{align*}
+                \bb &= A\x\\
+                &= A(\x-\x_0+\x_0)\\
+                &= A(\x-\x_0)+A\x_0\\
+                &= A\x_0
+            \end{align*}
+            we know that $\x_0$ is a solution of the equation $A\x=\bb$. Now let $\x_h\in\ker A$. Then $\x_0+\x_h$ is a solution to $A\x=\bb$. Additionally, since $\x_0\in(\ker A)^\perp$ by definition, we have by the Pythagorean theorem that
+            \begin{equation*}
+                \norm{\x}^2 = \norm{\x_0}^2+\norm{\x_h}^2 \geq \norm{\x_0}
+            \end{equation*}
+            so $\x_0$ is the unique minimal norm solution because any other solution with a nontrivial $\x_h$ necessarily has a greater norm.
+        \end{proof}
         \item $\x_0=P_{(\ker A)^\perp}\x$ for any $\x$ satisfying $A\x=\bb$.
+        \begin{proof}[Answer]
+            See part (a).
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -77,14 +574,140 @@
         \end{pmatrix}
     \end{equation*}
     Note that you only really need to compute 2 of the projections. If you pick an appropriate 2, the other 2 are easy to obtain from them (recall how the projections onto $E$ and $E^\perp$ are related).
+    \begin{proof}[Answer]
+        % We will compute $P_{\range A}$ and $P_{\range A^*}$ from the formula, as they are the easiest to compute. The matrices for $P_{\ker A}$ and $P_{\ker A^*}$ will easily follow since
+        % \begin{align*}
+        %     I &= P_{\range A}+P_{(\range A)^\perp}&
+        %         I &= P_{\range A^*}+P_{(\range A^*)^\perp}\tag*{Exercise 5.3.13}\\
+        %     &= P_{\range A}+P_{\ker A^*}&
+        %         &= P_{\range A^*}+P_{\ker A}\tag*{Theorem 5.1}
+        % \end{align*}
+        % Let's begin.\par
+        % Following the procedure outlined above and computing as in Exercise 5.4.2, we have that
+        % \begin{align*}
+        %     P_{\range A} &=
+        % \end{align*}
+
+
+        We can observe that $\dim\range A=2$, so $\dim\ker A=1$. Similarly, $\dim\range A^*=2$, so $\dim\ker A^*=1$. Since neither matrix is full rank, $A^*A$ is singular so we cannot use the projection formula for any projection. Thus, we will use the Gram-Schmidt orthogonalization method to find the matrices of the projections onto $\ker A$ and $\ker A^*$ (since they're of lower dimension), and then we will invoke
+        \begin{align*}
+            I &= P_{\ker A}+P_{(\ker A)^\perp}&
+                I &= P_{\ker A^*}+P_{(\ker A^*)^\perp}\tag*{Exercise 5.3.13}\\
+            &= P_{\ker A}+P_{\range A^*}&
+                &= P_{\ker A^*}+P_{\range A}\tag*{Theorem 5.1}
+        \end{align*}
+        to find the other two. Let's begin.\par
+        First off, we have that
+        \begin{align*}
+            \ker A &= \left\{
+                \begin{pmatrix}
+                    -1\\
+                    -1\\
+                    2\\
+                \end{pmatrix}
+            \right\}&
+                \ker A^* &= \left\{
+                    \begin{pmatrix}
+                        -1\\
+                        -1\\
+                        1\\
+                    \end{pmatrix}
+                \right\}
+        \end{align*}
+        Thus, we have from the Gram-Schmidt orthogonalization formula in the one-dimensional case that
+        \begin{align*}
+            P_{\ker A} &= \frac{1}{(-1)^2+(-1)^2+2^2}
+            \begin{pmatrix}
+                -1\\
+                -1\\
+                2\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -1 & -1 & 2\\
+            \end{pmatrix}&
+                P_{\ker A^*} &= \frac{1}{(-1)^2+(-1)^2+1^2}
+                \begin{pmatrix}
+                    -1\\
+                    -1\\
+                    1\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    -1 & -1 & 1\\
+                \end{pmatrix}\\
+            &= \frac{1}{6}
+            \begin{pmatrix}
+                1 & 1 & -2\\
+                1 & 1 & -2\\
+                -2 & -2 & 4\\
+            \end{pmatrix}&
+                &= \frac{1}{3}
+                \begin{pmatrix}
+                    1 & 1 & -1\\
+                    1 & 1 & -1\\
+                    -1 & -1 & 1\\
+                \end{pmatrix}
+        \end{align*}
+        It follows that
+        \begin{align*}
+            P_{\range A^*} &= \frac{1}{6}
+            \begin{pmatrix}
+                5 & -1 & 2\\
+                -1 & 5 & 2\\
+                2 & 2 & 2\\
+            \end{pmatrix}&
+            P_{\range A} &= \frac{1}{3}
+            \begin{pmatrix}
+                2 & -1 & 1\\
+                -1 & 2 & 1\\
+                1 & 1 & 2\\
+            \end{pmatrix}
+        \end{align*}
+    \end{proof}
     \item Let $A$ be an $m\times n$ matrix. Show that $\ker A=\ker(A^*A)$. (Hint: To do this, you need to prove 2 inclusions, namely $\ker(A^*A)\subset\ker A$ and $\ker A\subset\ker(A^*A)$. One of the inclusions is trivial, and for the other one, use the fact that $\norm*{A\x}^2=(A\x,A\x)=(A^*A\x,\x)$.)
+    \begin{proof}[Answer]
+        Suppose $\x\in\ker A$. Then $A\x=\bm{0}$. It follows that $A^*A\x=A^*\bm{0}=\bm{0}$, so $\x\in\ker(A^*A)$, as desired.\par
+        Now suppose that $\x\in\ker(A^*A)$. Then $A^*A\x=\bm{0}$. It follows that
+        \begin{equation*}
+            0 = (\bm{0},\x) = (A^*A\x,\x) = (A\x,A\x) = \norm{A\x}^2
+        \end{equation*}
+        But this implies that $A\x=0$, so $\x\in\ker A$, as desired.
+    \end{proof}
     \item Use the equality $\ker A=\ker(A^*A)$ to prove that
     \begin{enumerate}
         \item $\rank A=\rank(A^*A)$.
+        \begin{proof}[Answer]
+            Let $A$ be $m\times n$. Then by consecutive applications of the rank theorem,
+            \begin{align*}
+                \dim\ker A+\rank A &= n&
+                \dim\ker(A^*A)+\rank(A^*A) &= n
+            \end{align*}
+            It follows since $\ker A=\ker(A^*A)$ that
+            \begin{equation*}
+                \rank A = n-\dim\ker A = n-\dim\ker(A^*A) = \rank(A^*A)
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item If $A\x=\bm{0}$ has only the trivial solution, $A$ is left invertible. (Hint: You can just write a formula for the left inverse.)
+        \begin{proof}[Answer]
+            If $A\x=\bm{0}$ has only the trivial solution, then $A$ is full rank. It follows by the above that $A^*A$ is full rank. Additionally, however, $A^*A$ is square, so $A^*A$ is invertible. Therefore, there exists a matrix $(A^*A)^{-1}$ such that $(A^*A)^{-1}A^*A=I$, but this implies that the left inverse of $A$ is just $(A^*A)^{-1}A^*$.
+        \end{proof}
     \end{enumerate}
     \stepcounter{enumi}
     \item Let a matrix $P$ be self-adjoint ($P^*=P$) and let $P^2=P$. Show that $P$ is the matrix of an orthogonal projection. (Hint: Consider the decomposition $\x=\x_1+\x_2$, $\x_1\in\range P$ and $\x_2\perp\range P$, and show that $P\x_1=\x_1$, $P\x_2=\bm{0}$. For one of the equalities, you will need self-adjointness; for the other one, the property $P^2=P$.)
+    \begin{proof}[Answer]
+        We will prove that $P:V\to V$ self-adjoint and satisfying $P^2=P$ is the matrix of the orthogonal projection onto $\range P$. Let $\x\in V$. Then since $V=\range P\oplus(\range P)^\perp$, we may let $\x=\x_1+\x_2$ where $\x_1\in\range P$ and $\x_2\in(\range P)^\perp$. Taking the hint, we now prove that $P\x_1=\x_1$ and $P\x_2=\bm{0}$. Let's begin.\par
+        Since $\x_1\in\range P$, we have that $\x_1=P\y$ for some $\y\in V$. But since $P^2=P$, we have that
+        \begin{equation*}
+            \x_1 = P\y = P^2\y = P(P\y) = P\x_1
+        \end{equation*}
+        as desired.\par
+        On the other hand, $\x_2\in(\range P)^\perp=(\range P^*)^\perp=\ker P$ by Theorem 5.1, so naturally $P\x_2=\bm{0}$.\par
+        Therefore,
+        \begin{equation*}
+            P\x = P(\x_1+\x_2) = P\x_1+P\x_2 = \x_1
+        \end{equation*}
+        as desired for an orthogonal projection onto $\range P$.
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{6.\arabic*.}}]
@@ -105,20 +728,178 @@
         \end{pmatrix}
     \end{align*}
     i.e., for each matrix $A$, find a unitary matrix $U$ and a diagonal matrix $D$ such that $A=UDU^*$.
+    \begin{proof}[Answer]
+        The leftmost matrix has eigenvalues $\lambda=3,-1$ and corresponding orthonormal eigenvectors
+        \begin{align*}
+            x_1 &=
+            \begin{pmatrix}
+                1/\sqrt{2}\\
+                1/\sqrt{2}\\
+            \end{pmatrix}&
+            x_2 &=
+            \begin{pmatrix}
+                -1/\sqrt{2}\\
+                1/\sqrt{2}\\
+            \end{pmatrix}
+        \end{align*}
+        Therefore,
+        \begin{equation*}
+            \begin{pmatrix}
+                1 & 2\\
+                2 & 1\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                1/\sqrt{2} & -1/\sqrt{2}\\
+                1/\sqrt{2} & 1/\sqrt{2}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                3 & 0\\
+                0 & -1\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                1/\sqrt{2} & 1/\sqrt{2}\\
+                -1/\sqrt{2} & 1/\sqrt{2}\\
+            \end{pmatrix}
+        \end{equation*}\par
+        The middle matrix has eigenvalues $\lambda=i,-i$ and corresponding orthonormal eigenvectors
+        \begin{align*}
+            x_1 &=
+            \begin{pmatrix}
+                i/\sqrt{2}\\
+                1/\sqrt{2}\\
+            \end{pmatrix}&
+            x_2 &=
+            \begin{pmatrix}
+                -i/\sqrt{2}\\
+                1/\sqrt{2}\\
+            \end{pmatrix}
+        \end{align*}
+        Therefore,
+        \begin{equation*}
+            \begin{pmatrix}
+                0 & -1\\
+                1 & 0\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                i/\sqrt{2} & -i/\sqrt{2}\\
+                1/\sqrt{2} & 1/\sqrt{2}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                i & 0\\
+                0 & -i\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -i/\sqrt{2} & 1/\sqrt{2}\\
+                i/\sqrt{2} & 1/\sqrt{2}\\
+            \end{pmatrix}
+        \end{equation*}\par
+        The right matrix has eigenvalues $\lambda=-2,4$ ($-2$ having multiplicity 2) and corresponding orthonormal eigenvectors
+        \begin{align*}
+            x_1 &=
+            \begin{pmatrix}
+                -1/\sqrt{2}\\
+                1/\sqrt{2}\\
+                0\\
+            \end{pmatrix}&
+            x_2 &=
+            \begin{pmatrix}
+                -1/\sqrt{6}\\
+                -1/\sqrt{6}\\
+                \sqrt{6}/3\\
+            \end{pmatrix}&
+            x_3 &=
+            \begin{pmatrix}
+                1/\sqrt{3}\\
+                1/\sqrt{3}\\
+                1/\sqrt{3}\\
+            \end{pmatrix}
+        \end{align*}
+        Therefore,
+        \begin{equation*}
+            \begin{pmatrix}
+                0 & 2 & 2\\
+                2 & 0 & 2\\
+                2 & 2 & 0\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                -1/\sqrt{2} & -1/\sqrt{6} & 1/\sqrt{3}\\
+                1/\sqrt{2} & -1/\sqrt{6} & 1/\sqrt{3}\\
+                0 & \sqrt{6}/3 & 1/\sqrt{3}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -2 & 0 & 0\\
+                0 & -2 & 0\\
+                0 & 0 & 4\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                -1/\sqrt{2} & 1/\sqrt{2} & 0\\
+                -1/\sqrt{6} & -1/\sqrt{6} & \sqrt{6}/3\\
+                1/\sqrt{3} & 1/\sqrt{3} & 1/\sqrt{3}\\
+            \end{pmatrix}
+        \end{equation*}
+    \end{proof}
     \item True or false: A matrix is unitarily equivalent to a diagonal one if and only if it has an orthogonal basis of eigenvectors.
+    \begin{proof}[Answer]
+        True.\par
+        See Proposition 6.5.
+    \end{proof}
     \setcounter{enumi}{4}
     \item Let $U:X\to X$ be a linear transformation on a finite-dimensional inner product space. True or false:
     \begin{enumerate}
         \item If $\norm{U\x}=\norm{\x}$ for all $\x\in X$, then $U$ is unitary.
+        \begin{proof}[Answer]
+            True.\par
+            By Proposition 6.3 --- the fact that $\norm{U\x}=\norm{\x}$ for all $\x\in X$ makes $U$ an isometry; clearly $\dim X=\dim X$.
+        \end{proof}
         \item If $\norm{U\eb_k}=\norm{\eb_k}$ for each $k=1,\dots,n$ for some orthonormal basis $\eb_1,\dots,\eb_n$, then $U$ is unitary.
+        \begin{proof}[Answer]
+            False.\par
+            Let $U\eb_k=\eb_1$ for all $k=1,\dots,n$. Then the identity holds. However, $U\eb_1,\dots,U\eb_n$ is not an orthonormal basis of $X$, so $U$ cannot be unitary.
+        \end{proof}
     \end{enumerate}
     \item Let $A$ and $B$ be unitarily equivalent $n\times n$ matrices.
     \begin{enumerate}
         \item Prove that $\trace(A^*A)=\trace(B^*B)$.
+        \begin{proof}[Answer]
+            Let $A=UBU^*$. Then
+            \begin{align*}
+                \trace(A^*A) &= \trace((UBU^*)^*(UBU^*))\\
+                &= \trace((U^*)^*B^*U^*UBU^*)\\
+                &= \trace(UB^*IBU^*)\\
+                &= \trace(B^*BUU^*)\\
+                &= \trace(B^*BI)\\
+                &= \trace(B^*B)
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Use (a) to prove that
         \begin{equation*}
             \sum_{j,k=1}^n|A_{j,k}|^2 = \sum_{j,k=1}^n|B_{j,k}|^2
         \end{equation*}
+        \begin{proof}[Answer]
+            By the definition of the adjoint, we have that
+            \begin{equation*}
+                |A_{j,k}|^2 = \overline{A_{j,k}}A_{j,k} = A^*_{k,j}A_{j,k}
+            \end{equation*}
+            This allows us to show that
+            \begin{equation*}
+                (A^*A)_{k,k} = \sum_{j=1}^nA^*_{k,j}A_{j,k} = \sum_{j=1}^n|A_{j,k}|^2
+            \end{equation*}
+            Therefore, we have that
+            \begin{align*}
+                \sum_{j,k=1}^n|A_{j,k}|^2 &= \sum_{k=1}^n\sum_{j=1}^n|A_{j,k}|^2\\
+                &= \sum_{k=1}^n(A^*A)_{k,k}\\
+                &= \trace(A^*A)\\
+                &= \trace(B^*B)\\
+                &= \sum_{k=1}^n(B^*B)_{k,k}\\
+                &= \sum_{k=1}^n\sum_{j=1}^n|B_{j,k}|^2\\
+                &= \sum_{j,k=1}^n|A_{j,k}|^2
+            \end{align*}
+            as desired
+        \end{proof}
         \item Use (b) to prove that the matrices
         \begin{align*}
             \begin{pmatrix}
@@ -131,6 +912,16 @@
             \end{pmatrix}
         \end{align*}
         are not unitarily equivalent.
+        \begin{proof}[Answer]
+            We have that
+            \begin{align*}
+                \sum_{j,k=1}^2|A_{j,k}|^2 &= |1|^2+|2|^2+|2|^2+|i|^2&
+                    \sum_{j,k=1}^n|B_{j,k}|^2 &= |i|^2+|4|^2+|1|^2+|1|^2\\
+                &= 10&
+                    &= 19
+            \end{align*}
+            Therefore, by part (b), the above matrices are not unitarily equivalent.
+        \end{proof}
     \end{enumerate}
     \item Which of the following pairs of matrices are unitarily equivalent? (Hint: It is easy to eliminate matrices that are not unitarily equivalent: Remember that unitarily equivalent matrices are similar, and recall that the trace, determinant, and eigenvalues of similar matrices coincide. Also, the previous problem helps in eliminating non-unitarily equivalent matrices. Finally, a matrix is unitarily equivalent to a diagonal one if and only if it has an orthogonal basis of eigenvectors.)
     \begin{enumerate}
@@ -145,6 +936,10 @@
                 1 & 0\\
             \end{pmatrix}
         \end{align*}
+        \begin{proof}[Answer]
+            Not unitarily equivalent.\par
+            The traces of the two matrices above differ.
+        \end{proof}
         \item 
         \begin{align*}
             \begin{pmatrix}
@@ -156,6 +951,10 @@
                 1/2 & 0\\
             \end{pmatrix}
         \end{align*}
+        \begin{proof}[Answer]
+            Not unitarily equivalent.\par
+            The determinants of the two matrices above differ.
+        \end{proof}
         \item 
         \begin{align*}
             \begin{pmatrix}
@@ -169,6 +968,10 @@
                 0 & 0 & 0\\
             \end{pmatrix}
         \end{align*}
+        \begin{proof}[Answer]
+            Not unitarily equivalent.\par
+            The eigenvalues of the two matrices above differ.
+        \end{proof}
         \item 
         \begin{align*}
             \begin{pmatrix}
@@ -182,6 +985,33 @@
                 0 & 0 & i\\
             \end{pmatrix}
         \end{align*}
+        \begin{proof}[Answer]
+            Unitarily equivalent.\par
+            We have that
+            \begin{equation*}
+                \begin{pmatrix}
+                    0 & 1 & 0\\
+                    -1 & 0 & 0\\
+                    0 & 0 & 1\\
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    0 & -i/\sqrt{2} & i/\sqrt{2}\\
+                    0 & 1/\sqrt{2} & 1/\sqrt{2}\\
+                    1 & 0 & 0\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                    0 & -i & 0\\
+                    0 & 0 & i\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    0 & 0 & 1\\
+                    i/\sqrt{2} & 1/\sqrt{2} & 0\\
+                    -i/\sqrt{2} & 1/\sqrt{2} & 0\\
+                \end{pmatrix}
+            \end{equation*}
+        \end{proof}
         \item 
         \begin{align*}
             \begin{pmatrix}
@@ -195,11 +1025,97 @@
                 0 & 0 & 3\\
             \end{pmatrix}
         \end{align*}
+        \begin{proof}[Answer]
+            Not unitarily equivalent.
+            The sums from Problem 6.6b are not equal.
+        \end{proof}
     \end{enumerate}
-    \stepcounter{enumi}
+    \item Let $U$ be a $2\times 2$ orthogonal matrix with $\det U=1$. Prove that $U$ is a rotation matrix.
+    \begin{proof}[Answer]
+        Since $U$ is orthogonal and real, $U^T=U^*=U^{-1}$. It follows that
+        \begin{align*}
+            \begin{pmatrix}
+                1 & 0\\
+                0 & 1\\
+            \end{pmatrix}
+            &=
+            \begin{pmatrix}
+                a & b\\
+                c & d\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                a & c\\
+                b & d\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                a^2+b^2 & ac+bd\\
+                ca+db & c^2+d^2\\
+            \end{pmatrix}
+        \end{align*}
+        If $a^2+b^2=1$, then we must have $a=\cos\gamma$, $b=-\sin\gamma$ for some $\gamma$. Similarly, we must have $c=\cos\theta$ and $d=\sin\theta$. We have now expressed our four variables in terms of two. To get it down to one, we apply the determinant condition:
+        \begin{align*}
+            1 &= \det U\\
+            &= ad-bc\\
+            &= \cos\gamma\sin\theta+\sin\gamma\cos\theta\\
+            &= \sin(\theta+\gamma)\\
+            \theta+\gamma &= \frac{\pi}{2}+2\pi n\\
+            \theta &= \frac{\pi}{2}-\gamma+2\pi n
+        \end{align*}
+        where $n\in\Z$. It follows that
+        \begin{align*}
+            c &= \cos\theta&
+                d &= \sin\theta\\
+            &= \cos\left( \frac{\pi}{2}-\gamma+2\pi n \right)&
+                &= \sin\left( \frac{\pi}{2}-\gamma+2\pi n \right)\\
+            &= \sin(\gamma+2\pi n)&
+                &= \cos(\gamma+2\pi n)\\
+            &= \sin\gamma&
+                &= \cos\gamma
+        \end{align*}
+        Therefore,
+        \begin{equation*}
+            U =
+            \begin{pmatrix}
+                a & b\\
+                c & d\\
+            \end{pmatrix}
+            =
+            \begin{pmatrix}
+                \cos\gamma & -\sin\gamma\\
+                \sin\gamma & \cos\gamma\\
+            \end{pmatrix}
+            = R_\gamma
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Let $U$ be a $3\times 3$ orthogonal matrix with $\det U=1$. Prove that
     \begin{enumerate}
         \item 1 is an eigenvalue of $U$.
+        \begin{proof}[Answer]
+            Let $\lambda$ be an eigenvalue of $U$ with corresponding eigenvector $\x$. Then
+            \begin{align*}
+                |\lambda|\norm{\x} &= \norm{\lambda\x} = \norm{U\x} = \norm{\x}\\
+                |\lambda| &= 1
+            \end{align*}
+            It follows that
+            \begin{align*}
+                \lambda_1 &= \e[ix_1]&
+                \lambda_2 &= \e[ix_2]&
+                \lambda_3 &= \e[ix_3]
+            \end{align*}
+            We know that if any eigenvalue is complex, its complex conjugate must also be an eigenvalue. Thus, WLOG let $x_2=-x_1$ so
+            \begin{align*}
+                \lambda_1 &= \e[ix_1]&
+                \lambda_2 &= \e[-ix_1]&
+                \lambda_3 &= \e[ix_3]
+            \end{align*}
+            Then
+            \begin{equation*}
+                1 = \det U = \lambda_1\lambda_2\lambda_3 = \e[ix_1]\e[-ix_1]\e[ix_3] = \e[ix_3] = \lambda_3
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item If $\vm_1,\vm_2,\vm_3$ is an orthonormal basis, such that $U\vm_1=\vm_1$ (remember that 1 is an eigenvalue), then in this basis, the matrix of $U$ is
         \begin{equation*}
             \begin{pmatrix}
@@ -209,6 +1125,68 @@
             \end{pmatrix}
         \end{equation*}
         where $\alpha$ is some angle. (Hint: Show that since $\vm_1$ is an eigenvector of $U$, all entries below 1 must be zero, and since $\vm_1$ is also an eigenvector of $U^*$ [why?], all entries right of 1 must also be zero. Then show that the lower right $2\times 2$ matrix is an orthogonal one with determinant 1, and use the previous problem.)
+        \begin{proof}[Answer]
+            Since
+            \begin{equation*}
+                U\vm_1 = \vm_1 = 1\vm_1+0\vm_2+0\vm_3
+            \end{equation*}
+            we must have that the first column of $U$ with respect to $\vm_1,\vm_2,\vm_3$ is
+            \begin{equation*}
+                \begin{pmatrix}
+                    1\\
+                    0\\
+                    0\\
+                \end{pmatrix}
+            \end{equation*}\par
+            Additionally, since
+            \begin{equation*}
+                \vm_1 = I\vm_1 = U^*U\vm_1 = U^*\vm_1
+            \end{equation*}
+            we know that $\vm_1$ is an eigenvector of $U^*$ with corresponding eigenvalue 1. Thus, by the above, the first column of $U^*$ is also
+            \begin{equation*}
+                \begin{pmatrix}
+                    1\\
+                    0\\
+                    0\\
+                \end{pmatrix}
+            \end{equation*}
+            meaning that the first row of $U$ is
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 0 & 0\\
+                \end{pmatrix}
+            \end{equation*}\par
+            Thus, if we block diagonalize $U$, we have that
+            \begin{equation*}
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & I\\
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & L\\
+                \end{pmatrix}^*
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & L\\
+                \end{pmatrix}
+                =
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & L^*\\
+                \end{pmatrix}
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & L\\
+                \end{pmatrix}
+            \end{equation*}
+            so $L^*L=I$. Thus, by Lemma 6.2, $L$ is an isometry. Additionally, by Proposition 6.3, $L$ is unitary. Furthermore, since $U$ is orthogonal, i.e., has all real values, $L$ must have all real values and must be orthogonal, too. Lastly, since $\det U=1$, we have by the method of cofactor expansion that
+            \begin{equation*}
+                1 = \det U = 1\cdot\det L = \det L
+            \end{equation*}
+            Therefore, since $L$ is a $2\times 2$ orthogonal matrix with $\det L=1$, Exercise 6.8 implies that $U=R_\alpha$ for some $\alpha$, as desired.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
@@ -236,8 +1214,32 @@
     \begin{equation*}
         \re\left( \sum_{k=1}^nz_k\bar{w}_k \right) = \sum_{k=1}^nx_ku_k+\sum_{k=1}^ny_kv_k
     \end{equation*}
+    \begin{proof}[Answer]
+        We have that
+        \begingroup
+        \allowdisplaybreaks
+        \begin{align*}
+            \re\left( \sum_{k=1}^nz_k\bar{w}_k \right) &= \re\left( \sum_{k=1}^n(x_k+iy_k)(u_k-iv_k) \right)\\
+            &= \re\left( \sum_{k=1}^n[x_ku_k+y_kv_k+i(y_ku_k-x_kv_k)] \right)\\
+            &= \sum_{k=1}^n[x_ku_k+y_kv_k]\\
+            &= \sum_{k=1}^nx_ku_k+\sum_{k=1}^ny_kv_k
+        \end{align*}
+        \endgroup
+        as desired.
+    \end{proof}
     \setcounter{enumi}{3}
     \item Show that if $U$ is an orthogonal transformation satisfying $U^2=-I$, then $U^*=-U$.
+    \begin{proof}[Answer]
+        Suppose $U^2=-I$. This combined with the fact that $U^*U=I$ implies that
+        \begin{align*}
+            U^*U+UU &= 0\\
+            (U^*+U)U &= 0\\
+            (U^*+U)UU^{-1} &= 0U^{-1}\\
+            U^*+U &= 0\\
+            U^* &= -U
+        \end{align*}
+        as desired.
+    \end{proof}
 \end{enumerate}
 
 
