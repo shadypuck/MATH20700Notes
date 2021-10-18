@@ -193,6 +193,65 @@
     \item If $A:\F^n\to\F^n$, then $A=W\Sigma V^*$ where $\sigma$ is a diagonal matrix of nonzero singular values.
     \item The operator norm of $A$ is the largest of the singular values.
     \item An orthogonal matrix can be decomposed to a block-diagonal matrix of rotations.
+    \item \marginnote{10/18:}Soug tests what he teaches and doesn't give super tricky questions.
+    \item Structure of orthogonal matrices.
+    \item \textbf{Orthogonal} (matrix): A unitary matrix $U$ with all elements real and $|\det U|=1$.
+    \item Theorem: Let $U$ be an orthogonal operator on $\R^n$ such that $\det U=1$. Then there exists an orthonormal basis $\vm_1,\dots,\vm_n$ such that with respect to this basis,
+    \begin{equation*}
+        U =
+        \begin{pmatrix}
+            R_{\phi_1} &  &  & \bm{0}\\
+             & \ddots &  & \\
+             &  & \R_{\phi_k} & \\
+            \bm{0} &  &  & I_{n-2k}\\
+        \end{pmatrix}
+    \end{equation*}
+    where each $R_{\phi_i}$ is a $2\times 2$ rotation matrix.
+    \begin{itemize}
+        \item If you are in $\R^7$ for example, you would be able to express $U$ as a composition of at most 3 rotation maps and the identity map.
+        \item Each rotation map acts on two orthonormal vectors.
+        \item Proof: $P(\lambda)$ is the $n$-degree characteristic polynomial $\det(U-\lambda I)=0$. The eigenvalues are the roots of it.
+        \item $p(\lambda)=0$ if and only if $p(\bar{\lambda})=0$.
+        \begin{itemize}
+            \item $\lambda\in\C$ is an eigenvalue with eigenvector $\um\neq 0$ iff $U\um=\lambda\um$ and $U\bar{\um}=\bar{\lambda}\bar{\um}$.
+        \end{itemize}
+        \item Recall that $U$ unitary implies $|\lambda|=1$.
+        \begin{itemize}
+            \item Proof\footnote{This would be a good exam question.}: $\norm{U\x}=\norm{\x}$ and $U\x=\lambda\x$. Thus,
+            \begin{equation*}
+                \norm{U\x} = \norm{\lambda\x} = |\lambda|\norm{\x} = \norm{\x}
+            \end{equation*}
+            and since $\x\neq 0$, we can divide by $\norm{\x}$, so $|\lambda|=1$.
+        \end{itemize}
+        \item Let $\um=\Re\um+\Im\um$.
+        \item It follows that we may define
+        \begin{align*}
+            \x &= \Re\um = \frac{\um+\bar{\um}}{2}&
+            \y &= \Im\um = \frac{\um-\bar{\um}}{2}
+        \end{align*}
+        \item Thus, $\um=\x+i\y$ and $\bar{\um}=\x-i\y$.
+        \item Since $U\x=\frac{U\um+U\bar{\um}}{2}=\frac{\lambda\um+\bar{\lambda}\bar{\um}}{2}$, $U\y=\Im(\lambda\um)=\Re(\lambda\um)$.
+        \item Since $|\lambda|=1$, $\lambda=\e[i\alpha]$ and $\bar{\lambda}=\e[-i\alpha]$.
+        \item It follows that $U\x=(\cos\alpha)\x-(\sin\alpha)\y$ and $U\y=(\cos\alpha)\y)+(\sin\alpha)\x$.
+        \item Thus, since $U\x=\Re\lambda\um$, we have that
+        \begin{align*}
+            \lambda\um &= (\cos\alpha+i\sin\alpha)(\x+i\y)\\
+            &= (\cos\alpha)\x-(\sin\alpha)\y+i[(\cos\alpha)\y+(\sin\alpha)\x]
+        \end{align*}
+        \item If $E_\lambda$ is a 2 dimensional space spanned by $\x$ and $\y$ and invariant by $U$. Thus, any block of the desired matrix leaves its desired sub-block invariant.
+        \item We also know that the eigenvectors of a unitary matrix corresponding to different eigenvalues are orthogonal.
+        \item Thus, $\norm{\x}=\norm{\y}=\sqrt{2}/2\norm{\um}$, $\x\perp\y$.
+        \item Let $\x,\y$ complete the theorem to form a basis of $\R^n$.
+        \item It will follow that
+        \begin{equation*}
+            U =
+            \begin{pmatrix}
+                R_\alpha & \bm{0}\\
+                \bm{0} & U_1\\
+            \end{pmatrix}
+        \end{equation*}
+        where $U_1$ is orthogonal, and we may repeat the process.
+    \end{itemize}
 \end{itemize}
 
 

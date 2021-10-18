@@ -1,0 +1,42 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{6}
+
+\begin{document}
+
+
+
+
+\chapter{Bilinear and Quadratic Forms}
+\begin{itemize}
+    \item \marginnote{10/18:}\textbf{Bilinear form}: A function $L:\R^n\times\R^n\to\R$ such that
+    \begin{align*}
+        L(\alpha\x_1+\beta\x_2,\y) &= \alpha L(\x_1,\y)+\beta L(\x_2,\y)&
+        L(\x,\alpha\y_1+\beta\y_2) &= \alpha L(\x,\y_1)+\beta L(\x,\y_2)
+    \end{align*}
+    \begin{itemize}
+        \item $L(\x,\y)=(A\x,\y)$.
+    \end{itemize}
+    \item \textbf{Quadratic form}: A bilinear form $L(\x,\x)$.
+    \begin{itemize}
+        \item $(\x,\x)$ is a polynomial of degree 2 in $\x_1,\dots,\x_n$:
+        \begin{equation*}
+            L(\lambda\x,\lambda\x) = (\lambda\x,\lambda\x) = \lambda^2(\x,\x)
+        \end{equation*}
+    \end{itemize}
+    \item We have that
+    \begin{equation*}
+        (A\x,\x) = (A\lambda\x,\lambda\x) = \lambda^2(A\x,\x) = \sum_{j,i=1}^n\alpha_{j,i}\x_i\x_j
+    \end{equation*}
+    \item The general form of a quadratic form:
+    \begin{itemize}
+        \item Can any quadratic form on $\R^n$ be written as $(A\x,\x)$?
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
