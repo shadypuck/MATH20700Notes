@@ -34,6 +34,83 @@
     \begin{itemize}
         \item Can any quadratic form on $\R^n$ be written as $(A\x,\x)$?
     \end{itemize}
+    \item \marginnote{10/20:}Bilinear forms are linear in each argument when keeping the other fixed.
+    \item Quadratic forms $Q(\x)=L(\x,\x)$ are quadratic polynomials in the coordinates of $x$.
+    \begin{itemize}
+        \item In particular, $Q(\lambda\x)=|\lambda|^2Q(\x)$.
+    \end{itemize}
+    \item If $Q$ quadratic is real, then $Q(\x)=(A\x,\x)$ where $A$ is some square matrix.
+    \begin{itemize}
+        \item If $\eb_1,\dots,\eb_n$ is an orthonormal basis of $\R^n$, then there exists a unique $A=A^*$ such that $(A)_{ij}=L(\eb_i,\eb_j)$.
+        \item Keeping $\x=\sum_{i=1}^n\x_i,\eb_i$ foxed, we have
+        \begin{align*}
+            Q(\x) &= L(\x,\x)\\
+            &= L(\sum^n\x_i\eb_i,\sum^n\x_j\eb_j)\\
+            &= \sum_{i=1}^n\x_iL(\eb_i,\sum^n\x_j\eb_j)\\
+            &= \sum_{i,j=1}^n\x_i\x_j\underbrace{L(\eb_i,\eb_j)}_{A_{ij}}
+        \end{align*}
+    \end{itemize}
+    \item We have that
+    \begin{align*}
+        (A\x,\x) &= (UDU^{-1}\x,\x)\\
+        &= (DU^{-1}\x,U^{-1}\x)\\
+        &= \sum_{i=1}^n\lambda_i(\underbrace{U^{-1}\x}_{\y_i})_i(\underbrace{U^{-1}\x}_{\y_i})_i
+    \end{align*}
+    \item Can we characterize the set $\{\x:(A\x,\x)=1\}$?
+    \begin{itemize}
+        \item Note that this set is equivalent to $\{\y:(D\y,\y)=1\}$ by teh above. This set is a rotation of the previous one. Ellipse?
+    \end{itemize}
+    \item Positive quadratic form:
+    \begin{itemize}
+        \item $Q$ is positive definite if $Q(\x)>\bm{0}$ for all $\x\neq\bm{0}$ and $Q$ is positive semidefinite if $Q(\x)\geq\bm{0}$ for all $\x\neq\bm{0}$.
+        \item Take a self-adjoint matrix $A=A^*$. It is positive definite if $Q(\x)=(A\x,\x)$ is positive definite.
+    \end{itemize}
+    \item Theorem: If $A=A^*$, then
+    \begin{enumerate}
+        \item $A$ is positive definite if and only if all eigenvalues of $A$ are positive.
+        \item $A$ is positive semidefinite if and only if all eigenvalues of $A$ are nonnegative.
+        \item $A$ is negative semidefinite if and only if all eigenvalues of $A$ are nonpositive.
+        \item $A$ is negative definite if and only if all eigenvalues of $A$ are negative.
+        \item $A$ is indefinite if and only if the eigenvalues of $A$ have positive and negative values.
+    \end{enumerate}
+    \item Theorem: $A=A^*$ is positive definite iff $\det A_k>0$ for all $k=1,\dots,n$ where $A_k$ is the upper left $k\times k$ submatrix.
+    \item Minimax representation of eigenvalues of a self-adjoint $A$.
+    \begin{itemize}
+        \item Let $E$ be a subspace of $X$ where $\dim X<\infty$. We define $\codim(E)=\dim E^\perp$.
+        \item Thus, $\dim E+\codim E=\dim X$.
+        \item Theorem: Let $A=A^*$, $\lambda_1\geq\cdots\geq\lambda_n$ eigenvalues of $A$. Then
+        \begin{equation*}
+            \lambda_k = \max_{\substack{\text{E subspace}\\\dim E=k}}\min_{\substack{\x\in E\\\norm{\x}=1}}(A\x,\x)
+            = \min_{\substack{\text{F subspace}\\\codim F=k-1}}\max_{\substack{\x\in F\\\norm{\x}=1}}(A\x,\x)
+        \end{equation*}
+        \begin{itemize}
+            \item Proof: $A$ diagonal equals $(\lambda_1,\dots,\lambda_n)$.
+            \item An orthonormal basis of $X$ such that $\dim E=k$, $\codim F=k-1$, $\dim F=n-k+1$.
+            \item There exists an $\x_0\neq\bm{0}$ such that $\x_0\in E\cap F$.
+            \item Note that if $B=B^*$, then the max and min of $(B\x,\x)$ over the unit sphere is the maximal and minimal eigenvalue of $B$.
+            \item Thus,
+            \begin{equation*}
+                \min_{\substack{\x\in E\\\norm{\x}=1}}(A\x,\x) \leq (A\x_0,\x_0)
+                \leq \max_{\substack{\x\in F\\\norm{\x}=1}}(A\x,\x)
+            \end{equation*}
+            \item This is true for any $E,F$ subspaces. $\dim E=k$, $\codim F=k-1$, $E_0=\spn(\eb_1,\dots,\eb_k)$ and $F_0=\spn(\eb_k,\dots,\eb_n)$.
+            \item Thus,
+            \begin{equation*}
+                \min_{\substack{E_0\\\norm{\x}=1}}(A\x,\x) = \lambda_k
+                = \max_{\substack{F_0\\\norm{\x}=1}}(A\x,\x)
+            \end{equation*}
+            \item Additionally,
+            \begin{equation*}
+                \lambda_{k_1} \leq \max{\substack{E\\\dim E=k}}\min_\x(A\x,\x)
+                \leq \min_{\substack{F\\\codim F=k-1}}\max_\x(A\x,\x)
+                \leq \lambda_k
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+    \item Corollary: Let $A=A^*=(a_{jk})_{1\leq j,k\leq n}$ with eigenvalues $\lambda_1,\dots,\lambda_n$ listed in decreasing order. Let $\tilde{A}=(a_{j,k})_{1\leq j,k\leq n-1}$ with eigenvalues $\mu_1,\dots,\mu_{n-1}$ listed in decreasing order. Then $\lambda_1\geq\mu_1\geq\lambda_2\geq\mu_2\geq\cdots\geq\mu_{n-1}\geq\lambda_n$.
+    \begin{itemize}
+        \item Consider $(A\x,\x)$ on $\{\eb_1,\dots,\eb_n\}$, but then restrict yourself to $\x\in\R^{n-1}$ on $\{\eb_1,\dots,\eb_{n-1}\}$.
+    \end{itemize}
 \end{itemize}
 
 
