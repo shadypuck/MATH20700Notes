@@ -1,0 +1,212 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{3}
+
+\begin{document}
+
+
+
+
+\section{Inner Product Phenomena and Intro to Bilinear Forms}
+\emph{From \textcite{bib:Treil}.}
+\subsection*{Chapter 6}
+\begin{enumerate}[label={\textbf{1.\arabic*.}}]
+    \item \marginnote{10/25:}Use the upper-triangular representation of an operator to give an alternative proof of the fact that the determinant is the product and the trace is the sum of the eigenvalues counting multiplicities.
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{2.\arabic*.}}]
+    \item True or false:
+    \begin{enumerate}
+        \item Every unitary operator $U:X\to X$ is normal.
+        \item A matrix is unitary if and only if it is invertible.
+        \item If two matrices are unitarily equivalent, then they are also similar.
+        \item The sum of self-adjoint operators is self-adjoint.
+        \item The adjoint of a unitary operator is unitary.
+        \item The adjoint of a normal operator is normal.
+        \item If all eigenvalues of a linear operator are 1, then the operator must be unitary or orthogonal.
+        \item If all eigenvalues of a normal operator are 1, then the operator is the identity.
+        \item A linear operator may preserve norm but not the inner product.
+    \end{enumerate}
+    \item True or false (justify your conclusion): The sum of normal operators is normal.
+    \item Show that an operator that is unitarily equivalent to a diagonal one is normal.
+    \stepcounter{enumi}
+    \item True or false (justify): Any self-adjoint matrix has a self-adjoint square root.
+    \item Orthogonally diagonalize the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            7 & 2\\
+            2 & 4\\
+        \end{pmatrix}
+    \end{equation*}
+    i.e., represent it as $A=UDU^*$, where $D$ is diagonal and $U$ is unitary. Additionally, among all square roots of $A$, i.e., among all matrices $B$ such that $B^2=A$, find one that has positive eigenvalues. You can leave $B$ as a product.
+    \item True or false (justify your conclusions):
+    \begin{enumerate}
+        \item A product of two self-adjoint matrices is self-adjoint.
+        \item If $A$ is self-adjoint, then $A^k$ is self-adjoint.
+    \end{enumerate}
+    \item Let $A$ be an $m\times n$ matrix. Prove that
+    \begin{enumerate}
+        \item $A^*A$ is self-adjoint.
+        \item All eigenvalues of $A^*A$ are nonnegative.
+        \item $A^*A+I$ is invertible.
+    \end{enumerate}
+    \stepcounter{enumi}
+    \item Orthogonally diagonalize the rotation matrix
+    \begin{equation*}
+        R_\alpha =
+        \begin{pmatrix}
+            \cos\alpha & -\sin\alpha\\
+            \sin\alpha & \cos\alpha\\
+        \end{pmatrix}
+    \end{equation*}
+    where $\alpha$ is not a multiple of $\pi$. Note that you will get complex eigenvalues in this case.
+    \setcounter{enumi}{12}
+    \item Prove that a normal operator with unimodular eigenvalues (i.e., with all eigenvalues satisfying $|\lambda_k|=1$) is unitary. (Hint: Consider diagonalization.)
+    \item Prove that a normal operator with real eigenvalues is self-adjoint.
+    \item Show by example that the conclusion of Theorem 2.2 fails for \emph{complex} symmetric matrices. Namely,
+    \begin{enumerate}
+        \item Construct a (diagonalizable) $2\times 2$ complex symmetric matrix not admitting an orthogonal basis of eigenvectors.
+        \item Construct a $2\times 2$ complex symmetric matrix which cannot be diagonalized.
+    \end{enumerate}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{3.\arabic*.}}]
+    \item Show that the number of nonzero singular values of a matrix $A$ coincides with its rank.
+    \item Find Schmidt decompositions $A=\sum_{k=1}^rs_k\wm_k\vm_k^*$ for the following matrices $A$.
+    \begin{align*}
+        \begin{pmatrix}
+            2 & 3\\
+            0 & 2\\
+        \end{pmatrix}&&
+        \begin{pmatrix}
+            7 & 1\\
+            0 & 0\\
+            5 & 5\\
+        \end{pmatrix}&&
+        \begin{pmatrix}
+            1 & 1\\
+            0 & 1\\
+            -1 & 1\\
+        \end{pmatrix}
+    \end{align*}
+    \item Let $A$ be an invertible matrix, and let $A=W\Sigma V^*$ be its singular value decomposition. Find a singular value decomposition for $A^*$ and $A^{-1}$.
+    \stepcounter{enumi}
+    \item Find the singular value decomposition of the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            2 & 3\\
+            0 & 2\\
+        \end{pmatrix}
+    \end{equation*}
+    Use it to find
+    \begin{enumerate}
+        \item $\max_{\norm{\x}\leq 1}\norm{A\x}$ and the vectors where the maximum is attained.
+        \item $\min_{\norm{\x}=1}\norm{A\x}$ and the vectors where the minimum is attained.
+        \item The image $A(B)$ of the closed unit ball $B=\{\x\in\R^2:\norm{\x}\leq 1\}$ in $\R^2$. Describe $A(B)$ geometrically.
+    \end{enumerate}
+    \item Show that for a square matrix $A$, $|\det A|=\det|A|$.
+    \item True or false:
+    \begin{enumerate}
+        \item The singular values of a matrix are also eigenvalues of the matrix.
+        \item The singular values of a matrix $A$ are eigenvalues of $A^*A$.
+        \item If $s$ is a singular value of a matrix $A$ and $c$ is a scalar, then $|c|s$ is a singular value of $cA$.
+        \item The singular values of any linear operator are nonnegative.
+        \item The singular values of a self-adjoint matrix coincide with its eigenvalues.
+    \end{enumerate}
+    \item Let $A$ be an $m\times n$ matrix. Prove that \emph{nonzero} eigenvalues of the matrices $A^*A$ and $AA^*$ (counting multiplicities) coincide. Can you say when zero eigenvalues of $A^*A$ and zero eigenvalues of $AA^*$ have the same multiplicity?
+    \item Let $s$ be the largest singular value of an operator $A$, and let $\lambda$ be the eigenvalue of $A$ with the largest absolute value. Show that $|\lambda|\leq s$.
+    \stepcounter{enumi}
+    \item Show that the operator norm of a matrix $A$ coincides with its Frobenius norm if and only if the matrix has rank one. (Hint: The previous problem might help.)
+    \item For the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            2 & -3\\
+            0 & 2\\
+        \end{pmatrix}
+    \end{equation*}
+    describe the inverse image of the unit ball, i.e., the set of all $\x\in\R^2$ such that $\norm{A\x}\leq 1$. Use its singular value decomposition.
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{4.\arabic*.}}]
+    \stepcounter{enumi}
+    \item Let $A$ be a normal operator, and let $\lambda_1,\dots,\lambda_n$ be its eigenvalues (counting multiplicities). Show that singular values of $A$ are $|\lambda_1|,\dots,|\lambda_n|$.
+    \item Find the singular values, norm, and condition number of the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            2 & 1 & 1\\
+            1 & 2 & 1\\
+            1 & 1 & 2\\
+        \end{pmatrix}
+    \end{equation*}
+    You can do this problem with practically no computations if you use the previous problem and can answer the following questions:
+    \begin{enumerate}
+        \item What are singular values (eigenvalues) of an orthogonal projection $P_E$ onto some subspace $E$?
+        \item What is the matrix of the orthogonal projection onto the subspace spanned by the vector $(1,1,1)^T$?
+        \item How are the eigenvalues of the operators $T$ and $aT+bI$ where $a,b\in\F$ related?
+    \end{enumerate}
+    Of course you can also just honestly do the computations.
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{6.\arabic*.}}]
+    \item Let $R_\alpha$ be the rotation through $\alpha$, so its matrix in the standard basis is
+    \begin{equation*}
+        \begin{pmatrix}
+            \cos\alpha & -\sin\alpha\\
+            \sin\alpha & \cos\alpha\\
+        \end{pmatrix}
+    \end{equation*}
+    Find the matrix of $R_\alpha$ in the basis $\vm_1,\vm_2$ where $\vm_1=\eb_2,\vm_2=\eb_1$.
+    \item Let $R_\alpha$ be the rotation matrix
+    \begin{equation*}
+        R_\alpha =
+        \begin{pmatrix}
+            \cos\alpha & -\sin\alpha\\
+            \sin\alpha & \cos\alpha\\
+        \end{pmatrix}
+    \end{equation*}
+    Show that the $2\times 2$ identity matrix $I_2$ can be continuously transformed through invertible matrices into $R_\alpha$.
+    \item Let $U$ be an $n\times n$ orthogonal matrix with $\det U>0$. Show that the $n\times n$ identity matrix $I_n$ can be continuously transformed through invertible matrices into $U$. (Hint: Use the previous problem and the representation of a rotation in $\R^n$ as a product of planar rotations [see Section 5].)
+\end{enumerate}
+
+
+\subsection*{Chapter 7}
+\begin{enumerate}[label={\textbf{1.\arabic*.}}]
+    \item Find the matrix of the bilinear form $L$ on $\R^3$ defined by
+    \begin{equation*}
+        L(\x,\y) = x_1y_1+2x_1y_2+14x_1y_3-5x_2y_1+2x_2y_2-3x_2y_3+8x_3y_1+19x_3y_2-2x_3y_3
+    \end{equation*}
+    \item Define the bilinear form $L$ on $\R^2$ by
+    \begin{equation*}
+        L(\x,\y) = \det[\x,\y]
+    \end{equation*}
+    i.e., to compute $L(\x,\y)$, we form a $2\times 2$ matrix with columns $\x,\y$ and compute its determinant. Find the matrix of $L$.
+    \item Find the matrix of the quadratic form $Q$ on $\R^3$ defined by
+    \begin{equation*}
+        Q[\x] = x_1^2+2x_1x_2-3x_1x_3-9x_2^2+6x_2x_3+13x_3^2
+    \end{equation*}
+\end{enumerate}
+
+\begin{enumerate}[label={\textbf{2.\arabic*.}}]
+    \item Diagonalize the quadratic form with the matrix
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            1 & 2 & 1\\
+            2 & 3 & 2\\
+            1 & 2 & 1\\
+        \end{pmatrix}
+    \end{equation*}
+    Use two methods: completion of squares and row operations. Which one do you like better? Can you say if the matrix $A$ is positive definite or not?
+\end{enumerate}
+
+
+
+
+
+\end{document}
