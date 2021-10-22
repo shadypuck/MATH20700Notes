@@ -1,0 +1,44 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{7}
+
+\begin{document}
+
+
+
+
+\chapter{Dual Spaces and Tensors}
+\begin{itemize}
+    \item \marginnote{10/22:}\textbf{Functional}: A linear bounded map $L:H\to F$, where $H$ is finite dimensional (equivalent to $\R^n$).
+    \item \textbf{Dual space}: The set of bounded linear functionals on $H$. \emph{Denoted by} $\bm{H'}$, $\bm{H^*}$.
+    \item If $l\leq p<\infty$, then
+    \begin{equation*}
+        l^p = \left\{ (a_n)_{n\in\N}:\sum_{n=1}^\infty|a_n|^p<\infty \right\}
+    \end{equation*}
+    \item Back to finite dimensions, $H'\approx\R^n$.
+    \item Let $\ab_1,\dots,\ab_n$ be a basis of $H$. Then $L\x=(L\ab_1,\dots,L\ab_n)\approx\R^n$.
+    \item Let $L((a_n)_{n\in\N})=\sum_{n=1}^\infty a_nb_n$. Then $L((a_n)_{n\in\N})$ will be bounded if and only if $(b_n)_{n\in\N}\in l^q$ where $1<p<q$ where $\frac{1}{q}+\frac{1}{p}=1$.
+    \item \textbf{Young's inequality}: The statement
+    \begin{equation*}
+        ab \leq \frac{a^p}{p}+\frac{b^q}{q}
+    \end{equation*}
+    \item We have $|\sum a_nb_n|\leq\norm{a_n}_p\norm{b_n}_p$.
+    \item Conclusion:
+    \begin{equation*}
+        \sum\frac{|a_n||b_n|}{\norm{a_n}_p\norm{b_n}_q} = 1
+    \end{equation*}
+    \item We can define $H''$, too. This contains linear functionals on $H'$.
+    \item We know that $L(x)=\langle x,L\rangle=x(L)$. $x\in H''$.
+    \item Riesz representation theorem: Let $H$ have an inner product. $L\in H'$ if and only if there exists a unique $y\in H$ such that $L(x)=(x,y)$.
+    \begin{itemize}
+        \item Gives us a way to identify all bounded linear functionals on $H$.
+        \item In finite dimensions, $L(x)$, where $x=\sum_1^n\alpha_ia_i$ gives us $L(x)=\sum_1^n\alpha_iL(a_i)$.
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\end{document}
