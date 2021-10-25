@@ -22,6 +22,59 @@
     \item $\sigma(B)=\{\text{eigenvalues of }B\}$ is known as the \textbf{spectrum} of $B$.
     \item If $p$ is an arbitrary polynomial and $A$ is $n\times n$, then $\mu$ is an eigenvalue of $p(A)$ if and only if $\mu=p(\lambda)$ where $\lambda$ is an eigenvalue of $A$. In essence, $\sigma(p(A))=p(\sigma(A))$.
     \item Chapter 9 will not be on the exam. We don't have to know the generalization to infinite dimensional spaces.
+    \item \marginnote{10/25:}If $A$ is an $n\times n$ square matrix and $p(\lambda)=\det(A-\lambda I)$, then $p(A)=0$.
+    \begin{itemize}
+        \item Proof: WLOG, let $A$ be an upper triangular matrix with diagonal entries equal to the eigenvalues.
+        \item Think of $p(z)=(-1)^n(z-\lambda_1)\cdots(z-\lambda_n)$.
+        \item Thus, $p(A)=(-1)^n(A-\lambda_1I)\cdots(A-\lambda_nI)$.
+        \item WTS: $p(A)\x=0$ for all $\x\in V$.
+        \item Let $E_k=\spn(e_1,\dots,e_k)$ be the span of the first $k$ eigenvectors of $A$, where $e_1,\dots,e_n$ is a standard basis in $\C^n$.
+        \item $A$ triangular implies $AE_k\subset E_k$. Thus, $(A-\lambda I)E_k\subset E_k$, so $E_k$ is invariant under $A-\lambda I$ for all $\lambda$.
+        \item If we apply $A-\lambda_kI$ to a vector in $E_k$, we are left with a vector in $E_{k-1}$.
+        \item Thus, if we apply $\prod_{k=1}^n(A-\lambda_kI)=p(A)$ to any vector in $E_n=V$, we will kill it piece by piece down to zero.
+    \end{itemize}
+    \item Let $A$ be a square $n\times n$ matrix. Then $p$ an arbitrary polynomial implies $\sigma(p(A))=p(\sigma(A))$. (Any eigenvalue $\mu$ of $p(A)$ is $\mu=p(\lambda)$, where $\lambda$ is an eigenvalue of $A$.)
+    \begin{itemize}
+        \item Shows that polynomials of operators commute.
+        \item Proof: Let $\lambda$ be an eigenvalue of $A$. We want to show that $p(\lambda)$ is an eigenvalue of $p(A)$. This is obvious since $A\x=\lambda\x$ for some $\x$, so $A^k\x=\lambda^k\x$, so in particular, $p(A)\x=p(\lambda)\x$.
+        \item On the other hand, if $\mu$ is an eigenvalue of $p(A)$, we want to show that there exists $\lambda\in\sigma(A)$ such that $\mu=p(\lambda)$.
+        \item Consider $q(z)=p(z)-\mu$. Then $q(A)=p(A)-\mu I$. Since $\mu$ is an eigenvalue of $p(A)$, $q(A)$ is not invertible.
+        \item Thus, $q(z)=(-1)^n(z-z_1)\cdots(z-z_n)$ and $q(A)=(-1)^k(A-z_1I)\cdots(A-z_kI)$.
+        \item But $q(A)$ is not invertible, so one of the $A-z_kI$ is not invertible. Take $z_k$ such that $A-z_kI$ is not invertible. Then $z_k\in\sigma(A)$. It follows that $q(z_k)=p(z_k)-\mu=\sigma$.
+    \end{itemize}
+    \item If $A$ is $n\times n$, $\lambda_1,\dots,\lambda_n$ are its eigenvalues, $p$ is a polynomial, then $p(A)$ is invertible if and only if $p(\lambda_k)\neq 0$ for each $k=1,\dots,n$.
+    \begin{itemize}
+        \item This is an immediate corollary to the previous result.
+    \end{itemize}
+    \item We now build up to the \textbf{generalized eigenspace}, which is related to some "geometric" properties of the algebraic multiplicity of an eigenvalue.
+    \item If $A:V\to V$ is a linear operator and $E\subset V$ is a subspace, $E$ is $A$-invariant if $AE\subset E$.
+    \item Facts:
+    \begin{itemize}
+        \item If $E$ is $A$-invariant, $E$ is $A^k$-invariant.
+        \item Thus, $E$ is $p(A)$-invariant.
+    \end{itemize}
+    \item Consider the restriction map $A|_E$.
+    \item $A$ has a block-diagonalized matrix where each block corresponds to the generalized eigenvectors of a generalized eigenvalue of $A$.
+    \begin{itemize}
+        \item Let $E_1,\dots,E_r$ be a \textbf{basis of invariant subspaces}.
+        \item Let $A_k=A|_{E_k}$. Then the $A_k$'s act independently of each other.
+    \end{itemize}
+    \item \textbf{Generalized eigenvector} (of $A$): A vector $\vm$ corresponding to an eigenvalue $\lambda$ if there exists $k\geq 1$ such that $(A-\lambda I)^k\vm=\bm{0}$.
+    \item \textbf{Generalized eigenspace}: The set $E_\lambda$ of all of the generalized eigenvectors of $\lambda$. \emph{Given by}
+    \begin{equation*}
+        E_k = \bigcup_{k\geq 1}\ker(A-\lambda I)^k
+    \end{equation*}
+    \begin{itemize}
+        \item $E_\lambda$ is a linear subspace of $V$.
+    \end{itemize}
+    \item \textbf{Degree} (of $\lambda$): The smallest number $k$ such that increasing $k$ any more does not add further vectors to the generalized eigenspace. \emph{Denoted by} $\bm{d(\lambda)}$.
+    \begin{itemize}
+        \item Symbolically, $d(\lambda)$ is the smallest number such that
+        \begin{equation*}
+            E_\lambda = \bigcup_{k=1}^{d(\lambda)}\ker(A-\lambda I)^k
+        \end{equation*}
+    \end{itemize}
+    \item Start working through the first 25 problems of Rudin (his metric spaces problems).
 \end{itemize}
 
 
