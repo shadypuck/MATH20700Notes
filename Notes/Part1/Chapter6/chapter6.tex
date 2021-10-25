@@ -10,6 +10,7 @@
 
 
 \chapter{Structure of Operators on Inner Product Spaces}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{10/11:}Spectral decomposition of self-adjoint linear maps.
     \begin{itemize}
@@ -251,6 +252,65 @@
             \end{pmatrix}
         \end{equation*}
         where $U_1$ is orthogonal, and we may repeat the process.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 6: Structure of Operators on Inner Product Spaces}
+\emph{From \textcite{bib:Treil}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Theorem 6.1.1: Let $A:X\to X$ be an operator acting in a complex inner product space. Then there exists an orthonormal basis $\um_1,\dots,\um_n$ of $X$ such that the matrix of $A$ in this basis is upper triangular. In other words, any $n\times n$ matrix $A$ can be represented as $A=UTU^*$, where $U$ is unitary and $T$ is upper-triangular.
+    \item Theorem 6.1.2: Let $A:X\to X$ be an operator acting on a real inner product space. Suppose that all eigenvalues of $A$ are real. Then there exists an orthonormal basis $\um_1,\dots,\um_n$ in $X$ such that the matrix of $A$ in this basis is upper triangular. In other words, any real $n\times n$ matrix $A$ with all real eigenvalues can be represented as $T=UTU^*=UTU^T$, where $U$ is orthogonal and $T$ is a real upper-triangular matrix.
+    \item Theorem 6.2.1: Let $A=A^*$ be a self-adjoint operator in an inner product space $X$ (the space can be complex or real). Then all eigenvalues of $A$ are real and there exists an orthonormal basis of eigenvectors of $A$ in $X$.\par
+    Equivalently (see Theorem 6.2.2), $A$ can be represented as $A=UDU^*$ where $U$ is a unitary matrix and $D$ is a diagonal matrix with real entries. Moreover, if $A$ is real, $U$ can be chosen to be real, i.e., orthogonal.
+    \item Proposition 6.2.3: Let $A=A^*$ be a self-adjoint operator and let $\lambda,\um,\mu,\vm$ be such that $A\um=\lambda\um$ and $A\vm=\mu\vm$. Then if $\lambda\neq\mu$, $\um\perp\vm$.
+    \item Since complex multiplication is commutative,
+    \begin{equation*}
+        D^*D = DD^*
+    \end{equation*}
+    for every diagonal matrix $D$.
+    \begin{itemize}
+        \item It follows that $A^*A=AA^*$ if the matrix of $A$ in some orthonormal basis is diagonal.
+    \end{itemize}
+    \item Theorem 6.2.4: Any normal operator $N$ in a complex vector space has an orthonormal basis of eigenvectors.\par
+    Equivalently, any matrix $N$ satisfying $N^*N=NN^*$ can be represented as $N=UDU^*$ where $U$ is unitary and $D$ is diagonal.
+    \item Proposition 6.2.5: An operator $N:X\to X$ is normal iff
+    \begin{equation*}
+        \norm{N\x} = \norm{N^*\x}
+    \end{equation*}
+    for all $\x\in X$.
+    \item \textbf{Hermitian square} (of $A$): The matrix $A^*A$.
+    \item \textbf{Modulus} (of $A$): The unique positive semidefinite square root $\sqrt{A^*A}$.
+    \item Proposition 6.3.3: For a linear operator $A:X\to Y$,
+    \begin{equation*}
+        \norm{|A|\x} = \norm{A\x}
+    \end{equation*}
+    \item Corollary 6.3.4: $\ker A=\ker|A|$.
+    \item Theorem 6.3.5: Let $A:X\to X$ be an operator (square matrix). Then $A$ can be represented as
+    \begin{equation*}
+        A = U|A|
+    \end{equation*}
+    where $U$ is a unitary operator.
+    \item \textbf{Singular value} (of $A$): An eigenvalue of $|A|$.
+    \begin{itemize}
+        \item A positive square root of an operator of $A^*A$.
+    \end{itemize}
+    \item Proposition 6.3.6: Let $\sigma_1,\dots,\sigma_n$ be the singular values of $A$, ordered such that $\sigma_1,\dots,\sigma_r$ are the nonzero singular values, and let $\vm_1,\dots,\vm_n$ be an orthonormal basis of eigenvectors of $A^*A$. Then the system
+    \begin{equation*}
+        \wm_k = \frac{1}{\sigma_k}A\vm_k
+    \end{equation*}
+    for $k=1,\dots,r$ is orthonormal.
+    \item \textbf{Schmidt decomposition} (of $A$): The decompositions
+    \begin{equation*}
+        A = \sum_{k=1}^r\sigma_k\wm_k\vm_k^*
+    \end{equation*}
+    and
+    \begin{equation*}
+        A\x = \sum_{k=1}^r\sigma_k(\x,\vm_k)\wm_k
+    \end{equation*}
+    \begin{itemize}
+        \item Note that these can be verified by plugging $\x=\vm_j$ for each $j=1,\dots,n$ into the latter equation.
     \end{itemize}
 \end{itemize}
 

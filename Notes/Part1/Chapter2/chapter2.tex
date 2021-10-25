@@ -10,6 +10,7 @@
 
 
 \chapter{Systems of Linear Equations}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{9/29:}Row elimination:
     \begin{itemize}
@@ -22,7 +23,7 @@
                 2 & 1 & 2 & 1\\
             \end{pmatrix}
         \end{equation*}
-        \item Then the \textbf{eschelon form} matrix
+        \item Then the \textbf{echelon form} matrix
         \begin{equation*}
             A_e =
             \begin{pmatrix}
@@ -31,7 +32,7 @@
                 0 & 0 & 2 & -4\\
             \end{pmatrix}
         \end{equation*}
-        \item Lastly, the \textbf{reduced eschelon form} matrix
+        \item Lastly, the \textbf{reduced echelon form} matrix
         \begin{equation*}
             A_{re} =
             \begin{pmatrix}
@@ -41,12 +42,12 @@
             \end{pmatrix}
         \end{equation*}
     \end{itemize}
-    \item \textbf{Eschelon form}:
+    \item \textbf{echelon form}:
     \begin{itemize}
         \item All zero rows are below nonzero rows.
         \item For any nonzero row, its leading element is strictly to the left of the nonzero entry of the next row.
     \end{itemize}
-    \item \textbf{Reduced eschelon form}:
+    \item \textbf{Reduced echelon form}:
     \begin{itemize}
         \item All pivots are 1.
         \item Used to solve systems of the form $Ax=b$.
@@ -102,6 +103,78 @@
     \item The pivot rows of $A_e$ give a basis for $\range A^T$.
     \item A basis for the kernel is enough to solve $Ax=0$.
     \item If you take these three things as givens, you can prove the rank theorem.
+\end{itemize}
+
+
+
+\section{Chapter 2: Systems of Linear Equations}
+\emph{From \textcite{bib:Treil}.}
+\begin{itemize}
+    \item \marginnote{10/24:}A system is inconsistent iff the echelon form of the augmented matrix has a row of the form $
+        \begin{pmatrix}
+            0 & \cdots & 0 & b
+        \end{pmatrix}
+    $.
+    \item A solution to $A\x=\bb$ is unique iff there are no free variables, i.e., iff there is a pivot in every column.
+    \item $A\x=\bb$ is consistent iff the echelon form of the coefficient matrix has a pivot in every row.
+    \item $A\x=\bb$ has a unique solution for any $\bb$ iff the echelon form of the coefficient matrix $A$ has a pivot in every row and column.
+    \item Proposition 2.3.1: Let $\vm_1,\dots,\vm_m\in\F^n$, and let $
+        A =
+        \begin{bmatrix}
+            \vm_1 & \cdots & \vm_m
+        \end{bmatrix}
+    $ be an $n\times m$ matrix with columns $\vm_1,\dots,\vm_m$. Then
+    \begin{enumerate}
+        \item The system $\vm_1,\dots,\vm_m$ is linearly independent iff the echelon form of $A$ has a pivot in every column.
+        \item The system $\vm_1,\dots,\vm_m$ is complete iff the echelon form of $A$ has a pivot in every row.
+        \item The system $\vm_1,\dots,\vm_m$ is a basis of $\F^n$ iff the echelon form of $A$ has a pivot in every column and in every row.
+    \end{enumerate}
+    \item Proposition 2.3.6: A matrix $A$ is invertible if and only if its echelon form has a pivot in every column and every row.
+    \item Corollary 2.3.7: An invertible matrix must be square ($n\times n$).
+    \item Proposition 2.3.8: If a square ($n\times n$) matrix is left invertible or if it is right invertible, then it is invertible. In other words, to check the invertibility of a square matrix $A$, it is sufficient to check only one of the conditions $AA^{-1}=I$, $A^{-1}A=I$.
+    \item Any invertible matrix is row-equivalent to (can be row-reduced to) to the identity matrix.
+    \item \textbf{Homogeneous} (system of linear equations): A system of the form $A\x=\bm{0}$.
+    \item Theorem 2.6.1: Let a vector $\x_1$ satisfy the equation $A\x=\bb$. and let $H$ be the set of all solutions of the associated homogeneous system $A\x=\bm{0}$. Then the set
+    \begin{equation*}
+        \{\x_1+\x_h:\x_h\in H\}
+    \end{equation*}
+    is the set of all solutions to the equation $A\x=\bb$.
+    \item The pivot columns are a basis of $\range A$. The pivot rows are a basis of $\range A^T$. The solutions to the equation $A\x=\bm{0}$ are a basis of $\ker A$.
+    \item Theorem 2.7.3: Let $A$ be an $m\times n$ matrix. Then the equation $A\x=\bb$ has a solution for every $\bb\in\R^m$ iff the dual equation $A^T\x=\bm{0}$ has a unique (only the trivial) solution.
+    \begin{itemize}
+        \item Note that this is a corollary to the rank theorem.
+    \end{itemize}
+    \item Change of coordinates formula:
+    \begin{itemize}
+        \item Let $T:V\to W$ be a linear transformation, and let $\mathcal{V}=\{\vm_1,\dots,\vm_n\}$ and $\mathcal{W}=\{\wm_1,\dots,\wm_n\}$ be bases of $V$ and $W$, respectively.
+        \item The $m\times n$ matrix of $T$ with respect to these bases is $[T]_{\mathcal{W}\mathcal{V}}$, and relates the coordinates of $[T\vm]_{\mathcal{W}}$ and $[\vm]_{\mathcal{V}}$ via
+        \begin{equation*}
+            [T\vm]_{\mathcal{W}} = [T]_{\mathcal{W}\mathcal{V}}[\vm]_{\mathcal{V}}
+        \end{equation*}
+        \item Change of coordinates matrix: If $\mathcal{A},\mathcal{B}$ are two bases of $V$, then we can convert the coordinates of a vector in $\mathcal{B}$ to its in $\mathcal{A}$ with the identity matrix (with respect to the appropriate bases). In particular,
+        \begin{equation*}
+            [\vm]_{\mathcal{B}} = [I]_{\mathcal{B}\mathcal{A}}[\vm]_{\mathcal{A}}
+        \end{equation*}
+        \begin{itemize}
+            \item Note that the $k^\text{th}$ column of $[I]_{\mathcal{B}\mathcal{A}}$ is the coordinate representation in $\mathcal{B}$ of $\ab_k$, i.e., $[\ab_k]_{\mathcal{B}}$.
+        \end{itemize}
+        \item The change of coordinates matrix from a basis $\mathcal{B}$ to the standard basis $\mathcal{S}$ is easy to compute; by the above, it's just
+        \begin{equation*}
+            [I]_{\mathcal{S}\mathcal{B}} =
+            \begin{bmatrix}
+                \bb_1 & \cdots & \bb_n
+            \end{bmatrix}
+        \end{equation*}
+        \begin{itemize}
+            \item It follows that $[I]_{\mathcal{B}\mathcal{S}}=([I]_{\mathcal{S}\mathcal{B}})^{-1}$.
+            \item This allows us to compute $[I]_{\mathcal{B}\mathcal{A}}$ as $[I]_{\mathcal{B}\mathcal{S}}[I]_{\mathcal{S}\mathcal{A}}$
+        \end{itemize}
+        \item If $T:V\to W$, $\mathcal{A},\tilde{\mathcal{A}}$ are bases of $V$, and $\mathcal{B},\tilde{\mathcal{B}}$ are bases of $W$, and we have $[T]_{\mathcal{B}\mathcal{A}}$, then
+        \begin{equation*}
+            [T]_{\tilde{\mathcal{B}}\tilde{\mathcal{A}}} = [I]_{\tilde{\mathcal{B}}\mathcal{B}}[T]_{\mathcal{B}\mathcal{A}}[I]_{\mathcal{A}\tilde{\mathcal{A}}}
+        \end{equation*}
+    \end{itemize}
+    \item Change of basis ends up at similarity; two operators are similar if we can change the basis of one into another.
 \end{itemize}
 
 

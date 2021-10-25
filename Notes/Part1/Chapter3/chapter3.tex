@@ -10,6 +10,7 @@
 
 
 \chapter{Determinants}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{9/29:}The determinant, geometrically, is the volume of the object (in $\R^3$) you get when you take linear combinations of the vectors.
     \item In 2D:
@@ -80,6 +81,33 @@
         \item A diagonal matrix: The product of the diagonal entries (pull out the terms, and then note that the remaining identity matrix has determinant 1).
         \item An upper triangular matrix: The product of the diagonal entries (column reduction to make it into a diagonal matrix, and then the property above).
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 3: Determinants}
+\emph{From \textcite{bib:Treil}.}
+\begin{itemize}
+    \item \marginnote{10/24:}Let $A_{j,k}$ denote the $(n-1)\times(n-1)$ matrix obtained from $A$ by crossing out row $j$ and column $k$ and pushing it together.
+    \item \textbf{Cofactors} (of $A$): The numbers $C_{j,k}$, one per entry, defined by
+    \begin{equation*}
+        C_{j,k} = (-1)^{j+k}\det A_{j,k}
+    \end{equation*}
+    \item \textbf{Cofactor matrix} (of $A$): The matrix
+    \begin{equation*}
+        C = \{C_{j,k}\}_{j,k=1}^n
+    \end{equation*}
+    \item Theorem 3.5.2: Let $A$ be an invertible matrix and let $C$ be its cofactor matrix. Then
+    \begin{equation*}
+        A^{-1} = \frac{1}{\det A}C^T
+    \end{equation*}
+    \item \textbf{Cramer's rule}: If $A$ is invertible and $A\x=\bb$, then
+    \begin{equation*}
+        x_k = \frac{\det B_k}{\det A}
+    \end{equation*}
+    where $B_k$ is obtained from $A$ by replacing column $k$ of $A$ by the vector $\bb$.
+    \item \textbf{Minor} (of order $k$ of $A$): The determinant of a $k\times k$ submatrix of $A$.
+    \item Theorem 3.6.1: The rank of a nonzero matrix $A$ is equal to the largest integer $k$ such that there exists a nonzero minor of order $k$.
 \end{itemize}
 
 

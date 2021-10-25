@@ -10,6 +10,7 @@
 
 
 \chapter{Inner Product Spaces}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{10/6:}We define
     \begin{equation*}
@@ -231,6 +232,109 @@
         \item $U$ unitary implies $|\det U|=1$, so $\lambda$ an eigenvalue of $U$ implies that $|\lambda|=1$.
         \item $A$ is diagonalizable iff it has an orthogonal basis of eigenvectors.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 5: Inner Product Spaces}
+\emph{From \textcite{bib:Treil}.}
+\begin{itemize}
+    \item \marginnote{10/24:}\textbf{Standard inner product} (on $\C^n$): The inner product $(\z,\wm)$ defined by
+    \begin{equation*}
+        (\z,\wm) = \wm^*\z
+    \end{equation*}
+    \item Corollary 5.1.5: Let $\x,\y$ be vectors in an inner product space $V$. The equality $\x=\y$ holds if and only if
+    \begin{equation*}
+        (\x,\z) = (\y,\z)
+    \end{equation*}
+    for all $\z\in V$.
+    \item Corollary 5.1.6: Suppose two operator $A,B:X\to Y$ satisfy
+    \begin{equation*}
+        (A\x,\y) = (B\x,\y)
+    \end{equation*}
+    for all $\x\in x$ and $\y\in Y$. Then $A=B$.
+    \item \textbf{Normed space}: A vector space $V$ equipped with a norm that satisfies properties of homogeneity, the triangle inequality, non-negativity, and non-degeneracy.
+    \item Any inner product space is naturally a normed space.
+    \item If $1\leq p<\infty$, we can define a corresponding norm on $\R^n$ or $\C^n$ by
+    \begin{equation*}
+        \norm{\x}_p = \left( \sum_{k=1}^n|x_k|^p \right)^{1/p}
+    \end{equation*}
+    \item We can also define the norm for $p=\infty$ by
+    \begin{equation*}
+        \norm{\x}_\infty = \max\{|x_k|:k=1,\dots,n\}
+    \end{equation*}
+    \begin{itemize}
+        \item Note that the norm of this form for $p=2$ is the usual norm.
+        \item These norms are heavily associated with Figure \ref{fig:normUnitBall}.
+    \end{itemize}
+    \item \textbf{Minkowski inequality}: One of the triangle inequalities for norms with $p\neq 2$.
+    \item Theorem 5.1.11: A norm in a normed space is obtained from some inner product if and only if it satisfies the Parallelogram Identity
+    \begin{equation*}
+        \norm{\um+\vm}^2+\norm{\um-\vm}^2 = 2(\norm{\um}^2+\norm{\vm}^2)
+    \end{equation*}
+    for all $\um,\vm\in V$.
+    \begin{itemize}
+        \item It follows that norms with $p\neq 2$ do not have associated inner products, since such norms fail to satisfy the parallelogram identity.
+    \end{itemize}
+    \item Lemma 5.2.5 (Generalized Pythagorean Identity): Let $\vm_1,\dots,\vm_n$ be an orthogonal system. Then
+    \begin{equation*}
+        \norm{\sum_{k=1}^n\alpha_k\vm_k}^2 = \sum_{k=1}^n|\alpha_k|^2\norm{\vm_k}^2
+    \end{equation*}
+    \item Proposition 5.3.3: Let $\vm_1,\dots,\vm_r$ be an orthogonal basis in $E$. Then the orthogonal projection $P_E\vm$ of a vector $\vm$ is given by the formula
+    \begin{equation*}
+        P_E\vm = \sum_{k=1}^r\frac{(\vm,\vm_k)}{\norm{\vm_k}^2}\vm_k
+    \end{equation*}
+    \begin{itemize}
+        \item It follows that
+        \begin{align*}
+            P_E\vm &= \sum_{k=1}^r\frac{\vm_k^*\vm}{\norm{\vm_k}^2}\vm_k\\
+            &= \sum_{k=1}^r\frac{1}{\norm{\vm_k}^2}\vm_k\vm_k^*\vm\\
+            &= \left( \sum_{k=1}^r\frac{1}{\norm{\vm_k}^2}\vm_k\vm_k^* \right)\vm
+        \end{align*}
+        \item Thus, we have that
+        \begin{equation*}
+            P_E = \sum_{k=1}^r\frac{1}{\norm{\vm_k}^2}\vm_k\vm_k^*
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Gram-Schmidt orthogonalization}: Let $\x_1,\dots,\x_n$ be a linearly independent system of vectors to orthogonalize. Then $\vm_1=\x_1$, $\vm_2=\x_2-P_{\spn\{\vm_1\}}\x_2$, $\vm_3=\x_3-P_{\spn\{\vm_1,\vm_2\}}\x_3$, and on and on.
+    \item To find the least squares solution to $A\x=\bb$, solve $A\x=P_{\range A}\bb$.
+    \begin{itemize}
+        \item We can do this by finding an orthogonal basis of $\range A$ and then applying the projection formula.
+        \item Alternatively, we can use the following formula to speed things up if $A^*A$ is invertible:
+        \begin{equation*}
+            P_{\range A}\bb = A(A^*A)^{-1}A^*\bb
+        \end{equation*}
+    \end{itemize}
+    \item Theorem 5.4.1: For an $m\times n$ matrix $A$,
+    \begin{equation*}
+        \ker A = \ker(A^*A)
+    \end{equation*}
+    \begin{itemize}
+        \item Thus, $A^*A$ is invertible iff $A$ is invertible iff $A$ is full rank. This gives us a condition on when we can use the projection formula.
+    \end{itemize}
+    \item Theorem 5.6.1: An operator $U:X\to Y$ is an isometry if and only if it preserves the inner product, i.e., if and only if
+    \begin{equation*}
+        (\x,\y) = (U\x,U\y)
+    \end{equation*}
+    for all $\x,\y\in X$.
+    \item Lemma 5.6.2: An operator $U:X\to Y$ is an isometry if and only if $U^*U=I$.
+    \item \textbf{Unitary} (operator): An invertible isometry.
+    \item Proposition 5.6.3: An isometry $U:X\to Y$ is a unitary operator iff $\dim X=\dim Y$.
+    \item \textbf{Orthogonal} (matrix): A unitary matrix with real entries.
+    \item Unitary operator properties:
+    \begin{enumerate}
+        \item $U^{-1}=U^*$.
+        \item $U$ unitary implies $U^*=U^{-1}$ unitary.
+        \item If $\vm_1,\dots,\vm_n$ is orthonormal, $U\vm_1,\dots,U\vm_n$ is orthonormal.
+        \item $U,V$ unitary implies $UV$ unitary.
+    \end{enumerate}
+    \item A matrix $U$ is an isometry iff its columns form an orthonormal system.
+    \item Proposition 5.6.4: Let $U$ be a unitary matrix. Then
+    \begin{enumerate}
+        \item $|\det U|=1$. In particular, if $U$ is orthogonal, then $\det U=\pm 1$.
+        \item $|\lambda|=1$ for every eigenvalue $\lambda$ of $U$.
+    \end{enumerate}
+    \item Proposition 5.6.5: A matrix $A$ is unitarily equivalent to a diagonal one iff it has an orthogonal (orthonormal) basis of eigenvectors.
 \end{itemize}
 
 

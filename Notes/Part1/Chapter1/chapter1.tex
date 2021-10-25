@@ -9,6 +9,7 @@
 
 
 \chapter{Basic Notions}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{9/27:}\textbf{Vector space}: Basically, a set for which you have an addition and multiplication.
     \item $\F^d$ is used for $\R^d$ or $\C^d$ in \textcite{bib:Treil}.
@@ -98,6 +99,37 @@
         \item Check: $A(\text{basis of }X)=\text{basis of }Y$. Prove by definition and expression of elements as linear combinations.
     \end{itemize}
     \item \textbf{Subspace}: A subset of a vector space which happens to be a vector space, itself.
+\end{itemize}
+
+
+
+\section{Chapter 1: Basic Notions}
+\emph{From \textcite{bib:Treil}.}
+\begin{itemize}
+    \item \marginnote{10/24:}\textbf{Coordinates} (of $\vm\in V$ wrt. a basis $\vm_1,\dots,\vm_n$ of $V$): The unique scalars $\alpha_1,\dots,\alpha_n\in\F$ such that $\vm=\alpha_1\vm_1+\cdots+\alpha_n\vm_n$.
+    \item \textbf{Spanning system}: A list of vectors that spans $V$. \emph{Also known as} \textbf{generating system}, \textbf{complete system}.
+    \item \textbf{Trivial} (linear combination): A linear combination $\alpha_1\vm_1+\cdots+\alpha_n\vm_n$ of vectors such that $\alpha_k=0$ for each $k=1,\dots,n$.
+    \item \textbf{Transformation}: A function $T:X\to Y$. \emph{Also known as} \textbf{transform}, \textbf{mapping}, \textbf{map}, \textbf{operator}, and \textbf{function}.
+    \item The matrix of a linear transformation $T$ is often denoted by $\bm{[T]}$.
+    \item To compute the reflection of vectors over an arbitrary line through the origin in $\R^2$, represent the overall transformation as a composition of rotating the line to be the $x$-axis, reflecting over the $x$-axis, and rotating back.
+    \item Theorem 1.5.1: If $A$ is an $m\times n$ matrix and $B$ is an $n\times m$ matrix, then
+    \begin{equation*}
+        \trace(AB) = \trace(BA)
+    \end{equation*}
+    \item Theorem 1.6.1: If a linear transformation is invertible, then its left and right inverses are unique and coincide.
+    \item The column $(1,1)^T$ is left-invertible, with one possible left inverse being $(1/2,1/2)$.
+    \begin{itemize}
+        \item Note that it is not right invertible since its left inverses are not unique (see Theorem 1.6.1).
+    \end{itemize}
+    \item An invertible matrix must be square.
+    \item \textbf{Isomorphic} (vector spaces): Two vectors spaces $V,W$ such that there exists an isomorphism $A:V\to W$. \emph{Denoted by} $\bm{V\cong W}$.
+    \item Theorem 1.6.8: $A:X\to Y$ is invertible if and only if for any right side $\bb\in Y$, the equation
+    \begin{equation*}
+        A\x = \bb
+    \end{equation*}
+    has a unique solution $\x\in X$.
+    \item Corollary 1.6.9: An $m\times n$ matrix is invertible if and only if its columns form a basis in $\F^m$.
+    \item \textbf{Linear span} (of $\vm_1,\dots,\vm_n\in V$): The set of all linear combinations of $\vm_1,\dots,\vm_n$. \emph{Denoted by} $\bm{\mathcal{L}\{}\vm_1,\dots,\vm_n\bm{\}}$, $\textbf{span}\,\bm{(}\vm_1,\dots,\vm_n\bm{)}$.
 \end{itemize}
 
 
