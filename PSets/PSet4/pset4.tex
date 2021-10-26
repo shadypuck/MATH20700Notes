@@ -1287,7 +1287,38 @@
         L(\x,\y) = x_1y_1+2x_1y_2+14x_1y_3-5x_2y_1+2x_2y_2-3x_2y_3+8x_3y_1+19x_3y_2-2x_3y_3
     \end{equation*}
     \begin{proof}[Answer]
-        We have from the definition of $L$ that
+        We have that
+        \begin{align*}
+            &= x_1y_1+2x_1y_2+14x_1y_3-5x_2y_1+2x_2y_2-3x_2y_3+8x_3y_1+19x_3y_2-2x_3y_3\\
+            &= L(\x,\y)\\
+            &= \y^TA\x\\
+            &=
+            \begin{pmatrix}
+                y_1 & y_2 & y_3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                a_{1,1} & a_{1,2} & a_{1,3}\\
+                a_{2,1} & a_{2,2} & a_{2,3}\\
+                a_{3,1} & a_{3,2} & a_{3,3}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                x_1\\
+                x_2\\
+                x_3\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                y_1 & y_2 & y_3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                a_{1,1}x_1+a_{1,2}x_2+a_{1,3}x_3\\
+                a_{2,1}x_1+a_{2,2}x_2+a_{2,3}x_3\\
+                a_{3,1}x_1+a_{3,2}x_2+a_{3,3}x_3\\
+            \end{pmatrix}\\
+            &= y_1a_{1,1}x_1+y_1a_{1,2}x_2+y_1a_{1,3}x_3+y_2a_{2,1}x_1+y_2a_{2,2}x_2+y_2a_{2,3}x_3+y_3a_{3,1}x_1+y_3a_{3,2}x_2+y_3a_{3,3}x_3\\
+            &= a_{1,1}x_1y_1+a_{2,1}x_1y_2+a_{3,1}x_1y_3+a_{1,2}x_2y_1+a_{2,2}x_2y_2+a_{3,2}x_2y_3+a_{1,3}x_3y_1+a_{2,3}x_3y_2+a_{3,3}x_3y_3
+        \end{align*}
+        It follows from comparing terms that
         \begin{equation*}
             A =
             \begin{pmatrix}
@@ -1303,7 +1334,20 @@
     \end{equation*}
     i.e., to compute $L(\x,\y)$, we form a $2\times 2$ matrix with columns $\x,\y$ and compute its determinant. Find the matrix of $L$.
     \begin{proof}[Answer]
-        Since $L(\x,\y)=x_1y_2-x_2y_1$, we have that
+        We have that
+        \begin{align*}
+            &= a_{1,1}x_1y_1+a_{2,1}x_1y_2+a_{1,2}x_2y_1+a_{2,2}x_2y_2\\
+            &= \y^TA\x\\
+            &= L(\x,\y)\\
+            &= \det
+            \begin{pmatrix}
+                x_1 & y_1\\
+                x_2 & y_2\\
+            \end{pmatrix}\\
+            &= x_1y_2-y_1x_2\\
+            &= 0x_1y_1+1x_1y_2-1x_2y_1+0x_2y_2
+        \end{align*}
+        It follows from comparing terms that
         \begin{equation*}
             A =
             \begin{pmatrix}
@@ -1317,13 +1361,44 @@
         Q[\x] = x_1^2+2x_1x_2-3x_1x_3-9x_2^2+6x_2x_3+13x_3^2
     \end{equation*}
     \begin{proof}[Answer]
-        We have from the definition of $Q$ that
+        We have that
+        \begin{align*}
+            &= x_1^2+2x_1x_2-3x_1x_3-9x_2^2+6x_2x_3+13x_3^2\\
+            &= Q[\x]\\
+            &= (A\x,\x)\\
+            &=
+            \begin{pmatrix}
+                x_1 & x_2 & x_3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                a_{1,1} & a_{1,2} & a_{1,3}\\
+                a_{1,2} & a_{2,2} & a_{2,3}\\
+                a_{1,3} & a_{2,3} & a_{3,3}\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                x_1\\
+                x_2\\
+                x_3\\
+            \end{pmatrix}\\
+            &=
+            \begin{pmatrix}
+                x_1 & x_2 & x_3\\
+            \end{pmatrix}
+            \begin{pmatrix}
+                a_{1,1}x_1+a_{1,2}x_2+a_{1,3}x_3\\
+                a_{1,2}x_1+a_{2,2}x_2+a_{2,3}x_3\\
+                a_{1,3}x_1+a_{2,3}x_2+a_{3,3}x_3\\
+            \end{pmatrix}\\
+            &= x_1a_{1,1}x_1+x_1a_{1,2}x_2+x_1a_{1,3}x_3+x_2a_{1,2}x_1+x_2a_{2,2}x_2+x_2a_{2,3}x_3+x_3a_{1,3}x_1+x_3a_{2,3}x_2+x_3a_{3,3}x_3\\
+            &= a_{1,1}x_1^2+2a_{1,2}x_1x_2+2a_{1,3}x_1x_3+a_{2,2}x_2^2+2a_{2,3}x_2x_3+a_{3,3}x_3^2
+        \end{align*}
+        It follows from comparing terms that
         \begin{equation*}
             A =
             \begin{pmatrix}
-                1 & 1 & 3/2\\
+                1 & 1 & -3/2\\
                 1 & -9 & 3\\
-                3/2 & 3 & 13\\
+                -3/2 & 3 & 13\\
             \end{pmatrix}
         \end{equation*}
     \end{proof}
@@ -1340,6 +1415,52 @@
         \end{pmatrix}
     \end{equation*}
     Use two methods: completion of squares and row operations. Which one do you like better? Can you say if the matrix $A$ is positive definite or not?
+    \begin{proof}[Answer]
+        \underline{Completion of squares}: If $A$ has the above form, then
+        \begin{align*}
+            Q[\x] &= (A\x,\x)\\
+            &= a_{1,1}x_1^2+2a_{1,2}x_1x_2+2a_{1,3}x_1x_3+a_{2,2}x_2^2+2a_{2,3}x_2x_3+a_{3,3}x_3^2\\
+            &= x_1^2+4x_1x_2+2x_1x_3+3x_2^2+4x_2x_3+x_3^2\\
+            &= (x_1+2x_2+x_3)^2-x_2^2\\
+            &= y_1^2-y_2^2
+        \end{align*}
+        where $y_1=x_1+2x_2+x_3$, $y_2=x_2$, and $y_3=0$. It follows that
+        \begin{align*}
+            D &=
+            \begin{pmatrix}
+                1 & 0 & 0\\
+                0 & -1 & 0\\
+                0 & 0 & 0\\
+            \end{pmatrix}&
+            S^* &=
+            \begin{pmatrix}
+                1 & 2 & 1\\
+                0 & 1 & 0\\
+                0 & 0 & 0\\
+            \end{pmatrix}
+        \end{align*}
+        the latter equation coming from the fact that $\y=S^*\x$.\par
+        \underline{Row operations}: We can row reduce
+        \begin{equation*}
+            (A|I) =
+            \begin{pNiceArray}{ccc|ccc}
+                1 & 2 & 1 & 1 & 0 & 0\\
+                2 & 3 & 2 & 0 & 1 & 0\\
+                1 & 2 & 1 & 0 & 0 & 1\\
+            \end{pNiceArray}
+        \end{equation*}
+        to
+        \begin{equation*}
+            (D|S^*) =
+            \begin{pNiceArray}{ccc|ccc}
+                1 & 0  & 0 & 1 & 2 & 1\\
+                0 & -1 & 0 & 0 & 1 & 0\\
+                0 & 0  & 0 & 0 & 0 & 0\\
+            \end{pNiceArray}
+        \end{equation*}
+        getting the same result as before.\par
+        Right now, I believe I prefer completion of squares. The matrix is not positive definite since it has an eigenvalue (diagonal entry) less than zero.
+    \end{proof}
 \end{enumerate}
 
 
