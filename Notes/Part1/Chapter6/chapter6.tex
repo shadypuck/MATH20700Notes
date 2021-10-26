@@ -189,7 +189,7 @@
         \item $\norm{A}\geq 0$.
         \item $\norm{A}=0$ iff $A=0$.
     \end{itemize}
-    \item \textbf{Frobenious norm}: The norm $\norm{A}_2^2=\trace(A^*A)$.
+    \item \textbf{Frobenius norm}: The norm $\norm{A}_2^2=\trace(A^*A)$.
     \item The operator norm is always less than or equal to the Frobenius norm.
     \item If $A:\F^n\to\F^n$, then $A=W\Sigma V^*$ where $\sigma$ is a diagonal matrix of nonzero singular values.
     \item The operator norm of $A$ is the largest of the singular values.
@@ -312,6 +312,228 @@
     \begin{itemize}
         \item Note that these can be verified by plugging $\x=\vm_j$ for each $j=1,\dots,n$ into the latter equation.
     \end{itemize}
+    \item \marginnote{10/25:}Lemma 6.3.7: $A$ can be represented as the Schmidt decomposition
+    \begin{equation*}
+        A = \sum_{k=1}^r\sigma_k\wm_k\vm_k^*
+    \end{equation*}
+    where $\sigma_k>0$ for any orthonormal systems $\vm_1,\dots,\vm_r$ and $\wm_1,\dots,\wm_r$.
+    \item Corollary 6.3.8: Let $A=\sum_{k=1}^r\sigma_k\wm_k\vm_k^*$ be a Schmidt decomposition of $A$. Then
+    \begin{equation*}
+        A^* = \sum_{k=1}^r\sigma_k\vm_k\wm_k^*
+    \end{equation*}
+    is a Schmidt decomposition of $A^*$.
+    \item \textbf{Reduced singular value decomposition} (of $A$): The decomposition
+    \begin{equation*}
+        A = \tilde{W}\tilde{\Sigma}\tilde{V}^*
+    \end{equation*}
+    where $A:\F^n\to\F^m$ has the Schmidt decomposition $A=\sum_{k=1}^r\sigma_k\wm_k\vm_k^*$, $\tilde{\Sigma}=\diag\{\sigma_1,\dots,\sigma_r\}$, and $\tilde{V},\tilde{W}$ are matrices with columns $\vm_1,\dots,\vm_r$ and $\wm_1,\dots,\wm_r$, respectively. \emph{Also known as} \textbf{compact singular value decomposition}.
+    \begin{itemize}
+        \item Note that $\tilde{V}$ is an $n\times r$ matrix, $\tilde{\Sigma}$ is an $r\times r$ matrix, and $\tilde{W}$ is an $m\times r$ matrix.
+        \item Since $\vm_1,\dots,\vm_r$ and $\wm_1,\dots,\wm_r$ are orthonormal, $\tilde{V},\tilde{W}$ are isometries.
+    \end{itemize}
+    \item Note that $r=\rank A$ (see Problem 6.3.1).
+    \begin{itemize}
+        \item It follows that if $A$ is invertible, then $m=n=r$, so $\tilde{V},\tilde{W}$ are unitary and $\tilde{\Sigma}$ is an invertible diagonal matrix.
+    \end{itemize}
+    \item However, $A$ need not be invertible for us to get a representation similar to $A=\tilde{W}\tilde{\Sigma}\tilde{V}^*$.
+    \begin{itemize}
+        \item Complete $\vm_1,\dots,\vm_r$ and $\wm_1,\dots,\wm_r$ to bases of $\F^n$ and $\F^m$, respectively.
+        \item Then we get the following.
+    \end{itemize}
+    \item \textbf{Singular value decomposition} (of $A$): The decomposition
+    \begin{equation*}
+        A = W\Sigma V^*
+    \end{equation*}
+    where $V\in M_{n\times n}^\F$ and $W\in M_{m\times m}^\F$ are unitary matrices with columns $\vm_1,\dots,\vm_n$ and $\wm_1,\dots,\wm_n$, respectively, and $\Sigma\in M_{m\times n}^{\R^+}$ is a "diagonal" matrix such that
+    \begin{equation*}
+        \Sigma_{j,k} =
+        \begin{cases}
+            \sigma_k & j=k\leq r\\
+            0 & \text{otherwise}
+        \end{cases}
+    \end{equation*}
+    \item Notice that if $A=W\Sigma V^*$, then
+    \begin{equation*}
+        A^*A = (W\Sigma V^*)^*(W\Sigma V^*) = V\Sigma^*W^*W\Sigma V^* = V\Sigma^2V^*
+    \end{equation*}
+    proving that the singular values of $A$, squared, are the eigenvalues of $A^*A$.
+    \item If $A$ is invertible, the reduced SVD is the matrix form of the Schmidt decomposition is the SVD.
+    \item If $A=W\Sigma V^*$ is $n\times n$, then
+    \begin{equation*}
+        A = (\underbrace{WV^*}_U)(\underbrace{V\Sigma V^*}_{|A|})
+    \end{equation*}
+    is a polar decomposition of $A$.
+    \item Consider the unit ball $B=\{\x\in\R^n:\norm{\x}\leq 1\}$.
+    \begin{itemize}
+        \item We want to describe $A(B)$, i.e., the image of the unit ball under $A$.
+        \item Let $\x=(x_1,\dots,x_n)^T$ and let $\y=(y_1,\dots,y_n)^T$. If $A=\diag\{\sigma_1,\dots,\sigma_n\}$, we have $\y\in A(B)$ iff $\y=A\x$ where $\x\in B$ iff
+        \begin{equation*}
+            \sum_{k=1}^n\frac{y_k^2}{\sigma_k^2} = \sum_{k=1}^nx_k^2 = \norm{\x}^2 \leq 1
+        \end{equation*}
+        \item Thus, $A(B)$ is an ellipsoid with half-axes $\sigma_1,\dots,\sigma_n$.
+        \item In the more general case, if $A=W\Sigma V^*$, then since $V^*$ is unitary, $V^*(B)=B$. $\Sigma V^*(B)=\Sigma(B)$ is thus by the above an ellipsoid in $\range\Sigma$ with half-axes $\sigma_1,\dots,\sigma_r$. Thus, since isometries don't change geometry, $W(\Sigma(B))$ is also an ellipsoid with the same half-axes, but in $\range A$.
+    \end{itemize}
+    \item Conclusion: The image $A(B)$ of the closed unit ball $B$ is an ellipsoid in $\range A$ with half-axes $\sigma_1,\dots,\sigma_r$, where $r$ is the number of nonzero singular values, i.e., the rank of $A$.
+    \item Finding the maximum of $\norm{A\x}$ for $\x\in B$.
+    \begin{itemize}
+        \item For a diagonal matrix $\Sigma$ with nonnegative entries, the maximum is clearly the maximal diagonal entry: In this case if $s_1$ is the maximal diagonal entry, then since
+        \begin{equation*}
+            \Sigma\x = \sum_{k=1}^rs_kx_k\eb_k
+        \end{equation*}
+        we have that
+        \begin{equation*}
+            \norm{A\x}^2 = \sum_{k=1}^rs_k^2|x_k|^2
+            \leq s_1^2\sum_{k=1}^r|x_k|^2\\
+            = s_1^2\cdot\norm{\x}^2
+        \end{equation*}
+        \item We get the following by a similar logic to before.
+    \end{itemize}
+    \item Conclusion: The maximum of $\norm{A\x}$ on the unit ball $B$ is the maximal singular value of $A$.
+    \item \textbf{Operator norm} (of $A$): The following quantity. \emph{Denoted by} $\norm{\bm{A}}$. \emph{Given by}
+    \begin{equation*}
+        \norm{A} = \max\{\norm{A\x}:\x\in X,\norm{\x}\leq 1\}
+    \end{equation*}
+    \begin{itemize}
+        \item $\norm{A}$ clearly satisfies the four properties of a norm.
+        \item Additionally,
+        \begin{equation*}
+            \norm{A\x} \leq \norm{A}\cdot\norm{\x}
+        \end{equation*}
+        \item Alternate definition: The operator norm $\norm{A}$ is the smallest number $C\geq 0$ such that $\norm{A\x}\leq C\norm{\x}$.
+    \end{itemize}
+    \item \textbf{Frobenius norm}: The following norm. \emph{Also known as} \textbf{Hilbert-Schmidt norm}. \emph{Denoted by} $\norm{\bm{A}}_{\bm{2}}$. \emph{Given by}
+    \begin{equation*}
+        \norm{A}_2^2 = \trace(A^*A)
+    \end{equation*}
+    \begin{itemize}
+        \item If we let $s_1,\dots,s_n$ be the singular values of $A$ and let $s_1$ be the largest value, then we have
+        \begin{equation*}
+            \norm{A}^2 = s_1^2
+            \leq \sum_{k=1}^ns_k^2
+            = \trace(A^*A)
+            = \norm{A}_2^2
+        \end{equation*}
+    \end{itemize}
+    \item Conclusion: The operator norm of a matrix cannot be more than its Frobenius norm.
+    \item Suppose we want to solve $A\x=\bb$ where $A$ is invertible, but there is some (experimental) error $\Delta\bb$ in $\bb$. Then we are really solving for an approximate solution $\x+\Delta\x$ to the equation
+    \begin{equation*}
+        A(\x+\Delta\x) = \bb+\Delta\bb
+    \end{equation*}
+    \begin{itemize}
+        \item It follows since $A$ is invertible that $\x=A^{-1}\bb$ and $\Delta\x=A^{-1}\Delta\bb$.
+        \item To estimate the relative error $\norm{\Delta\x}/\norm{\x}$ in the solution in comparison with the relative error $\norm{\Delta\bb}/\norm{\bb}$ in the data, use
+        \begin{equation*}
+            \frac{\norm{\Delta\x}}{\norm{\x}} = \frac{\norm{A^{-1}\Delta\bb}}{\norm{\bb}}\frac{\norm{A\x}}{\norm{\x}}
+            \leq \frac{\norm{A^{-1}}\cdot\norm{\Delta\bb}}{\norm{\bb}}\frac{\norm{A}\cdot\norm{\x}}{\norm{\x}}
+            = \norm{A^{-1}}\cdot\norm{A}\cdot\frac{\norm{\Delta\bb}}{\norm{\bb}}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Condition number} (of $A$): The following quantity. \emph{Given by}
+    \begin{equation*}
+        \norm{A}\cdot\norm{A^{-1}}
+    \end{equation*}
+    \begin{itemize}
+        \item If $s_1$ is the largest singular value of $A$ and $s_n$ is the smallest, then
+        \begin{equation*}
+            \norm{A}\cdot\norm{A^{-1}} = s_1\cdot\frac{1}{s_n} = \frac{s_1}{s_n}
+        \end{equation*}
+    \end{itemize}
+    \item \textbf{Well-conditioned} (matrix): A matrix the condition number of which is not "too big."
+    \item \textbf{Ill-conditioned} (matrix): A matrix that is not well-conditioned.
+    \item Theorem 6.5.1: Let $U$ be an orthogonal operator on $\R^n$ and let $\det U=1$. Then there exists an orthonormal basis $\vm_1,\dots,\vm_n$ such that the matrix of $U$ in this basis has the block diagonal form
+    \begin{equation*}
+        \begin{pmatrix}
+            R_{\varphi_1} &  &  & 0\\
+             & \ddots &  & \\
+             &  & R_{\varphi_k} & \\
+            0 &  &  & I_{n-2k}\\
+        \end{pmatrix}
+    \end{equation*}
+    where each $R_{\varphi_j}$ is a two-dimensional rotation
+    \begin{equation*}
+        R_{\varphi_j} =
+        \begin{pmatrix}
+            \cos\varphi_j & -\sin\varphi_j\\
+            \sin\varphi_j & \cos\varphi_j\\
+        \end{pmatrix}
+    \end{equation*}
+    and $I_{n-2k}$ represents the $(n-2k)\times(n-2k)$ identity matrix.
+    \begin{itemize}
+        \item Alternate interpretation: Any rotation in $\R^n$ can be represented as a composition of at most $n/2$ commuting planar rotations.
+    \end{itemize}
+    \item Theorem 6.5.2: Let $U$ be an orthogonal operator on $\R^n$ and let $\det U=-1$. Then there exists an orthonormal basis $\vm_1,\dots,\vm_n$ such that the matrix of $U$ in this basis has block diagonal form
+    \begin{equation*}
+        \begin{pmatrix}
+            R_{\varphi_1} &  &  &  & 0\\
+             & \ddots &  &  & \\
+             &  & R_{\varphi_k} &  & \\
+             &  &  & I_r & \\
+            0 &  &  &  & -1\\
+        \end{pmatrix}
+    \end{equation*}
+    where $r=n-2k-1$ and each $R_{\varphi_j}$ is a two-dimensional rotation
+    \begin{equation*}
+        R_{\varphi_j} =
+        \begin{pmatrix}
+            \cos\varphi_j & -\sin\varphi_j\\
+            \sin\varphi_j & \cos\varphi_j\\
+        \end{pmatrix}
+    \end{equation*}
+    \item Corollary: An orthogonal $2\times 2$ matrix $U$ with determinant $-1$ is always a reflection.
+    \item Theorem 6.5.3: Any rotation $U$ (i.e., any orthogonal transformation $U$ with $\det U=1$) can be represented as a product of at most $n(n-1)/2$ elementary rotations.
+    \item Consider the following orthonormal bases of $\R^2$.
+    \begin{figure}[h!]
+        \centering
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=2]
+                \footnotesize
+                \draw [stealth-stealth] (0,1) node[above]{$\eb_2$} -- (0,0) -- (1,0) node[right]{$\eb_1$};
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:orientationR2a}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=2,rotate=30]
+                \footnotesize
+                \draw [stealth-stealth] (0,1) node[above]{$\vm_2$} -- (0,0) -- (1,0) node[right]{$\vm_1$};
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:orientationR2b}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=2,rotate=-30]
+                \footnotesize
+                \draw [stealth-stealth] (0,1) node[above]{$\vm_1$} -- (0,0) -- (1,0) node[right]{$\vm_2$};
+            \end{tikzpicture}
+            \caption{}
+            \label{fig:orientationR2c}
+        \end{subfigure}
+        \caption{Orientation in $\R^2$.}
+        \label{fig:orientationR2}
+    \end{figure}
+    \begin{itemize}
+        \item Notice that a rotation will get you from the standard basis (a) to basis (b), but not from the standard basis (a) to basis (c).
+        \item This is the motivation for defining orientation.
+        \item More formally, we know that there is a unique linear transformation $U$ such that $U\eb_k=\vm_k$ for each $k=1,2$. In particular, the matrix of $U$ with respect to the standard basis is orthogonal with columns $\vm_1,\vm_2$.
+        \item By Theorems 6.5.1 and 6.5.2, if $\det U=1$, then $U$ is a rotation, and if $\det U=-1$, then $U$ is not a rotation.
+    \end{itemize}
+    \item \textbf{Similarly oriented} (bases $\mathcal{A},\mathcal{B}$): Two bases $\mathcal{A},\mathcal{B}$ of a real vector space such that the change of coordinates matrix $[I]_{\mathcal{B}\mathcal{A}}$ has a positive determinant.
+    \item \textbf{Differently oriented} (bases $\mathcal{A},\mathcal{B}$): Two bases $\mathcal{A},\mathcal{B}$ of a real vector space that are not similarly oriented (i.e., $[I]_{\mathcal{B}\mathcal{A}}$ has a negative determinant).
+    \item We usually let the standard basis of $\R^n$ have a \textbf{positive orientation}.
+    \begin{itemize}
+        \item In an abstract vector space, we need only fix a basis and declare its orientation to be positive.
+    \end{itemize}
+    \item \textbf{Continuously transformable} (bases $\mathcal{A},\mathcal{B}$): Two bases $\mathcal{A},\mathcal{B}$ such that $\mathcal{A}=\{\ab_1,\dots,\ab_n\}$ can be continuously transformed to a basis $\mathcal{B}=\{\bb_1,\dots,\bb_n\}$. In particular, there exists a \textbf{continuous family of bases} $\mathcal{V}(t)=\{\vm_1(t),\dots,\vm_n(t)\}$, $t\in[a,b]$, such that
+    \begin{align*}
+        \vm_k(a) &= \ab_k&
+        \vm_k(b) &= \bb_k
+    \end{align*}
+    for each $k=1,\dots,n$.
+    \item \textbf{Continuous family of bases}: A family of bases $\mathcal{V}(t)=\{\vm_1(t),\dots,\vm_n(t)\}$, $t\in[a,b]$, such that the vector-functions $\vm_k(t)$ are continuous (their coordinates in some bases are continuous functions) and the system $\vm_1(t),\dots,\vm_n(t)$ is a basis for all $t\in[a,b]$.
+    \item Theorem 6.6.1: Two bases $\mathcal{A}=\{\ab_1,\dots,\ab_n\}$ and $\mathcal{B}=\{\bb_1,\dots,\bb_n\}$ have the same orientation if and only if one of the bases can be continuously transformed to the other.
 \end{itemize}
 
 

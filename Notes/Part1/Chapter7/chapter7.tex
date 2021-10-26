@@ -10,6 +10,7 @@
 
 
 \chapter{Bilinear and Quadratic Forms}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{10/18:}\textbf{Bilinear form}: A function $L:\R^n\times\R^n\to\R$ such that
     \begin{align*}
@@ -110,6 +111,95 @@
     \item Corollary: Let $A=A^*=(a_{jk})_{1\leq j,k\leq n}$ with eigenvalues $\lambda_1,\dots,\lambda_n$ listed in decreasing order. Let $\tilde{A}=(a_{j,k})_{1\leq j,k\leq n-1}$ with eigenvalues $\mu_1,\dots,\mu_{n-1}$ listed in decreasing order. Then $\lambda_1\geq\mu_1\geq\lambda_2\geq\mu_2\geq\cdots\geq\mu_{n-1}\geq\lambda_n$.
     \begin{itemize}
         \item Consider $(A\x,\x)$ on $\{\eb_1,\dots,\eb_n\}$, but then restrict yourself to $\x\in\R^{n-1}$ on $\{\eb_1,\dots,\eb_{n-1}\}$.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 7: Bilinear and Quadratic Forms}
+\emph{From \textcite{bib:Treil}.}
+\begin{itemize}
+    \item \marginnote{10/25:}\textbf{Bilinear form} (on $\R^n$): A function $L(\x,\y)$ of two arguments $\x,\y\in\R^n$ that is linear in each argument.
+    \begin{itemize}
+        \item Linearity in each argument:
+        \begin{align*}
+            L(\alpha\x_1+\beta\x_2,\y) &= \alpha L(\x_1,\y)+\beta L(\x_2,\y)&
+            L(\x,\alpha\y_1+\beta\y_2) &= \alpha L(\x,\y_1)+\beta L(\x,\y_2)
+        \end{align*}
+    \end{itemize}
+    \item If $\x=(x_1,\dots,x_n)^T$ and $\y=(y_1,\dots,y_n)^T$, then
+    \begin{align*}
+        L(\x,\y) &= \sum_{j,k=1}^na_{j,k}x_ky_j\\
+        &= (A\x,\y)\\
+        &= \y^TA\x
+    \end{align*}
+    where
+    \begin{equation*}
+        A =
+        \begin{pmatrix}
+            a_{1,1} & \cdots & a_{1,n}\\
+            \vdots &  & \vdots\\
+            a_{n,1} & \cdots & a_{n,n}\\
+        \end{pmatrix}
+    \end{equation*}
+    \begin{itemize}
+        \item $A$ is uniquely determined by $L$.
+    \end{itemize}
+    \item \textbf{Quadratic form} (on $\R^n$): The diagonal of a bilinear form $L$, i.e., a bilinear form $Q[\x]=L(\x,\x)=(A\x,\x)$.
+    \begin{itemize}
+        \item Alternatively: A homogeneous polynomial of degree 2, i.e., a polynomial in $x_1,\dots,x_n$ with only $ax_k^2$ and $cx_jx_k$ terms.
+    \end{itemize}
+    \item There are infinitely many ways to write a quadratic form as $(A\x,\x)$.
+    \begin{itemize}
+        \item However, there is a unique representation $(A\x,\x)$ where $A$ is a (real) symmetric matrix.
+    \end{itemize}
+    \item \textbf{Quadratic form} (on $\C^n$): A function of the form $Q[\x]=(A\x,\x)$ where $A$ is self-adjoint.
+    \item Lemma 7.1.1: Let $(A\x,\x)$ be real for all $\x\in\C^n$. Then $A=A^*$.
+    \item To classify quadratic forms, consider the set of points $\x\in\R^n$ defined by $Q[\x]=1$ for some quadratic form $Q$.
+    \begin{itemize}
+        \item If the matrix of $Q$ is diagonal, i.e., $Q[\x]=a_1x_1^2+\cdots+a_nx_n^2$, then the set of points can easily be visualized.
+    \end{itemize}
+    \item The standard method of diagonalizing a quadratic form is change of variables.
+    \item Orthogonal diagonalization.
+    \begin{itemize}
+        \item Let $Q[\x]=(A\x,\x)$ in $\F^n$.
+        \item Suppose $\y=S^{-1}\x$ where $S$ is an invertible $n\times n$ matrix. Then
+        \begin{equation*}
+            Q[\x] = Q[S\y] = (AS\y,S\y) = (S^*AS\y,\y)
+        \end{equation*}
+        so in the new variables $\y$, the quadratic form has matrix $S^*AS$.
+        \item Thus, we can let $A=UDU^*$, choose $D=U^*AU$ as our new (diagonal) matrix, and let this matrix act on the variables $\y=U^*\x$.
+        % \item Example:
+        % \begin{itemize}
+        %     \item Consider $Q[\x]=2x_1^2+2x_2^2+2x_1x_2$ in $\R^2$. We want to describe the set of all $\x\in\R^2$ defined by $Q[\x]=1$.
+        %     \item The matrix of $Q$ is
+        %     \begin{equation*}
+        %         A =
+        %         \begin{pmatrix}
+        %             2 & 1\\
+        %             1 & 2\\
+        %         \end{pmatrix}
+        %     \end{equation*}
+        %     \item Orthogonally diagonalizing gives
+        %     \begin{equation*}
+        %         D =
+        %         \begin{pmatrix}
+        %             3 & 0\\
+        %             0 & 1\\
+        %         \end{pmatrix}
+        %     \end{equation*}
+        % \end{itemize}
+    \end{itemize}
+    \item Non-orthogonal diagonalization:
+    \begin{itemize}
+        \item Completing the square:
+        \begin{itemize}
+            \item Eliminate all $x_ix_j$ terms by completing the square. Then substitute in a $y_k$ for each squared term.
+        \end{itemize}
+        \item Row/column operations:
+        \begin{itemize}
+            \item Augment $(A|I)$. Row reduce $A$ to $D$. Then $I\to S^*$.
+        \end{itemize}
     \end{itemize}
 \end{itemize}
 
