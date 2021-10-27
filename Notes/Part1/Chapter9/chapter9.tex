@@ -74,7 +74,51 @@
             E_\lambda = \bigcup_{k=1}^{d(\lambda)}\ker(A-\lambda I)^k
         \end{equation*}
     \end{itemize}
-    \item Start working through the first 25 problems of Rudin (his metric spaces problems).
+    \item Start working through the first 25 problems of \textcite{bib:Rudin} (his metric spaces problems).
+    \item \marginnote{10/27:}Jordan form.
+    \item Reviews build up to generalized eigenvectors.
+    \item Theorem: If $\sigma(A)=\{\lambda_1,\dots,\lambda_n\}$ and $E_1,\dots,E_n$ are the corresponding generalized eigenspaces, then $E_1,\dots,E_n$ is a basis of subspaces of $U$, i.e., $V=\oplus_kE_k$.
+    \item Corollary: $A:V\to V$ can be represented as $A=D+N$ where $D$ is diagonalizable and $N$ is nilpotent and $ND=DN$.
+    \begin{itemize}
+        \item Proof: Consider the basis of generalized eigenspaces known to exist from the theorem. Then $A=\diag\{A_1,\dots,A_r\}$.
+        \item Let
+        \begin{equation*}
+            N_k = A_k-\lambda_kI_{E_k}
+        \end{equation*}
+        This is nilpotent.
+        \item Then let
+        \begin{equation*}
+            D = \diag\{\lambda_1I_{E_1},\dots,\lambda_nI_{E_n}\}
+        \end{equation*}
+        \item These two matrices satisfy the necessary properties.
+    \end{itemize}
+    \item Let $\dot{\x}=A\x$.
+    \begin{itemize}
+        \item Let $\x(t)=\e[tA]$, where
+        \begin{equation*}
+            \e[tA] = \sum\frac{(tA)^k}{k!}
+        \end{equation*}
+        \item $\norm{\e[tA]}\leq\sum\frac{\norm{A^k}}{k!}=\sum\frac{\norm{A}^k}{k!}$.
+        \item Let $p$ be a polynomial of degree $k$. Then
+        \begin{equation*}
+            p(a+x) = \sum_{k=0}^d\frac{p^{(k)}(a)}{k!}x^k
+        \end{equation*}
+        \item If $A=D+N$, then...
+    \end{itemize}
+    \item Nilpotent operators:
+    \begin{itemize}
+        \item Let $A=\diag\{A_1,\dots,A_r\}$.
+        \item We know that $A_k=\lambda_kI_{E_k}+N_k$ for each $k$.
+        \item Every nilpotent $N$ can be written in the form
+        \begin{equation*}
+            \begin{pmatrix}
+                0 & 1 &  & 0\\
+                 & \ddots & \ddots & \\
+                 &  & \ddots & 1\\
+                0 &  &  & 0\\
+            \end{pmatrix}
+        \end{equation*}
+    \end{itemize}
 \end{itemize}
 
 
