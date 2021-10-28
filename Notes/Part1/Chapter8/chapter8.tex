@@ -10,6 +10,7 @@
 
 
 \chapter{Dual Spaces and Tensors}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{10/22:}\textbf{Functional}: A linear bounded map $L:H\to F$, where $H$ is finite dimensional (equivalent to $\R^n$).
     \item \textbf{Dual space}: The set of bounded linear functionals on $H$. \emph{Denoted by} $\bm{H'}$, $\bm{H^*}$.
@@ -36,6 +37,83 @@
         \item Gives us a way to identify all bounded linear functionals on $H$.
         \item In finite dimensions, $L(x)$, where $x=\sum_1^n\alpha_ia_i$ gives us $L(x)=\sum_1^n\alpha_iL(a_i)$.
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 8: Dual Spaces and Tensors}
+\begin{itemize}
+    \item \marginnote{10/28:}Linear functionals are denoted by $L$.
+    \begin{itemize}
+        \item $L$ is given by a $1\times n$ matrix denoted by $[L]$.
+    \end{itemize}
+    \item The collection of all $[L]$ (the dual space) is isomorphic to $\R^n$ via $[L]\mapsto[L]^T$.
+    \begin{itemize}
+        \item However, the objects are different: Let $[I]_{\mathcal{B}\mathcal{A}}$ be the change of coordinates matrix in $\R^n$. We thus have that
+        \begin{equation*}
+            [\vm]_\mathcal{B} = [I]_{\mathcal{B}\mathcal{A}}[\vm]_\mathcal{A}
+        \end{equation*}
+        but we also have that
+        \begin{equation*}
+            [L]_\mathcal{B} = [L]_\mathcal{A}[I]_{\mathcal{A}\mathcal{B}}
+        \end{equation*}
+        so that
+        \begin{equation*}
+            [L]_\mathcal{B}^T = ([L]_\mathcal{A}[I]_{\mathcal{A}\mathcal{B}})^T
+            = [I]_{\mathcal{A}\mathcal{B}}^T[L]_\mathcal{A}^T
+        \end{equation*}
+        \item Essentially, "if $S$ is the change of coordinate matrix in $X$\dots then the change of coordinate matrix in the dual space $X'$ is $(S^{-1})^T$" \parencite[219]{bib:Treil}.
+    \end{itemize}
+    \item Lemma 8.1.3: Let $\vm\in V$. If $L(\vm)=0$ for all $L\in V'$, then $\vm=\bm{0}$. As a corollary, if $L(\vm_1)=L(\vm_2)$ for all $L\in V'$, then $\vm_1=\vm_2$.
+    \item The second dual $V''$ is canonically (i.e., in a natural way) isomorphic to $V$.
+    \item \textbf{Dual basis} (to $\bb_1,\dots,\bb_n\in V$): The system of vectors $\bb_1',\dots,\bb_n'\in V'$ uniquely defined by the following equation. \emph{Also known as} \textbf{biorthogonal basis}.
+    \begin{equation*}
+        \bb_k'(\bb_j) = \delta_{kj}
+    \end{equation*}
+    \begin{itemize}
+        \item The $k^\text{th}$ coordinate of a vector $\vm$ in a basis $\bb_1,\dots,\bb_n$ is $\bb_k'(\vm)$.
+        \begin{itemize}
+            \item This is a baby version of the \textbf{abstract non-orthogonal Fourier decomposition} of $\vm$.
+        \end{itemize}
+    \end{itemize}
+    \item Theorem 8.2.1 (Riesz representation theorem): Let $H$ be an inner product space. Given a linear functional $L$ on $H$, there exists a unique vector $\y\in H$ such that
+    \begin{equation*}
+        L(\vm) = (\vm,\y)
+    \end{equation*}
+    for all $\vm\in H$.
+    \item If $V$ is a real inner product space, we can define an isomorphism from $V$ to $V'$ by $\y\mapsto L_\y=(\vm,\y)$.
+    \begin{itemize}
+        \item If $V$ is complex, this function is not linear since if $\alpha$ is complex,
+        \begin{equation*}
+            L_{\alpha\y}(\vm) = (\vm,\alpha\y) = \bar{\alpha}(\vm,\y) = \bar{\alpha}L_\y(\vm)
+        \end{equation*}
+        \item It follows by such a mapping that $\bb_k'=\bb_k$ for each $k$.
+    \end{itemize}
+    \item \textbf{Conjugate linear} (transformation): A transformation $T$ such that
+    \begin{equation*}
+        T(\alpha\x+\beta\y) = \bar{\alpha}T\x+\bar{\beta}T\y
+    \end{equation*}
+    \item It is customary to write outputs of linear functionals $L(\vm)$ in the form $\langle\vm, L\rangle$.
+    \begin{itemize}
+        \item This expression is linear in both arguments, unlike the inner product.
+    \end{itemize}
+    \item Defines the dual transformation as the unique transformation such that
+    \begin{equation*}
+        \langle A\x,\y'\rangle = \langle\x,A'\y\rangle
+    \end{equation*}
+    for all $\x\in X$, $\y'\in Y'$.
+    \begin{itemize}
+        \item It's matrix in the standard bases equals $A^T$.
+    \end{itemize}
+    \item Annihilators are denoted by $E^\perp$ here.
+    \item Proposition 8.3.6: The annihilator of the annihilator of $E$ equals $E$.
+    \item Let $A:X\to Y$ be an operator acting from one vector space to another. Then
+    \begin{enumerate}
+        \item $\ker A'=(\range A)^\perp$.
+        \item $\ker A=(\range A')^\perp$.
+        \item $\range A = (\ker A')^\perp$.
+        \item $\range A'=(\ker A)^\perp$.
+    \end{enumerate}
 \end{itemize}
 
 

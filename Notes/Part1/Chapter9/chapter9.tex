@@ -10,6 +10,7 @@
 
 
 \chapter{Advanced Spectral Theory}
+\section{Notes}
 \begin{itemize}
     \item \marginnote{10/22:}Let $p(z)=\sum_{i=0}^na_iz^i$ be a polynomial. Let $A$ be an $n\times n$ matrix. We let $p(A)=\sum_{i=0}^na_iA^i$.
     \item Theorem: If $A$ is an $n\times n$ and $p(\lambda)=\det(A-\lambda I)$, then $p(A)=0$.
@@ -67,7 +68,7 @@
     \begin{itemize}
         \item $E_\lambda$ is a linear subspace of $V$.
     \end{itemize}
-    \item \textbf{Degree} (of $\lambda$): The smallest number $k$ such that increasing $k$ any more does not add further vectors to the generalized eigenspace. \emph{Denoted by} $\bm{d(\lambda)}$.
+    \item \textbf{Degree} (of $\lambda$): The smallest number $k$ such that increasing $k$ any more does not add further vectors to the generalized eigenspace. \emph{Denoted by} $\bm{d(\lambda)}$. \emph{Also known as} \textbf{depth}.
     \begin{itemize}
         \item Symbolically, $d(\lambda)$ is the smallest number such that
         \begin{equation*}
@@ -119,6 +120,16 @@
             \end{pmatrix}
         \end{equation*}
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 9: Advanced Spectral Theory}
+\begin{itemize}
+    \item \marginnote{10/28:}Theorem 9.1.1 (Cayley-Hamilton): If $p$ is the characteristic polynomial of $A$, $p(A)=0$.
+    \item Theorem 9.2.1 (Spectral Mapping Theorem): For a square matrix $A$ and an arbitrary polynomial $p$, $\sigma(p(A))=p(\sigma(A))$. In other words, $\mu$ is an eigenvalue of $p(A)$ if and only if $\mu=p(\lambda)$ for some eigenvalue $\lambda$ of $A$.
+    \item Corollary 9.2.2: Let $A$ be a square matrix with eigenvalues $\lambda_1,\dots,\lambda_n$ and let $p$ be a polynomial. Then $p(A)$ is invertible iff $p(\lambda_k)\neq 0$ for all $k=1,\dots,n$.
+    \item Algebraic multiplicity is the dimension of the corresponding generalized eigenspace.
 \end{itemize}
 
 

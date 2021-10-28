@@ -201,6 +201,43 @@
             \item Augment $(A|I)$. Row reduce $A$ to $D$. Then $I\to S^*$.
         \end{itemize}
     \end{itemize}
+    \item \marginnote{10/28:}\textbf{Silvester's Law of Inertia}: For a Hermitian matrix $A$ (i.e., for a quadratic form $Q[\x]=(A\x,\x)$) and any of its diagonalizations $D=S^*AS$, the number of positive, negative, and zero diagonal entries of $D$ depends only on $A$, but not on a particular choice of diagonalization.
+    \item \textbf{Positive} (subspace $E\subset\F^n$ corresponding to $A$): A subspace $E$ such that $(A\x,\x)>0$ for all nonzero $\x\in E$. \emph{Also known as} \textbf{$\bm{A}$-positive}.
+    \item \textbf{Negative} (subspace $E\subset\F^n$ corresponding to $A$): A subspace $E$ such that $(A\x,\x)<0$ for all nonzero $\x\in E$. \emph{Also known as} \textbf{$\bm{A}$-negative}.
+    \item \textbf{Neutral} (subspace $E\subset\F^n$ corresponding to $A$): A subspace $E$ such that $(A\x,\x)=0$ for all nonzero $\x\in E$. \emph{Also known as} \textbf{$\bm{A}$-neutral}.
+    \item Theorem 7.3.1: Let $A$ be an $n\times n$ Hermitian matrix, and let $D=S^*AS$ be its diagonalization by an invertible matrix $S$. Then the number of positive (resp. negative) diagonal entries of $D$ coincides with the maximal dimension of an $A$-positive (resp. A-negative) subspace.
+    \item Lemma 7.3.2: Let $D=\diag\{\lambda_1,\dots,\lambda_n\}$. Then the number of positive (resp. negative) diagonal entries of $D$ coincides with the maximal dimension of a D-positive (resp. D-negative) subspace.
+    \item \textbf{Positive definite} (quadratic form $Q$): A quadratic form $Q$ such that $Q[\x]>0$ for all $\x\neq\bm{0}$.
+    \item \textbf{Positive semidefinite} (quadratic form $Q$): A quadratic form $Q$ such that $Q[\x]\geq 0$ for all $\x$.
+    \item \textbf{Negative definite} (quadratic form $Q$): A quadratic form $Q$ such that $Q[\x]<0$ for all $\x\neq\bm{0}$.
+    \item \textbf{Negative semidefinite} (quadratic form $Q$): A quadratic form $Q$ such that $Q[\x]\leq 0$ for all $\x$.
+    \item \textbf{Indefinite} (quadratic form $Q$): A quadratic form $Q$ for which there exist $\x_1,\x_2$ such that $Q[\x_1]>0$ and $Q[\x_2]<0$.
+    \item \textbf{Positive definite} (Hermitian matrix $A$): A matrix $A$ for which the corresponding quadratic form $Q[\x]=(A\x,\x)$ is positive definite.
+    \begin{itemize}
+        \item Positive semidefinite, negative definite, negative semidefinite, and indefinite Hermitian matrices are defined similarly.
+    \end{itemize}
+    \item Theorem 7.4.1: Let $A=A^*$. Then
+    \begin{enumerate}
+        \item $A$ is positive definite iff all eigenvalues of $A$ are positive.
+        \item $A$ is positive semidefinite iff all eigenvalues of $A$ are non-negative.
+        \item $A$ is negative definite iff all eigenvalues of $A$ are negative.
+        \item $A$ is negative semidefinite iff all eigenvalues of $A$ are non-positive.
+        \item $A$ is indefinite iff it has both positive and negative eigenvalues.
+    \end{enumerate}
+    \item \textbf{Upper left submatrix} (of $A$): A $k\times k$ matrix $A_k$ composed of all entries of $A$ from row (column) 1 through $k$ in the same arrangement.
+    \item Theorem 7.4.2 (Silvester's Criterion of Positivity): A matrix $A=A^*$ is positive definite if and only if $\det A_k>0$ for all $k=1,\dots,n$.
+    \begin{itemize}
+        \item To check if a matrix $A$ is negative definite, check that the matrix $-A$ is positive definite.
+    \end{itemize}
+    \item Theorem 7.4.3 (Minimax characterization of eigenvalues): Let $A=A^*$ be an $n\times n$ matrix and let $\lambda_1\geq\cdots\geq\lambda_n$ be its eigenvalues taken in decreasing order. Then
+    \begin{equation*}
+        \lambda_k = \max_{E:\dim E=k}\min_{\x\in E:\norm{\x}=1}(A\x,\x)
+        = \min_{F:\codim F=k-1}\max_{\x\in F:\norm{\x}=1}(A\x,\x)
+    \end{equation*}
+    \item Corollary 7.4.4 (Intertwining of eigenvalues): Let $A=A^*=\{a_{j,k}\}_{j,k=1}^n$ be a self-adjoint matrix and let $\tilde{A}=\{a_{j,k}\}_{j,k=1}^{n-1}$ be its submatrix of size $(n-1)\times(n-1)$. Let $\lambda_1,\dots,\lambda_n$ and $\mu_1,\dots,\mu_{n-1}$ be the eigenvalues of $A$ and $\tilde{A}$ respectively, taken in decreasing order. Then
+    \begin{equation*}
+        \lambda_1 \geq \mu_1 \geq \lambda_2 \geq \mu_2 \geq \cdots \geq \lambda_{n-1} \geq \mu_{n-1} \geq \lambda_n
+    \end{equation*}
 \end{itemize}
 
 
