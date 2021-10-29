@@ -997,7 +997,7 @@
                     -1
                 \end{pmatrix}
             \end{equation*}
-            The eigenvalue of $A$ is -1, but the singular value is 1.
+            The eigenvalue of $A$ is $-1$, but the singular value is 1.
         \end{proof}
     \end{enumerate}
     \item Let $A$ be an $m\times n$ matrix. Prove that \emph{nonzero} eigenvalues of the matrices $A^*A$ and $AA^*$ (counting multiplicities) coincide. Can you say when zero eigenvalues of $A^*A$ and zero eigenvalues of $AA^*$ have the same multiplicity?
@@ -1152,7 +1152,7 @@
     \begin{enumerate}
         \item What are singular values (eigenvalues) of an orthogonal projection $P_E$ onto some subspace $E$?
         \begin{proof}[Answer]
-            1 and 0. Note that the singular values and eigenvalues coincide here because $P_E$ is self-adjoint.
+            1 and 0, with respective multiplicities $\dim E$ and $\dim E^\perp$. Note that the singular values and eigenvalues coincide here because $P_E$ is self-adjoint.
         \end{proof}
         \item What is the matrix of the orthogonal projection onto the subspace spanned by the vector $(1,1,1)^T$?
         \begin{proof}[Answer]
@@ -1179,7 +1179,7 @@
     \end{enumerate}
     Of course you can also just honestly do the computations.
     \begin{proof}[Answer]
-        Let $P_E$ denote the matrix provided as an answer to question (b) above. Then $A=3P_E+1I$. Therefore, since question (a) provides the eigenvalues to $P_E$ as 1 and 0, question (c) posits that the eigenvalues of $A$ are $3(1)+1=4$ and $3(0)+1=1$, and that these values are in fact the singular values.\par
+        Let $P_E$ denote the matrix provided as an answer to question (b) above. Then $A=3P_E+1I$. Therefore, since question (a) provides the eigenvalues to $P_E$ as 1 and 0 (with multiplicities 2 and 1, respectively), question (c) posits that the eigenvalues of $A$ are $3(1)+1=4$ and $3(0)+1=1$ (with multiplicities 2 and 1, respectively), and that these values are in fact the singular values.\par
         It follows that $\norm{A}=4$ and the condition number is $\norm{A}\cdot\norm{A^{-1}}=4/1=4$.
     \end{proof}
 \end{enumerate}
