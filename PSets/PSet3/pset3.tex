@@ -202,11 +202,31 @@
         \end{proof}
         \item Let $A$ be the $n\times n$ matrix with all entries equal to 1. Compute its eigenvalues and their multiplicities (use the previous problem).
         \begin{proof}[Answer]
-            It's eigenvalues are $n$ and 0, with respective geometric and algebraic multiplicities 1 and $n-1$.
+            We have that $A=nP_\vm$ where $P_\vm$ is the matrix defined in part (a). Since $P_\vm$ is a projection matrix, the only two kinds of vectors that it \emph{scales} are vectors in the subspace onto which it is projecting (these get mapped to themselves, i.e., scaled by 1) and vectors perpendicular to the subspace onto which it is projecting (these get scaled by 0 to $\bm{0}$). Thus, since $\dim\spn\{\vm\}=1$ and $\dim\spn\{\vm\}^\perp=n-1$, we have that
+            \begin{equation*}
+                A\x = nP_\vm\x = n\cdot 1\x = n\x
+            \end{equation*}
+            for all $\x\in\spn\{\vm\}$ and that
+            \begin{equation*}
+                A\x = nP_\vm\x = n\cdot 0\x = 0\x
+            \end{equation*}
+            for all $\x\in\spn\{\vm\}^\perp$. Therefore, the eigenvalues of $A$ are $n$ and 0, with respective geometric and algebraic multiplicities 1 and $n-1$.
         \end{proof}
         \item Compute eigenvalues (and multiplicities) of the matrix $A-I$, i.e., of the matrix with zeroes on the main diagonal and ones everywhere else.
         \begin{proof}[Answer]
-            It's eigenvalues are $n-1$ and $-1$, with respective geometric and algebraic multiplicities 1 and $n-1$.
+            Adapting from the part (c), if $A\x=n\x$, then
+            \begin{equation*}
+                (A-I)\x = A\x-I\x = n\x-1\x = (n-1)\x
+            \end{equation*}
+            Similarly, if $A\x=0\x$, then
+            \begin{equation*}
+                (A-I)\x = A\x-I\x = 0\x-1\x = -1\x
+            \end{equation*}
+            Now suppose for the sake of contradiction that $-1\neq\lambda\neq n-1$ is an eigenvalue of $A-I$ with corresponding eigenvector $\x$. Then
+            \begin{equation*}
+                A\x = (A-I)\x+I\x = \lambda\x+1\x = (\lambda+1)\x
+            \end{equation*}
+            so $\lambda+1$ is an eigenvalue of $A$. But this contradicts part (b). Therefore, $n-1$ and $-1$, with respective geometric and algebraic multiplicities 1 and $n-1$, are the only eigenvalues of $A-I$.
         \end{proof}
         \item Compute $\det(A-I)$.
         \begin{proof}[Answer]
@@ -222,7 +242,7 @@
     \begin{enumerate}
         \item The matrix $P$ is self-adjoint, meaning that $P^*=P$.
         \begin{proof}[Answer]
-            We have that
+            Suppose $p_{ij}$ is the entry in the $i^\text{th}$ row and $j^\text{th}$ column of $P$ and $\vm_1,\dots,\vm_r$ is a basis of $E$. Let $\vm_{k_i}$ denote the $i^\text{th}$ coordinate of $\vm_k$. Then we have that
             \begingroup
             \allowdisplaybreaks
             \begin{align*}
@@ -553,7 +573,7 @@
             \begin{equation*}
                 \norm{\x}^2 = \norm{\x_0}^2+\norm{\x_h}^2 \geq \norm{\x_0}
             \end{equation*}
-            so $\x_0$ is the unique minimal norm solution because any other solution with a nontrivial $\x_h$ necessarily has a greater norm.
+            so $\x_0$ is the unique minimal norm solution (any solution is of the form $\x_0+\x_h$) because any other solution with a nontrivial $\x_h$ necessarily has a greater norm.
         \end{proof}
         \item $\x_0=P_{(\ker A)^\perp}\x$ for any $\x$ satisfying $A\x=\bb$.
         \begin{proof}[Answer]
