@@ -1,0 +1,99 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\stepcounter{chapter}
+
+\begin{document}
+
+
+
+
+\chapter{Basic Topology}
+\section{Notes}
+\begin{itemize}
+    \item \marginnote{11/1:}Equivalence relationships are denoted $A\sim B$.
+    \begin{itemize}
+        \item These are\dots
+        \begin{itemize}
+            \item Reflexive ($A\sim A$).
+            \item Symmetric ($A\sim B\Longleftrightarrow B\sim A$).
+            \item Transitive ($A\sim B\ \&\ B\sim C\Longrightarrow A\sim C$).
+        \end{itemize}
+        \item Equivalence relations give rise to equivalence classes.
+    \end{itemize}
+    \item \textbf{Countable} (set $A$): A set $A$ such that $A\sim\N$, in the sense that there exists a one-to-one and onto map from $\N\to A$.
+    \begin{itemize}
+        \item Alternatively, $A$ can be written in the form $A=\{f(n):n\in\N\}$.
+    \end{itemize}
+    \item \textbf{Finite countable} vs. \textbf{infinite countable} (see \textcite{bib:Rudin}).
+    \item $\N$ denotes the natural numbers.
+    \item $\N_0$ denotes the natural numbers including 0.
+    \item $\Z$ denotes the integers.
+    \item We know that $\N\sim\Z$: Let $f:\N\to\Z$ be defined by
+    \begin{equation*}
+        f(n) =
+        \begin{cases}
+            \frac{n}{2} & n\text{ even}\\
+            \frac{n-1}{2} & n\text{ odd}
+        \end{cases}
+    \end{equation*}
+    \item More facts.
+    \begin{enumerate}
+        \item Every subset of a countable set is countable.
+        \item Unions of countable sets are countable.
+        \begin{itemize}
+            \item If the sets $E_n$ for some finite list of numbers are countable, then $\bigcup_nE_n$ is countable.
+            \item Soug goes over the diagonalization method of counting.
+        \end{itemize}
+        \item $n$-fold Cartesian products of countable sets are countable (we induct on $n$).
+        \begin{itemize}
+            \item If $A$ is countable and $B$ is countable, then $A\times B$ is countable.
+            \item If $A$ is finite and to each $\alpha\in A$ we assign a countable set $E_\alpha$, $\otimes_{\alpha\in A}E_\alpha$ is countable.
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Metric space}: A space $X$ along with a matrix $d:X\times X\to[0,\infty)$ such that
+    \begin{itemize}
+        \item $d(x,y)>0$ iff $x\neq y$, and $d(x,x)=0$ iff $x=0$.
+        \item $d(x,y)=d(y,x)$.
+        \item $d(x,y)\leq d(x,z)+d(z,y)$.
+    \end{itemize}
+    \item Example ($\R^n$):
+    \begin{itemize}
+        \item We may define $d$ by
+        \begin{equation*}
+            d(x,y) = \sqrt{\sum(x_i-y_i)^2}
+        \end{equation*}
+        \item We can also define the $p$-metrics (recall normed spaces) with $p$ where 2 is.
+    \end{itemize}
+    \item Example ($X_p=\{f:Y\to\R:1\leq p<\infty,\int_Y|f|^p\dd{y}<\infty\}$):
+    \begin{itemize}
+        \item This is $\ell_p$.
+        \item Define
+        \begin{equation*}
+            \norm{f-g}_p = \left[ \int_Y|f-g|^p\dd{y} \right]^{1/p}
+        \end{equation*}
+    \end{itemize}
+    \item Convergence: $x_n\to x\Longleftrightarrow d(x_n,x)\to 0$.
+    \item \textbf{Neighborhood}: The set $N_r(p)=\{q\in X:d(p,q)<r\}$.
+    \item \textbf{Limit point} (of $E$): A point $p$ such that every neighborhood of $p$ intersects $E$ at a point other than $p$.
+    \begin{itemize}
+        \item Symbolically,
+        \begin{equation*}
+            N_r(p)\cap(E\setminus\{p\}) \neq \emptyset
+        \end{equation*}
+        for all $r>0$.
+    \end{itemize}
+    \item \textbf{Isolated point} (of $E$): A point $p$ such that $p\in E$ and $p$ is not a limit point of $E$.
+    \item \textbf{Closed} (set $E$): A set $E$ that contains all of its limit points.
+    \item \textbf{Interior} (point $p$): A point $p$ such that there exists $N_r(p)\subset E$.
+    \item \textbf{Open} (set $E$): A set $E$, all points of which are interior points.
+    \item \textbf{Perfect} (set $E$): A set $E$ that is closed and every point of $E$ is a limit point of $E$.
+    \item \textbf{Bounded} (set $E$): There exists a number $M$ and a $y\in X$ such that $E\subset\{p:d(p,y)\leq M\}$.
+    \item \textbf{Dense} (set $E$ in $X$): A set $E$ such that every point of $X$ is a limit point of $E$ or a point of $E$, itself.
+\end{itemize}
+
+
+
+
+\end{document}
