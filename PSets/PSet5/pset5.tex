@@ -29,18 +29,204 @@
         \end{pmatrix}
     \end{align*}
     are positive definite or not. Are the matrices $-A$, $A^3$, $A^{-1}$, $A+B^{-1}$, $A+B$, and $A-B$ positive definite?
+    \begin{proof}[Answer]
+        \underline{$A$}: We have that
+        \begin{align*}
+            \det A_1 &= \det
+            \begin{pmatrix}
+                4\\
+            \end{pmatrix}&
+                \det A_2 &= \det
+                \begin{pmatrix}
+                    4 & 2\\
+                    2 & 3\\
+                \end{pmatrix}&
+                    \det A_3 &= \det
+                    \begin{pmatrix}
+                        4 & 2 & 1\\
+                        2 & 3 & -1\\
+                        1 & -1 & 2\\
+                    \end{pmatrix}\\
+            &= 4&
+                &= 8&
+                    &= 5
+        \end{align*}
+        Thus, since $A=A^*$ and $\det A_k>0$ for $k=1,2,3$, Silvester's Criterion of Positivity implies that $A$ is positive definite.\par
+        \underline{$B$}: We have that
+        \begin{align*}
+            \det B_1 &= \det
+            \begin{pmatrix}
+                3\\
+            \end{pmatrix}&
+                \det B_2 &= \det
+                \begin{pmatrix}
+                    3 & -1\\
+                    -1 & 4\\
+                \end{pmatrix}&
+                    \det B_3 &= \det
+                    \begin{pmatrix}
+                        3 & -1 & 2\\
+                        -1 & 4 & -2\\
+                        2 & -2 & 2\\
+                    \end{pmatrix}\\
+            &= 3&
+                &= 11&
+                    &= 2
+        \end{align*}
+        Thus, since $B=B^*$ and $\det B_k>0$ for $k=1,2,3$, Silvester's Criterion of Positivity implies that $B$ is positive definite.\par
+        \underline{$-A$}: We have that
+        \begin{equation*}
+            \det(-A)_1 = \det
+            \begin{pmatrix}
+                -4\\
+            \end{pmatrix}
+            = -4 \not> 0
+        \end{equation*}
+        Thus, Silvester's Criterion of Positivity implies that $B$ is not positive definite.\par
+        \underline{$A^3$}: Since $A=A^*$, Theorem 6.2.2 implies that $A=UDU^*$ where $U$ is unitary and $D=\diag\{\lambda_1,\lambda_2,\lambda_3\}$ with each $\lambda_k$ real. Moreover, since $A$ is positive definite, Theorem 7.4.1 implies that each $\lambda_k>0$. Thus, since $A^3=UD^3U^*$, $A^3$ is Hermitian, $D^3=\diag\{\lambda_1^3,\lambda_2^3,\lambda_3^3\}$ where each $\lambda_k^3$ is an eigenvalue of $A^3$, and naturally each $\lambda_k^3>0$, Theorem 7.4.1 implies that $A^3$ is positive definite.\par
+        \underline{$A^{-1}$}: By a symmetric argument to the one used for $A^3$, we have that $A^{-1}$ is positive definite.\par
+        \underline{$A+B^{-1}$}: Since $A$ is positive definite, by definition, $(A\x,\x)>0$ for all $\x\neq\bm{0}$. By a symmetric argument to the one used for $A^{-1}$, $B^{-1}$ is positive definite. Thus, similarly, $(B^{-1}\x,\x)>0$ for all $\x\neq\bm{0}$. It follows by combining the previous results that if $\x\neq\bm{0}$, then
+        \begin{equation*}
+            0 < (A\x,\x)
+            < (A\x,\x)+(B^{-1}\x,\x)
+            = ((A+B^{-1})\x,\x)
+        \end{equation*}
+        so $A+B^{-1}$ is positive definite.\par
+        \underline{$A+B$}: By a symmetric argument to the one used for $A+B^{-1}$, we have that $A+B$ is positive definite.\par
+        \underline{$A-B$}: We have that
+        \begin{equation*}
+            \det(A-B)_2 = \det
+            \begin{pmatrix}
+                1 & 3\\
+                3 & -1\\
+            \end{pmatrix}
+            = -10 \not> 0
+        \end{equation*}
+        Thus, Silvester's Criterion of Positivity implies that $A-B$ is not positive definite.
+    \end{proof}
     \item True or false:
     \begin{enumerate}
         \item If $A$ is positive definite, then $A^5$ is positive definite.
+        \begin{proof}[Answer]
+            True.\par
+            If $A$ is positive definite, then $A=A^*$. It follows that $A=UDU^*$. Additionally, Theorem 7.4.1 implies that $\lambda_k>0$ for all $\lambda_k$ along the diagonal of $D$. Thus, $A^5=UD^5U^*$ where $D^5$ has all positive diagonal entries because $D$ has all positive diagonal entries. Thus, by Theorem 7.4.1 again, $A^5$ is positive definite.
+        \end{proof}
         \item If $A$ is negative definite, then $A^8$ is negative definite.
+        \begin{proof}[Answer]
+            False.\par
+            If $A$ is negative definite, then as before, $A=UDU^*$ and $A^8=UD^8U^*$. But if every entry along the diagonal of $D$ is negative (Theorem 7.4.1), then every diagonal along $D^8=(D^2)^4$ will be positive, so $A^8$ is not negative definite (it is, in fact, positive definite).
+        \end{proof}
         \item If $A$ is negative definite, then $A^{12}$ is positive definite.
+        \begin{proof}[Answer]
+            True.\par
+            See the explanation to part (b).
+        \end{proof}
         \item If $A$ is positive definite and $B$ is negative semidefinite, then $A-B$ is positive definite.
+        \begin{proof}[Answer]
+            True.\par
+            If $A$ is positive definite, then $(A\x,\x)>0$ for all $\x\neq 0$. Similarly, $(B\x,\x)\leq 0$ for all $\x$. To prove that $A-B$ is positive definite, it will suffice to show that $((A-B)\x,\x)>0$ for all $\x\neq 0$. Let $\x\neq 0$ be arbitrary. Then
+            \begin{equation*}
+                0 < (A\x,\x) \leq (A\x,\x)-(B\x,\x) = (A\x-B\x,\x) = ((A-B)\x,\x)
+            \end{equation*}
+            as desired.
+        \end{proof}
         \item If $A$ is indefinite, and $B$ is positive definite, then $A+B$ is indefinite.
+        \begin{proof}[Answer]
+            False.\par
+            Let
+            \begin{align*}
+                A &=
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & -1\\
+                \end{pmatrix}&
+                B &=
+                \begin{pmatrix}
+                    1 & 0\\
+                    0 & 1\\
+                \end{pmatrix}
+            \end{align*}
+            By Theorem 7.4.1, $A$ is indefinite and $B$ is positive definite. However,
+            \begin{equation*}
+                A+B =
+                \begin{pmatrix}
+                    2 & 0\\
+                    0 & 0\\
+                \end{pmatrix}
+            \end{equation*}
+            which is positive semidefinite by Theorem 7.4.1.
+        \end{proof}
     \end{enumerate}
     \item Let $A$ be a $2\times 2$ Hermitian matrix such that $a_{1,1}>0$, $\det A\geq 0$. Prove that $A$ is positive semidefinite.
-    \item Find a real symmetric $n\times n$ matrix such that $\det A_k\geq 0$ for all $k=1,\dots,n$, but the matrix $A$ is not positive semidefinite. Try to find an example for the minimal possible $n$.
+    \begin{proof}[Answer]
+        We have by the given constraints that $A$ is of the form
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                a_{1,1} & a_{1,2}\\
+                \bar{a}_{1,2} & a_{2,2}\\
+            \end{pmatrix}
+        \end{equation*}
+        Additionally, we have that
+        \begin{align*}
+            0 &\leq \det A
+            = a_{1,1}a_{2,2}-a_{1,2}\bar{a}_{1,2}
+            = a_{1,1}a_{2,2}-|a_{1,2}|^2\\
+            |a_{1,2}|^2 &\leq a_{1,1}a_{2,2}
+        \end{align*}
+        from which it follows since $|a_{1,2}|^2\geq 0$ that
+        \begin{equation*}
+            0 \leq |a_{1,2}|^2 \leq a_{1,1}a_{2,2}
+        \end{equation*}
+        This combined with the fact that $a_{1,1}>0$ implies that $a_{2,2}\geq 0$. Thus,
+        \begin{equation*}
+            \trace A = a_{1,1}+a_{2,2} \geq a_{1,1}+0 > 0
+        \end{equation*}
+        Now let $\lambda_1,\lambda_2$ be the eigenvalues of $A$. It follows from the above since $\trace A=\lambda_1+\lambda_2$ that WLOG we may let $\lambda_1>0$. It follows that
+        \begin{align*}
+            0 &\leq \det A = \lambda_1\lambda_2\\
+            0 &\leq \lambda_2
+        \end{align*}
+        Therefore, having shown that each $\lambda_k\geq 0$, Theorem 7.4.1 implies that $A$ is positive semidefinite, as desired.
+    \end{proof}
+    \item Find a real symmetric $n\times n$ matrix such that $a_{1,1}>0$ and $\det A_k\geq 0$ for all $k=2,\dots,n$, but the matrix $A$ is not positive semidefinite. Try to find an example for the minimal possible $n$\footnote{The statement of this problem has been modified as per Chlo\'{e}'s instructions in the 10/28 problem session.}.
+    \begin{proof}[Answer]
+        Let
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                1 & 1 & 0\\
+                1 & 1 & 0\\
+                0 & 0 & -1\\
+            \end{pmatrix}
+        \end{equation*}
+        Then $a_{1,1}=1>0$, $\det A_2=0\geq 0$, and $\det A_3=0\geq 0$. However, we have that its eigenvalues are $\lambda=-1,0,2$, so $A$ is actually indefinite. Also, we know that this is the answer for the minimal possible $n$ since Problem 7.4.3 proves that the conditions actually \emph{do} imply $A$ is positive semidefinite for $n=2$.
+    \end{proof}
     \item Let $A$ be an $n\times n$ Hermitian matrix such that $\det A_k>0$ for all $k=1,\dots,n-1$ and $\det A\geq 0$. Prove that $A$ is positive semidefinite.
+    \begin{proof}[Answer]
+        Let $\lambda_1,\dots,\lambda_n$ be the eigenvalues of $A$, and let $\mu_1,\dots,\mu_{n-1}$ be the eigenvalues of $A_{n-1}$, both sets taken in decreasing order. By Silvester's Criterion of Positivity, the hypothesis that $\det A_k>0$ for each $k=1,\dots,n-1$ implies that $A_{n-1}$ is positive definite. Thus, by Theorem 7.4.1, each $\mu_k>0$. It follows by Corollary 7.4.4 that
+        \begin{equation*}
+            \lambda_k \geq \mu_{n-1} > 0
+        \end{equation*}
+        for each $k=1,\dots,n-1$. Thus,
+        \begin{align*}
+            0 &\leq \det A = \lambda_1\cdots\lambda_{n-1}\lambda_n\\
+            0 &\leq \lambda_n
+        \end{align*}
+        Therefore, since each $\lambda_k\geq 0$, Theorem 7.4.1 implies that $A$ is positive semidefinite, as desired.
+    \end{proof}
     \item Find a real symmetric $3\times 3$ matrix $A$ such that $a_{1,1}>0$, $\det A_k\geq 0$ for $k=2,3$, but the matrix $A$ is not positive semidefinite.
+    \begin{proof}[Answer]
+        Using the same matrix from Problem 7.4.4, we have
+        \begin{equation*}
+            A =
+            \begin{pmatrix}
+                1 & 1 & 0\\
+                1 & 1 & 0\\
+                0 & 0 & -1\\
+            \end{pmatrix}
+        \end{equation*}
+    \end{proof}
 \end{enumerate}
 
 
@@ -52,18 +238,108 @@
     \end{equation*}
     \begin{enumerate}
         \item Show that the system $\vm_1,\dots,\vm_r$ is linearly independent.
+        \begin{proof}[Answer]
+            To prove that $\vm_1,\dots,\vm_r$ is linearly independent, it will suffice to show that if $\alpha_1,\dots,\alpha_r\in\F$ make $\alpha_1\vm_1+\cdots+\alpha_r\vm_r=0$, then $\alpha_1=\cdots=\alpha_r=0$. Suppose that $\alpha_1,\dots,\alpha_r\in\F$ make
+            \begin{equation*}
+                \alpha_1\vm_1+\cdots+\alpha_r\vm_r = 0
+            \end{equation*}
+            It follows by linearity and the definition of the dual basis that
+            \begin{align*}
+                0 &= \vm_k'(\bm{0})\\
+                &= \vm_k'(\alpha_1\vm_1+\cdots+\alpha_r\vm_r)\\
+                &= \alpha_1\vm_k'(\vm_1)+\cdots+\alpha_r\vm_k'(\vm_r)\\
+                &= \alpha_1\cdot 0+\cdots+\alpha_{k-1}\cdot 0+\alpha_k\cdot 1+\alpha_{k+1}\cdot 0+\cdots+\alpha_r\cdot 0\\
+                &= \alpha_k
+            \end{align*}
+            for each $k=1,\dots,r$, as desired.
+        \end{proof}
         \item Show that if the system $\vm_1,\dots,\vm_r$ is not generating, then the "biorthogonal" system $\vm_1',\dots,\vm_r'$ is not unique. (Hint: Probably the easiest way to prove that is to complete the system $\vm_1,\dots,\vm_r$ to a basis [see Proposition 2.5.4].)
+        \begin{proof}[Answer]
+            % Suppose that $\vm_1,\dots,\vm_r$ are not spanning. Then show that $\vm_r',\dots,\vm_r'$ are not unique (contradiction?). There exist $f_1,\dots,f_r\in X'$ such that $f_i(\vm_j)=\delta_{ij}$ but $\{f_1,\dots,f_r\}\neq\{\vm_1',\dots,\vm_r'\}$.\par
+            % Let $\vm_{r+1}\notin\spn\{\vm_1,\dots,\vm_n\}$. Then construct $g\in X'$ such that $g(\vm_{r+1})=1$ and $g(\vm_i)=0$ for all $i=1,\dots,r$. Chloe will look for justification here, though! You need to prove that such a $g$ exists. By the way you construct it, it's gonna be very obvious that it's linear. Let $f_i=\vm_i'+g$. Note that $f,g$ are vectors (and technically linear functionals) despite the lack of bolding.\par
+            % Further hint: You know that there exists $\tilde{g}\in X'$ such that $\tilde{g}(\vm_{r+1})=1$. This needs to be proven as well. Start by proving $\tilde{g}(\vm_{r+1})\neq 0$ then normalize WLOG.
+
+
+            By Proposition 2.5.4, we can complete the linearly independent list $\vm_1,\dots,\vm_r$ to a basis $\vm_1,\dots,\vm_n$ where $n>r$ since $\vm_1,\dots,\vm_r$ is not generating by hypothesis. Consider $\vm_1',\dots,\vm_r'$. These linear functionals' behavior on $\vm_1,\dots,\vm_r$ is completely defined by the given condition; however, since they act on all of $X$ and not just $\spn\{\vm_1,\dots,\vm_r\}\subsetneq X$, we can define an arbitrary linear behavior for each $\vm_k'$ on $\spn\{\vm_{r+1},\dots,\vm_n\}$. Clearly, more than one such behavior exists (take, for example, being the zero map on that span and being the identity map on that span), so $\vm_1',\dots,\vm_n'$ is not unique.
+        \end{proof}
     \end{enumerate}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{3.\arabic*.}}]
     \item Prove that if for linear transformations $T,T_1:X\to Y$
     \begin{equation*}
-        \langle T\x,\y'\rangle = \langle T_1\x,\y'\rangle
+        \fun{T\x}{\y'} = \fun{T_1\x}{\y'}
     \end{equation*}
-    for all $x\in X$ and for all $\y'\in Y'$, then $T=T_1$. (Hint: Probably one of the easiest ways of proving this is to use Lemma 8.1.3.)
+    for all $\x\in X$ and for all $\y'\in Y'$, then $T=T_1$. (Hint: Probably one of the easiest ways of proving this is to use Lemma 8.1.3.)
+    \begin{proof}[Answer]
+        Let $\x\in X$ be arbitrary. If $\fun{T\x}{\y'}=\fun{T_1\x}{\y'}$ for all $\y'\in Y'$, then $\y'(T\x)=\y'(T_1\x)$ for all $\x\in X$ and for all $\y'\in Y'$. Thus, since every linear functional in the dual space maps the vectors $T\x$ and $T_1\x$ the same way, Lemma 8.1.3 implies that $T\x=T_1\x$. But since we let $\x$ be arbitrary, $T\x=T_1\x$ for all $\x\in X$, i.e., $T=T_1$.
+    \end{proof}
     \item Combine the Riesz Representation Theorem (Theorem 8.2.1) with the reasoning in Section 3.1.3 above to present a coordinate-free definition of the Hermitian adjoint of an operator in an inner product space.
+    \begin{proof}[Answer]
+        Let $A\in\mathcal{L}(V,W)$. We seek to define $A^*$ as the unique element of $\mathcal{L}(W,V)$ satisfying
+        \begin{equation*}
+            (A\x,\y) = (\x,A^*\y)
+        \end{equation*}
+        for all $\x\in V$ and $\y\in W$. Let's begin.\par
+        Let $\y$ be an arbitrary element of $W$. We can think of $\y^*$ as a $1\times\dim W$ matrix, or indeed a linear transformation $\y^*:W\to\F$. This combined with the fact that $A:V\to W$ implies that $\y^*A:V\to\F$ is a well-defined linear functional. It follows by the Riesz Representation Theorem that there exists a unique $\z\in V$ such that $(\y^*A)(\x)=(\x,\z)$ for all $\x\in V$. Define $A^*\y:=\z$.\par
+        Since $\z$ is unique by the Riesz Representation Theorem, $A^*$ is a well-defined function for this $\y$. Moreover, since we let $\y\in W$ be arbitrary, we can define $A^*\y$ in the same way for \emph{any} $\y\in W$. Thus, $A^*:W\to Z$ (as defined) is a well-defined function on $W$.\par
+        We now seek to prove that $A^*$ is linear. Let $\y_1,\y_2\in W$ and $\alpha_1,\alpha_2\in\F$. We know that $A^*\y_1$ is the unique vector $\z_1\in V$ such that $(\y_1^*A)(\x)=(\x,\z_1)$ for all $\x\in V$. We also know that $A^*\y_2$ is the unique vector $\z_2\in V$ such that $(\y_2^*A)(\x)=(\x,\z_2)$ for all $\x\in V$. Lastly, we know that $A^*(\alpha_1\y_1+\alpha_2\y_2)$ is the unique vector $\z\in V$ such that $[(\alpha_1\y_1+\alpha_2\y_2)^*A](\x)=(\x,\z)$ for all $\x\in V$. It follows that
+        \begin{align*}
+            (\x,A^*(\alpha_1\y_1+\alpha_2\y_2)) &= (\x,\z)\\
+            &= [(\alpha_1\y_1+\alpha_2\y_2)^*A](\x)\\
+            % &= (\alpha_1\y_1)^*A\x+(\alpha_2\y_2)^*A\x\\
+            &= \bar{\alpha}_1(\y_1^*A)(\x)+\bar{\alpha}_2(\y_2^*A)(\x)\\
+            &= \bar{\alpha}_1(\x,\z_1)+\bar{\alpha}_2(\x,\z_2)\\
+            % &= (\x,\alpha_1\z_1)+(\x,\alpha_2\z_2)\\
+            &= (\x,\alpha_1\z_1+\alpha_2\z_2)\\
+            &= (\x,\alpha_1A^*\y_1+\alpha_2A^*\y_2)
+        \end{align*}
+        for all $\x\in V$. Thus, by Lemma 8.1.3
+        \begin{equation*}
+            A^*(\alpha_1\y_1+\alpha_2\y_2) = \alpha_1A^*\y_1+\alpha_2A^*\y_2
+        \end{equation*}
+        as desired.\par
+        We now show that $A^*$ satisfies the desired identity: If $\x\in V$ and $\y\in W$, then we have by the definition of $A^*$ that
+        \begin{equation*}
+            (\x,A^*\y) = (\y^*A)(\x) = \y^*(A\x) = (A\x,\y)
+        \end{equation*}
+        as desired.\par
+        Lastly, we prove that $A^*$ is the unique linear map satisfying the above identity. Suppose $A^*,\tilde{A}^*$ are linear maps such that
+        \begin{align*}
+            (A\x,\y) &= (\x,A^*\y)&
+            (A\x,\y) &= (\x,\tilde{A}^*\y)
+        \end{align*}
+        for all $\x\in V$ and $\y\in W$. Let $\y\in W$ be arbitrary. Then
+        \begin{equation*}
+            (\x,A^*\y) = (A\x,\y) = (\x,\tilde{A}^*\y)
+        \end{equation*}
+        for all $\x\in V$. It follows by Lemma 8.1.3 that $A^*\y=\tilde{A}^*\y$. Furthermore, since we let $\y$ be arbitrary, we know that $A^*\y=\tilde{A}^*\y$ for \emph{every} $\y\in W$. Therefore, $A^*=\tilde{A}^*$, so $A^*$ is unique, as desired.
+    \end{proof}
     \item Let $\vm_1,\dots,\vm_n$ be a basis in $X$ and let $\vm_1',\dots,\vm_n'$ be its dual basis. Let $E=\spn\{\vm_1,\dots,\vm_r\}$ for $r<n$. Prove that $E^\perp=\spn\{\vm_{r+1}',\dots,\vm_n'\}$. (This problem gives a way to prove Proposition 8.3.6.)
+    \begin{proof}[Answer]
+        Suppose first that $\vm'\in E^\perp$. Then by the definition of the annihilator, $\vm'\in X'$ and $\fun{\x}{\vm'}=0$ for all $\x\in E$. It follows from the first condition that
+        \begin{equation*}
+            \vm' = \alpha_1\vm_1'+\cdots+\alpha_n\vm_n'
+        \end{equation*}
+        for some $\alpha_1,\dots,\alpha_n\in\F$. It follows from the second condition that
+        \begin{align*}
+            0 &= \fun{\vm_k}{\vm'}\\
+            &= \alpha_1\vm_1'(\vm_k)+\cdots+\alpha_n\vm_n'(\vm_k)\\
+            &= \alpha_k
+        \end{align*}
+        for each $k=1,\dots,r$. Therefore,
+        \begin{equation*}
+            \vm' = \alpha_{r+1}\vm_{r+1}'+\cdots+\alpha_n\vm_n'
+        \end{equation*}
+        so $\vm\in\spn\{\vm_{r+1}',\dots,\vm_n'\}$, as desired.\par
+        Now suppose that $\vm'\in\spn\{\vm_{r+1}',\dots,\vm_n'\}$. In particular, let $\vm'=\alpha_{r+1}\vm_{r+1}'+\cdots+\alpha_n\vm_n'$ for some $\alpha_{r+1},\dots,\alpha_n\in\F$. To prove that $\vm'\in E^\perp$, it will suffice to show that $\fun{\x}{\vm'}=0$ for all $\x\in E$. Let $\x$ be an arbitrary element of $E$. Then by the definition of $E$, $\x=\beta_1\vm_1+\cdots+\beta_r\vm_r$. It follows by the definition of $\vm'$ and the dual basis that
+        \begin{align*}
+            \fun{\x}{\vm'} &= \alpha_{r+1}\vm_{r+1}'(\beta_1\vm_1+\cdots+\beta_r\vm_r)+\cdots+\alpha_n\vm_n'(\beta_1\vm_1+\cdots+\beta_r\vm_r)\\
+            &= \alpha_{r+1}\cdot 0+\cdots+\alpha_n\cdot 0\\
+            &= 0
+        \end{align*}
+        as desired.
+    \end{proof}
 \end{enumerate}
 
 
@@ -74,10 +350,36 @@
         p(\lambda) = \det(A-\lambda I) = \sum_{k=0}^nc_k\lambda^k
     \end{equation*}
     is its characteristic polynomial, then $p(A)=\sum_{k=0}^nc_kA^k=\bm{0}$ (assuming that by definition, $A^0=I$). Prove this theorem for the special case when $A$ is similar to a diagonal matrix, i.e., $A=SDS^{-1}$. (Hint: If $D=\diag\{\lambda_1,\dots,\lambda_n\}$ and $p$ is any polynomial, can you compute $p(D)$? What about $p(A)$?)
+    \begin{proof}[Answer]
+        Suppose $A=SDS^{-1}$, and let $\lambda_1,\dots,\lambda_n$ be the eigenvalues of $A$. Since $D=\diag\{\lambda_1,\dots,\lambda_n\}$, we have by the properties of diagonal matrix exponentiation, scalar multiplication, and addition, and Exercise 4.1.10 that
+        \begin{align*}
+            p(D) &= \sum_{k=0}^nc_kD^k\\
+            &= \sum_{k=0}^nc_k\diag\{\lambda_1^k,\dots,\lambda_n^k\}\\
+            &= \sum_{k=0}^n\diag\{c_k\lambda_1^k,\dots,c_k\lambda_n^k\}\\
+            &= \diag\left\{ \sum_{k=0}^nc_k\lambda_1^k,\dots,\sum_{k=0}^nc_k\lambda_n^k \right\}\\
+            &= \diag\{p(\lambda_1),\dots,p(\lambda_n)\}\\
+            &= \diag\{0,\dots,0\}\\
+            &= 0
+        \end{align*}
+        It follows that
+        \begin{align*}
+            p(A) &= p(SDS^{-1})\\
+            &= \sum_{k=0}^nc_k(SDS^{-1})^k\\
+            &= \sum_{k=0}^nc_kSD^kS^{-1}\\
+            &= S\left[ \sum_{k=0}^nc_kD^k \right]S^{-1}\\
+            &= S[p(D)]S^{-1}\\
+            &= S0S^{-1}\\
+            &= 0
+        \end{align*}
+        as desired.
+    \end{proof}
 \end{enumerate}
 
 \begin{enumerate}[label={\textbf{2.\arabic*.}}]
     \item An operator $A$ is called \textbf{nilpotent} if $A^k=\bm{0}$ for some $k$. Prove that if $A$ is nilpotent, then $\sigma(A)=\{0\}$ (i.e., that 0 is the only eigenvalue of $A$). Can you do it without using the spectral mapping theorem?
+    \begin{proof}[Answer]
+        Suppose for the sake of contradiction that $\lambda\neq 0$ for some eigenvalue $\lambda$ of $A$. Then if $\vm$ is a nonzero eigenvector corresponding to $\lambda$, $A\vm=\lambda\vm$ so $A^k\vm=\lambda^k\vm$. But since $\lambda^k\vm\neq\bm{0}$, $A^k\neq 0$, a contradiction.
+    \end{proof}
 \end{enumerate}
 
 
