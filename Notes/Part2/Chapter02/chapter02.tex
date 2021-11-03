@@ -75,8 +75,11 @@
         \end{equation*}
     \end{itemize}
     \item Convergence: $x_n\to x\Longleftrightarrow d(x_n,x)\to 0$.
-    \item \textbf{Neighborhood}: The set $N_r(p)=\{q\in X:d(p,q)<r\}$.
-    \item \textbf{Limit point} (of $E$): A point $p$ such that every neighborhood of $p$ intersects $E$ at a point other than $p$.
+    \item \textbf{Neighborhood}: The set of all points a distance less than $r$ away from $p$. \emph{Denoted by} $\bm{N_r(p)}$. \emph{Given by}
+    \begin{equation*}
+        N_r(p) = \{q\in X:d(p,q)<r\}
+    \end{equation*}
+    \item \textbf{Limit point} (of $E$): A point $p$ such that every neighborhood of $p$ intersects $E$ at a point other than $p$. \emph{Also known as} \textbf{accumulation point}.
     \begin{itemize}
         \item Symbolically,
         \begin{equation*}
@@ -91,6 +94,75 @@
     \item \textbf{Perfect} (set $E$): A set $E$ that is closed and every point of $E$ is a limit point of $E$.
     \item \textbf{Bounded} (set $E$): There exists a number $M$ and a $y\in X$ such that $E\subset\{p:d(p,y)\leq M\}$.
     \item \textbf{Dense} (set $E$ in $X$): A set $E$ such that every point of $X$ is a limit point of $E$ or a point of $E$, itself.
+    \item \marginnote{11/3:}Every neighborhood is an open set.
+    \item If $p$ is a limit point of $E$, every neighborhood of $p$ contains infinitely many points of $E$.
+    \begin{itemize}
+        \item Thus, a finite set cannot have a limit point.
+        \item Prove by contradiction: Suppose there is a neighborhood that contains only finitely many points of $E$. Then the neighborhood with radius smaller than the distance to the closest point does not contain any points of $E$, a contradiction.
+    \end{itemize}
+    \item $E$ is open iff $E^C$\footnote{The complement of $E$.} is closed.
+    \begin{itemize}
+        \item Assume $E^C$ closed. If $p\in E$, then $p$ is not a limit point of $E^C$. It follows that there exists a neighborhood of $p$ that is entirely contained within $E$, so $p$ is interior, as desired.
+        \item Suppose $E$ is open. Let $p$ be any limit point of $E^C$. Then $p\in E^C$.
+    \end{itemize}
+    \item $F$ is closed iff $F^C$ is open.
+    \item If $(G_\alpha)_{\alpha\in A}$ is a family of open sets in $X$, then the union is open.
+    \begin{itemize}
+        \item Let $p\in\bigcup_{\alpha\in A}G_\alpha$. Then $p\in G_\alpha$ for some $\alpha\in A$. It follows that $p$ is an interior point of $G_\alpha$, so thus an interior point of the union of $G_\alpha$ with everything else.
+    \end{itemize}
+    \item Finite intersections of open sets are open.
+    \begin{itemize}
+        \item In the infinite case $\bigcap_{n\in\N}(-1/n,1/n)=\{0\}$, an intersection of infinitely many open sets is closed.
+        \item However, in the finite case, just consider the neighborhood with the smallest radius and take this one.
+    \end{itemize}
+    \item The intersection of closed sets is closed.
+    \item The union of finitely many closed sets is closed.
+    \begin{itemize}
+        \item These follow from the previous two by De Morgan's rule.
+    \end{itemize}
+    \item Let $\bar{E}=E\cup E'$ where $E'$ is the set of limit points of $E$.
+    \item Let $X$ be a metric space and $E\subset X$. Then
+    \begin{enumerate}
+        \item $\bar{E}$ is closed.
+        \begin{itemize}
+            \item WTS: $\bar{E}^C$ is open. Let $p\in\bar{E}^C$. Then $p$ is neither in $E$ nor is it a limit point of $E$. Thus, there exists a neighborhood of $\bar{E}^C$ containing entirely points of $\bar{E}^C$. Therefore, $\bar{E}^C$ is open, so $\bar{E}$ is closed.
+        \end{itemize}
+        \item $E=\bar{E}$ iff $E$ is closed.
+        \begin{itemize}
+            \item Think $p\in\bigcap G_\alpha$?
+        \end{itemize}
+        \item $\bar{E}\subset F$ for any closed $F\supset E$.
+        \begin{itemize}
+            \item If $E\subset F$, then any limit point of $E$ will be a limit point of $F$. Thus, $E'\subset F'$. Then $\bar{E}=E\cup E'\subset F\cup F'=\bar{F}=F$ where the last equality holds because $F$ is closed.
+        \end{itemize}
+    \end{enumerate}
+    \item Types of sets.
+    \begin{table}[h!]
+        \centering
+        \small
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{l|c|c|c|c}
+             & Closed & Open & Perfect & Bounded\\ \hline
+            $\{z\in\Q:|z|<1\}$ & N & Y & N & Y\\ \hline
+            $\{z\in\Q:|z|\leq 1\}$ & Y & N & Y & Y\\ \hline
+            Nonempty finite set & Y & N & N & Y\\ \hline
+            $\Z$ & Y & N & N & N\\ \hline
+            $\{1/n:n\in\N\}$ & N & N & N & Y\\ \hline
+            $\R^2$ & Y & Y & Y & N\\ \hline
+            $(a,b)$ & N & ? & N & Y\\
+        \end{tabular}
+        \caption{Types of sets.}
+        \label{tab:typesSets}
+    \end{table}
+    \item \textbf{Relatively open} (set $E$ to $Y$): A set $E\subset Y\subset X$ such that if $p\in E$, then there exists a $Y$-neighborhood of $E$ contained in $E$.
+    \item Let $N_r^X(p)=\{y\in X:d(y,p)<r\}$ be a neighborhood of $p$ in $X$, and let $N_r^Y(p)=\{y\in Y:d(y,p)<r\}$ be a neighborhood of $p$ in $Y$. Then $N_r^Y(p)=N_r^X(p)\cap Y$.
+    \item $E$ is open relative to $Y$ iff $E=G\cap Y$ where $G$ is open relative to $X$.
+    \item Introduces the supremum.
+    \item If $E\subset\R$, $E\neq\emptyset$, and $E$ is bounded above, $\sup E<\infty$.
+    \item Let $y=\sup E$. Then $y\in\bar{E}$.
+    \item There exists a sequence $a_n\in A$ such that $a_n\to x=\sup A$.
+    \item $A$ is compact iff any open cover of the set has a finite subcover.
+    \item Study and \emph{know} all of these proofs.
 \end{itemize}
 
 
