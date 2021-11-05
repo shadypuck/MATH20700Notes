@@ -163,6 +163,114 @@
     \item There exists a sequence $a_n\in A$ such that $a_n\to x=\sup A$.
     \item $A$ is compact iff any open cover of the set has a finite subcover.
     \item Study and \emph{know} all of these proofs.
+    \item \marginnote{11/5:}Compactness: Defines compactness in terms of open covers.
+    \item Finite sets are compact.
+    \item Compactness is "absolute" (i.e., it is not a relative property like openness).
+    \begin{itemize}
+        \item If $K\subset Y\subset X$, then $K$ is compact relative to $X$ iff $K$ is compact relative to $Y$.
+        \item $V$ is open relative to $Y$ iff $V=G\cap Y$ where $G$ is open relative to $X$.
+    \end{itemize}
+    \item Compact implies closed.
+    \begin{itemize}
+        \item We will show $K$ compact implies $K^C$ open.
+        \item WTS: For all $p\in K^C$, there exists $N_r(p)\subset K^C$ suh that $N_r(p)\cap K=\emptyset$.
+    \end{itemize}
+    \item A closed subset of a compact set is compact.
+    \begin{itemize}
+        \item Let $K$ be compact and let $F\subset K$ be closed.
+        \item Take any open cover of $F$. Extend it to an open cover of $K$. Take the finite subcover of $K$. Naturally, this finite subcover is also a finite cover of $F\subset K$.
+    \end{itemize}
+    \item $F$ closed, $K$ compact implies $F\cap K$ compact.
+    \item If $(K_\alpha)_{\alpha\in A}$ is compact in $X$ with finite intersection property (every intersection of any finite number of these sets is nonempty), then $\bigcap_{\alpha\in A}K_\alpha\neq\emptyset$.
+    \begin{itemize}
+        \item Argue by contradiction.
+        \item Let $G_\alpha=K_\alpha^C$.
+        \item Assume the intersection is empty. Assume WLOG that no point of $K_1$ is in any of the other $K_\alpha$'s.
+        \item Then $\{G_\alpha\}_{\alpha\in A}$ be an open cover of $K_1$.
+        \item $K_1$ compact implies there is a finite subcover $G_{\alpha_1},\dots,G_{\alpha_n}$. Then $K\subset G_{\alpha_1}\cup\cdots\cup G_{\alpha_n}$. This implies that $K_1\cap K_{\alpha_1}\cap\cdots\cap K_{\alpha_n}=\emptyset$, a contradiction.
+    \end{itemize}
+    \item Let $E$ be an infinite subset of a compact $K$. Then $E$ has a limit point in $K$.
+    \begin{itemize}
+        \item Argue by contradiction.
+        \item Suppose for all $p\in K$, there exists $N_r(p)$ such that $N_r(p)\cap E=\{p\}$.
+        \item Consider the set $\{N_r(p):p\in K\}$. This is an open cover of $K$. Thus, there exists a finite subcover of it. But since $E\subset K\subset N_{r_1}(p_1)\cup\cdots\cup N_{r_n}(p_n)=\{p_1\}\cup\cdots\cup\{p_n\}$, $E$ is finite, a contradiction.
+    \end{itemize}
+    \item \textbf{2-cell} (in $\R^2$): A set that is the Cartesian product of two closed intervals.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \draw
+                (-0.5,0) -- (2,0)
+                (0,-0.5) -- (0,2)
+            ;
+    
+            \draw [grx,ultra thick]
+                (0.4,0) -- (1.4,0)
+                (0,0.8) -- (0,1.6)
+            ;
+            \fill [grx!30] (0.4,0.8) rectangle (1.4,1.6);
+    
+            \draw [dashed]
+                (0.4,0) node{[} -- ++(0,2)
+                (1.4,0) node{]} -- ++(0,2)
+                (0,0.8) node[rotate=90]{[} -- ++(2,0)
+                (0,1.6) node[rotate=90]{]} -- ++(2,0)
+            ;
+        \end{tikzpicture}
+        \caption{2-cell.}
+        \label{fig:2cell}
+    \end{figure}
+    \begin{itemize}
+        \item Generalizes to \textbf{$\bm{k}$-cells}.
+    \end{itemize}
+    \item Let $I_n=[a_n,b_n]\subset\R$ such that $I_{n+1}\subset I_n$. Then $\bigcap_{n=1}^\infty I_n\neq\emptyset$.
+    \begin{itemize}
+        \item Let $I_k$ be a $k$-cell in $\R^k$ such that $I_k\supset I_{k+1}$. Then $\bigcap_kI_k\neq\emptyset$.
+        \item We know that $a_m\leq a_{m+n}\leq b_{m+n}\leq b_m$, so $\sup a_n\in\bigcap I_n$.
+    \end{itemize}
+    \item Every $k$-cell is compact.
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[scale=1.5]
+            \footnotesize
+            \draw
+                (0,0) rectangle (2,2)
+                (1,0) -- ++(0,2)
+                (0,1) -- ++(2,0)
+                (1.5,0) -- ++(0,1)
+                (1,0.5) -- ++(1,0)
+            ;
+
+            \node [fill=white,inner sep=2pt] at (1,1) {$I^1$};
+            \node [fill=white,inner sep=2pt] at (1.5,0.5) {$I^2$};
+            \node [fill=white,inner sep=2pt] at (1.75,0.75) {$I^3$};
+        \end{tikzpicture}
+        \caption{$k$-cells are compact.}
+        \label{fig:kcellCompact}
+    \end{figure}
+    \begin{itemize}
+        \item Argue by contradiction.
+        \item Consider an open cover of the $k$-cell $I^1$. If it has a finite subcover, we're done. So suppose we have an open cover that doesn't have a finite subcover. Split the $k$-cell into $2^k$ chunks. At least one of the chunks $I^2$ must not have a finite subcover.
+        \item Split that one into $2^k$ chunks. At least one of the chunks $I^3$ must not have a finite subcover.
+        \item Continue.
+        \item Thus, we have a decreasing family of $k$-cells, so by the previous result, their $\bigcap I^n\neq\emptyset$.
+        \item Let $x\in\bigcap I^n$. Then the...
+    \end{itemize}
+    \item Heine-Borel theorem: Let $E\subset\R^k$. Then TFAE\footnote{The following are equivalent.}
+    \begin{enumerate}
+        \item $E$ is closed and bounded.
+        \item $E$ is compact.
+        \item Every infinite subset of $E$ has a limit point in $E$.
+    \end{enumerate}
+    \begin{itemize}
+        \item ($1\Rightarrow 2$) $E$ closed and bounded implies $E$ is a closed subset of some $I_k$, so it's compact.
+        \item ($2\Rightarrow 3$) Already done.
+        \item ($3\Rightarrow 1$)
+        \begin{itemize}
+            \item Suppose $E$ not bounded. Then there is an infinite sequence of points in $E$ that never converges. Contradiction.
+            \item Suppose $E$ is not closed. Then there exists a sequence of points in $E$ which "converges" to an $x_0\notin E$.
+        \end{itemize}
+    \end{itemize}
 \end{itemize}
 
 
