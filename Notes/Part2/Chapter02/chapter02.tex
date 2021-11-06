@@ -100,12 +100,12 @@
         \item Thus, a finite set cannot have a limit point.
         \item Prove by contradiction: Suppose there is a neighborhood that contains only finitely many points of $E$. Then the neighborhood with radius smaller than the distance to the closest point does not contain any points of $E$, a contradiction.
     \end{itemize}
-    \item $E$ is open iff $E^C$\footnote{The complement of $E$.} is closed.
+    \item $E$ is open iff $E^c$\footnote{The complement of $E$.} is closed.
     \begin{itemize}
-        \item Assume $E^C$ closed. If $p\in E$, then $p$ is not a limit point of $E^C$. It follows that there exists a neighborhood of $p$ that is entirely contained within $E$, so $p$ is interior, as desired.
-        \item Suppose $E$ is open. Let $p$ be any limit point of $E^C$. Then $p\in E^C$.
+        \item Assume $E^c$ closed. If $p\in E$, then $p$ is not a limit point of $E^c$. It follows that there exists a neighborhood of $p$ that is entirely contained within $E$, so $p$ is interior, as desired.
+        \item Suppose $E$ is open. Let $p$ be any limit point of $E^c$. Then $p\in E^c$.
     \end{itemize}
-    \item $F$ is closed iff $F^C$ is open.
+    \item $F$ is closed iff $F^c$ is open.
     \item If $(G_\alpha)_{\alpha\in A}$ is a family of open sets in $X$, then the union is open.
     \begin{itemize}
         \item Let $p\in\bigcup_{\alpha\in A}G_\alpha$. Then $p\in G_\alpha$ for some $\alpha\in A$. It follows that $p$ is an interior point of $G_\alpha$, so thus an interior point of the union of $G_\alpha$ with everything else.
@@ -125,7 +125,7 @@
     \begin{enumerate}
         \item $\bar{E}$ is closed.
         \begin{itemize}
-            \item WTS: $\bar{E}^C$ is open. Let $p\in\bar{E}^C$. Then $p$ is neither in $E$ nor is it a limit point of $E$. Thus, there exists a neighborhood of $\bar{E}^C$ containing entirely points of $\bar{E}^C$. Therefore, $\bar{E}^C$ is open, so $\bar{E}$ is closed.
+            \item WTS: $\bar{E}^c$ is open. Let $p\in\bar{E}^c$. Then $p$ is neither in $E$ nor is it a limit point of $E$. Thus, there exists a neighborhood of $\bar{E}^c$ containing entirely points of $\bar{E}^c$. Therefore, $\bar{E}^c$ is open, so $\bar{E}$ is closed.
         \end{itemize}
         \item $E=\bar{E}$ iff $E$ is closed.
         \begin{itemize}
@@ -172,8 +172,8 @@
     \end{itemize}
     \item Compact implies closed.
     \begin{itemize}
-        \item We will show $K$ compact implies $K^C$ open.
-        \item WTS: For all $p\in K^C$, there exists $N_r(p)\subset K^C$ suh that $N_r(p)\cap K=\emptyset$.
+        \item We will show $K$ compact implies $K^c$ open.
+        \item WTS: For all $p\in K^c$, there exists $N_r(p)\subset K^c$ suh that $N_r(p)\cap K=\emptyset$.
     \end{itemize}
     \item A closed subset of a compact set is compact.
     \begin{itemize}
@@ -184,7 +184,7 @@
     \item If $(K_\alpha)_{\alpha\in A}$ is compact in $X$ with finite intersection property (every intersection of any finite number of these sets is nonempty), then $\bigcap_{\alpha\in A}K_\alpha\neq\emptyset$.
     \begin{itemize}
         \item Argue by contradiction.
-        \item Let $G_\alpha=K_\alpha^C$.
+        \item Let $G_\alpha=K_\alpha^c$.
         \item Assume the intersection is empty. Assume WLOG that no point of $K_1$ is in any of the other $K_\alpha$'s.
         \item Then $\{G_\alpha\}_{\alpha\in A}$ be an open cover of $K_1$.
         \item $K_1$ compact implies there is a finite subcover $G_{\alpha_1},\dots,G_{\alpha_n}$. Then $K\subset G_{\alpha_1}\cup\cdots\cup G_{\alpha_n}$. This implies that $K_1\cap K_{\alpha_1}\cap\cdots\cap K_{\alpha_n}=\emptyset$, a contradiction.
@@ -271,6 +271,65 @@
             \item Suppose $E$ is not closed. Then there exists a sequence of points in $E$ which "converges" to an $x_0\notin E$.
         \end{itemize}
     \end{itemize}
+\end{itemize}
+
+
+
+\section{Chapter 2: Basic Topology}
+\emph{From \textcite{bib:Rudin}.}
+\begin{itemize}
+    \item \marginnote{11/6:}\textbf{Countable} (set $A$): A set $A$ that is in bijective correspondence with the set of all positive integers. \emph{Also known as} \textbf{enumerable}, \textbf{denumerable}.
+    \item \textbf{At most countable} (set $A$): A set $A$ that is finite or countable.
+    \item An alternative definition of an \textbf{infinite} set would be a set that is equivalent to one of its proper subsets.
+    \item Theorem: Let $A$ be the set of all sequences whose elements are the digits 0 and 1. This set $A$ is uncountable.
+    \begin{proof}
+        Let $E=\{s_1,s_2,\dots\}$ be an arbitrary countable subset of $A$, where each $s_j$ is a sequence whose elements are the digits 0 and 1. Let $s$ be the sequence, the $n^\text{th}$ term of which is the opposite of the $n^\text{th}$ term of $s_n$ (i.e., if the $n^\text{th}$ term of $s_n$ is 0, we set the $n^\text{th}$ term of $s$ equal to 1). This guarantees that $s$ is distinct from each of the $s_j$, i.e., that $s\notin E$. It follows that $E\subsetneq A$, i.e., that every countable subset of $A$ is a proper subset of $A$. Therefore, $A$ must be uncountable (for otherwise $A$ would be a proper subset of $A$, a contradiction).
+    \end{proof}
+    \begin{itemize}
+        \item The idea of this proof is called \textbf{Cantor's diagonalization process}.
+        \item Since every real number can be represented as a binary sequence of numbers, i.e., $A\sim\R$, the reals are uncountable.
+    \end{itemize}
+    \item \textbf{Metric space}: A set $X$ such that with any two points $p,q\in X$, there is associated a real number $d(p,q)$ such that
+    \begin{enumerate}
+        \item $d(p,q)>0$ if $p\neq q$; $d(p,p)=0$.
+        \item $d(p,q)=d(q,p)$.
+        \item $d(p,q)\leq d(p,r)+d(r,q)$ for any $r\in X$.
+    \end{enumerate}
+    \item \textbf{Distance} (from $p\in X$ to $q\in X$, $X$ a metric space): The real number $d(p,q)$.
+    \item \textbf{Distance function}: A function $d:X\times X\to\R$ that sends $(p,q)\mapsto d(p,q)$. \emph{Also known as} \textbf{metric}.
+    \item Every subset of a metric space is a metric space in its own right under the same distance function.
+    \item \textbf{Segment} (from $a$ to $b$): The set of all real numbers $x$ such that $a<x<b$. \emph{Denoted by} $\bm{(a,b)}$.
+    \item \textbf{Interval} (from $a$ to $b$): The set of all real numbers $x$ such that $a\leq x\leq b$. \emph{Denoted by} $\bm{[a,b]}$.
+    \item \textbf{$\bm{k}$-cell}: The set of all points $\x=(x_1,\dots,x_k)\in\R^k$ whose coordinates satisfy the inequalities $a_i\leq x_i\leq b_i$ where $a_i<b_i$ for each $1\leq i\leq k$.
+    \begin{itemize}
+        \item Note that a 1-cell is an interval and a 2-cell is a rectangle.
+    \end{itemize}
+    \item \textbf{Convex} (set $E$): A subset $E$ of $\R^k$ such that
+    \begin{equation*}
+        \lambda\x+(1-\lambda)\y \in E
+    \end{equation*}
+    for all $\x,\y\in E$ and $0<\lambda<1$.
+    \begin{itemize}
+        \item Balls and $k$-cells are both convex.
+    \end{itemize}
+    \item The segment $(a,b)$ is open as a subset of $\R^1$, but not open as a subset of $\R^2$.
+    \item Since compactness is not relative, while it makes no sense to talk about \emph{open} or \emph{closed} metric spaces, it does make sense to talk about \emph{compact} metric spaces.
+    \item \textbf{Weierstrass theorem}: Every bounded infinite subset of $\R^k$ has a limit point in $\R^k$.
+    \item Theorem: Let $P$ be a nonempty perfect set in $\R^k$. Then $P$ is uncountable.
+    \begin{proof}
+        Since $P$ is nonempty and perfect, there exists a limit point of $P$. It follows that $P$ is infinite.\par
+        Now suppose for the sake of contradiction that $P$ is countable, and denote the elements of $P$ by $\x_1,\x_2,\dots$. We now construct a sequence $\{V_n\}$ of neighborhoods, as follows. Let $V_1=N_r(\x_1)$. Clearly, $V_1\subset P$ since $\x_1\in P$. It follows that since $V_1$ is a neighborhood that $V_1$ contains infinitely many points of $P$. Now suppose inductively that $V_n$ has been constructed. Thus, by analogous conditions to those on $V_1$, we may let $V_{n+1}$ be a neighborhood such that (i) $\bar{V}_{n+1}\subset V_n$, (ii) $\x_n\notin\bar{V}_{n+1}$, and (iii) $V_{n+1}\cap P$ is nonempty. By (iii), we can continue on to construct $V_{n+2}$, and so on and so forth.\par
+        Let $K_n=\bar{V}_n\cap P$. Since $\bar{V}_n$ is closed and bounded, $\bar{V}_n$ is compact. Additionally, since $\x_n\notin K_{n+1}$ for each $n$, no point of $P$ lies in $\bigcap_1^\infty K_n$. Thus, since each $K_n\subset P$, $\bigcap_1^\infty K_n$ is empty. But this contradicts our previous result that since each $K_n$ is nonempty, compact, and such that $K_n\supset K_{n+1}$, $\bigcap_1^\infty K_n$ is nonempty.
+    \end{proof}
+    \item Corollary: Every interval $[a,b]$ is uncountable. In particular, $\R$ is uncountable.
+    \item \textbf{Cantor set}: The set resulting from the following construction. Let $E_0=[0,1]$. Remove the segment $(1/3,2/3)$, so that $E_1=[0,1/3]\cup[1/3,2/3]$. Now remove the middle third of these two intervals to create $E_2$. Continue on indefinitely.
+    \begin{itemize}
+        \item This is a perfect set in $\R^1$ which contains no segment.
+    \end{itemize}
+    \item \textbf{Separated} (sets $A,B$): Two subsets $A,B$ of a metric space $X$ such that $A\cap\bar{B}$ and $\bar{A}\cap B$ are empty.
+    \item \textbf{Connected} (set $E$): A set $E$ that is not the union of two nonempty separated sets.
+    \item Separated sets are disjoint, but disjoint sets are not necessarily separated (consider $[0,1]$ and $(1,2)$).
+    \item A subset $E$ of $\R^1$ is connected if and only if it has the following property: If $x,y\in E$ and $x<z<y$, then $z\in E$.
 \end{itemize}
 
 
