@@ -1,0 +1,52 @@
+\documentclass[../psets.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\leftmark}{Problem Set \thesection}
+\setcounter{section}{6}
+
+\begin{document}
+
+
+
+
+\section{Basic Topology II}
+\emph{From \textcite{bib:Rudin}.}
+\subsection*{Chapter 2}
+\begin{enumerate}[label={\textbf{\arabic*.}}]
+    \setcounter{enumi}{15}
+    \item \marginnote{11/15:}Regard $\Q$, the set of all rational numbers, as a metric space, with $d(p,q)=|p-q|$. Let $E$ be the set of all $p\in\Q$ such that $2<p^2<3$. Show that $E$ is closed and bounded in $\Q$, but that $E$ is not compact. Is $E$ open in $\Q$?
+    \item Let $E$ be the set of all $x\in[0,1]$ whose decimal expansion contains only the digits 4 and 7. Is $E$ countable? Is $E$ dense in $[0,1]$? Is $E$ compact? Is $E$ perfect?
+    \item Is there a nonempty perfect set in $\R^1$ which contains no rational number?
+    \item 
+    \begin{enumerate}
+        \item If $A$ and $B$ are disjoint closed sets in some metric space $X$, prove that they are separated.
+        \item Prove the same for disjoint open sets.
+        \item Fix $p\in X$ and $\delta>0$. Define $A$ to be the set of all $q\in X$ for which $d(p,q)<\delta$, and define $B$ similarly with $>$ in place of $<$. Prove that $A$ and $B$ are separated.
+        \item Prove that every connected metric space with at least two points is uncountable. (Hint: Use (c).)
+    \end{enumerate}
+    \item Are closures and interiors of connected sets always connected? (Hint: Look at subsets of $\R^2$.)
+    \item Let $A$ and $B$ be separated subsets of some $\R^k$, suppose $\ab\in A$ and $\bb\in B$, and define
+    \begin{equation*}
+        \pp(t) = (1-t)\ab+t\bb
+    \end{equation*}
+    for all $t\in\R^1$. Let $A_0=\pp^{-1}(A)$, $B_0=\pp^{-1}(B)$.
+    \begin{enumerate}
+        \item Prove that $A_0$ and $B_0$ are separated subsets of $\R^1$.
+        \item Prove that there exists $t_0\in(0,1)$ such that $p(t_0)\notin A\cup B$.
+        \item Prove that every convex subset of $\R^k$ is connected.
+    \end{enumerate}
+    \item A metric space is called \textbf{separable} if it contains a countable dense subset. Show that $\R^k$ is separable. (Hint: Consider the set of points which only have rational coordinates.)
+    \item A collection $\{V_\alpha\}$ of open subsets of $X$ is said to be a \textbf{base} for $X$ if the following is true: For every $x\in X$ and every open set $G\subset X$ such that $x\in G$, we have $x\in V_\alpha\subset G$ for some $\alpha$. In other words, every open set in $X$ is the union of a subcollection of $\{V_\alpha\}$. Prove that every separable metric space has a \emph{countable} base. (Hint: Take all neighborhoods with rational radius and center in some countable dense subset of $X$.)
+    \item Let $X$ be a metric space in which every infinite subset has a limit point. Prove that $X$ is separable. (Hint: Fix $\delta>0$ and pick $x_1\in X$. Having chosen $x_1,\dots,x_j\in X$, choose $x_{j+1}\in X$, if possible, so that $d(x_i,x_{j+1})\geq\delta$ for each $i=1,\dots,j$. Show that this process must stop after a finite number of steps, and that $X$ can therefore be covered by finitely many neighborhoods of radius $\delta$. Take $\delta=1/n$ ($n=1,2,3,\dots$) and consider the centers of the corresponding neighborhoods.)
+    \item Prove that every compact metric space $K$ has a countable base, and that $K$ is therefore separable. (Hint: For every positive integer $n$, there are finitely many neighborhoods of radius $1/n$ whose union covers $K$.)
+    \item Let $X$ be a metric space in which every infinite subset has a limit point. Prove that $X$ is compact. (Hint: By Exercises 2.23 and 2.24, $X$ has a countable base. It follows that every open cover of $X$ has a \emph{countable} subcover $\{G_n\}_{n\in\N}$. If no finite subcollection of $\{G_n\}$ covers $X$, then the complement $F_n$ of $\bigcup_1^nG_i$ is nonempty for each $n$, but $\bigcap F_n$ is empty. If $E$ is a set which contains a point from each $F_n$, consider a limit point of $E$, and obtain a contradiction.)
+    \item Define a point $p$ in a metric space $X$ to be a \textbf{condensation point} of a set $E\subset X$ if every neighborhood of $p$ contains uncountably many points of $E$. Suppose $E\subset\R^k$ is uncountable, and let $P$ be the set of all condensation points of $E$. Prove that $P$ is perfect and that at most countably many points of $E$ are not in $P$. In other words, show that $P^c\cap E$ is at most countable. (Hint: Let $\{V_n\}$ be a countable base of $\R^k$, let $W$ be the union of those $V_n$ for which $E\cap V_n$ is at most countable, and show that $P=W^c$.)
+    \item Prove that every closed set in a separable metric space is the union of a (possibly empty) perfect set and a set which is at most countable. Corollary: Every countable closed set in $\R^k$ has isolated points. (Hint: Use Exercise 2.27.)
+    \item Prove that every open set in $\R^1$ is the union of an at most countable collection of disjoint segments (Hint: Use Exercise 22.)
+    \item Imitate the proof of Theorem 2.43 to obtain the following result: If $\R^k=\bigcup_1^\infty F_n$, where each $F_n$ is a closed subset of $\R^k$, then at least one $F_n$ has a nonempty interior. Equivalent statement: If $G_n$ is a dense open subset of $\R^k$ for each $n\in\N$, then $\bigcap_1^\infty G_n$ is not empty (in fact, it is dense in $\R^k$). This is a special case of Baire's theorem; see Exercise 3.22 for the general case.
+\end{enumerate}
+
+
+
+
+\end{document}
