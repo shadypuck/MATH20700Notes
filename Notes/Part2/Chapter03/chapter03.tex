@@ -1,0 +1,60 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{2}
+
+\begin{document}
+
+
+
+
+\chapter{Numerical Sequences and Series}
+\section{Chapter 3: Numerical Sequences and Series}
+\emph{From \textcite{bib:Rudin}.}
+\begin{itemize}
+    \item \marginnote{11/7:}Convergence of sequences is relative.
+    \begin{itemize}
+        \item For example, the sequence $1/n$ for $n=1,2,\dots$ converges in $\R$, but not in $(0,\infty)$.
+    \end{itemize}
+    \item \textbf{Range} (of $\{p_n\}$): The set of all points $p_n$.
+    \begin{itemize}
+        \item This definition squares nicely with the formal definition of a sequence as a function $p$ defined on $\N$.
+    \end{itemize}
+    \item Theorem 3.6a: If $\{p_n\}$ is a sequence in a compact metric space $X$, then some subsequence of $\{p_n\}$ converges to a point of $X$.
+    \item Theorem 3.7: The subsequential limits of a sequence $\{p_n\}$ in a metric space $X$ form a closed subset of $X$.
+    \item \textbf{Diameter} (of $E$): The supremum of the set
+    \begin{equation*}
+        S = \{d(p,q):p,q\in E\}
+    \end{equation*}
+    where $E$ is a nonempty subset of a metric space $X$. \emph{Denoted by} $\bm{\diam E}$.
+    \item Theorem 3.10:
+    \begin{enumerate}[label={(\alph*)}]
+        \item If $\bar{E}$ is the closure of a set $E$ in a metric space $X$, then
+        \begin{equation*}
+            \diam\bar{E} = \diam E
+        \end{equation*}
+        \item If $K_n$ is a sequence of compact sets in $X$ such that $K_n\supset K_{n+1}$ ($n=1,2,3,\dots$) and if $\lim_{n\to\infty}\diam K_n=0$, then $\bigcap_1^\infty K_n$ consists of exactly one point.
+    \end{enumerate}
+    \item \textbf{Complete} (metric space): A metric space in which every Cauchy sequence converges.
+    \item All compact metric spaces and all Euclidean spaces are complete.
+    \begin{itemize}
+        \item The metric space $(\Q,|x-y|)$ is not complete.
+    \end{itemize}
+    \item \textbf{Monotonically increasing} (sequence $\{s_n\}$): A sequence $\{s_n\}$ of real numbers such that $s_n\leq s_{n+1}$ for each $n\in\N$.
+    \item \textbf{Monotonically decreasing} (sequence $\{s_n\}$): A sequence $\{s_n\}$ of real numbers such that $s_n\geq s_{n+1}$ for each $n\in\N$.
+    \item \textbf{Monotonic sequences}: The class of all sequences that are either monotonically increasing or monotonically decreasing.
+    \item \textbf{Upper limit} (of $\{s_n\}$): The supremum of the set $E$ of all subsequential limits of $\{s_n\}$. \emph{Denoted by} $\bm{s^*}$, $\bm{\limsup_{n\to\infty}s_n}$.
+    \item \textbf{Lower limit} (of $\{s_n\}$): The infimum of the set $E$ of all subsequential limits of $\{s_n\}$. \emph{Denoted by} $\bm{s_*}$, $\bm{\liminf_{n\to\infty}s_n}$.
+    \item Theorem 3.17: Let $\{s_n\}$ be a sequence of real numbers. Then $s^*$ has (and is the only number to have both of) the following two properties.
+    \begin{enumerate}[label={(\alph*)}]
+        \item $s^*\in E$.
+        \item If $x>s^*$, then there is an integer $N$ such that $n\geq N$ implies $s_n<x$.
+    \end{enumerate}
+    An analogous result holds for $s_*$.
+\end{itemize}
+
+
+
+
+\end{document}
