@@ -271,6 +271,89 @@
             \item Suppose $E$ is not closed. Then there exists a sequence of points in $E$ which "converges" to an $x_0\notin E$.
         \end{itemize}
     \end{itemize}
+    \item \marginnote{11/8:}\textcite{bib:HewittStromberg} has harder analysis problems than \textcite{bib:Rudin}.
+    \item Theorem: If $P$ is a nonempty perfect subset of $\R^k$, then $P$ is uncountable.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \draw circle (1.4cm);
+            \fill circle (1.5pt) node[below=1.5pt]{$x_1$};
+    
+            \draw (0.6,0.2) circle (4mm);
+            \fill (0.6,0.2) circle (1.5pt) node[below=1.5pt]{$x_2$};
+        \end{tikzpicture}
+        \caption{Nonempty perfect sets are uncountable.}
+        \label{fig:perfUnc}
+    \end{figure}
+    \begin{itemize}
+        \item $P$ perfect implies $P$ infinite.
+        \item Suppose $P$ is countable. Let $P=\{x_1,x_2,\dots\}$.
+        \item Start with $x_1$. Take an open neighborhood $V_1$ of $x_1$. Since $x_1$ is a limit point of $P$, there will be another point $x_2\in P$ in $V_1$. Choose $V_2$ to be a neighborhood of $x_2$ such that $\bar{V_2}\subset V_1$.
+        \item Keep going --- there is a point $x_3\in P$ in $V_2$, choose an appropriate neighborhood, etc.
+        \item Thus, we have a sequence of closed compact sets such that $\bar{V}_n\supset\bar{V}_{n+1}$ ($n\in\N$). It follows that $\bigcap\bar{V}_n\neq\emptyset$.
+        \item We also know that $V_n\cap P\neq\emptyset$ for each $n$.
+        \item Let $K_n=\bar{V}_n\cap P$. Each $K_n$ is compact and $K_n\supset K_{n+1}$ for each $n$. Therefore, by compactness, $\bigcap K_n\neq\emptyset$. But the construction implies that $\bigcap K_n=\emptyset$ because we exhausted the whole sequence of possible points $x_i\in P$.
+    \end{itemize}
+    \item Corollary: Any interval is uncountable.
+    \item The Cantor set:
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}[
+            xscale=3,
+            every node/.style={black}
+        ]
+            \footnotesize
+            \draw [orx,|-|] (0,0) node[left]{$E_0$} node[below=1mm]{0} -- ++(1,0) node[below=1mm]{1};
+    
+            \draw [orx,|-|] (0,-1) node[left]{$E_1$} -- ++({1/3},0) node[below=1mm]{$\frac{1}{3}$};
+            \draw [orx,|-|] ({2/3},-1) node[below=1mm]{$\frac{2}{3}$} -- ++({1/3},0);
+    
+            \draw [orx,|-|] (0,-2) node[left]{$E_2$} -- ++({1/9},0) node[below=1mm]{$\frac{1}{9}$};
+            \draw [orx,|-|] ({2/9},-2) node[below=1mm]{$\frac{2}{9}$} -- ++({1/9},0);
+            \draw [orx,|-|] ({2/3},-2) -- ++({1/9},0) node[below=1mm]{$\frac{7}{9}$};
+            \draw [orx,|-|] ({8/9},-2) node[below=1mm]{$\frac{8}{9}$} -- ++({1/9},0);
+        \end{tikzpicture}
+        \caption{Constructing the Cantor set.}
+        \label{fig:cantorSet}
+    \end{figure}
+    \begin{itemize}
+        \item Let $E_0=[0,1]$.
+        \item Take out the middle third, so that $E_1=[0,1/3]\cup[2/3,1]$.
+        \item Take out the middle thirds of the remaining intervals and keep going.
+        \item Thus, we are building a decreasing family of compact sets, so the overall intersection $E=\bigcap E_n$ of every set is nonempty.
+        \item $E^n$ is the union of $2^n$ closed intervals of length $n/3$. Thus, the overall length of $E^n$ is $(2/3)^n$.
+        \item Thus, we have a compact nonempty set with Lebesgue measure zero.
+        \item $E$ does not contain any segment of the form
+        \begin{equation*}
+            \left( \frac{3k+1}{3^m},\frac{3k+2}{3^m} \right)
+        \end{equation*}
+        for $k,m\in\N$.
+        \begin{itemize}
+            \item Therefore, no segment of the form $(\alpha,\beta)$ is contained in $E$ (any segment of said form contains a segment of the above form).
+        \end{itemize}
+        \item Moreover, $E$ (the Cantor set) is perfect.
+        \begin{itemize}
+            \item Let $x\in E$. WTS: For all segments $S$ containing $x$, $S\cap(E\setminus\{x\})\neq\emptyset$.
+            \item Let $S$ be an arbitrary such segment...
+        \end{itemize}
+    \end{itemize}
+    \item Consider the \textbf{Devil's staircase}.
+    \begin{itemize}
+        \item $0=\int_0^1F'(x)\dd{x}=F(1)-F(0)=1$. This function does not obey the fundamental theorem of calculus. A function satisfies the fundamental theorem of calculus if and only if it is absolutely continuous.
+    \end{itemize}
+    \item Connected sets (motivation):
+    \begin{itemize}
+        \item In a convex set, you can connect any two points with a straight line.
+        \item In a nonconvex connected set, there exist points that you must connect with a curve.
+        \item In a disconnected set, there exist points that cannot be connected via a line whose points lie wholly in the set.
+    \end{itemize}
+    \item \textbf{Connected} (set $E$): A set $E$ that is not the union of two \textbf{separated} sets.
+    \item \textbf{Separated} (sets $A,B$): Two sets $A,B\subset X$ that are nonempty and such that $\bar{A}\cap B=\emptyset$, and $A\cap\bar{B}=\emptyset$.
+    \item Theorem: $E\subset\R$ is connected iff $x,y\in E$ and $x<z<y$ implies $z\in E$.
+    \begin{itemize}
+        \item If there is a $z\notin E$ between $x,y$, then $\{x\in E:x<z\}$ and $\{x\in E:z<y\}$ are separated sets, so $E$ is not connected.
+    \end{itemize}
 \end{itemize}
 
 

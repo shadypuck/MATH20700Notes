@@ -1,0 +1,25 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{3}
+
+\begin{document}
+
+
+
+
+\chapter{Continuity}
+\section{Notes}
+\begin{itemize}
+    \item \marginnote{11/8:}Consider a function $f:X\to Y$ whose domain and codomain are, respectively, the metric spaces $(X,d_X)$ and $(Y,d_Y)$.
+    \item \textbf{Limit} (of $f$ at $p$): A point $q\in Y$ such that for all $\epsilon>0$, there exists $\delta$ such that $d_X(x,p)<\delta$ implies $d_Y(q,f(x))<\epsilon$, where $p$ is a limit point of $X$ (otherwise, $x\not\to p$).
+    \item \textbf{Continuous} (function $f$ at $p$): A function $f$ such that $\lim_{x\to p}f(x)=f(p)$.
+    \item $f$ is continuous on $X$ if it is continuous at every $p\in X$.
+    \item \textbf{Uniformly continuous} (function $f$): A function $f$ such that for every $\epsilon>0$, there exists a $\delta>0$ such that $d_X(x,y)<\delta$ implies $d_Y(f(x),f(y))<\epsilon$ for all $x,y\in X$.
+\end{itemize}
+
+
+
+
+\end{document}
