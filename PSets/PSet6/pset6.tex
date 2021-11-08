@@ -14,29 +14,138 @@
 \subsection*{Chapter 2}
 \begin{enumerate}[label={\textbf{\arabic*.}}]
     \item \marginnote{11/8:}Prove that the empty set is a subset of every set.
+    \begin{proof}
+        Let $A$ be a set. Then $x\in A$ for all $x\in\emptyset$ is vacuously true. Thus, $\emptyset\subset A$.
+    \end{proof}
     \item A complex number $z$ is said to be \textbf{algebraic} if there are integers $a_0,\dots,a_n$, not all zero, such that
     \begin{equation*}
         a_0z^n+a_1z^{n-1}+\cdots+a_{n-1}z+a_n = 0
     \end{equation*}
     Prove that the set of all algebraic numbers is countable. (Hint: For every positive integer $N$, there are only finitely many equations with $n+|a_0|+|a_1|+\cdots+|a_n|=N$.)
-    \item Prove that there exist real number which are not algebraic.
+    \begin{proof}
+        % Because of the abstractness of the concepts herein, we motivate our steps by building up slowly.\par
+        % Let $D_N$ be the set of all sums $n+|a_0|+\cdots+|a_n|$, where each $a_i$ is a positive integer, such that $n+|a_0|+\cdots+|a_n|=N$. Then by the hint, each $D_N$ is finite. It follows by the Corollary to Theorem 2.12 (since $\Z^+$ is at most countable and each $D_N$ is at most countable) that the set $D=\bigcup_{N=1}^\infty D_N$ of all sums $n+|a_0|+\cdots+|a_n|$ is at most countable.\par
+        % Let $P$ be the set of all polynomials over $\C$ with integer coefficients. Clearly we can define a bijective function $f:D\to P$ by
+        % \begin{equation*}
+        %     f(n+|a_0|+\cdots+|a_n|) = a_0z^n+a_1z^{n-1}+\cdots+a_{n-1}z+a_n
+        % \end{equation*}
+        % thus proving that there are only countably many polynomials over $\C$ with integer coefficients.\par
+        % Let $E_N$ be the set of all sums $n+|a_0|+\cdots+|a_n|$, where each $a_i$ is a positive integer, such that $n+|a_0|+\cdots+|a_n|=N$ \emph{and} $1\leq n\leq N-1$. Then since $E_N\subset D_N$ for each $N$, $E=\bigcup_{N=1}^\infty E_N\subset D$, so $E$ is at most countable. Define $\tilde{f}:D\to P$ by
+        % \begin{equation*}
+        %     \tilde{f}(x) = f(x)
+        % \end{equation*}
+        % for all $x\in E$. Because of the additional condition on each $E_N$, we have that $\range\tilde{f}$ is the set of all polynomials over $\C$ with integer coefficients that \emph{have a zero} and \emph{are nontrivial}. We know that polynomials in $\range\tilde{f}$ have a zero since the condition that $1\leq n$ eliminates sums of the form $0+|a_0|$ from each $E_N$; indeed, since $0+|a_0|=N$, sums of this form lead to $a_0=N$'s that are positive integers, which correspond to constant, nonzero polynomials that naturally have no zeroes. We know that polynomials in $\range\tilde{f}$ are nontrivial since the condition that $n\leq N-1$ eliminates sums of the form $N+|a_0|+\cdots+|a_N|$ from each $E_N$; indeed, since $N+|a_0|+\cdots+|a_N|=N$, each $a_i$ is zero, leading to a trivial polynomial where every element of $\C$ is a zero.\par
+        % Let $F_N$ be the set containing all $n+|a_0|+\cdots+|a_n|\in E_N$ repeated "distinctly" $n$ times (i.e., for each $n+|a_0|+\cdots+|a_n|\in E_N$, we add $n$ similar elements [which we may denote by $(n+|a_0|+\cdots+|a_n|)_1,\dots,(n+|a_0|+\cdots+|a_n|)_n$] to $F_N$). Note that as the finite union of finite sets, each $F_N$ is still finite. As before, we can show that $F=\bigcup_{N=1}^\infty F_N$ is at most countable. Furthermore, since each $F_N$ is nonempty and contains an element distinct from any $F_1,\dots,F_{N-1}$, $F$ is actually infinite and thus strictly countable.\par
+        % An algebraic number is a zero of a nontrivial polynomial over $\C$ with integer coefficients. Let $A$ be the set of all algebraic numbers/the set of all zeroes of all nontrivial polynomials over $\C$ with integer coefficients. Then to each $p\in\range\tilde{f}$, there correspond objects (not all necessarily distinct) $z_1,\dots,z_{\deg p}\in A$. Let $Z_i(p)$ denote the $i^\text{th}$ zero of $p$. Define a function $g:F\to A$ by
+        % \begin{equation*}
+        %     g[(n+|a_0|+\cdots+|a_n|)_i] = Z_i[\tilde{f}(n+|a_0|+\cdots+|a_n|)]
+        % \end{equation*}
+        % Since each zero naturally corresponds to a polynomial and hence a sum in $F$, $g:F\to A$ is onto. It follows that there exists an injective function $h:A\to F$. Therefore, since $F$ is countable, $h(A)\subset F$ is countable, so $A$ is countable.
+
+
+        Define a family of sets $\{A_N\}$ such that each $A_N$ is the set of all complex zeroes of all polynomials $\sum_{k=0}^na_kz^{n-k}$ with integer coefficients $a_0,\dots,a_n$, not all zero, satisfying the equation $n+|a_0|+\cdots+|a_n|=N$. Symbolically, let each
+        \begin{equation*}
+            A_N = \{z\in\C\mid\textstyle\sum_{k=0}^na_kz^{n-k}=0,\ a_0,\dots,a_n\in\Z,\ \exists\ a_i:a_i\neq 0,\ n+|a_0|+\cdots+|a_n|=N\}
+        \end{equation*}
+        Since there are only finitely many equations with $n+|a_0|+\cdots+|a_n|=N$ for each $N$ by the hint, there are only finitely many corresponding polynomials $\sum_{k=0}^na_kz^{n-k}$ for each $N$. By the fundamental theorem of arithmetic, every polynomial $p$ has at most $\deg p$ distinct solutions. Thus, since each $A_N$ is the union of finitely many finite sets, each $A_N$ is finite.\par
+        Consider the set $A=\bigcup_{N=1}^\infty A_N$. Since every algebraic number is a zero of a polynomial with integer coefficients, not all zero, whose coefficients' absolute values and degree add up to \emph{some} positive integer $N$, $A$ is the set of all algebraic numbers. Moreover, as the union of an at most countable number of at most countable sets, the Corollary to Theorem 2.12 implies that $A$ is at most countable. Additionally, since the set of solutions to $a_0z+a_1=0$ for $a_0,a_1\in\Z$, $a_0\neq 0$ is both a subset of the algebraic numbers and equal to $\Q$ (a countable set), $A$ is at least countable. Therefore, $A$ is countable, as desired.
+    \end{proof}
+    \item Prove that there exist real numbers which are not algebraic.
+    \begin{proof}
+        Suppose for the sake of contradiction that every real number is algebraic. Then if $A$ is the set of all complex algebraic numbers, $\R\subset A$. Thus, since $\R$ is infinite and $A$ is countable (by Problem 2.2), Theorem 2.8 implies that $\R$ is countable, a contradiction.
+    \end{proof}
     \item Is the set of all irrational real numbers countable?
+    \begin{proof}
+        No.\par
+        Suppose for the sake of contradiction that $\R\setminus\Q$ is countable. Then since $\R\setminus\Q$ and $\Q$ are at most countable, the Corollary to Theorem 2.12 implies that $(\R\setminus\Q)\cup\Q=\R$ is at most countable, contradicting the fact that $\R$ is uncountable.
+    \end{proof}
     \item Construct a bounded set of real numbers with exactly three limit points.
+    \begin{proof}
+        Let $A=\bigcup_{i=0}^2\{1/n+i:n\in\N\}$. Then $A$ has limit points at $0,1,2$ and nowhere else.
+    \end{proof}
     \item Let $E'$ be the set of all limit points of a set $E$. Prove that $E'$ is closed. Prove that $E$ and $\bar{E}$ have the same limit points (recall that $\bar{E}=E\cup E'$). Do $E$ and $E'$ always have the same limit points?
+    \begin{proof}
+        To prove that $E'$ is closed, it will suffice to show that it contains all of its limit points. Let $p$ be an arbitrary limit point of $E'$. To show that $p\in E'$, it will suffice to verify that $p$ is a limit point of $E$, i.e., that every neighborhood of $p$ intersects $E$ at a point other than $p$. Let $N_r(p)$ be an arbitrary neighborhood of $p$. Since $p$ is a limit point of $E'$, $N_r(p)\cap E'$ is infinite (2.20). Thus, we can choose a point $x\in N_r(p)\cap E'$ such that $x\neq p$. It follows that $x\in E'$, so it must be that every neighborhood of $x$ has infinite intersection with $E$ (2.20). In particular, since $N_r(p)$ is open and $x\in N_r(p)$, $x$ is an interior point of $N_r(p)$, so we can choose a neighborhood $N$ of $x$ such that $N\subset N_r(p)$. The last two statements combined imply that $N\cap E$ is infinite. In particular, since $N\cap E\subset N\subset N_r(p)$, there exist infinitely many points of $E$ in $N_r(p)$; choosing any one of these that is not equal to $p$ completes the proof.\par
+        To prove that $E$ and $\bar{E}$ have the same limit points, it will suffice to show that every limit point of $E$ is a limit point of $\bar{E}$ and that every limit point of $\bar{E}$ is a limit point of $E$. The latter was accomplished by the above. Thus, let $p$ be an arbitrary limit point of $E$. To prove that $p$ is a limit point of $\bar{E}$, it will suffice to show that every neighborhood of $p$ intersects $\bar{E}$ at some point other than $p$. Consider an arbitrary neighborhood $N_r(p)$ of $p$. Since $p$ is a limit point of $E$, $N_r(p)\cap(E\setminus\{p\})\neq\emptyset$. Therefore, we have that
+        \begin{align*}
+            N_r(p)\cap(\bar{E}\setminus\{p\}) &= N_r(p)\cap[(E\cup E')\setminus\{p\}]\\
+            &= N_r(p)\cap[(E\setminus\{p\})\cup(E'\setminus\{p\})]\\
+            &= [N_r(p)\cap(E\setminus\{p\})]\cup[N_r(p)\cap(E'\setminus\{p\})]\\
+            &\supset N_r(p)\cap(E\setminus\{p\})\\
+            & \neq\emptyset
+        \end{align*}
+        as desired.\par
+        No, $E$ and $E'$ do not always have the same limit points. Let $E=\{1/n:n\in\N\}$. Then $E'=\{0\}$, but since $E'$ is finite, $E''=\emptyset$.
+    \end{proof}
     \item Let $A_1,A_2,\dots$ be subsets of a metric space.
     \begin{enumerate}
         \item If $B_n=\bigcup_{i=1}^nA_i$, prove that $\bar{B}_n=\bigcup_{i=1}^n\bar{A}_i$ for $n=1,2,3,\dots$.
+        \begin{proof}
+            Let $n\in\N$ be arbitrary.\par
+            Suppose first that $x\in\bar{B}_n$. We divide into two cases ($x\in B_n$ and $x\in B_n'$). If $x\in B_n$, then $x\in A_i$ for some $i=1,\dots,n$. It follows that $x\in A_i\cup A_i'=\bar{A}_i\subset\bigcup_{i=1}^n\bar{A}_i$, as desired. On the other hand, if $x\in B_n'$, then $N_r(x)\cap(B_n\setminus\{p\})\neq\emptyset$ for every $r>0$. Now suppose for the sake of contradiction that $x\notin A_i'$ for any $i=1,\dots,n$. Then there exist neighborhoods $N_{r_1}(x),\dots,N_{r_n}(x)$ of $x$ such that no $N_{r_i}(x)$ contains a point of $A_i$ other than $p$. Let $0<r_j\leq r_i$ for each $i=1,\dots,n$. It follows that
+            \begin{align*}
+                \emptyset &= \bigcup_{i=1}^nN_{r_j}(x)\cap(A_i\setminus\{p\})\\
+                &= N_{r_j}(x)\cap\left[ \bigcup_{i=1}^n(A_i\setminus\{p\}) \right]\\
+                &= N_{r_j}(x)\cap\left[ \left( \bigcup_{i=1}^nA_i \right)\setminus\{p\} \right]\\
+                &= N_{r_j}(x)\cap\left[ B_n\setminus\{p\} \right]
+            \end{align*}
+            a contradiction. Therefore, $x\in A_i'$ for some $i=1,\dots,n$. It follows that $x\in A_i\cup A_i'=\bar{A}_i\subset\bigcup_{i=1}^n\bar{A}_i$, as desired.
+            \par
+            Now suppose that $x\in\bigcup_{i=1}^n\bar{A}_i$. Then $x\in\bar{A}_i$ for some $i=1,\dots,n$. We divide into two cases ($x\in A_i$ and $x\in A_i'$). If $x\in A_i$, then $x\in\bigcup_{i=1}^nA_i=B_n\subset B_n\cup B_n'=\bar{B}_n$, as desired. On the other hand, if $x\in A_i'$, then every neighborhood of $x$ contains a point $q\neq x$ of $A_i$. But since $A_i\subset\bigcup_{i=1}^nA_i=B_n$, it follows that every neighborhood of $x$ contains a point $q\neq x$ of $B_n$. Thus, $x\in B_n'\subset B_n\cup B_n'=\bar{B}_n$, as desired.
+        \end{proof}
         \item If $B=\bigcup_{i=1}^\infty A_i$, prove that $\bar{B}\supset\bigcup_{i=1}^\infty\bar{A}_i$. Show, by an example, that this inclusion can be proper.
+        \begin{proof}
+            Let $x\in\bigcup_{i=1}^\infty\bar{A}_i$ be arbitrary. Then $x\in\bar{A}_i$ for some $i$. We divide into two cases ($x\in A_i$ and $x\in A_i'$). If $x\in A_i$, then $x\in\bigcup_{i=1}^\infty A_i=B\subset B\cup B'=\bar{B}$, as desired. On the other hand, if $x\in A_i'$, then every neighborhood of $x$ contains a point $q\neq x$ of $A_i$. But since $A_i\subset\bigcup_{i=1}^\infty A_i=B$, it follows that every neighborhood of $x$ contains a point $q\neq x$ of $B$. Thus, $x\in B'\subset B\cup B'=\bar{B}$, as desired.\par
+            Define the family of sets $\{A_n\}$ by $A_n=\{1/n\}$ for each $n\in\N$. Then since each $A_n$ is finite, each $\bar{A}_n=\emptyset$, so $\bigcup_{i=1}^\infty\bar{A}_i=\emptyset$. However, $B=\bigcup_{i=1}^\infty A_i$ has zero as a limit point, so
+            \begin{equation*}
+                \bar{B} \supset \{0\}
+                \supsetneq \emptyset
+                = \bigcup_{i=1}^\infty\bar{A}_i
+            \end{equation*}
+            as desired.
+        \end{proof}
     \end{enumerate}
     \item Is every point of every open set $E\subset\R^2$ a limit point of $E$? Answer the same question for closed sets in $\R^2$.
+    \begin{proof}
+        Yes, every point of every open set $E\subset\R^2$ is a limit point of $E$. Let $E$ be an arbitrary open subset of $\R^2$. Let $x\in E$ be arbitrary. Since $x\in E$ open, $x$ is an interior point of $E$, meaning that there exists $N_r(x)\subset E$. Now to prove that $x$ is a limit point of $E$, it will suffice to show that every neighborhood of $x$ contains a point $q\neq x$ of $E$. Let $N_s(x)$ be an arbitrary neighborhood of $x$. If $x=(x_1,x_2)$ and $m=\min(r,s)$, choose $q=(x_1+m/2,x_2+m/2)$. Since $r,s>0$ by definition, $q\neq x$. Additionally,
+        \begin{align*}
+            |q-x|^2 &= (x_1+m/2-x_1)^2+(x_2+m/2-x_2)^2\\
+            &= m^2/2\\
+            &< m^2
+        \end{align*}
+        Taking square roots reveals that $|q-x|<r$ and $|q-x|<s$. It follows that $q\in N_r(x)\subset E$ and $q\in N_s(x)$, as desired.\par
+        No, every point of every closed set $E\subset\R^2$ is not a limit point of $E$. Let $E$ be a nonempty finite set. Then by the table on \textcite[33]{bib:Rudin}, $E$ is closed but not perfect, implying that $E$ is a closed set not every point of which is a limit point of it (in fact, the fact that not every point of every closed set is a limit point of $E$ is the whole motivation for defining perfect sets!).
+    \end{proof}
     \item Let $E^\circ$ denote the set of all interior points of a set $E$ (see Definition 2.18e; $E^\circ$ is called the \textbf{interior} of $E$).
     \begin{enumerate}
         \item Prove that $E^\circ$ is always open.
+        \begin{proof}
+            Let $x\in E^\circ$ be arbitrary. Then since $x$ is an interior point of $E$, there exists a neighborhood $N(x)$ of $x$ such that $N(x)\subset E$. By Theorem 2.19, $N(x)$ is open. It follows from Theorem 2.24 that $\bigcup_{x\in E^\circ}N(x)$ is open. We now prove that $E^\circ=\bigcup_{x\in E^\circ}N(x)$. The inclusion in one direction is obvious. In the other, let $y\in\bigcup_{x\in E^\circ}N(x)$. Then $y\in N(x)$ for some $x$. It follows since each $N(x)$ is open that there exists a neighborhood $N$ of $y$ such that $N\subset N(x)$. But since $N(x)\subset E$ by definition, we have both that $y\in E$ and that $N\subset E$. Thus, $y$ is an interior point of $E$, so $y\in E^\circ$, as desired.
+        \end{proof}
         \item Prove that $E$ is open if and only if $E^\circ=E$.
+        \begin{proof}
+            Suppose first that $E$ is open. Let $x\in E^\circ$ be arbitrary. Then since $x$ is an interior point of $E$, $x$ is naturally a point of $E$. On the other hand, let $x\in E$. Then since $E$ is open, $x$ is an interior point of $E$, so $x\in E^\circ$, as desired.\par
+            Now suppose that $E^\circ=E$. Then since $E^\circ$ is open by part (a), $E$ is open.
+        \end{proof}
         \item If $G\subset E$ and $G$ is open, prove that $G\subset E^\circ$.
+        \begin{proof}
+            Let $x\in G$ be arbitrary. Since $G$ is open, there exists a neighborhood $N$ of $x$ such that $N\subset G$. But since $G\subset E$, $N\subset E$. Thus, $x$ is an interior point of $E$, so $x\in E^\circ$, as desired.
+        \end{proof}
         \item Prove that the complement of $E^\circ$ is the closure of the complement of $E$.
+        \begin{proof}
+            Let $x\in(E^\circ)^c$. Then $x\notin E^\circ$. We divide into two cases ($x\notin E$ and $x\in E$). If $x\notin E$, then $x\in E^c$. It follows that $x\in E^c\cup(E^c)'=\overline{E^c}$, as desired. On the other hand, if $x\in E$ (but $x\notin E^\circ$), then there exists no neighborhood of $x$ that is a subset of $E$. In other words, every neighborhood of $x$ contains some point of $E^c$. This combined with the fact that $x\notin E^c$ implies that $x\in(E^c)'$. Therefore, $x\in E^c\cup(E^c)'=\overline{E^c}$, as desired.\par
+            Let $x\in\overline{E^c}$. We divide into two cases ($x\in E^c$ and $x\in(E^c)'$). If $x\in E^c$, then $x\notin E$. It follows that $x\notin E^\circ\subset E$. Therefore, $x\in(E^\circ)^c$, as desired. On the other hand, if $x\in(E^c)'$, then every neighborhood of $x$ contains a point of $E^c$. This combined with the fact that $x\in E$ ($x\notin E^c$ in this case) implies that no neighborhood $N$ of $x$ exists such that $N\subset E$. Therefore, $x$ is not an interior point of $E$, i.e., $x\notin E^\circ$; it follows that $x\in(E^\circ)^c$, as desired.
+        \end{proof}
         \item Do $E$ and $\bar{E}$ always have the same interiors?
+        \begin{proof}
+            No.\par
+            Consider $\Q\subset\R$. Since $\Q$ is disconnected at every point, $\Q^\circ=\emptyset$ but $(\bar{\Q})^\circ=\R^\circ=\R$.
+        \end{proof}
         \item Do $E$ and $E^\circ$ always have the same closures?
+        \begin{proof}
+            No.\par
+            Consider $\Q\subset\R$. As before, we have that $\bar{\Q}=\R$ while $\bar{\Q^\circ}=\bar{\emptyset}=\emptyset$.
+        \end{proof}
     \end{enumerate}
     \item Let $X$ be an infinite set. For $p\in X$ and $q\in X$, define
     \begin{equation*}
@@ -47,6 +156,12 @@
         \end{cases}
     \end{equation*}
     Prove that this is a metric. Which subsets of the resulting metric space are open? Which are closed? Which are compact?
+    \begin{proof}
+        To prove that $d$ is a metric, it will suffice to show that $d(p,q)>0$ if $p\neq q$, $d(p,p)=0$, $d(p,q)=d(q,p)$, and $d(p,q)\leq d(p,r)+d(r,q)$ for any $r\in X$. Let's begin. Let $p\neq q$. Then by the definition of $d$, $d(p,q)=1>0$, as desired. Let $p\in X$. Then by the definition of $d$, $d(p,p)=0$, as desired. Let $p,q\in X$. We divide into two cases ($p=q$ and $p\neq q$). If $p=q$, then $d(p,q)=0=d(q,p)$. If $p\neq q$, then $d(p,q)=1=d(q,p)$, as desired. Let $p,q,r\in X$. We divide into two cases ($p=q$ and $p\neq q$). If $p=q$, then $d(p,q)=0$ must be less than the sum of two numbers that are either 0 or 1. If $p\neq q$, then $d(p,q)=1$. However, since $r$ cannot equal the distinct $p$ and $q$, at least on of $d(p,r)$ and $d(r,q)$ equals 1, so the inequality holds here, too, as desired.\par
+        Every subset is open. Let $E\subset X$, and let $x\in E$. Then by the definition of $d$, $N_1(x)=\{y\in X:d(y,x)<1\}=\{x\}\subset E$. Thus, every point of $E$ is an interior point, as desired.\par
+        Every subset is closed. Let $E\subset X$. By the previous result, $E^c$ is open. Thus, by Theorem 2.23, $E$ is closed.\par
+        Only finite sets are compact. We know that every finite set is compact (choose an open cover $\{G_\alpha\}$ of $E$ finite; map every $x\in E$ to some $G_\alpha$ that contains it; choose the range of this map as the finite subcover). If $E$ is infinite, however, choose the open cover $\{\{x\}\}_{x\in E}$. We know that all of these sets are open (because every set is open). Additionally, since each one only contains one element of $E$, we need all infinitely many of them to cover $E$. Thus, this infinite $E$ is not compact.
+    \end{proof}
     \item For $x\in\R^1$ and $y\in\R^1$, define
     \begin{align*}
         d_1(x,y) &= (x-y)^2\\
@@ -56,10 +171,83 @@
         d_5(x,y) &= \frac{|x-y|}{1+|x-y|}
     \end{align*}
     Determine, for each of these, whether it is a metric or not.
+    \begin{proof}
+        $d_1$ is not a metric. Let $x=2$, $y=0$, $z=1$. Then
+        \begin{equation*}
+            d_1(2,0) = (2-0)^2 = 4 > 2 = (2-1)^2+(1-0)^2 = d_1(2,1)+d_1(1,0)
+        \end{equation*}
+        so $d_1$ does not obey the triangle inequality.\par
+        $d_2$ is a metric. If $x\neq y$, then $x-y\neq 0$, so $d_2(x,y)=\sqrt{|x-y|}>0$, as desired. For each $x$, $d_2(x,x)=\sqrt{|x-x|}=\sqrt{0}=0$, as desired. For all $x,y$, $d_2(x,y)=\sqrt{|x-y|}=\sqrt{|y-x|}=d_2(y,x)$, as desired. For all $x,y,z$,
+        \begin{align*}
+            d_2(x,y) &= \sqrt{|x-y|}\\
+            &\leq \sqrt{|x-z|+|z-y|}\\
+            &\leq \sqrt{|x-z|}+\sqrt{|z-y|}\\
+            &= d_2(x,z)+d_2(z,y)
+        \end{align*}
+        as desired.\par
+        $d_3$ is not a metric. Let $x=1$, $y=-1$. Then $x\neq y$, but
+        \begin{equation*}
+            d_3(1,-1) = |1^2-(-1)^2| = 0
+        \end{equation*}\par
+        $d_4$ is not a metric. Let $x=2$, $y=1$. Then $x\neq y$, but
+        \begin{equation*}
+            d_4(2,1) = |2-2(1)| = 0
+        \end{equation*}\par
+        $d_5$ is a metric. If $x\neq y$, then $x-y\neq 0$, so $d_5(x,y)=|x-y|/(1+|x-y|)>0$, as desired. For each $x$, $d_5(x,x)=|x-x|/(1+|x-x|)=0$, as desired. For all $x,y$, $d_5(x,y)=|x-y|/(1+|x-y|)=|y-x|/(1+|y-x|)=d(y,x)$. For all $x,y,z$,
+        \begin{align*}
+            d(x,y) &= \frac{|x-y|}{1+|x-y|}\\
+            &\leq \frac{|x-z|+|z-y|}{1+|x-z|+|z-y|}\\
+            &= \frac{|x-z|}{1+|x-z|+|z-y|}+\frac{|z-y|}{1+|x-z|+|z-y|}\\
+            &\leq \frac{|x-z|}{1+|x-z|}+\frac{|z-y|}{1+|z-y|}\\
+            &= d(x,z)+d(z,y)
+        \end{align*}
+        as desired.
+    \end{proof}
     \item Let $K\subset\R^1$ consist of 0 and the numbers $1/n$ for $n=1,2,3,\dots$. Prove that $K$ is compact directly from the definition (without using the Heine-Borel theorem).
+    \begin{proof}
+        Let $\{G_\alpha\}$ be an arbitrary open cover of $K$. Then $0\in G_\alpha$ for some $\alpha$. Since $G_\alpha$ is open, 0 is an interior point of it, so there exists a neighborhood $N_r(0)$ such that $N_r(0)\subset G_\alpha$. Since $r>0$ by definition, if we let $x=r$ and $y=1$, the Archimedean property implies there exists a positive integer $m$ such that $mr>1$. It follows that $1/m<r$, so every $1/n$ such that $n\geq m$ is an element of $N_r(0)\subset G_\alpha$. Since $G_\alpha$ contains 0 and infinitely many of the $1/n$, let this $G_\alpha$ be part of our finite subcover. For the remaining entries in our finite subcover, choose for each of the finitely many $1/n$ such that $n<m$ a $G_\beta$ that contains it.
+    \end{proof}
     \item Construct a compact set of real numbers whose limit points form a countable set.
-    \item Give an exmaple of an open cover of the segment $(0,1)$ which has no finite subcover.
+    \begin{proof}
+        Consider the family of sets $\{K_i\}$ defined by
+        \begin{equation*}
+            K_i = \{1/i\}\cup\{1/i+1/n:n\in\N\}
+        \end{equation*}
+        for each $i\in\N$ and $i=+\infty$. Let
+        \begin{equation*}
+            K = \bigcup_{i=1}^{+\infty} K_i
+        \end{equation*}
+        $K$ is bounded with lower bound $0\in K_\infty$ and upper bound $2=1/1+1/1\in K_1$. Additionally, $K$ is closed with limit points $K'=K_\infty$. Thus, if we define $f:\N\to K'$ by
+        \begin{equation*}
+            f(n) =
+            \begin{cases}
+                0 & n=1\\
+                \frac{1}{n-1} & n>1
+            \end{cases}
+        \end{equation*}
+        we will have a bijection between the natural number and $K'$, proving that $K'$ is countable, as desired.
+    \end{proof}
+    \item Give an example of an open cover of the segment $(0,1)$ which has no finite subcover.
+    \begin{proof}
+        Choose $\{G_i\}_{i=3}^\infty$ defined by
+        \begin{equation*}
+            G_i = \left( \frac{1}{i},\frac{1}{i-2} \right)
+        \end{equation*}
+        Every segment is open in $\R$. Additionally, $\{G_i\}$ is a cover since if $x\in(0,1)$, then we can modify the Archimedean property to choose the smallest integer $n$ such that $1/n<x$. It follows that $x\leq\frac{1}{n-1}<\frac{1}{n-2}$, so $x\in(1/n,1/(n-2))$, as desired. Lastly, $\{G_i\}$ has no finite subcover: if it did, we could use the betweeness of the reals to choose an $x<1/i$ where $(1/i,1/(i-2))$ is the smallest segment in the finite subcover. It would follow that $x\in(0,1)$ but $x$ is not an element of any set in the cover, a contradiction.
+    \end{proof}
     \item Show that Theorem 2.36 and its Corollary become false (in $\R^1$, for example) if the word "compact" is replaced by "closed" or by "bounded."
+    \begin{proof}
+        Suppose first that "compact" is replaced by "closed." Consider the collection of sets $\{K_n\}_{n=1}^\infty$ defined by
+        \begin{equation*}
+            K_n = n\N
+        \end{equation*}
+        for each $n$, where by $n\N$ we mean all the natural number multiples of $n$ (e.g., $3\N=\{3,6,9,...\}$). Clearly any finite collection of these sets will intersect at the least common multiple of the relevant $n$'s. However, the intersection of all such sets will be the empty set since for any possible natural number $n$ in the intersection, $n\notin(n+1)\N=K_{n+1}$.\par
+        Now suppose that "compact" is replaced by "bounded." Consider the collection of sets $\{K_n\}_{n=1}^\infty$ defined by
+        \begin{equation*}
+            K_n = (0,1/n)
+        \end{equation*}
+        for each $n$. This family of sets satisfies the constraints of both the modified Theorem 2.36 and its Corollary. However, $\bigcap_{n=1}^\infty K_n=\emptyset$ since by the Archimedean principle, we can always find a $1/n$ smaller than any $x$ in any of the sets, and thus a set in the intersection that does not contain said $x$.
+    \end{proof}
 \end{enumerate}
 
 
