@@ -21,5 +21,31 @@
 
 
 
+\section{Chapter 4: Continuity}
+\emph{From \textcite{bib:Rudin}.}
+\begin{itemize}
+    \item \textbf{Limit} (of $f$ at $p$): The point $q\in Y$, if it exists, such that for every $\epsilon>0$, there exists a $\delta>0$ such that $d_Y(f(x),q)<\epsilon$ for all points $x\in E$ for which $0<d_X(x,p)<\delta$, where $(X,d_X),(Y,d_Y)$ are metric spaces, $E\subset X$, $f:E\to Y$, and $p\in E'$. \emph{Denoted by} $\bm{\lim_{x\to p}f(x)}$.
+    \begin{itemize}
+        \item Note that we do not require that $p\in E$; only that some elements of the domain $E$ approach $p$.
+        \item We also write $f(x)\to q$ as $x\to p$.
+    \end{itemize}
+    \item Theorem 4.2: Let $X$, $Y$, $E$, $f$, and $p$ be as specified above. Then $\lim_{x\to p}f(x)=q$ iff $\lim_{n\to\infty}f(p_n)=q$ for every sequence $\{p_n\}$ in $E$ such that $p_n\neq p$ for any $n$ and $\lim_{n\to\infty}p_n=p$.
+    \item \textcite{bib:Rudin} proves the sum, product, and quotient rules of limits from the analogous properties of series.
+    \item Continuity is defined.
+    \begin{itemize}
+        \item Note that $f$ \emph{does} have to be defined at $p$ to be continuous at $p$ (in comparison to the fact that it can have a limit at a point $p'$ at which it is not defined).
+        \begin{itemize}
+            \item Thus, for proofs concerning continuity (as opposed to limits), we will consider functions $f$ the domains of which are metric spaces, not \emph{subsets} of metric spaces.
+        \end{itemize}
+        \item It follows from the definition that if $p\in E$ is isolated, then every possible $f$ defined on $E$ is continuous at $p$.
+    \end{itemize}
+    \item Theorem 4.7: Compositions of continuous functions are continuous.
+    \item Theorem 4.8: Preimage definition of continuity.
+    \item Theorem 4.9: If $f,g$ are complex continuous functions on $X$, $f+g$, $fg$, and $f/g$ are continuous on $X$.
+    \item Theorem 4.10: $\fb$ continuous implies $f_1,\dots,f_k$ continuous. Also, $\fb,\gb:X\to\R^k$ continuous implies $\fb+\gb$ and $\fb\cdot\gb$ continuous.
+\end{itemize}
+
+
+
 
 \end{document}
