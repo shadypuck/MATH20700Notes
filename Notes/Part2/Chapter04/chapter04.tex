@@ -13,10 +13,112 @@
 \section{Notes}
 \begin{itemize}
     \item \marginnote{11/8:}Consider a function $f:X\to Y$ whose domain and codomain are, respectively, the metric spaces $(X,d_X)$ and $(Y,d_Y)$.
-    \item \textbf{Limit} (of $f$ at $p$): A point $q\in Y$ such that for all $\epsilon>0$, there exists $\delta$ such that $d_X(x,p)<\delta$ implies $d_Y(q,f(x))<\epsilon$, where $p$ is a limit point of $X$ (otherwise, $x\not\to p$).
+    \item \textbf{Limit} (of $f$ at $p$): A point $q\in Y$ such that for all $\epsilon>0$, there exists $\delta$ such that $d_X(x,p)<\delta$ implies $d_Y(q,f(x))<\epsilon$, where $p$ is a limit point of $X$ (otherwise, $x\nrightarrow p$).
     \item \textbf{Continuous} (function $f$ at $p$): A function $f$ such that $\lim_{x\to p}f(x)=f(p)$.
     \item $f$ is continuous on $X$ if it is continuous at every $p\in X$.
     \item \textbf{Uniformly continuous} (function $f$): A function $f$ such that for every $\epsilon>0$, there exists a $\delta>0$ such that $d_X(x,y)<\delta$ implies $d_Y(f(x),f(y))<\epsilon$ for all $x,y\in X$.
+    \item \marginnote{11/10:}$f,g$ continuous implies $f+g$, $fg$, and $f/g$ continuous, the latter where $g(x)\neq 0$.
+    \item If $f,g$ continuous, then $h=g\circ f$ is continuous.
+    \item Theorem: $f:X\to Y$ is continuous iff $f^{-1}(V)$ is open in $X$ for every $V\subset Y$ open.
+    \begin{figure}[h!]
+        \centering
+        \begin{tikzpicture}
+            \footnotesize
+            \fill circle (1.5pt) node[below left]{$x$};
+            \draw circle (3pt);
+            \draw (0.1,0.7)
+                to[out=30,in=90] (0.5,0.3)
+                to[out=-90,in=135] (0.7,0.1)
+                to[out=-45,in=45] (0.4,-0.8)
+                to[out=-135,in=-80] (-0.3,-0.8)
+                to[out=100,in=-20] (-0.7,0)
+                to[out=160,in=-150] cycle
+            ;
+            \draw [rotate around={-60:(-0.6,-0.5)}] (-0.6,-0.5) ellipse (3mm and 1mm);
+            \draw (0.3,1.5)
+                to[out=30,in=135] (1.5,0.1)
+                to[out=-45,in=60] (1.2,-0.6)
+                to[out=-120,in=0] (0,-1.5)
+                to[out=180,in=-20] (-1.5,-0.5)
+                to[out=160,in=150] (-0.5,1)
+                to[out=-30,in=-150] cycle
+            ;
+    
+            \begin{scope}[xshift=6cm]
+                \fill circle (1.5pt) node[below right]{$f(x)$};
+                \draw circle (4pt);
+    
+                \draw [rotate=80] (0.1,0.7)
+                    to[out=30,in=90] (0.5,0.3)
+                    to[out=-90,in=135] (0.7,0.1)
+                    to[out=-45,in=45] (0.4,-0.8)
+                    to[out=-135,in=-80] (-0.3,-0.8)
+                    to[out=100,in=-20] (-0.7,0)
+                    to[out=160,in=-150] cycle
+                ;
+                \draw [rotate=-60] (0.3,1.5)
+                    to[out=30,in=135] (1.5,0.1)
+                    to[out=-45,in=60] (1.2,-0.6)
+                    to[out=-120,in=0] (0,-1.5)
+                    to[out=180,in=-20] (-1.5,-0.5)
+                    to[out=160,in=150] (-0.5,1)
+                    to[out=-30,in=-150] cycle
+                ;
+            \end{scope}
+    
+            \normalsize
+            \node at (0,2) {$X$};
+            \node at (6,2) {$Y$};
+    
+            \small
+            \draw [thick,->] (1.5,1) to[bend left=20] node[above]{$f$} (4.5,1);
+            \draw [semithick,->] (0.2,0.1) to[bend left=5] (5.8,0.1);
+            \draw [thick,->] (5.4,-0.5) to[bend left=20] node[below]{"$f^{-1}$"} (0.8,-0.5);
+        \end{tikzpicture}
+        \caption{Set theoretic definition of continuity.}
+        \label{fig:continuityOpenSets}
+    \end{figure}
+    \begin{itemize}
+        \item This works in a general topological space, too, not just a metric space.
+        \item Note that $f^{-1}(V)$ is not a function defined on $V$; it's a specifically defined set $\{x\in X:f(x)\in V\}$.
+        \item $f$ being continuous means that open circular neighborhood of a point $x$ in the domain maps to an area of the range encompassed by a circular neighborhood of $f(x)$.
+        \item The other condition means that every open set surrounding $f(x)$ maps to an open set of the domain surrounding $x$. Indeed, going off of this definition, if an open set containing $f(x)$ maps to an open set containing $x$, then we can choose a neighborhood subset of the open set surrounding $x$ and know that it will map into a neighborhood subset of the open set surrounding $f(x)$. 
+    \end{itemize}
+    \item Corollary: $f:X\to Y$ continuous iff $f^{-1}(C)$ closed for every $C\subset Y$ closed.
+    \begin{itemize}
+        \item We use the property that $f^{-1}(X\subset C)=X\subset f^{-1}(C)$.
+    \end{itemize}
+    \item Let $f_1:X_1\to Y_1$ and $f_2:X_2\to Y_2$. Suppose $f:X_1\times X_2\to Y_1\times Y_2$ is defined by $f(x_1,x_2)=(f_1(x_1),f_2(x_2))$. Then $f$ is continuous iff $f_1,f_2$ are continuous, under appropriately defined metrics.
+    \item Continuity and compactness.
+    \item Theorem: $f:X\to Y$ continuous and $X$ compact imply $f(X)$ compact.
+    \begin{itemize}
+        \item Let $\{V_\alpha\}$ be an open cover of $f(X)$.
+        \item Then $\{f^{-1}(V_\alpha)\}$ is an open cover of $X$..
+        \item Choose a finite subcover of $\{f^{-1}(V_\alpha)\}$. Then the corresponding $V_\alpha$'s form a finite subcover of $f(X)$.
+    \end{itemize}
+    \item If $f:X\to\R^k$ is continuous and $X$ is compact, $f(X)$ is compact and closed/bounded.
+    \item If $f:X\to\R$ is continuous and $X$ is compact, then $M=\sup_{x\in X}|f(x)|=|f(\bar{x})|$ and $m=\inf{x\in X}|f(x)|=|f(\underline{x})|$ where $\bar{x},\underline{x}\in X$.
+    \begin{itemize}
+        \item There is a subsequence $\{x_m\}$ such that $|f(x_m)|\to M$. Since $f(X)$ is compact, the limit of this sequence is in $f(X)$.
+    \end{itemize}
+    \item If $f:X\to Y$ is continuous, bijective, and $X,Y$ are compact, $f^{-1}:Y\to X$ is continuous.
+    \item Uniform continuity.
+    \item Examples.
+    \begin{itemize}
+        \item Linear functions are uniformly continuous.
+        \item $f:(0,1)\to\R$ defined by $f(x)=x^2$ is uniformly continuous.
+        \item $f:(a,\infty)\to\R$ defined by $f(x)=x^2$ is \emph{not} uniformly continuous.
+        \item $f:(a,\infty)\to\R$ defined by $f(x)=1/x$ is uniformly continuous if $a>0$.
+        \item $f:(0,\infty)\to\R$ defined by $f(x)=1/x$ is \emph{not} uniformly continuous.
+    \end{itemize}
+    \item \textbf{Lipschitz continuous} (function $f$ on $E\subset X$): A function such that $|f(x)-f(y)|\leq L|x-y|$ for each $x,y\in E$.
+    \item Theorem: $f:X\to Y$ continuous and $X$ compact implies $f$ is uniformly continuous.
+    \begin{itemize}
+        \item Fix $\epsilon>0$. There exists $\delta=\delta(p)>0$.
+        \item Def. of continuity: $q\in N_{\delta(p)}(p)$ implies $f(q)\in N_\epsilon(f(p))$.
+        \item $\{N_{\delta(p)/2}(p):p\in X\}$ is an open cover of $X$. Choose a finite subcover. Let $\delta=\min(\delta(p_1)/2,\dots,\delta(p_n)/2)$.
+        \item ...
+    \end{itemize}
 \end{itemize}
 
 
@@ -24,7 +126,7 @@
 \section{Chapter 4: Continuity}
 \emph{From \textcite{bib:Rudin}.}
 \begin{itemize}
-    \item \textbf{Limit} (of $f$ at $p$): The point $q\in Y$, if it exists, such that for every $\epsilon>0$, there exists a $\delta>0$ such that $d_Y(f(x),q)<\epsilon$ for all points $x\in E$ for which $0<d_X(x,p)<\delta$, where $(X,d_X),(Y,d_Y)$ are metric spaces, $E\subset X$, $f:E\to Y$, and $p\in E'$. \emph{Denoted by} $\bm{\lim_{x\to p}f(x)}$.
+    \item \marginnote{11/8:}\textbf{Limit} (of $f$ at $p$): The point $q\in Y$, if it exists, such that for every $\epsilon>0$, there exists a $\delta>0$ such that $d_Y(f(x),q)<\epsilon$ for all points $x\in E$ for which $0<d_X(x,p)<\delta$, where $(X,d_X),(Y,d_Y)$ are metric spaces, $E\subset X$, $f:E\to Y$, and $p\in E'$. \emph{Denoted by} $\bm{\lim_{x\to p}f(x)}$.
     \begin{itemize}
         \item Note that we do not require that $p\in E$; only that some elements of the domain $E$ approach $p$.
         \item We also write $f(x)\to q$ as $x\to p$.
