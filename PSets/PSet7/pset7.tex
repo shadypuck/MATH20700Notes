@@ -15,16 +15,122 @@
 \begin{enumerate}[label={\textbf{\arabic*.}}]
     \setcounter{enumi}{15}
     \item \marginnote{11/15:}Regard $\Q$, the set of all rational numbers, as a metric space, with $d(p,q)=|p-q|$. Let $E$ be the set of all $p\in\Q$ such that $2<p^2<3$. Show that $E$ is closed and bounded in $\Q$, but that $E$ is not compact. Is $E$ open in $\Q$?
+    \begin{proof}
+        In this proof, we treat the set of all $x\in E$ such that $x>0$ and $x<0$ separately, knowing that the union of two (a finite number of) closed, bounded, or compact sets will be closed, bounded, or compact. We will directly treat the $x>0$ case; the proof of the other case is symmetric (this means that when we way "$E$" herein, we are referring to the subset of $E$ containing only the positive elements of $E$). Let's begin.\par\smallskip
+        Suppose for the sake of contradiction that there exists $x\in E'$ such that $x\notin E$. Since $x\notin E$, $2\not<x^2\not<3$, i.e., $x^2\leq 2$ or $x^2\geq 3$. Moreover, since $x$ is rational and no rational number has square equal to 2 or 3, $x^2<2$ or $x^2>3$. We now divide into two cases. Suppose $x^2<2$. Let $y=2(x+1)/(x+2)$. Then $y^2-2=2(x^2-2)/(x+2)^2<0$ since $x^2-2<0$, so $y^2<2$. It follows that $y$ is a lower bound on $E$ since for any $z\in E$, $y^2<2<z^2$ so $y<z$. Now consider the neighborhood $N_r(x)$ where $r=d(y,x)$. Since $y>x$, $y$ is clearly an upper bound on this neighborhood as defined (if $z>y$, then $d(z,x)>d(y,x)$). Thus, if $p\in E$, $p^2>2>y^2$ so $p>y$, so $p$ cannot be $<y$ as would be necessary for it to be in $N_r(x)$. Thus, having found a neighborhood of $x$ having empty intersection with $E$, we know that $x\notin E'$, a contradiction. Now suppose $x^2>3$. Then consider $y=3(x+1)/(x+3)$ and follow through a symmetric argument to a contradiction.\par
+        To prove that $E$ is bounded, let $x=0$ and $y=2$. Suppose $p\in E$. Then $x^2=0<p^2<3<4=y^2$. It follows that $x<p<y$. Thus, $E$ is bounded below by $x=0$ and bounded above by $y=2$.\par
+        Define an open cover $\{G_p\}$ of $E$ by
+        \begin{equation*}
+            G_p = \left( \frac{2(p+1)}{p+2},\frac{3(p+1)}{p+3} \right)
+        \end{equation*}
+        for each $p\in E$. Clearly each $G_p$ is open as a segment and $p\in G_p$ for each $p\in E$, so $\{G_p\}$ is an open cover of $E$. Now suppose that $\{G_{p_n}\}$ is a finite open cover of $E$. Choose $p=\max p_n$. Then $2<3(p+1)/(p+3)<3$, but $3(p+1)/(p+3)\notin G_{p_n}$ for any $n$, a contradiction. Thus, $G$ is not compact, as desired.\par
+        $E$ is open in $\Q$ since for any point $p\in E$, we may choose the segment $G_p\subset E$ containing $p$ and then choose a neighborhood subset of $G_p$.
+    \end{proof}
     \item Let $E$ be the set of all $x\in[0,1]$ whose decimal expansion contains only the digits 4 and 7. Is $E$ countable? Is $E$ dense in $[0,1]$? Is $E$ compact? Is $E$ perfect?
+    \begin{proof}
+        No, $E$ is not countable. Suppose for the sake of contradiction that $E$ is countable. Then every infinite subset $F\subset E$ is countable. Let $F=\{x_1,x_2,\dots\}$ be such a subset. Define $x\in E$ by the rule that if the $n^\text{th}$ digit in the decimal expansion of $x_n$ is 4, we let the $n^\text{th}$ digit in the decimal expansion of $x$ be 7 (and vice versa). Thus, $x$ differs from every element of $F$ by at least one decimal point, so $x\notin F$. It follows that every countable subset of $E$ is a proper subset of $E$, meaning that $E$ itself must be uncountable (for otherwise we would have $E\subsetneq E$).\par
+        No, $E$ is not dense in $[0,1]$. Suppose for the sake of contradiction that $E$ is dense in $[0,1]$. Then $\inf E=0$. It follows that there exists $x\in E$ such that $0\leq x<0.1$. But since $x<0.1$, the first digit in its decimal expansion is necessarily 0 (i.e., not 4 or 7), contradicting the hypothesis that $x\in E$.\par
+        Yes, $E$ is compact. To prove this, we will show that $E$ is closed and then invoke Theorem 2.35 since $E\subset[0,1]$ compact. Suppose for the sake of contradiction that there exists a $p\in E'$ such that $p\notin E$. Let
+        \begin{equation*}
+            p = \sum_{k=1}^\infty\frac{n_k}{10^k}
+        \end{equation*}
+        be the decimal expansion of $p$ (we need not consider a $n_0$ term since $p\in[0,1]$ if $p$ is a limit point of $E$). Then since $p\notin E$, there exists an $n_k\neq 4,7$. Let $N$ be the smallest positive integer such that $n_N\neq 4,7$. Now let $q\in E$ be arbitrary, with decimal expansion
+        \begin{equation*}
+            q = \sum_{k=1}^\infty\frac{m_k}{10^k}
+        \end{equation*}
+        It follows that
+        \begin{align*}
+            |q-p| &= \left| \sum_{k=N}^\infty\frac{m_k}{10^k}-\sum_{k=N}^\infty\frac{n_k}{10^k} \right|
+            \intertext{We sum from $N$ because the first $N-1$ equal terms cancel.}
+            &= \left| \sum_{k=N}^\infty\frac{1}{10^k}(m_k-n_k) \right|\\
+            &= \left| \frac{1}{10^N}(m_N-n_N)-\sum_{k=N+1}^\infty\frac{1}{10^k}(n_k-m_k) \right|\\
+            &\geq \left| \left| \frac{1}{10^N}(m_N-n_N) \right|-\left| \sum_{k=N+1}^\infty\frac{1}{10^k}(m_k-n_k) \right| \right|\\
+            &= \left| \frac{1}{10^N}(m_N-n_N) \right|-\left| \sum_{k=N+1}^\infty\frac{1}{10^k}(m_k-n_k) \right|
+            \intertext{The above equality holds since the nonzero difference of the $N^\text{th}$ terms of the decimal expansion will necessarily be greater than the sum of the rest of the terms, each of which is bounded above by $7/10^k$ (given in the case that $m_k=7$ and $n_k=0$).}
+            &= \frac{1}{10^N}|m_N-n_N|-\left| \sum_{k=N+1}^\infty\frac{1}{10^k}(m_k-n_k) \right|\\
+            &\geq \frac{1}{10^N}(1)-\sum_{k=N+1}^\infty\frac{1}{10^k}|m_k-n_k|\\
+            &\geq \frac{1}{10^N}-\sum_{k=N+1}^\infty\frac{1}{10^k}(7)\\
+            &= \frac{1}{10^N}-\frac{7}{10^{N+1}}\sum_{k=0}^\infty\left( \frac{1}{10} \right)^k\\
+            &= \frac{1}{10^N}-\frac{7}{10^{N+1}}\cdot\frac{1}{1-1/10}\tag*{Theorem 3.26}\\
+            &= \frac{2}{9\cdot 10^N}
+        \end{align*}
+        Thus, $2/(9\cdot 10^N)$ is a lower bound on $|q-p|$. However, since $p\in E'$, we can choose $N_{1/10^N}(p)$ and know that there exists a $q\in E$ such that $q\in N_{1/10^N}(p)$. But then this $q$ gives
+        \begin{equation*}
+            |q-p| < \frac{1}{10^N} < \frac{2}{9\cdot 10^N} \leq |q-p|
+        \end{equation*}
+        a contradiction.\par
+        Yes, $E$ is perfect. To prove this, it will suffice to show that every $x\in E$ is a limit point of $E$. Let $p\in E$ be arbitrary, and let $N_r(p)$ be any neighborhood of $p$. By the Archimedean property, find an $m\in\N$ such that $mr>1$. Now round $m$ up to the next multiple of 10, i.e., find $n$ such that $10^n\geq m$. It follows that $1/10^n<r$. Let $q$ be the number with decimal expansion identical to $p$ except at the $(n+1)^\text{th}$ slot, where whatever's there (4 or 7) is flipped (to 7 or 4). It follows that
+        \begin{equation*}
+            |q-p| = \frac{7-4}{10^{n+1}}
+            < \frac{1}{10^n}
+            < r
+        \end{equation*}
+        so $q\neq p$ satisfies $q\in N_r(p)$, as desired.
+    \end{proof}
     \item Is there a nonempty perfect set in $\R^1$ which contains no rational number?
+    \begin{proof}
+        Yes.\par
+        Consider the set $E$ from Exercise 2.17. Define $F$ by
+        \begin{equation*}
+            F = \{x+0.101001000100001...:x\in E\}
+        \end{equation*}
+        Since $E$ is nonempty and perfect, $F$ (as nothing but a rigid translation of $E$) will also be nonempty and perfect. Additionally, every element of $F$ is irrational since it will be a sequence of 4's and 7's interrupted by 5's and 8's at nonrepeating intervals.
+    \end{proof}
     \item 
     \begin{enumerate}
         \item If $A$ and $B$ are disjoint closed sets in some metric space $X$, prove that they are separated.
+        \begin{proof}
+            Since $A,B$ are closed, consecutive applications of Theorem 2.27b imply that $A=\bar{A}$ and $B=\bar{B}$. Therefore, since $A,B$ are disjoint,
+            \begin{align*}
+                \emptyset &= A\cap B = A\cap\bar{B}&
+                \emptyset &= A\cap B = \bar{A}\cap B
+            \end{align*}
+            as desired.
+        \end{proof}
         \item Prove the same for disjoint open sets.
+        \begin{proof}
+            Let $A,B$ be disjoint open sets. Suppose for the sake of contradiction that $\bar{A}\cap B\neq\emptyset$. Then there exists $x\in(A\cup A')\cap B=A'\cap B$. Since $x\in B$ open, $x$ is an interior point of $B$, so there exists a neighborhood $N_r(x)\subset B$. But since $N_r(x)$ is a neighborhood of $x$ and $x\in A'$, $N_r(x)\cap(A\setminus\{x\})\neq\emptyset$, so there exists a point $y\in A$ such that $y\in N_r(x)$. It follows since $N_r(x)\subset B$ that $y\in B$. Therefore, since $y\in A$ and $y\in B$, $y\in A\cap B\neq\emptyset$, a contradiction.
+        \end{proof}
         \item Fix $p\in X$ and $\delta>0$. Define $A$ to be the set of all $q\in X$ for which $d(p,q)<\delta$, and define $B$ similarly with $>$ in place of $<$. Prove that $A$ and $B$ are separated.
+        \begin{proof}
+            We have by the definition of $A$ that $A=N_\delta(p)$. Thus, Theorem 2.19 implies that $A$ is open. Additionally, $B^c=\{q\in X:d(p,q)\leq \delta\}$ is closed. Thus, Theorem 2.23 implies that $B$ is open. Applying part (b) therefore gives the desired result.
+        \end{proof}
         \item Prove that every connected metric space with at least two points is uncountable. (Hint: Use (c).)
+        \begin{proof}
+            Let $X$ be a connected metric space containing two distinct points $x,y$. Suppose for the sake of contradiction that $X$ is at most countable. Consider the set
+            \begin{equation*}
+                \Delta = \{d(p,x):p\in X\}
+            \end{equation*}
+            Clearly $\tilde{d}:X\to\Delta$ defined by $\tilde{d}(x)=d(p,x)$ is a surjection, so $\Delta$ is an at most countable collection of nonnegative real numbers. It follows by an argument analogous to that used in Problem 2.4 that $\R^+\setminus\Delta$ is uncountable. Thus, we may choose a $\delta\in\R^+\setminus\Delta$. Clearly $\delta>0$ and since $\delta\notin\Delta$, there exists no $p\in X$ such that $d(p,x)=\delta$. Consequently, we may define $A$ to be the set of all $p\in X$ for which $d(p,x)<\delta$ and define $B$ similarly with $>$ in place of $<$ and know that $A\cup B=X$. Additionally, it follows by (c) that $A,B$ are separated, so $X$ is not connected, a contradiction. Therefore, $X$ is uncountable, as desired.
+        \end{proof}
     \end{enumerate}
     \item Are closures and interiors of connected sets always connected? (Hint: Look at subsets of $\R^2$.)
+    \begin{proof}
+        Yes, the closures of connected sets are always connected.\par
+        Let $X$ be a connected set. Suppose for the sake of contradiction that $\bar{X}$ is disconnected. Then there exist separated sets $A,B$ such that $A\cup B=\bar{X}$. We now seek to construct from $A,B$ separated sets whose union is equal to $X$. Choose $A\setminus(X'\setminus X),B\setminus(X'\setminus X)$. We know that the union of these two sets is equal to $X$ since
+        \begin{align*}
+            A\setminus(X'\setminus X)\cup B\setminus(X'\setminus X) &= (A\cup B)\setminus(X'\setminus X)\\
+            &= \bar{X}\setminus(X'\setminus X)\\
+            &= (X\cup X')\setminus(X'\setminus X)\\
+            &= X
+        \end{align*}
+        We now seek to prove that $A\setminus(X'\setminus X),B\setminus(X'\setminus X)$ are nonempty. Suppose first for the sake of contradiction that $A\setminus(X'\setminus X)=\emptyset$. It follows that
+        \begin{align*}
+            A\cup B &= \bar{X}\\
+            A\cup B &= X\cup X'\\
+            (A\cup B)\setminus(X'\setminus X) &= (X\cup X')\setminus(X'\setminus X)\\
+            (A\setminus(X'\setminus X))\cup(B\setminus(X'\setminus X)) &= X\\
+            B\setminus(X'\setminus X) &= X\\
+            B &\supset X
+        \end{align*}
+        Consequently, $\bar{B}\supset\bar{X}$. But then since $A\subset\bar{X}$ and $A\cap\bar{B}=\emptyset$, $A=\emptyset$, a contradiction. A symmetric argument proves that $B\setminus(X'\setminus X)$ is nonempty. Lastly, we have that
+        \begin{equation*}
+            (A\setminus(X'\setminus X))\cap\overline{B\setminus(X'\setminus X)} \subset A\cap\bar{B} = \emptyset
+        \end{equation*}
+        and symmetrically for the other requirement, so $X$ is disconnected, a contradiction.\par\smallskip
+        Interiors of connected sets are not always connected.\par
+        Consider the set $X=\overline{N_1(1,0)}\cup\overline{N_1(-1,0)}\subset\R^2$. $X$ is connected since both closed ball components are connected and the two components have nonempty intersection. Moreover, $X^\circ=N_1(1,0)\cup N_1(-1,0)$ is disconnected: Choose $A=N_1(1,0)$ and $B=N_1(-1,0)$. Then $A,B$ are nonempty. Additionally, $A\cap\bar{B}=\emptyset$ since every point of $A$ has $x$-component greater than zero and every point of $\bar{B}$ has $x$ component less than or equal to zero.
+    \end{proof}
     \item Let $A$ and $B$ be separated subsets of some $\R^k$, suppose $\ab\in A$ and $\bb\in B$, and define
     \begin{equation*}
         \pp(t) = (1-t)\ab+t\bb
@@ -32,18 +138,142 @@
     for all $t\in\R^1$. Let $A_0=\pp^{-1}(A)$, $B_0=\pp^{-1}(B)$.
     \begin{enumerate}
         \item Prove that $A_0$ and $B_0$ are separated subsets of $\R^1$.
-        \item Prove that there exists $t_0\in(0,1)$ such that $p(t_0)\notin A\cup B$.
+        \begin{proof}
+            To prove that $A_0,B_0$ are separated subsets of $\R^1$, it will suffice to show that $A_0\cap\bar{B}_0=\emptyset$ and $\bar{A}_0\cap B=\emptyset$. To begin, suppose for the sake of contradiction that $A_0\cap\bar{B}_0\neq\emptyset$. Then there exists $t$ such that $t\in A_0$ and $t\in\bar{B}_0$. Since $t\in A_0$, $\pp(t)\in A$. We now divide into two cases ($t\in B_0$ and $t\in B_0'$). If $t\in B_0$, then $\pp(t)\in B$. But then
+            \begin{equation*}
+                A\cap\bar{B} \supset A\cap B
+                \supset \{\pp(t)\}
+                \neq \emptyset
+            \end{equation*}
+            so $A$ and $B$ are not separated, a contradiction. On the other hand, if $t\in B_0'$, we can show that $\pp(t)\in B'$: Let $N_r[\pp(t)]$ be an arbitrary neighborhood of $\pp(t)$. Since $t\in B_0'$, we know that $N_{r/\norm{\ab-\bb}}(t)\cap(B_0\setminus\{t\})\neq\emptyset$ (note that $\norm{\ab-\bb}\neq 0$ since $\ab\neq\bb$ as members of separated [hence disjoint] sets). Thus, choose $s\in N_{r/\norm{\ab-\bb}}(t)\cap(B_0\setminus\{t\})$. Consequently, $|s-t|<r/\norm{\ab-\bb}$, $s\in B_0$, and $s\neq t$. It follows from the first condition that
+            \begin{align*}
+                \norm{\pp(t)-\pp(s)} &= \norm{[(1-t)\ab+t\bb]-[(1-s)\ab+s\bb]}\\
+                &= \norm{(s-t)\ab-(s-t)\bb}\\
+                &= |s-t|\cdot\norm{\ab-\bb}\\
+                &< \frac{r}{\norm{\ab-\bb}}\cdot\norm{\ab-\bb}\\
+                &= r
+            \end{align*}
+            so $\pp(s)\in N_r[\pp(t)]$. It follows from the second condition that $\pp(s)\in B$. It follows from the third condition that $\pp(s)\neq\pp(t)$. These last three results combined imply that $\pp(s)\in N_r[\pp(t)]\cap(B\setminus\{\pp(t)\})$. Therefore, $\pp(t)\in B'$, as desired. This combined with the fact that $\pp(t)\in A$ implies that
+            \begin{equation*}
+                A\cap\bar{B} \supset A\cap B'
+                \supset \{\pp(t)\}
+                \neq \emptyset
+            \end{equation*}
+            so $A$ and $B$ are not separated, a contradiction. The proof that $\bar{A}_0\cap B=\emptyset$ is symmetric.
+        \end{proof}
+        \item Prove that there exists $t_0\in(0,1)$ such that $\pp(t_0)\notin A\cup B$.
+        \begin{proof}
+            Let $\tilde{A}_0=A_0\cap(0,1)$ and let $\tilde{B}_0=B_0\cap(0,1)$. Since $A_0,B_0$ are separated by part (a), the subsets $\tilde{A}_0,\tilde{B}_0$ of $A_0,B_0$, respectively, are separated, too. This means that $\tilde{A}_0\cup\tilde{B}_0$ is disconnected. It follows by Theorem 2.47 that there exist $x,y,t_0$ such that $x,y\in\tilde{A}_0\cup\tilde{B}_0$, $x<t_0<y$, and $t_0\notin\tilde{A}_0\cup\tilde{B}_0$. It follows from the first condition that $0<x<1$ and $0<y<1$. This combined with the second condition implies that $0<x<t_0<y<1$. This combined with the the third condition implies that $t_0\notin A_0\cup B_0$ (for otherwise, we would have $t_0\in(A_0\cup B_0)\cap(0,1)=\tilde{A}_0\cup\tilde{B}_0$). Therefore, from the last two results combined and the definitions of $A_0,B_0$, we have that $t_0\in(0,1)$ and that $\pp(t_0)\notin A\cup B$, as desired.
+        \end{proof}
         \item Prove that every convex subset of $\R^k$ is connected.
+        \begin{proof}
+            Let $E$ be a convex subset of $\R^k$. Then $\lambda\x+(1-\lambda)\y\in E$ for all $\x,\y\in E$ and $0<\lambda<1$. Now suppose for the sake of contradiction that $E$ is disconnected. Then $E$ is the union of two nonempty separated subsets $A,B$ of $\R^k$. Since $A,B$ are nonempty, pick $\ab\in A$ and $\bb\in B$. It follows by part (b) that there exists a $0<\lambda<1$ such that $\lambda\ab+(1-\lambda)\bb\notin A\cup B=E$, a contradiction.
+        \end{proof}
     \end{enumerate}
     \item A metric space is called \textbf{separable} if it contains a countable dense subset. Show that $\R^k$ is separable. (Hint: Consider the set of points which only have rational coordinates.)
+    \begin{proof}
+        By the Corollary to Theorem 2.13, $\Q$ is countable. By Theorem 2.13,
+        \begin{equation*}
+            \Q^k = \underbrace{\Q\times\cdots\times\Q}_{k\text{ times}}
+        \end{equation*}
+        where "$\times$" is the Cartesian product is countable.\par
+        Now all we need to do is show that $\Q^k$ is dense in $\R^k$. To do so, it will suffice to show that every point of $\R^k$ is a limit point of $\Q^k$ or a point of $\Q^k$, itself. Let $\x\in\R^k$ be arbitrary. Let $N_r(\x)$ be an arbitrary neighborhood of $\x$. Consider the set $K=\prod_{i=1}^k[x_i-r/k,x_i+r/k]$. With the generalized Pythagorean theorem, we can show that $K\subset N_r(\x)$. Additionally, since we can find a rational number between any two real numbers, we can always find a rational $q_i$ between $x_i$ and $x_i+r/k$. Thus, $\qb=(q_1,\dots,q_k)\in\Q^k$, $\qb\in K$ (since each $q_i\in[x_i-r/k,x_i+r/k]$), and $\qb\neq\x$ (since each $q_i>x_i$). It follows that $\qb\in N_r(\x)\cap(\Q^k\setminus\{\x\})$, so $\x$ is a limit point of $\Q^k$, as desired.
+    \end{proof}
     \item A collection $\{V_\alpha\}$ of open subsets of $X$ is said to be a \textbf{base} for $X$ if the following is true: For every $x\in X$ and every open set $G\subset X$ such that $x\in G$, we have $x\in V_\alpha\subset G$ for some $\alpha$. In other words, every open set in $X$ is the union of a subcollection of $\{V_\alpha\}$. Prove that every separable metric space has a \emph{countable} base. (Hint: Take all neighborhoods with rational radius and center in some countable dense subset of $X$.)
+    \begin{proof}
+        Let $X$ be a separable metric space, and let $E$ be its countable dense subset. Consider the collection $\{N_q(e)\}_{e\in E,\ q\in\Q^+}$. Since $E$ is countable by definition and the infinite $\Q^+\subset\Q$ is countable by Theorem 2.8, Theorem 2.13 implies that $\Q^+\times E$ is countable. This combined with the fact that we can define a bijection $f:\{N_q(e)\}_{e\in E,\ q\in\Q^+}\to\Q^+\times E$ by
+        \begin{equation*}
+            f[N_q(e)] = (q,e)
+        \end{equation*}
+        implies that $\{N_q(e)\}_{e\in E,\ q\in\Q^+}$ is countable.\par
+        Now all we need to do is show that $\{N_q(e)\}_{e\in E,\ q\in\Q^+}$ is a base of $X$. First off, $\{N_q(e)\}_{e\in E,\ q\in\Q^+}$ is a collection of open subsets of $X$ by the definition of each neighborhood and the fact that neighborhoods are open (Theorem 2.19). Additionally, let $x\in X$ be arbitrary and let $G\subset X$ be an arbitrary open set containing $x$. Since $G$ is open, there exists a neighborhood $N_r(x)$ such that $N_r(x)\subset G$. Since $E$ is dense in $X$, $x$ is a limit point of $E$. Thus, there exists $e\in E$ such that $e\in N_{r/3}(x)$. Thus, choose $q\in\Q^+$ such that $r/3<q<2r/3$. It follows that
+        \begin{equation*}
+            x\in N_{r/3}(e)
+            \subset N_q(e)
+            \subset N_{2r/3}(e)
+            \subset N_r(x)
+            \subset G
+        \end{equation*}
+        as desired.
+    \end{proof}
     \item Let $X$ be a metric space in which every infinite subset has a limit point. Prove that $X$ is separable. (Hint: Fix $\delta>0$ and pick $x_1\in X$. Having chosen $x_1,\dots,x_j\in X$, choose $x_{j+1}\in X$, if possible, so that $d(x_i,x_{j+1})\geq\delta$ for each $i=1,\dots,j$. Show that this process must stop after a finite number of steps, and that $X$ can therefore be covered by finitely many neighborhoods of radius $\delta$. Take $\delta=1/n$ ($n=1,2,3,\dots$) and consider the centers of the corresponding neighborhoods.)
+    \begin{proof}
+        Let $\delta>0$ be arbitrary. Choose $x_1\in X$. Now suppose using strong induction that we have chosen $x_1,\dots,x_j\in X$. If there exists a point $x\in X$ such that $d(x,x_i)\geq\delta$ for each $i=1,\dots,j$, let $x_{j+1}=x$. If no such point exists, terminate the process.\par
+        First, we show that the process described above terminates after a finite number of steps. Suppose for the sake of contradiction that the set $E_\delta$ of all $x_i$ is infinite. By the criterion on $X$, $E_\delta$ must then have a limit point $x$. It follows that $N_{\delta/2}(x)$ contains an $x_i$ not equal to $x$. Similarly, it follows that $N_{d(x,x_i)}(x)$ contains an $x_j$ not equal to $x$ (note that by the choice of the second neighborhood, $x_i\neq x_j$ as well). But since $x_i,x_j\in N_{\delta/2}(x)$,
+        \begin{equation*}
+            d(x_i,x_j) \leq d(x_i,x)+d(x,x_j) < \frac{\delta}{2}+\frac{\delta}{2} = \delta
+        \end{equation*}
+        contradicting the fact that $d(x_i,x_j)\geq\delta$ by the way they were chosen. Therefore, the set $E_\delta$ of all $x_i$ is finite, so the process stops after a finite number of steps.\par
+        Second, we show that $\{N_\delta(x_i)\}_{x_i\in E_\delta}$ is a finite cover of $X$. Suppose for the sake of contradiction that there exists $x\in X$ such that $x\notin N_\delta(x_i)$ for any $x_i\in E_\delta$. Naturally it follows that $x\neq x_i$ for any $x_i\in E_\delta$. Additionally, we have that $d(x,x_i)\geq\delta$ for each $x_i\in E_\delta$. But then $x$ should have been picked as an element of $E_\delta$, a contradiction.\par
+        We now define the set
+        \begin{equation*}
+            E = \bigcup_{n=1}^\infty E_{1/n}
+        \end{equation*}
+        Since each $E_{1/n}$ is finite (i.e., at most countable), the Corollary to Theorem 2.12 implies that $E$ is at most countable. Additionally, since we may choose a different starting $x_1$ for each $E_{1/n}$, we can make $E$ strictly countable. We now seek to prove that $E$ is dense in $X$. Let $x\in X$ be arbitrary. If $x\in E$, we are done. If $x\notin E$, let $N_r(x)$ be an arbitrary neighborhood of $x$. By the Archimedean property, we may choose $1/n<r$ where $n\in\N$. We know from the above that $\{N_{1/n}(x_i)\}_{x_i\in E_{1/n}}$ is a cover of $X$, so there exists some $N_{1/n}(x_i)$ such that $x\in N_{1/n}(x_i)$. It follows that $x_i\in N_{1/n}(x)\subset N_r(x)$. This combined with the fact that $x_i\in E_{1/n}\subset E$ implies that $x$ is a limit point of $E$, as desired.
+    \end{proof}
     \item Prove that every compact metric space $K$ has a countable base, and that $K$ is therefore separable. (Hint: For every positive integer $n$, there are finitely many neighborhoods of radius $1/n$ whose union covers $K$.)
+    \begin{proof}
+        % Let $K$ be a compact metric space. Then by Theorem 2.37, every infinite subset of $K$ has a limit point. It follows by Exercise 2.24 that $K$ is separable, as desired. Furthermore, it follows by Exercise 2.23 that $K$ has a countable base, as desired.
+
+        Let $n\in\N$ be arbitrary. Consider the collection $\{N_{1/n}(x)\}_{x\in K}$. Since each neighborhood is open and each $x\in K$ is in at least $N_{1/n}(x)$, $\{N_{1/n}(x)\}_{x\in K}$ is an open cover of $K$. It follows since $K$ is compact that there exists a finite subcover $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$.\par
+        We now define the set
+        \begin{equation*}
+            V = \bigcup_{n=1}^\infty\{N_{1/n}(x_i)\}_{i=1}^{k_n}
+        \end{equation*}
+        Since each $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$ is finite (i.e., at most countable), the Corollary to Theorem 2.12 implies that $V$ is at most countable. Additionally, since the neighborhoods in each $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$ have a distinct radius, we can pick an element in each $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$ that is not in any other $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$. This combined with the last result implies that $K$ is strictly countable.\par
+        Moreover, we can show that $V$ is a base of $K$. As previously mentioned, each $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$ is a collection of open subsets of $K$, so $V$ overall is also a collection of open subsets of $K$. Additionally, let $x\in K$ be arbitrary and let $G\subset K$ be an arbitrary open set containing $x$. Since $G$ is open, there exists a neighborhood $N_r(x)$ such that $N_r(x)\subset G$. Using the Archimedean property, choose $1/n<r/2$. Since $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$ is a cover of $K$, we know that $x\in N_{1/n}(x_i)\in V$ for some $i$. It follows that
+        \begin{equation*}
+            x \in N_{1/n}(x_i)
+            \subset N_r(x)
+            \subset G
+        \end{equation*}
+        as desired.\par
+        Having established that $K$ has a countable base, we now seek to prove that $K$ is separable. Consider the set $E$ containing the centers of each neighborhood in $V$. Since $V$ is countable, $E$ is countable. To complete the proof, we will show that every $x\in K$ is either an element of $E$ or $E'$, proving that $E$ is dense in $K$. Let $x\in K$ be arbitrary. If $x\in E$, we are done. If $x\notin E$, let $N_r(x)$ be an arbitrary neighborhood of $x$. Use the Archimedean property to choose $1/n<r$. Since $\{N_{1/n}(x_i)\}_{i=1}^{k_n}$ covers $K$, $x\in N_{1/n}(x_i)$ for some $i$. Thus, $x_i\in N_{1/n}(x)\subset N_r(x)$ and $x_i\in E$ by definition, as desired.
+    \end{proof}
     \item Let $X$ be a metric space in which every infinite subset has a limit point. Prove that $X$ is compact. (Hint: By Exercises 2.23 and 2.24, $X$ has a countable base. It follows that every open cover of $X$ has a \emph{countable} subcover $\{G_n\}_{n\in\N}$. If no finite subcollection of $\{G_n\}$ covers $X$, then the complement $F_n$ of $\bigcup_1^nG_i$ is nonempty for each $n$, but $\bigcap F_n$ is empty. If $E$ is a set which contains a point from each $F_n$, consider a limit point of $E$, and obtain a contradiction.)
+    \begin{proof}
+        By Exercise 2.24, $X$ is separable. It follows by Exercise 2.23 that $X$ has a countable base.\par
+        To prove that $X$ is compact, it will suffice to show that every open cover of $X$ has a finite subcover. Consider an arbitrary open cover of $X$. Since $X$ has a countable base, each element of this open cover is the union of an at most countable number of sets in the base. Thus, we may pick for each element of the base an element of the open cover of which it is a subset, and let this collection $\{G_n\}$ of elements of the open cover be a countable subcover of the open cover.\par
+        Now suppose for the sake of contradiction that $\{G_n\}$ is strictly countable and that no finite subset of it covers $X$. Then each $F_n=(\bigcup_1^nG_i)^c$ is nonempty (for otherwise the finite subset $\{G_1,\dots,G_n\}$ would cover $X$). Now let $E$ be a set containing a distinct point from each $F_n$ (since each $F_n$ is nonempty, we can choose \emph{a} point from each $F_n$, but moreover we can choose a \emph{distinct} point from each $F_n$ for otherwise, some $F_n$ would be finite and we could choose a finite subcover of $\{G_n\}$ consisting of all sets picked up until a finite $F_n$ is generated plus one set for each remaining point in $F_n$). As an infinite set, $E$ has a limit point $x$ by hypothesis. As an element of $X$, $x\in G_i$ for some $G_i\in\{G_n\}$. Thus, there exists $N_r(x)\subset G_i$. But since $x$ is a limit point of $E$, there exists some point $e\in E$, not equal to $x$, in $N_r(x)$. Since $e\in G_i$, $e\notin F_j$ for $j\geq i$. Thus, $e\in F_j$ for some $j<i$. But since there are only finitely many $F_j$ with $j<i$, there are only finitely many (at most $i-1$) $e\in N_r(x)$, contradicting Theorem 2.20's assertion that $N_r(x)$ contains infinitely many points of $E$.
+    \end{proof}
     \item Define a point $p$ in a metric space $X$ to be a \textbf{condensation point} of a set $E\subset X$ if every neighborhood of $p$ contains uncountably many points of $E$. Suppose $E\subset\R^k$ is uncountable, and let $P$ be the set of all condensation points of $E$. Prove that $P$ is perfect and that at most countably many points of $E$ are not in $P$. In other words, show that $P^c\cap E$ is at most countable. (Hint: Let $\{V_n\}$ be a countable base of $\R^k$, let $W$ be the union of those $V_n$ for which $E\cap V_n$ is at most countable, and show that $P=W^c$.)
+    \begin{proof}
+        % $W$ is open implies $P$ is closed.
+
+        % To prove that $P$ is perfect, it will suffice to show that $P$ is closed and that every point of $P$ is a limit point of $P$.
+
+        By Exercise 2.22, $\R^k$ is separable. Thus, by Exercise 2.23, $\R^k$ has a countable base $\{V_n\}$. Let $W$ be the union of all $V_n$ for which $E\cap V_n$ is at most countable. By the Corollary to Theorem 2.12, $W$ is at most countable. Additionally, by Theorem 2.24, $W$ is open.\par
+        We now seek to show that $P=W^c$. Let $x\in P$ be arbitrary. Suppose for the sake of contradiction that $x\in W$. Then $x\in V_n$ for some $n$ where $V_n$ is open. It follows that there exists $N_r(x)\subset V_n$. Since $x$ is a condensation point of $E$, $N_r(x)$ contains uncountably many points of $E$. But this contradicts our hypothesis that $V_n\cap E$ is at most countable. Therefore, $x\in W^c$. Now suppose that $x\in W^c$. Let $N_r(x)$ be an arbitrary neighborhood of $x$. As an open set containing $x$, there exists some $V_n$ in the countable base such that $x\in V_n\subset N_r(x)$. Since $x\in W^c$, $x$ is not in any $V_i$ for which $E\cap V_n=i$ is at most countable, i.e., $V_n\cap E$ must be uncountable. It follows since $V_n\subset N_r(x)$ that $N_r(x)$ contains uncountably many points of $E$, meaning that $x\in P$, as desired.\par
+        Having shown that $P=W^c$, we know that $W=P^c$. Thus, since $W$ is at most countable, $P^c\cap E=W\cap E$ is at most countable, as desired.
+        Lastly, having show that $P=W^c$ where $W$ is open, we have by Theorem 2.23 that $P$ is closed. Additionally, we can show that every $x\in P$ is a limit point of $P$. Let $x\in P$ be arbitrary, and let $N_r(x)$ be arbitrary. Since $x$ is a condensation point of $E$, $N_r(x)\cap E$ is uncountable. It follows by the above that the set $\tilde{P}$ of all condensation points of $N_r(x)\cap E$ contains all but an at most countable number of points of $N_r(x)\cap E$, i.e., contains uncountably many points of $E$. Since $\tilde{P}\subset P$, there exist an element (indeed, uncountably many elements) of $P$ in $N_r(x)$, as desired. Therefore, $P$ is perfect, as desired.
+    \end{proof}
     \item Prove that every closed set in a separable metric space is the union of a (possibly empty) perfect set and a set which is at most countable. Corollary: Every countable closed set in $\R^k$ has isolated points. (Hint: Use Exercise 2.27.)
+    \begin{proof}
+        Let $E$ be a closed subset of a separable metric space $X$. If $E$ is at most countable, then $E=\emptyset\cup E$ is the union of an empty perfect set and an at most countable set. If $E$ is uncountable, then since $X$ is separable, Exercise 2.23 asserts that $X$ has a countable base. Additionally, since $E$ is closed, the set $P$ of all condensation points of $E$ is a subset of $E$. Thus, Exercise 2.27 implies that $E=P\cup(P^c\cap E)$ is the union of a perfect set and a set which is at most countable, as desired.
+    \end{proof}
     \item Prove that every open set in $\R^1$ is the union of an at most countable collection of disjoint segments (Hint: Use Exercise 22.)
+    \begin{proof}
+        Let $E$ be an arbitrary open subset of $\R^1$. By Exercise 2.22, $\R^1$ is separable. Thus, it has a countable dense subset which we may call $K$. Consider $K\cap E$. Since $K$ is countable, $K\cap E$ is at most countable. In particular, since $E$ is open in $\R^1$, $K\cap E$ is strictly countable. Thus, let $K\cap E=\{x_1,x_2,\dots\}$. To $x_1\in E$, assign the longest segment $(a_1,b_1)$ such that $x_1\in(a_1,b_1)\subset E$. Now if possible, choose $x_i$ such that $x_i\notin(a_1,b_1)$ and $x_j\notin(a_1,b_1)$ implies $j\geq i$. To this $x_i$, assign the longest segment $(a_i,b_i)$ such that $x_i\in(a_i,b_i)\subset E$.\par
+        Continuing on in this fashion forever will clearly yield a set of segments whose union is $E$ (since $K$ is dense in $\R^1$). From this set of segments there exists an obvious injection into $K$ countable, so this set of segments is at most countable. Additionally, by the construction, every $(a_i,b_i)\cap(a_j,b_j)=\emptyset$ for WLOG $i<j$ (for if otherwise, then we would have chosen the segment $(\min(a_i,a_j),\max(b_i,b_j))$ when dealing with $x_i$).
+    \end{proof}
     \item Imitate the proof of Theorem 2.43 to obtain the following result: If $\R^k=\bigcup_1^\infty F_n$, where each $F_n$ is a closed subset of $\R^k$, then at least one $F_n$ has a nonempty interior. Equivalent statement: If $G_n$ is a dense open subset of $\R^k$ for each $n\in\N$, then $\bigcap_1^\infty G_n$ is not empty (in fact, it is dense in $\R^k$). This is a special case of Baire's theorem; see Exercise 3.22 for the general case.
+    \begin{proof}
+        We will prove the first statement herein. Let's begin.\par
+        Suppose for the sake of contradiction that $F_n^\circ=\emptyset$ for all $n\in\N$. Then
+        \begin{align*}
+            \emptyset &= \bigcup_{i=1}^\infty F_n^\circ\\
+            \R^k &= \left( \bigcup_{i=1}^\infty F_n^\circ \right)^c\\
+            &= \bigcap_{i=1}^\infty(F_n^\circ)^c\tag*{Theorem 2.22}\\
+            &= \bigcap_{i=1}^\infty\overline{F_n^c}\tag*{Exercise 2.9d}
+        \end{align*}
+        It follows that $F_n^c=\R^k$ for all $n\in\N$. This combined with the fact that each $F_n^c$ is open (since each $F_n$ is closed by hypothesis) implies that each $F_n^c$ is dense in $\R^k$. Now let $G$ be a nonempty open subset of $\R^k$. Since $F_1^c$ is dense in $\R^k$, there exists $p\in F_1^c$ such that $p\in G$ ($G$ nonempty means there exists $x\in G$; $G$ open means there exists $N_r(x)\subset G$; $F_1^c$ dense implies there exists $p\in F_1^c$ such that $p\in N_r(x)\subset G$). Let $G_1=F_1^c\cap G$. $G_1\neq\emptyset$ by the previous result. Additionally, since $F_1^c$ and $G$ are both open, Theorem 2.24c implies that $G_1$ is open. Thus, we may choose $p_1\in G_1$ and know that there exists a $N_{2r_1}(p_1)\subset G_1$. It follows that $\overline{N_{r_1}(p_1)}\subset G_1$. In much the same way, we can construct $G_2=F_2^c\cap N_{r_1}(p_1)$ and find $p_2\in G_2$ such that there exists $\overline{N_{r_2}(p_2)}\subset G_2$. Continuing in this fashion yields a decreasing sequence of compact sets $\overline{N_{r_1}(p_1)}\supset\overline{N_{r_2}(p_2)}\supset\cdots$. Thus, by Theorem 2.39, $\bigcap_{n=1}^\infty\overline{N_{r_n}(p_n)}\neq\emptyset$. Thus, since each $\overline{N_{r_n}(p_n)}\subset F_n^c$, $\bigcap_{n=1}^\infty\overline{N_{r_n}(p_n)}\subset\bigcap_{n=1}^\infty F_n^c$, meaning that
+        \begin{align*}
+            \emptyset &\neq \bigcap_{n=1}^\infty F_n^c\\
+            &= \left( \bigcup_{n=1}^\infty F_n \right)^c\tag*{Theorem 2.22}\\
+            \R^k &\neq \bigcup_{n=1}^\infty F_n
+        \end{align*}
+        a contradiction.
+    \end{proof}
 \end{enumerate}
 
 
