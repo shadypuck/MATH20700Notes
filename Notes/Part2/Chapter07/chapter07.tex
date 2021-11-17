@@ -34,6 +34,65 @@
     \item Theorem: If $(f_n)_{n\in\N}$ and $|f_n(x)|\leq M_n$, then $\sum f_n\rightrightarrows f$ if $\sum M_n<\infty$.
     \item Theorem: If $E$ is a compact metric space, $f_n\rightrightarrows f$ in $E$, $x$ is a limit point of $E$, and $\lim_{t\to x}f_n(t)=A_n$ exists, then $(A_n)_{n\in\N}$ converges and $\lim_{t\to x}f(t)=\lim_{n\to\infty}A_n$.
     \item Corollary: $\lim_{t\to x}\lim_{n\to\infty}f_n(t)=\lim_{n\to\infty}\lim_{t\to x}f_n(t)$.
+    \begin{itemize}
+        \item \marginnote{11/16:}Fix $\epsilon>0$. Then $f_n\rightrightarrows f$ implies that there exists some $N$ such that $n,m\geq N$ implies $|f_n(t)-f_m(t)|<\epsilon$ for all $t\in E$.
+        \item $x$ is a limit point of $E$ and $t\to x$ implies $|A_n-A_m|<\epsilon$. Thus, $(A_n)_{n\in\N}$ is cauchy, so there exists $A$ such that $A_n\to A$.
+        \item WTS: $|f(t)-A|\leq|f(t)-f_n(t)|+|f_n(t)-A_n|+|A_n-A|$, so we WTS the three terms on the right are small.
+        \item There exists $n$ such that $|f(t)-f_n(t)|<\epsilon/3$ for all $t$ since $f_n\rightrightarrows f$ by hypothesis.
+        \item Since $t$ is in a small neighborhood of $x$, there exists $n$ such that $|A_n-A|<\epsilon/3$.
+        \item We also have $|f_n(t)-A_n|<\epsilon/3$ by hypothesis.
+        \item This is a very important proof to understand, because proofs like this pop up often.
+    \end{itemize}
+    \item Corollary: $f_n$ continuous and $f_n\rightrightarrows f$ implies $f$ is continuous.
+    \item Theorem: Let $K$ be compact. Assume
+    \begin{enumerate}[label={(\alph*)}]
+        \item $(f_n)_{n\in\N}\subset C(K)=\{f:K\to\R\mid f\text{ continuous}\}$.
+        \item $f_n\to f$ pointwise in $K$ and $f\in C(K)$.
+        \item $f_n(x)\geq f_{n+1}(x)$ for all $x\in K$.
+    \end{enumerate}
+    Then $f_n\rightrightarrows f$.
+    \begin{itemize}
+        \item WLOG $f=0$, $g_n=f_n-f\to 0$, $g_n\geq g_{n+1}\geq 0$.
+        \item For all $\epsilon>0$, there exists $N$ such that $n\geq N$ and $0\leq g_n(x)\leq\epsilon$ for all $x\in K$.
+        \item $K_n=\{x\in K:g_n(x)\geq\epsilon\}$.
+        \item $g_n$ continuous implies $K_n$ closed. This combined with $K$ compact implies $K_n$ is compact.
+        \item $g_n$ decreasing implies $K_n\supset K_{n+1}$. Thus, $K_n$ is a nested family of compact sets, so $\bigcap K_n\neq\emptyset$.
+        \item This implies that each $K_n$ is nonempty, contradicting the fact that each $g_n\to 0$ for all $x$.
+        \item Thus, there exists an $N$ such that $K_n$ is empty for all $n\geq N$. Thus $g_n(x)\leq\epsilon$ for all $x\in K$, $n\geq N$.
+        \item Note that the compactness of $K$ is important. If $f:(0,1)\to\R$ is defined by $f(x)=1/(nx+1)$, then $f_n\to 0$, but $f_n\not\rightrightarrows f$.
+    \end{itemize}
+    \item Let $C(X)=\{f:X\to\R\mid f\text{ continuous, bounded}\}$ for $X$ a metric space.
+    \item If we define $\norm{f}=\sum_{x\in X}|f(x)|$, for $f,g\in C(X)$, we may define $d(f,g)=\norm{f-g}$. This definition satisfies the properties of a distance function, and $\norm{\cdot}$ is a norm.
+    \begin{itemize}
+        \item Thus, $C(X)$ is a complete metric space, a normed space, or, specifically, a \textbf{Banach space}.
+    \end{itemize}
+    \item Theorem: $(f_n)_{n\in\N}\subset C(X)$ such that $\norm{f_n-f_m}_{n,m\to\infty}\to 0$. Then there exists $f\in C(X)$ such that $\norm{f_n-f}_{n\to\infty}\to 0$.
+    \begin{itemize}
+        \item We get such a strong statement using properties of the image, not properties of the domain.
+        \item For all $\epsilon>0$, there exists $N$ such that $n,m\geq N$.
+        \item $|f_n(x)-f_m(x)|\leq\norm{f_n-f_m}<\epsilon$ for all $x$.
+        \item Then there exists $f$ such that $f_m(x)\to f(x)$. It follows that $|f_n(x)-f_m(x)|<\epsilon$
+    \end{itemize}
+    \item Uniform convergence and integration.
+    \item Stieltjes integral.
+    \begin{itemize}
+        \item Define $\alpha:\R\to\R$ nondecreasing.
+        \item If we sum over the minimums/maximums of a partition times $\alpha(x_{i+1})-\alpha(x_i)$ instead of $x_{i+1}-x_i$, we obtain said integral as the upper/lower limits just like the Riemann integral.
+        \item We write $\int_a^bf(x)\dd{\alpha(x)}$ where $\dd{\alpha(x)}=\alpha(x)\dd{x}$.
+    \end{itemize}
+    \item Theorem: If $\alpha$ is nondecreasing on $[a,b]$, $f_n\in R(\alpha)$ such that $f_n\rightrightarrows f$ on $[a,b]$
+    \begin{itemize}
+        \item We have
+        \begin{align*}
+            \left| \int f_n(x)\dd{\alpha(x)}-\int f(x)\dd{\alpha(x)} \right|\\
+            &= \left| \int (f_n-f)(x)\dd{\alpha(x)}\right|\\
+            &\leq \norm{f_n-f}(\alpha(b)-\alpha(a))\\
+            &\leq \int|f_n-f|\dd{\alpha(x)}\\
+            &\leq \int\norm{f_n-f}\dd{\alpha(x)}
+            &\leq \norm{f_n-f}\int_a^b\dd{\alpha(x)}
+            &= \norm{f_n-f}(\alpha(b)-\alpha(a))
+        \end{align*}
+    \end{itemize}
 \end{itemize}
 
 
