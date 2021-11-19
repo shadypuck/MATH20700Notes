@@ -84,14 +84,81 @@
     \begin{itemize}
         \item We have
         \begin{align*}
-            \left| \int f_n(x)\dd{\alpha(x)}-\int f(x)\dd{\alpha(x)} \right|\\
-            &= \left| \int (f_n-f)(x)\dd{\alpha(x)}\right|\\
+            \left| \int f_n(x)\dd{\alpha(x)}-\int f(x)\dd{\alpha(x)} \right| &= \left| \int (f_n-f)(x)\dd{\alpha(x)}\right|\\
             &\leq \norm{f_n-f}(\alpha(b)-\alpha(a))\\
             &\leq \int|f_n-f|\dd{\alpha(x)}\\
             &\leq \int\norm{f_n-f}\dd{\alpha(x)}
             &\leq \norm{f_n-f}\int_a^b\dd{\alpha(x)}
             &= \norm{f_n-f}(\alpha(b)-\alpha(a))
         \end{align*}
+    \end{itemize}
+    \item \marginnote{11/19:}Suppose $f_n\to f$ and $f_n'\to g$. When does $f'=g$?
+    \item Theorem: If $f_n:[a,b]\to\R$ is differentiable, $f_n(x_0)$ converges for some $x_0\in[a,b]$, and $f_n'$ converges uniformly on $[a,b]$, then there exists $f$ differentiable on $[a,b]$ such that $f_n\rightrightarrows f$ and $f_n'\rightrightarrows f'$.
+    \begin{itemize}
+        \item Assume the $f_n'$ are continuous. Then $f_n(x)-f_n(x_0)=\int_{x_0}^xf_n'(y)\dd{y}$.
+        \item Since $f_n'\rightrightarrows g$, $\int_{x_0}^xf_n'(y)\dd{y}\to\int_{x_0}^xg(y)\dd{y}$.
+        \item It follows since $f_n(x_0)\to f(x_0)$ that $f_n\rightrightarrows f$.
+        \item By the previous theorem, if
+        \begin{equation*}
+            f_n'(x) = \lim_{h\to 0}\frac{f_n(x+h)-f_n(x)}{h}
+        \end{equation*}
+        then
+        \begin{equation*}
+            \lim_{n\to\infty}f_n'(x) = \lim_{h\to 0}\lim_{n\to\infty}\frac{f_n(x+h)-f_n(x)}{h} = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h}
+        \end{equation*}
+        \item Fix $\epsilon>0$. Then there exists $N$ such that $n,m\geq N$ such that $|f_n(x_0)-f_m(x_0)|<\epsilon/2$ and $|f_n'(t)-f_m'(t)|<\epsilon/2$ for all $t\in[a,b]$.
+        \item We know that $f_n(t)-f_n(x_0)=\int_{x_0}^tf_n'(y)\dd{y}$ and $f_m(t)-f_m(x_0)=\int_{x_0}^tf_m'(y)\dd{y}$.
+        \item Thus,
+        \begin{equation*}
+            |f_n(t)-f_n(x_0)| \leq |f_n(t)-f_n(x_0)|+|f_m(t)-f_m(x_0)|-|f_m(t)-f_m(x_0)|
+        \end{equation*}
+        \item Let $f_n(t)-f_n(x_0)=c_n(t-x_0)$ and $f_m(t)-f_m(x_0)=c_m(t-x_0)$.
+        \item ...
+    \end{itemize}
+    \item Let $f:[a,b]\to\R$ be continuous. What conditions on $f$ imply that $f'$ exists?
+    \item Suppose $f$ is Lipschitz continuous (equivalent to saying there exists $L>0$ such that $|f(x)-f(y)|\leq L|x-y|$); then $f'$ exists \textbf{almost everywhere}.
+    \begin{itemize}
+        \item If $f$ differentiable, this is equivalent to saying $f$ bounded.
+    \end{itemize}
+    \item \textbf{Almost everywhere}: Something happens almost everywhere if the set of places where it doesn't happen has measure zero.
+    \item Suppose $f$ is \textbf{H\"{o}lder continuous}, then $f'$ does not exist?
+    \item \textbf{H\"{o}lder continuous} (function $f$): There exists $L>0$ such that $|f(y)-f(x)|<L|x-y|^\alpha$ where $\alpha\in(0,1)$
+    \item Suppose $f$ exists such that $f$ is H\"{o}lder continuous in a neighborhood of every point in the domain. This function is not anywhere differentiable. Such a function does indeed exist (and it's Brownian motion). The construction of such a function is the essence of Stochastic analysis.
+    \begin{itemize}
+        \item Probabilistically: Has mean zero, distributed as a normal function like the Gaussian, and the increments are independent of each other.
+        \item Analytically: It's a function that is H\"{o}lder continuous at half plus $\epsilon$ for every $\epsilon$ and it is nowhere differentiable.
+    \end{itemize}
+    \item Theorem: There exists $f:\R\to\R$ continuous but nowhere differentiable.
+    \begin{itemize}
+        \item This theorem is due to Weierstrass and as such, such functions are typically called Weierstrass functions.
+    \end{itemize}
+    \item A general class of functions that are nowhere differentiable (not in \textcite{bib:Rudin}; we don't have to prove this).
+    \begin{itemize}
+        \item Example 1:
+        \begin{equation*}
+            f(x) = \sum_{n=0}^\infty a^n\cos(b^n\pi x)
+        \end{equation*}
+        where $0<a<1$, $b$ positive odd integer greater than 1, and $ab>1+\frac{3}{2}\pi$.
+        \begin{itemize}
+            \item This function at every point oscillates more and more and more.
+        \end{itemize}
+    \end{itemize}
+    \item \textcite{bib:Rudin}'s simple example.
+    \begin{itemize}
+        \item $\phi:[-1,1]\to\R$ defined by $\phi(x)=|x|$ is not differentiable at zero.
+        \item Takes $\phi$ extends it periodically with period $2$, creating a sawtooth function.
+        \item Repeat the behavior so that the nondifferentiability becomes more and more frequent to get
+        \begin{equation*}
+            f(x) = \sum_1^\infty\left( \frac{3}{4} \right)^n\phi(4^nx)
+        \end{equation*}
+        \item This is continuous.
+        \item Fix any $x\in\R$, $m\in\N$. Then $\delta_m=\pm\frac{1}{2}\cdot 4^{-m}$.
+        \item Then consider $4^mx$, $4^m(x+\delta_m)$.
+        \item Rudin asserts
+        \begin{equation*}
+            \left| \frac{f(x+\delta_m)-f(x)}{\delta_m} \right| \to\infty
+        \end{equation*}
+        as $m\to\infty$ for all $x$.
     \end{itemize}
 \end{itemize}
 
