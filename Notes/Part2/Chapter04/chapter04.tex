@@ -172,6 +172,11 @@
     \item Theorem 4.29: If $f$ is monotonic on $(a,b)$, then $f(x+),f(x-)$ exist at every $x\in(a,b)$.
     \item Corollary: Monotonic functions have no discontinuities of the second kind.
     \item Theorem 4.30: If $f$ is monotonic on $(a,b)$, then the set of points of $(a,b)$ at which $f$ is discontinuous is at most countable.
+    \begin{proof}
+        \marginnote{11/20:}Suppose first that $f$ is increasing. Let $E$ be the set of points at which $f$ is discontinuous. By Theorem 4.29, for every $x\in E$, $f(x-),f(x+)$ exist. Thus, we may pick a rational number $r(x)$ such that $f(x-)<r(x)<f(x+)$. Moreover, since $x_1<x_2$ implies $f(x_1+)\leq f(x_2-)$, we have that $r(x_1)\neq r(x_2)$. Having established an injective function from $E$ to the rationals $\Q$, we know that $E$ is at most countable.
+        The argument where $f$ is decreasing is symmetric.
+    \end{proof}
+    \item Gives an example of a function with discontinuities that are not isolated.
 \end{itemize}
 
 
