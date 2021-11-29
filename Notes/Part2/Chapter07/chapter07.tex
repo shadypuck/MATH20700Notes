@@ -160,6 +160,36 @@
         \end{equation*}
         as $m\to\infty$ for all $x$.
     \end{itemize}
+    \item \marginnote{11/29:}Finding a uniformly convergent subsequence of a sequence of functions.
+    \begin{itemize}
+        \item Pointwise, uniformly, bounded if there exist $M_x$ such that $|f_n(x)|\leq M_x$ for all $n,x$. Uniformly bounded if there exists $M$ such that $|f_n(x)|\leq M$ for all $n,x$.
+    \end{itemize}
+    \item Theorem: If $(f_n)_{n\in\N}$ is pointwise bounded and $E\subset X$ is countable, then there exists a subsequence $f_{n_k}$ which converges for every $x\in E$.
+    \begin{itemize}
+        \item Let $E=\{x_i:i\in\N\}$. Consider $f_n(x_1)$. $f_{1,k}(x_1)$ converges.
+        \item $S_1:f_{1,1}(x_1),f_{1,2}(x_1),f_{1,3}(x_1),f_{1,4}(x_1),\dots$.
+        \item $S_2:f_{2,1}(x_2),f_{2,2}(x_2),f_{2,3}(x_2),f_{2,4}(x_2),\dots$.
+        \item Now consider $f_{2,k}(x_3)$.
+        \item $S_3:f_{3,1},f_{3,2},f_{3,3},f_{3,4},\dots$.
+        \item Continue on and on to $S_4,S_5,\dots$. We know that each of these sequences converges pointwise by hypothesis.
+        \item Now consider the diagonal sequence $f_{1,1},f_{2,2},f_{3,3},f_{4,4}$.
+        \begin{itemize}
+            \item This subsequence of the original sequence we may call $g_k$.
+            \item We posit that $g_k$ converges for every $x\in E$. 
+        \end{itemize}
+    \end{itemize}
+    \item Theorem: There exists $f_n$ which is uniformly bounded but does not converge uniformly.
+    \begin{itemize}
+        \item Let $f_n(x)=\sin(2\pi x)$ for $0\leq x\leq 2\pi$.
+        \item Let $f_n(x)=x^2/(x^2+(1-nx)^2)$ on $0\leq x\leq 1$. This sequence is uniformly bounded, converges pointwise, but $f_n(1/n)=1$ so $f_n$ cannot converge uniformly to zero.
+    \end{itemize}
+    \item What does it mean that $f_n:[0,1]\to\R$ does not converge uniformly?
+    \begin{itemize}
+        \item It means that there exists a subsequence of the functions evaluated at certain points that is always greater than or equal to some fixed distance away from the limit.
+    \end{itemize}
+    \item Equicontinuity: $\mathcal{F}\{f:X\to\R\}$ for $(X,d)$ a metric space is equicontinuous iff for all $\epsilon>0$, there exists a $\delta>0$ such that $d(x,y)<\delta$ implies $|f(x)-f(y)|<\epsilon$ for all $x,y\in X$, $f\in\mathcal{F}$.
+    \item Modulus of continuity: $f:X\to\R$ is continuous at $x$. A modulus of continuity is a function $\omega_X:[0,1]\to[0,1]$ such that $|f(y)-f(x)|\leq\omega_X|y-x|$.
+    \item The final result we'll prove: \textbf{Arzel\`{a}-Ascoli theorem}: If we have a family of functions on a compact set and we have a dense subset of that set, then if we have a sequence of functions that are equicontinuous, then they converge uniformly.
 \end{itemize}
 
 
