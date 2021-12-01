@@ -190,6 +190,59 @@
     \item Equicontinuity: $\mathcal{F}\{f:X\to\R\}$ for $(X,d)$ a metric space is equicontinuous iff for all $\epsilon>0$, there exists a $\delta>0$ such that $d(x,y)<\delta$ implies $|f(x)-f(y)|<\epsilon$ for all $x,y\in X$, $f\in\mathcal{F}$.
     \item Modulus of continuity: $f:X\to\R$ is continuous at $x$. A modulus of continuity is a function $\omega_X:[0,1]\to[0,1]$ such that $|f(y)-f(x)|\leq\omega_X|y-x|$.
     \item The final result we'll prove: \textbf{Arzel\`{a}-Ascoli theorem}: If we have a family of functions on a compact set and we have a dense subset of that set, then if we have a sequence of functions that are equicontinuous, then they converge uniformly.
+    \item \marginnote{12/1:}The final will be in this room.
+    \item The last PSet will not be graded, but there will be similar questions on the final.
+    \item No class on Friday.
+    \item Review from last time:
+    \begin{itemize}
+        \item Equiboundedness and equicontinuity.
+        \item If $E$ is a dense subset of $X$, then any pointwise bounded sequence has a subsequence that converges on $E$ (diagonal argument.)
+    \end{itemize}
+    \item \textbf{Equicontinuous} (sequence $\{f_n\}$): For all $\epsilon>0$, there exists a $\delta>0$ such that $d(x,y)<\delta$ implies $|f_n(x)-f_n(y)|<\epsilon$ for all $n$.
+    \item Theorem: If $K$ is a compact set and $\{f_n\}\in C(K)$ converges uniformly on $K$, then the $f_n$'s are equicontinuous on $K$.
+    \begin{itemize}
+        \item The $f_n$ are uniformly Cauchy: For all $\epsilon>0$, there exists $N$ such that $n,m\geq N$ imply $\norm{f_n-f_m}<\epsilon$ where $\norm{f_n-f_m}=\sup_{x\in K}(f_n-f_m)(x)$.
+        \item If $n\geq N$, then $|f_n(x)-f_n(y)|\leq|f_N(x)-f_N(y)|+2\norm{f_n-f_N}$ (since $f_n(x)-f_n(y)=f_n(x)-f_N(x)+f_N(x)-f_N(y)+f_N(y)-f_n(y)$).
+        \item Thus $|f_n(x)-f_n(y)|\leq|f_N(x)-f_N(y)|+2\norm{f_n-f_N}<3\epsilon$ implies $|f_i(x)-f_i(y)|<\epsilon$ if $|x-y|<\delta$ for $i=1,\dots,N$.
+    \end{itemize}
+    \item \textbf{Arzel\`{a}-Ascoli theorem}: If $K$ is compact, $(f_n)_{n\geq 1}\subset C(K)$ which are pointwise bounded and equicontinuous, then
+    \begin{enumerate}[label={(\alph*)}]
+        \item $(f_n)_{n\geq 1}$ are uniformly bounded (equicontinuous).
+        \item There exists $(f_{n_k})_{k\geq 1}$ which converges uniformly on $K$.
+    \end{enumerate}
+    \begin{itemize}
+        \item Since $K$ is compact, you can cover it by finitely many balls of radius $\delta$.
+        \item Thus $|f_n(p_k)|\leq M=\max(M_{p_1},\dots,M_{p_k})$ where $K\subset\bigcup_{k\in K}B(p_{n_k},\delta)$.
+        \item $K$ has a countable dense subset $E$ (Exercise 2.25).
+        \item $|f_n(x)|\leq M+\epsilon$ for all $x$.
+        \item $\{B(x,\delta)\}_{x\in E}$ is an open cover of $K$.
+        \item Thus has a finite subcover.
+        \item ...
+    \end{itemize}
+    \item If $f_n:\R^n\to\R$ are continuous, equibounded, equicontinuous, then there exists $f_{n_k}$ which converges locally uniformly to some $f:\R^n\to\R$.
+    \item How do you learn math?
+    \begin{itemize}
+        \item In an ideal world, study by looking at theorems, thinking that you should be able to prove it, and etc.
+        \item Since we don't have the time to do everything ourselves, don't just get stuck in a place; move on and continue thinking if you have to.
+    \end{itemize}
+    \item Let $\dot{\phi}=f(x,t)$ and $x(0)=c$. Let $\phi:\R\times[0,1]\to\R$. Assume $\phi$ is bounded and continuous. Then there exists a solution of the differential equation and initial condition.
+    \begin{itemize}
+        \item We need to find a function $x:[0,1]\to\R$ continuous such that $x(t)=c+\int_0^t\phi(x(s),s)\dd{s}$.
+        \item Let $t_i=i/N$. Then $x_n(t)=\phi(x_i,t_i)$ on $t_i<t<t_{i+1}$.
+        \item $x_n(t)=x_n(t_i)+\phi(x_i,t_i)(t-t_i)$.
+        \item $\frac{x_{i+1}-x_i}{1/N}=\phi(x_i,t_i)$.
+        \item $\Delta_n(t)=x_n'(t)-\phi(x_n(t),t)$ for $\phi(x_i,t_i)-\phi(x_n(t),t)$ measures how close our solution is.
+        \item All of these things imply that our final formula is
+        \begin{equation*}
+            x_n(t) = c+\int_0^t[\phi(x_n(s),s)+\Delta_n(s)]\dd{s}
+        \end{equation*}
+        \item If we know that $x_n\rightrightarrows x$, then $\Delta_n\rightrightarrows 0$.
+        \item We then use the A-A theorem to imply convergence.
+    \end{itemize}
+    \item When we get to MATH 208, say we didn't do any multivariable calculus in MATH 207.
+    \begin{itemize}
+        \item We didn't do how to integrate in $\R^n$, how to integrate by parts (Stoke's theorem), Lagrange multipliers (constraint minimization).
+    \end{itemize}
 \end{itemize}
 
 
