@@ -1,0 +1,120 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{4}
+
+\begin{document}
+
+
+
+
+\chapter{Differentiation}
+\section{Chapter 5: Differentiation}
+\emph{From \textcite{bib:Rudin}.}
+\begin{itemize}
+    \item \marginnote{12/5:}Let $f$ be a real-valued function defined on $[a,b]$.
+    \item \textbf{Derivative} (of $f$ at $x$): The limit $\lim_{t\to x}\phi(t)$, provided that said limit exists, where $\phi:(a,b)\setminus\{x\}\to\R$ is defined by
+    \begin{equation*}
+        \phi(t) = \frac{f(t)-f(x)}{t-x}
+    \end{equation*}
+    \emph{Denoted by} $\bm{f'(x)}$.
+    \item \textbf{Derivative} (of $f$): The real function defined on $X$ that evaluates to $f'(x)$ everywhere on its domain, where
+    \begin{equation*}
+        X = \{x\in[a,b]:f'(x)\text{ exists}\}
+    \end{equation*}
+    \emph{Denoted by} $\bm{f'}$.
+    \item Theorem 5.2: Differentiability at $x$ implies continuity at $x$.
+    \begin{itemize}
+        \item The converse is not true.
+    \end{itemize}
+    \item Theorem 5.3: Sum, product, and quotient rules of derivatives.
+    \item Theorem 5.4 (Chain Rule): Suppose $f$ is continuous on $[a,b]$, $f'(x)$ exists at some point $x\in[a,b]$, $g$ is defined on an interval $I$ which contains the range of $f$, and $g$ is differentiable at the point $f(x)$. If $h(t)=g(f(t))$ for all $t\in[a,b]$, then $h$ is differentiable at $x$ and
+    \begin{equation*}
+        h'(x) = g'(f(x))f'(x)
+    \end{equation*}
+    \begin{proof}
+        Let $y=f(x)$. Since $f$ is differentiable at $x$ and $g$ is differentiable at $f(x)$, we have that
+        \begin{align*}
+            \frac{f(t)-f(x)}{t-x} &= f'(x)+u(t)&
+                \frac{g(s)-g(y)}{s-y} &= g'(y)+v(s)\\
+            f(t)-f(x) &= (t-x)[f'(x)+u(t)]&
+                g(s)-g(y) &= (s-y)[g'(y)+v(s)]
+        \end{align*}
+        where $t\in[a,b]$, $s\in I$, $u(t)\to 0$ as $t\to x$, and $v(s)\to 0$ as $s\to y$. Let $s=f(t)$. Then
+        \begin{align*}
+            h(t)-h(x) &= g(f(t))-g(f(x))\\
+            &= [f(t)-f(x)]\cdot[g'(f(x))+v(s)]\\
+            &= (t-x)\cdot[f'(x)+u(t)]\cdot[g'(f(x))+v(s)]\\
+            \frac{h(t)-h(x)}{t-x} &= [f'(x)+u(t)]\cdot[g'(f(x))+v(s)]
+        \end{align*}
+        Thus, since as $t\to x$, $s=f(t)\to f(x)=y$ by the continuity of $f$, we have that
+        \begin{align*}
+            h'(x) &= \lim_{t\to x}\frac{h(t)-h(x)}{t-x}\\
+            &= \lim_{t\to x}[f'(x)+u(t)]\cdot[g'(f(x))+v(s)]\\
+            &= [f'(x)+0]\cdot[g'(f(x))+0]\\
+            &= g'(f(x))f'(x)
+        \end{align*}
+        as desired.
+    \end{proof}
+    \item \textbf{Local maximum} (of $f:X\to\R$): A point $p\in X$ for which there exists a $\delta>0$ such that $f(q)\leq f(p)$ for all $q\in X$ with $d(p,q)<\delta$.
+    \item Theorem 5.8: $f(x)$ a local maximum and $f'$ exists implies $f'(x)=0$.
+    \item Theorem 5.9 (Generalized or Cauchy Mean Value Theorem): $f,g$ continuous on $[a,b]$, differentiable on $(a,b)$ imply there exists $x\in(a,b)$ such that
+    \begin{equation*}
+        [f(b)-f(a)]g'(x) = [g(b)-g(a)]f'(x)
+    \end{equation*}
+    \item Theorem 5.10 (Mean Value Theorem): $f$ continuous on $[a,b]$, differentiable on $(a,b)$ implies there exists $x\in(a,b)$ such that
+    \begin{equation*}
+        f(b)-f(a) = (b-a)f'(x)
+    \end{equation*}
+    \begin{proof}
+        Take $g(x)=x$ in Theorem 5.9.
+    \end{proof}
+    \item Theorem 5.11: Suppose $f$ is differentiable in $(a,b)$.
+    \begin{enumerate}[label={(\alph*)}]
+        \item If $f'(x)\geq 0$ for all $x\in(a,b)$, then $f$ is monotonically increasing.
+        \item If $f'(x)=0$ for all $x\in(a,b)$, then $f$ is constant.
+        \item If $f'(x)\leq 0$ for all $x\in(a,b)$, then $f$ is monotonically decreasing.
+    \end{enumerate}
+    \item Theorem 5.12: $f$ differentiable on $[a,b]$ and $f'(a)<\lambda<f'(b)$ implies there exists $x\in(a,b)$ such that $f'(x)=\lambda$.
+    \item Corollary: $f$ differentiable on $[a,b]$ implies $f'$ has no simple discontinuities on $[a,b]$.
+    \begin{itemize}
+        \item But it may have discontinuities of the second kind.
+    \end{itemize}
+    \item Theorem 5.13 (L'H\^{o}pital's Rule): $f,g$ differentiable on $(a,b)$, $g'(x)\neq 0$ for all $x\in(a,b)$, $f'(x)/g'(x)\to A$, and $f(x)\to 0$ and $g(x)\to 0$ as $x\to a$ or $g(x)\to +\infty$ as $x\to a$ implies $f(x)/g(x)\to A$ as $x\to a$, where $-\infty\leq a<b\leq +\infty$.
+    \item \textbf{\emph{n}\textsuperscript{th} derivative} (of $f$ at $x$): The derivative of the $(n-1)^\text{th}$ derivative of $f$ at $x$, if it exists. \emph{Denoted by} $\bm{f^{(n)}(x)}$.
+    \begin{itemize}
+        \item $f^{(n)}(x)$ exists iff $f^{(n-1)}$ exists in some $N_r(x)$ and $f^{(n-1)'}(x)$ exists.
+        \item We customarily denote the first few higher order derivatives with repeated primes, e.g., $f''(x)$ is the second derivative of $f$.
+    \end{itemize}
+    \item Theorem 5.15 (Taylor's Theorem): $f$ defined on $[a,b]$, $n\in\N$, $f^{(n-1)}$ continuous on $[a,b]$, $f^{(n)}(t)$ defined on $(a,b)$, $\alpha,\beta\in[a,b]$ such that $\alpha\neq\beta$, and
+    \begin{equation*}
+        P(t) = \sum_{k=0}^{n-1}\frac{f^{(k)}(\alpha)}{k!}(t-\alpha)^k
+    \end{equation*}
+    implies there exists $x\in(\alpha,\beta)$ such that
+    \begin{equation*}
+        f(\beta) = P(\beta)+\frac{f^{(n)}(x)}{n!}(\beta-\alpha)^n
+    \end{equation*}
+    \begin{itemize}
+        \item For $n=1$, this is the mean value theorem.
+        \item "In general, the theorem shows that $f$ can be approximated by a polynomial of degree $n-1$ and that the last equation above allows us to estimate the error, if we know bounds on $|f^{(n)}(x)|$" \parencite[111]{bib:Rudin}.
+    \end{itemize}
+    \item \textbf{Derivative} (of $\fb$ at $x$): The point $\fb'(x)\in\R^k$, if it exists, such that
+    \begin{equation*}
+        \lim_{t\to x}\norm{\frac{\fb(t)-\fb(x)}{t-x}-\fb'(x)} = 0
+    \end{equation*}
+    \item Theorems 5.2-5.3 remain valid for vector-valued functions.
+    \item If $\fb=(f_1,\dots,f_k)$, then $\fb'(x)$ exists iff $f_i'(x)$ ($i=1,\dots,k$) exists and
+    \begin{equation*}
+        \fb' = (f_1',\dots,f_k')
+    \end{equation*}
+    \item Theorem 5.19: $\fb:[a,b]\to\R^k$ continuous and $\fb$ differentiable on $(a,b)$ implies there exists $x\in(a,b)$ such that
+    \begin{equation*}
+        \norm{\fb(b)-\fb(a)} \leq (b-a)\norm{\fb'(x)}
+    \end{equation*}
+\end{itemize}
+
+
+
+
+\end{document}
