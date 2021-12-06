@@ -1,0 +1,194 @@
+\documentclass[../../notes.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter\ (#1)}{}}
+\setcounter{chapter}{5}
+
+\begin{document}
+
+
+
+
+\chapter{The Riemann-Stieltjes Integral}
+\section{Chapter 6: The Riemann-Stieltjes Integral}
+\emph{From \textcite{bib:Rudin}.}
+\begin{itemize}
+    \item \marginnote{12/5:}\textbf{Partition} (of $[a,b]$): A finite set $P$ of points $x_0,\dots,x_n\in[a,b]$ such that
+    \begin{equation*}
+        a = x_0 \leq \cdots \leq x_n = b
+    \end{equation*}
+    \begin{itemize}
+        \item Let $\Delta x_i=x_i-x_{i-1}$.
+    \end{itemize}
+    \item Let $f:[a,b]\to\R$ be bounded.
+    \begin{itemize}
+        \item We define
+        \begin{align*}
+            M_i &= \sup\{f(x):x_{i-1}\leq x\leq x_i\}&
+            m_i &= \inf\{f(x):x_{i-1}\leq x\leq x_i\}\\
+            U(P,f) &= \sum_{i=1}^nM_i\Delta x_i&
+            L(P,f) &= \sum_{i=1}^nm_i\Delta x_i
+        \end{align*}
+        for each partition $P$ of $[a,b]$.
+    \end{itemize}
+    \item \textbf{Upper Riemann integral} (of $f$ over $[a,b]$): The following quantity. \emph{Denoted by} $\bar{\bm{\int_a}}^{\bm{b}}\bm{f\,\textbf{d}x}$. \emph{Given by}
+    \begin{equation*}
+        \inf\{U(P,f):P\text{ partitions }[a,b]\}
+    \end{equation*}
+    \item \textbf{Lower Riemann integral} (of $f$ over $[a,b]$): The following quantity. \emph{Denoted by} $\underaccent{\bar}{\bm{\int^b}}_{\bm{a}}\bm{f\,\textbf{d}x}$. \emph{Given by}
+    \begin{equation*}
+        \inf\{U(P,f):P\text{ partitions }[a,b]\}
+    \end{equation*}
+    \item The upper and lower Riemann integrals always exist since the boundedness of $f$ on $[a,b]$ implies that the set of all lower and upper sums of $f$ on $[a,b]$ is bounded.
+    \item \textbf{Riemann-integrable} ($f$ on $[a,b]$): A function $f$ for which
+    \begin{equation*}
+        \bar{\int_a}^bf\dd{x} = \underaccent{\bar}{\int}_a^bf\dd{x}
+    \end{equation*}
+    \item $\pmb{\mathscr{R}}$: The set of all Riemann-integrable functions.
+    \item \textbf{Riemann integral} (of $f$ on $[a,b]$): The common value of the lower and upper Riemann integrals over $[a,b]$ of a Riemann-integrable function on $[a,b]$. \emph{Denoted by} $\bm{\int_a^bf\,\textbf{d}x}$, $\bm{\int_a^bf(x)\,\textbf{d}x}$. \emph{Given by}
+    \begin{equation*}
+        \bar{\int_a}^bf\dd{x} = \underaccent{\bar}{\int}_a^bf\dd{x}
+    \end{equation*}
+    \item Defining the Riemann-Stieltjes integral.
+    \item Let $\alpha:[a,b]\to\R$ be monotonically increasing.
+    \item Let $\Delta\alpha_i=\alpha(x_i)-\alpha(x_{i-1})$ be so defined for every partition $P$ of $[a,b]$.
+    \item Let
+    \begin{align*}
+        U(P,f,\alpha) &= \sum_{i=1}^nM_i\Delta\alpha_i&
+        L(P,f,\alpha) &= \sum_{i=1}^nm_i\Delta\alpha_i\\
+        \bar{\int_a}^bf\dd{\alpha} &= \inf U(P,f,\alpha)&
+        \underaccent{\bar}{\int^b}_af\dd{\alpha} &= \sup L(P,f,\alpha)
+    \end{align*}
+    \item \textbf{Riemann-Stieltjes integral} (of $f$ with respect to $\alpha$ over $[a,b]$): The common value, when it exists, of $\bar{\int_a}^bf\dd{\alpha}$ and $\underaccent{\bar}{\int^b}_af\dd{\alpha}$. \emph{Also known as} \textbf{Stieltjes integral}. \emph{Denoted by} $\bm{\int_a^bf\,\textbf{d}\alpha}$, $\bm{\int_a^bf(x)\,\textbf{d}\alpha(x)}$.
+    \item $\pmb{\mathscr{R}}\bm{(\alpha)}$: The set of all Riemann-Stieltjes integrable functions with respect to $\alpha$.
+    \item Note that taking $\alpha(x)=x$ reveals that the Riemann integral is a special case of the Riemann-Stieltjes integral.
+    \item \textbf{Refinement} (of $P$): A partition of the same interval as $P$ that contains every point of $P$. \emph{Denoted by} $\bm{P^*}$.
+    \item \textbf{Common refinement} (of $P_1,P_2$): The set $P^*=P_1\cup P_2$.
+    \item Theorem 6.4: $P^*$ a refinement of $P$ implies
+    \begin{align*}
+        L(P,f,\alpha) &\leq L(P^*,f,\alpha)&
+        U(P^*,f,\alpha) &\leq U(P,f,\alpha)
+    \end{align*}
+    \item Theorem 6.5: $\underaccent{\bar}{\int}_a^bf\dd{x}\leq\bar{\int_a}^bf\dd{x}$.
+    \item Theorem 6.6: $f\in\mathscr{R}(\alpha)$ iff for every $\epsilon>0$, there exists a partition $P$ such that
+    \begin{equation*}
+        U(P,f,\alpha)-L(P,f,\alpha) < \epsilon
+    \end{equation*}
+    \item Theorem 6.7:
+    \begin{enumerate}[label={(\alph*)}]
+        \item If $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$, then $U(P^*,f,\alpha)-L(P^*,f,\alpha)<\epsilon$ for all $P^*\supset P$.
+        \item If $U(P,f,\alpha)-L(P,f,\alpha)<\epsilon$ and $s_i,t_i\in[x_{i-1},x_i]$, then
+        \begin{equation*}
+            \sum_{i=1}^n|f(s_i)-f(t_i)|\Delta\alpha_i < \epsilon
+        \end{equation*}
+        \item If $f\in\mathscr{R}(\alpha)$ and the hypotheses of (b) hold, then
+        \begin{equation*}
+            \left| \sum_{i=1}^nf(t_i)\Delta\alpha_i-\int_a^bf\dd{\alpha} \right| < \epsilon
+        \end{equation*}
+    \end{enumerate}
+    \item Theorem 6.8: $f$ continuous on $[a,b]$ implies $f\in\mathscr{R}(\alpha)$ on $[a,b]$.
+    \item Theorem 6.9: $f$ monotonic on $[a,b]$ and $\alpha$ continuous on $[a,b]$ imply $f\in\mathscr{R}(\alpha)$.
+    \item Theorem 6.10: $f$ bounded on $[a,b]$ with only finitely many discontinuities on $[a,b]$ and $\alpha$ continuous at every point at which $f$ is discontinuous implies $f\in\mathscr{R}(\alpha)$.
+    \item Theorem 6.11: $f\in\mathscr{R}(\alpha)$ on $[a,b]$, $m\leq f\leq M$, $\phi$ continuous on $[m,M]$, and $h(x)=\phi(f(x))$ on $[a,b]$ implies $h\in\mathscr{R}(\alpha)$ on $[a,b]$.
+    \item Theorem 6.12:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $f_1,f_2\in\mathscr{R}(\alpha)$ on $[a,b]$ and $c\in\R$ imply $f_1+f_2\in\mathscr{R}(\alpha)$ and $cf_1\in\mathscr{R}(\alpha)$ with
+        \begin{align*}
+            \int_a^b(f_1+f_2)\dd{\alpha} &= \int_a^bf_1\dd{\alpha}+\int_a^bf_2\dd{\alpha}\\
+            \int_a^bcf_1\dd{\alpha} &= c\int_a^bf\dd{\alpha}
+        \end{align*}
+        \item $f_1(x)\leq f_2(x)$ on $[a,b]$ implies
+        \begin{equation*}
+            \int_a^bf_1\dd{\alpha} \leq \int_a^bf_2\dd{\alpha}
+        \end{equation*}
+        \item $f\in\mathscr{R}(\alpha)$ on $[a,b]$ and $a<c<b$ implies $f\in\mathscr{R}(\alpha)$ on $[a,c]$ and on $[c,b]$ and
+        \begin{equation*}
+            \int_a^cf\dd{\alpha}+\int_c^bf\dd{\alpha} = \int_a^bf\dd{\alpha}
+        \end{equation*}
+        \item $f\in\mathscr{R}(\alpha)$ on $[a,b]$ and $|f(x)|\leq M$ on $[a,b]$ implies
+        \begin{equation*}
+            \left| \int_a^bf\dd{\alpha} \right| \leq M[\alpha(b)-\alpha(a)]
+        \end{equation*}
+        \item $f\in\mathscr{R}(\alpha_1)$, $f\in\mathscr{R}(\alpha_2)$, and $c\in\R$ imply $f\in\mathscr{R}(\alpha_1+\alpha_2)$ and $f\in\mathscr{R}(c\alpha_1)$ with
+        \begin{align*}
+            \int_a^bf\dd{(\alpha_1+\alpha_2)} &= \int_a^bf\dd{\alpha_1}+\int_a^bf\dd{\alpha_2}\\
+            \int_a^bf\dd{(c\alpha_1)} &= c\int_a^bf\dd{\alpha_1}
+        \end{align*}
+    \end{enumerate}
+    \item Theorem 6.13: $f,g\in\mathscr{R}(\alpha)$ on $[a,b]$ implies
+    \begin{enumerate}[label={(\alph*)}]
+        \item $fg\in\mathscr{R}(\alpha)$;
+        \item $|f|\in\mathscr{R}(\alpha)$ with
+        \begin{equation*}
+            \left| \int_a^bf\dd{\alpha} \right| \leq \int_a^b|f|\dd{\alpha}
+        \end{equation*}
+    \end{enumerate}
+    \item \textbf{Unit step function}: The function $I:\R\to\R$ defined by
+    \begin{equation*}
+        I(x) =
+        \begin{cases}
+            0 & x\leq 0\\
+            1 & x>0
+        \end{cases}
+    \end{equation*}
+    \item Theorem 6.15: $a<s<b$, $f$ bounded on $[a,b]$ and continuous at $s$, and $\alpha(x)=I(x-s)$ imply
+    \begin{equation*}
+        \int_a^bf\dd{\alpha} = f(s)
+    \end{equation*}
+    \item Theorem 6.16: $c_n\geq 0$, $\sum c_n$ converges, $\{s_n\}\subset(a,b)$, $\alpha(x)=\sum_{n=1}^\infty c_nI(x-s_n)$, and $f$ continuous on $[a,b]$ implies
+    \begin{equation*}
+        \int_a^bf\dd{\alpha} = \sum_{n=1}^\infty c_nf(s_n)
+    \end{equation*}
+    \item Theorem 6.17: $\alpha$ monotonically increasing, $\alpha'\in\mathscr{R}$ on $[a,b]$, and $f$ bounded on $[a,b]$ implies $f\in\mathscr{R}(\alpha)$ iff $f\alpha'\in\mathscr{R}$, and $f\alpha'\in\mathscr{R}$ implies
+    \begin{equation*}
+        \int_a^bf\dd{\alpha} = \int_a^bf(x)\alpha'(x)\dd{x}
+    \end{equation*}
+    \item \textcite{bib:Rudin} gives an example of the physical significance of Theorems 6.15-6.17.
+    \item Theorem 6.19 (change of variable): Suppose $\varphi$ is a strictly increasing continuous function that maps an interval $[A,B]$ onto $[a,b]$. Suppose $\alpha$ is monotonically increasing on $[a,b]$ and $f\in\mathscr{R}(\alpha)$ on $[a,b]$. Define $\beta$ and $g$ on $[A,B]$ by
+    \begin{align*}
+        \beta(y) &= \alpha(\varphi(y))&
+        g(y) &= f(\varphi(y))
+    \end{align*}
+    Then $g\in\mathscr{R}(\beta)$ and
+    \begin{equation*}
+        \int_A^Bg\dd{\beta} = \int_a^bf\dd{\alpha}
+    \end{equation*}
+    \item Theorem 6.20: $f\in\mathscr{R}$ on $[a,b]$ and continuous at $x_0\in[a,b]$, $a\leq x\leq b$, and $F(x)=\int_a^xf(t)\dd{t}$ implies $F$ continuous on $[a,b]$, $F$ differentiable at $x_0$, and
+    \begin{equation*}
+        F'(x_0) = f(x_0)
+    \end{equation*}
+    \item Theorem 6.21 (Fundamental Theorem of Calculus): $f\in\mathscr{R}$ on $[a,b]$ and $F$ differentiable on $[a,b]$ such that $F'=f$ imply
+    \begin{equation*}
+        \int_a^bf(x)\dd{x} = F(b)-F(a)
+    \end{equation*}
+    \item Theorem 6.22 (Integration by Parts): $F,G$ differentiable on $[a,b]$ and $(F'=f),(G'=g)\in\mathscr{R}$ imply
+    \begin{equation*}
+        \int_a^bF(x)g(x)\dd{x} = F(b)G(b)-F(a)G(a)-\int_a^bf(x)G(x)\dd{x}
+    \end{equation*}
+    \item $\int_a^b\fb\dd{\alpha}$: The point in $\R^k$ whose $j^\text{th}$ coordinate is $\int_a^bf_j\dd{\alpha}$.
+    \item Theorems 6.12a, 6.12c, 6.12e, 6.17, 6.20, and 6.21 are valid for vector-valued functions.
+    \item Theorem 6.24: Theorem 6.21 for vector-valued functions.
+    \item Theorem 6.25: Theorem 6.13b for vector-valued functions.
+    \item \textbf{Curve} (in $\R^k$ on $[a,b]$): A continuous mapping $\gamma:[a,b]\to\R^k$.
+    \begin{itemize}
+        \item Note that we define a curve in $\R^k$ to be a function instead of a subset of points in $\R^k$ that are the range of such a function since different curves may have the same range.
+    \end{itemize}
+    \item \textbf{Arc}: A curve $\gamma$ that is 1-1.
+    \item \textbf{Closed curve}: A curve $\gamma$ such that $\gamma(a)=\gamma(b)$.
+    \item Let $\Lambda(P,\gamma)=\sum_{i=1}^n|\gamma(x_i)-\gamma(x_{i-1})|$ be so defined for every partition $P$ of $[a,b]$.
+    \item \textbf{Length} (of $\gamma$): The following quantity. \emph{Denoted by} $\bm{\Lambda(\gamma)}$. \emph{Given by}
+    \begin{equation*}
+        \Lambda(\gamma) = \sup\Lambda(P,\gamma)
+    \end{equation*}
+    \item \textbf{Rectifiable} (curve): A curve $\gamma$ such that $\Lambda(\gamma)<\infty$.
+    \item \textbf{Continuously differentiable} (curve): A curve $\gamma$ whose derivative $\gamma'$ is continuous.
+    \item Theorem 6.27: $\gamma'$ continuous on $[a,b]$ implies $\gamma$ rectifiable and
+    \begin{equation*}
+        \Lambda(\gamma) = \int_a^b|\gamma'(t)|\dd{t}
+    \end{equation*}
+\end{itemize}
+
+
+
+
+\end{document}
