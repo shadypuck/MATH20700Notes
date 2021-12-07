@@ -257,5 +257,171 @@
 
 
 
+\section{Sequences and Series of Functions}
+\emph{From \textcite{bib:Rudin}.}
+\begin{itemize}
+    \item \marginnote{12/6:}Let $f$ be a complex-valued function.
+    \item \textbf{Limit} (of $\{f_n\}$): The function $f:E\to\C$ defined by
+    \begin{equation*}
+        f(x) = \lim_{n\to\infty}f_n(x)
+    \end{equation*}
+    for all $x\in E$, where $\{f_n\}$ is a sequence of functions such that $\lim_{n\to\infty}f_n(x)$ exists for all $x\in E$. \emph{Also known as} \textbf{limit function}.
+    \item \textbf{Sum} (of $\{f_n\}$): The function $f:E\to\C$ defined by
+    \begin{equation*}
+        f(x) = \sum_{n=1}^\infty f_n(x)
+    \end{equation*}
+    for all $x\in E$, where $\{f_n\}$ is a sequence of functions such that $\sum_{n=1}^\infty f_n(x)$ exists for all $x\in E$.
+    \item Motivation for this chapter: Which properties of functions are preserved under the limit and summation operations?
+    \item Continuity example:
+    \begin{itemize}
+        \item A function is continuous at $x$ if $\lim_{t\to x}f(t)=f(x)$.
+        \item Hence, the limit of a sequence of continuous functions is continuous at $x$ if
+        \begin{equation*}
+            \lim_{t\to x}\lim_{n\to\infty}f_n(t) = \lim_{n\to\infty}\lim_{t\to x}f_n(t)
+        \end{equation*}
+        \item This switching of the limits is not always possible: If $s_{m,n}=m/(m+n)$, then
+        \begin{equation*}
+            \lim_{n\to\infty}\lim_{m\to\infty}s_{m,n} = 1
+            \neq 0
+            = \lim_{m\to\infty}\lim_{n\to\infty}s_{m,n}
+        \end{equation*}
+        \item For an example of a sequence of continuous functions converging to a discontinuous function, see the example 2 (11/15 class notes).
+    \end{itemize}
+    \item \textbf{Pointwise convergent} (sequence $\{f_n\}$): A sequence of functions $\{f_n\}$ for which there exists a function $f$ such that for every $\epsilon>0$ and for every $x\in E$, there exists an integer $N$ such that if $n\geq N$, then
+    \begin{equation*}
+        |f_n(x)-f(x)| < \epsilon
+    \end{equation*}
+    \item \textbf{Uniformly convergent} (sequence $\{f_n\}$): A sequence of functions $\{f_n\}$ for which there exists a function $f$ such that for every $\epsilon>0$, there exists an integer $N$ such that if $n\geq N$, then
+    \begin{equation*}
+        |f_n(x)-f(x)| < \epsilon
+    \end{equation*}
+    for all $x\in E$.
+    \item Theorem 7.8: Cauchy criterion for uniform convergence.
+    \item Theorem 7.9: If $\lim_{n\to\infty}f_n(x)=f(x)$ for all $x\in E$ and $M_n=\sup_{x\in E}|f_n(x)-f(x)|$, then $f_n\to f$ uniformly on $E$ iff $M_n\to 0$ as $n\to\infty$.
+    \item Theorem 7.10: $|f_n(x)|\leq M_n$ for all $x\in E$ and $\sum M_n$ converges implies $\sum f_n$ converges uniformly.
+    \item Theorem 7.11: Suppose $f_n\to f$ uniformly on a set $E$ in a metric space. Let $x$ be a limit point of $E$, and suppose that
+    \begin{equation*}
+        \lim_{t\to x}f_n(t) = A_n
+    \end{equation*}
+    for each $n\in\N$. Then $\{A_n\}$ converges and
+    \begin{equation*}
+        \lim_{t\to x}f(t) = \lim_{n\to\infty}A_n
+    \end{equation*}
+    \begin{proof}
+        See IBL Theorem 17.6.
+    \end{proof}
+    \begin{itemize}
+        \item It follows that in this case,
+        \begin{equation*}
+            \lim_{t\to x}\lim_{n\to\infty}f_n(t) = \lim_{n\to\infty}\lim_{t\to x}f_n(t)
+        \end{equation*}
+    \end{itemize}
+    \item Theorem 7.12: A uniformly convergent sequence of continuous functions converges to a continuous function.
+    \item Theorem 7.13: $K$ compact, $\{f_n\}$ a sequence of continuous functions on $K$ that converges pointwise to a continuous function $f$ on $K$, and $f_n(x)\geq f_{n+1}(x)$ for all $x\in K$, $n\in\N$ implies $f_n\to f$ uniformly on $K$.
+    \item $\pmb{\mathscr{C}}\bm{(X)}$: The set of all complex-valued, continuous, bounded functions with domain $X$ a metric space.
+    \item \textbf{Supremum norm} (of $f\in\mathscr{C}(X)$): The following value. \emph{Denoted by} $\pmb{\norm{f}}$. \emph{Given by}
+    \begin{equation*}
+        \norm{f} = \sup_{x\in X}|f(x)|
+    \end{equation*}
+    \item Properties of the supremum norm.
+    \begin{itemize}
+        \item $\norm{f}<\infty$ ($f$ is bounded).
+        \item $\norm{f}=0$ iff $f=0$.
+        \item $\norm{f+g}\leq\norm{f}+\norm{g}$.
+    \end{itemize}
+    \item The above properties plus the definition $d(f,g)=\norm{f-g}$ for any $f,g\in\mathscr{C}(X)$ makes $\mathscr{C}(X)$ a metric space!
+    \item Rephrasing Theorem 7.9: A sequence $\{f_n\}$ converges to $f$ with respect to the metric of $\mathscr{C}(X)$ if and only if $f_n\to f$ uniformly on $X$.
+    \begin{itemize}
+        \item Thus, closed subsets $\mathscr{A}\subset\mathscr{C}(X)$ are sometimes called \textbf{uniformly closed}.
+        \item The closure of a subset $\mathscr{A}\subset\mathscr{C}(X)$ can similarly be called the \textbf{uniform closure}.
+    \end{itemize}
+    \item Theorem 7.15: The above metric makes $\mathscr{C}(X)$ into a complete metric space.
+    \item Theorem 7.16: $f_n\in\mathscr{R}(\alpha)$ on $[a,b]$ and $f_n\to f$ uniformly on $[a,b]$ imply $f\in\mathscr{R}(\alpha)$ on $[a,b]$ and
+    \begin{equation*}
+        \int_a^bf\dd{\alpha} = \lim_{n\to\infty}\int_a^bf_n\dd{\alpha}
+    \end{equation*}
+    \begin{proof}
+        See IBL Theorem 17.7; \textcite{bib:Rudin}'s is much slicker though.
+    \end{proof}
+    \item Theorem 7.17: Suppose $\{f_n\}$ are differentiable on $[a,b]$, $\{f_n(x_0)\}$ converges for some $x_0\in[a,b]$, and $\{f_n'\}$ converges uniformly on $[a,b]$. Then $\{f_n\}$ converges uniformly on $[a,b]$ to a function $f$ such that
+    \begin{equation*}
+        f'(x) = \lim_{n\to\infty}f_n'(x)
+    \end{equation*}
+    for all $x\in[a,b]$.
+    \begin{proof}
+        Long and complicated, and given in class.
+    \end{proof}
+    \begin{itemize}
+        \item Assuming the continuity of the $\{f_n'\}$ admits a proof like IBL Theorem 17.8.
+    \end{itemize}
+    \item Theorem 7.18: There exists a continuous function $f:\R\to\R$ which is nowhere differentiable.
+    \begin{proof}
+        Long and complicated, and given in class.
+    \end{proof}
+    \item \textbf{Pointwise bounded} (sequence $\{f_n\}$): A sequence of functions $\{f_n\}$ for which there exists a finite-valued function $\phi$ defined on $E$ such that $|f_n(x)|<\phi(x)$ for all $x\in E$.
+    \item \textbf{Uniformly bounded} (sequence $\{f_n\}$): A sequence of functions $\{f_n\}$ for which there exists a number $M$ such that $|f_n(x)|<M$ for all $x\in E$.
+    \item \textbf{Equicontinuous} (family of functions $\mathscr{F}$): A family of functions $\mathscr{F}$ such that for every $\epsilon>0$, there exists a $\delta>0$ such that
+    \begin{equation*}
+        |f(x)-f(y)| < \epsilon
+    \end{equation*}
+    whenever $d(x,y)<\delta$, $x,y\in E$, and $f\in\mathscr{F}$.
+    \begin{itemize}
+        \item Every member of an equicontinuous family is uniformly continuous.
+    \end{itemize}
+    \item Theorem 7.23: $\{f_n\}$ pointwise bounded and defined on a countable set $E$ implies $\{f_n\}$ has a pointwise convergent subsequence $\{f_{n_k}\}$.
+    \begin{proof}
+        Diagonalization argument from class.
+    \end{proof}
+    \item Theorem 7.24: $K$ compact and $\{f_n\}\subset\mathscr{C}(K)$ uniformly convergent implies $\{f_n\}$ equicontinuous on $K$.
+    \item Theorem 7.25 (Arzel\`{a}-Ascoli Theorem): If $K$ is compact and $\{f_n\}\subset\mathscr{C}(K)$ is pointwise bounded and equicontinuous on $K$, then
+    \begin{enumerate}
+        \item $\{f_n\}$ is uniformly bounded on $K$;
+        \item $\{f_n\}$ contains a uniformly convergent subsequence.
+    \end{enumerate}
+    \item Theorem 7.26 (Weierstrass Approximation Theorem): $f$ continuous on $[a,b]$ implies there exists a sequence of polynomials $P_n$ such that
+    \begin{equation*}
+        \lim_{n\to\infty}P_n(x) = f(x)
+    \end{equation*}
+    uniformly on $[a,b]$.
+    \item Corollary 7.27: For every interval $[-a,a]$, there is a sequence of real polynomials $\{P_n\}$ such that $P_n(0)=0$ and such that
+    \begin{equation*}
+        \lim_{n\to\infty}P_n(x) = |x|
+    \end{equation*}
+    uniformly on $[-a,a]$.
+    \item \textbf{Algebra}: A family $\mathscr{A}$ of complex functions defined on a set $E$ such that for all $f,g\in\mathscr{A}$ and $c\in\C$,
+    \begin{enumerate}[label={(\roman*)}]
+        \item $f+g\in\mathscr{A}$;
+        \item $fg\in\mathscr{A}$;
+        \item $cf\in\mathscr{A}$.
+    \end{enumerate}
+    \item \textbf{Uniformly closed} (algebra $\mathscr{A}$): An algebra $\mathscr{A}$ such that if $\{f_n\}\subset\mathscr{A}$ and $f_n\to f$ uniformly on $E$, then $f\in\mathscr{A}$.
+    \item \textbf{Uniform closure} (of an algebra $\mathscr{A}$): The set $\mathscr{B}$ of all functions which are limits of uniformly convergent sequences of members of $\mathscr{A}$.
+    \item Rephrasing Theorem 7.26: The set of all continuous functions on $[a,b]$ is the uniform closure of the set of polynomials on $[a,b]$.
+    \item Theorem 7.29: Let $\mathscr{B}$ be the uniform closure of an algebra $\mathscr{A}$ of bounded functions. Then $\mathscr{B}$ is a uniformly closed algebra.
+    \item \textbf{Separating points} (family $\mathscr{A}$ on $E$): A family of functions $\mathscr{A}$ on a set $E$ such that to every pair of distinct points $x_1,x_2\in E$, there corresponds a function $f\in\mathscr{A}$ such that $f(x_1)\neq f(x_2)$.
+    \begin{itemize}
+        \item Example of a family that separates points on $\R^1$: the algebra of all polynomials in one variable.
+        \item Example of a family that does not separate points on $[-1,1]$: the set of all even polynomials in one variable (since $f(x)=f(-x)$ for every even function $f$).
+    \end{itemize}
+    \item \textbf{Vanishing at no point} (family $\mathscr{A}$ on $E$): A family of functions $\mathscr{A}$ such that to each $x\in E$, there corresponds a function $g\in\mathscr{A}$ such that $g(x)\neq 0$.
+    \item Theorem 7.31: $\mathscr{A}$ an algebra on $E$ that separates points and vanishes at no point, $x_1,x_2\in E$ distinct, and $c_1,c_2\in\C$ imply $\mathscr{A}$ contains a function $f$ such that
+    \begin{align*}
+        f(x_1) &= c_1&
+        f(x_2) &= c_2
+    \end{align*}
+    \item Theorem 7.32 (Stone-Weierstrass Theorem): $\mathscr{A}$ an algebra of real continuous functions on $K$ compact that separates points of $K$ and vanishes at no point of $K$ implies the uniform closure $\mathscr{B}$ of $\mathscr{A}$ consists of all real continuous functions on $K$.
+    \begin{itemize}
+        \item Theorem 7.32 holds on complex algebras with the additional hypothesis that $\mathscr{A}$ is \textbf{self-adjoint} (see Theorem 7.33).
+    \end{itemize}
+    \item \textbf{Self-adjoint} (algebra $\mathscr{A}$): An algebra $\mathscr{A}$ such that if $f\in\mathscr{A}$, then its \textbf{complex conjugate} $\bar{f}\in\mathscr{A}$.
+    \item \textbf{Complex conjugate} (of $f$): The function $\bar{f}$ defined by $\bar{f}(x)=\overline{f(x)}$.
+    \item Theorem 7.33: $\mathscr{A}$ a self-adjoint algebra of complex continuous functions on $K$ compact that separates points of $K$ and vanishes at no point of $K$ implies the uniform closure $\mathscr{B}$ of $\mathscr{A}$ consists of all complex continuous functions on $K$.
+    \begin{itemize}
+        \item In other words, $\mathscr{A}$ is dense in $\mathscr{C}(K)$.
+    \end{itemize}
+\end{itemize}
+
+
+
 
 \end{document}
