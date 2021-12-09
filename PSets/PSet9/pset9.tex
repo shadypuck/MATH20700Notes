@@ -13,14 +13,150 @@
 \emph{From \textcite{bib:Rudin}.}
 \subsection*{Chapter 7}
 \begin{enumerate}[label={\textbf{\arabic*.}}]
+    % Theorem 7.10 is used heavily by the problems 
     \item \marginnote{12/10:}Prove that every uniformly convergent sequence of bounded functions is uniformly bounded.
+    \begin{proof}
+        Let $\{f_n\}$ be an arbitrary uniformly convergent sequence of bounded functions. To prove that it is uniformly bounded, it will suffice to find a number $M$ such that $|f_n(x)|<M$ for all $x\in E$ and $n\in\N$. Let $f$ be the function such that $f_n\rightrightarrows f$, and let $M_n=\sup_{x\in E}|f_n(x)-f(x)|$ for each $n\in\N$ (the boundedness of each $f_n$ implies that such an $M_n$ always exists). Thus, based on the last two definitions, we can invoke Theorem 7.9 to learn that $M_n\to 0$ as $n\to\infty$. But since $\{M_n\}$ converges, Theorem 3.2c implies that $\{M_n\}$ is bounded, say by $M/2$. Taking $M$ to be our $M$ yields that for an arbitrary $x\in E$ and $n\in\N$,
+        \begin{equation*}
+            |f_n(x)| \leq M_n \leq \frac{M}{2} < M
+        \end{equation*}
+        as desired.
+    \end{proof}
     \stepcounter{enumi}
     \item Construct sequences $\{f_n\},\{g_n\}$ which converge uniformly on some set $E$, but such that $\{f_ng_n\}$ does not converge uniformly on $E$ (of course, $\{f_ng_n\}$ must converge on $E$).
+    \begin{proof}
+        Let
+        \begin{align*}
+            f_n(x) &= x&
+            g_n(x) &= \frac{1}{n}
+        \end{align*}
+        for all $n\in\N$ and $x\in\R$. Then $\{f_n\}$ converges uniformly to $f(x)=x$ (by choosing $N=1$ for any $\epsilon$) and $\{g_n\}$ converges uniformly to $g(x)=0$ (by choosing $1/N<\epsilon$ with the Archimedean principle). However, while $\{f_ng_n\}$ converges pointwise to $(fg)(x)=0$ by Theorem 3.3c, it does not converge uniformly since for any $n$, choosing $x=n$ yields $(f_ng_n)(x)=1$.
+    \end{proof}
     \item Consider
     \begin{equation*}
         f(x) = \sum_{n=1}^\infty\frac{1}{1+n^2x}
     \end{equation*}
     For what values of $x$ does the series converge absolutely? On what intervals does it converge uniformly? On what intervals does it fail to converge uniformly? Is $f$ continuous wherever the series converges? Is $f$ bounded?
+    \begin{proof}
+        % For $x=0$, the series diverges.
+
+        % For $x>0$, we have
+        % \begin{equation*}
+        %     \sum_{n=1}^\infty\left| \frac{1}{1+n^2x} \right| = \sum_{n=1}^\infty\frac{1}{1+n^2x}
+        %     \leq \sum_{n=1}^\infty\frac{1}{n^2x}
+        %     = \frac{1}{x}\sum_{n=1}^\infty\frac{1}{n^2}
+        %     = \frac{c}{x}
+        % \end{equation*}
+        % where $c\in\R$ is finite by Theorem 3.28. Theorem 3.14 (the sum is monotonically increasing and bounded): The sum overall converges.
+
+        % The series is undefined on $\{-1/n^2\}$.
+
+        % For $-1<x<0$ and $x\notin\{-1/n^2\}$, let $x\in(-1/k^2,-1/(k+1)^2)$ for some $k\in\N$.
+
+        % For $x<-1$, we have
+        % \begin{equation*}
+        %     n^2x+1 < n^2x+n^2 = n^2(x+1)
+        % \end{equation*}
+        % Since $x<-1$,
+        % \begin{align*}
+        %     n^2x+1 &< 0&
+        %     n^2(x+1) &< 0
+        % \end{align*}
+        % for all $n\in\N$. Thus,
+        % \begin{align*}
+        %     n^2x+1 &< n^2(x+1)\\
+        %     \frac{n^2x+1}{n^2(x+1)} &> 1\\
+        %     \frac{1}{n^2(x+1)} &< \frac{1}{n^2x+1}\\
+        %     \left| \frac{1}{n^2x+1} \right| &< \left| \frac{1}{n^2(x+1)} \right|
+        % \end{align*}
+        % for all $n\in\N$. It follows that
+        % \begin{equation*}
+        %     \sum_{n=1}^\infty\left| \frac{1}{n^2x+1} \right| < \sum_{n=1}^\infty\left| \frac{1}{n^2(x+1)} \right|
+        %     = \frac{1}{x+1}\sum_{n=1}^\infty\frac{1}{n^2}
+        %     = \frac{c}{x+1}
+        % \end{equation*}
+        % where $c\in\R$ is finite by Theorem 3.28. Therefore, since the sum is monotonically increasing and bounded, Theorem 3.14 implies that the sum overall converges.
+
+
+        \underline{Absolute convergence values}: The series converges absolutely for any
+        \begin{equation*}
+            x \in (-\infty,-1)\cup\left( \bigcup_{k=1}^\infty\left( -\frac{1}{k^2},-\frac{1}{(k+1)^2} \right) \right)\cup(0,\infty)
+        \end{equation*}
+        We prove this via casework as follows.\par
+        Let $x\in(0,\infty)$. Then we have
+        \begin{equation*}
+            \sum_{n=1}^\infty\left| \frac{1}{1+n^2x} \right| = \sum_{n=1}^\infty\frac{1}{1+n^2x}
+            \leq \sum_{n=1}^\infty\frac{1}{n^2x}
+            = \frac{1}{x}\sum_{n=1}^\infty\frac{1}{n^2}
+            = \frac{c}{x}
+        \end{equation*}
+        where $c\in\R$ is finite by Theorem 3.28. Therefore, since the sum is monotonically increasing and bounded, Theorem 3.14 implies that the sum overall converges, as desired.\par
+        Let $x\in(-\infty,-1)$. Then we have
+        \begin{equation*}
+            n^2x+1 < n^2x+n^2 = n^2(x+1)
+        \end{equation*}
+        Since $x<-1$,
+        \begin{align*}
+            n^2x+1 &< 0&
+            n^2(x+1) &< 0
+        \end{align*}
+        for all $n\in\N$. Thus,
+        \begin{align*}
+            n^2x+1 &< n^2(x+1)\\
+            \frac{n^2x+1}{n^2(x+1)} &> 1\\
+            \frac{1}{n^2(x+1)} &< \frac{1}{n^2x+1}\\
+            \left| \frac{1}{n^2x+1} \right| &< \left| \frac{1}{n^2(x+1)} \right|
+        \end{align*}
+        for all $n\in\N$. It follows that
+        \begin{equation*}
+            \sum_{n=1}^\infty\left| \frac{1}{n^2x+1} \right| < \sum_{n=1}^\infty\left| \frac{1}{n^2(x+1)} \right|
+            = \frac{1}{x+1}\sum_{n=1}^\infty\frac{1}{n^2}
+            = \frac{c}{x+1}
+        \end{equation*}
+        where $c\in\R$ is finite by Theorem 3.28. Therefore, since the sum is monotonically increasing and bounded, Theorem 3.14 implies that the sum overall converges, as desired.\par
+        Let $x\in(-1/k^2,-1/(k+1)^2)$. For right now, we consider only the sum for $n\geq\sqrt{2}(k+1)$, leaving finitely many terms out of the sum. Let $\delta=1/(k+1)^2$. It follows that
+        \begin{align*}
+            n &\geq \sqrt{2}(k+1)&
+                x &< -\frac{1}{(k+1)^2}\\
+            n &\geq \sqrt{\frac{2}{1/(k+1)^2}}&
+                -x &> \frac{1}{(k+1)^2}\\
+            n^2 &\geq \frac{2}{\delta}\\
+            \frac{\delta}{2} &\geq \frac{1}{n^2}
+        \end{align*}
+        Additionally, since $n\geq\sqrt{2}(k+1)>k$ (hence $n^2\geq(k+1)^2$) and $x<-1/(k+1)^2$, we have that
+        \begin{align*}
+            n^2x &< (k+1)^2\cdot -\frac{1}{(k+1)^2}\\
+            n^2x &< -1\\
+            n^2x+1 &< 0
+        \end{align*}
+        Thus, for $n\geq\sqrt{2}(k+1)$, we have that
+        \begin{equation*}
+            \left| \frac{1}{1+n^2x} \right| = \frac{1}{n^2(-x)-1}
+            < \frac{1}{n^2\delta-1}
+            = \frac{1}{n^2}\cdot\frac{1}{\delta-1/n^2}
+            \leq \frac{1}{n^2}\cdot\frac{1}{\delta-\delta/2}
+            = \frac{2}{\delta n^2}
+        \end{equation*}
+        Therefore, since $|f_n(x)|\leq M_n=2/\delta n^2$ and $\sum M_n$ converges by Theorem 3.28, the comparison test implies that $\sum|f_n(x)|$ converges, as desired. Adding on the finitely many terms we left out of the summation will not change this fact.\par
+        Note that the series diverges for $x=0$ since each term becomes 1 in this case. Additionally, the series fails to exist for $x=-1/k^2$ ($k\in\N$) since the $k^\text{th}$ term is undefined in this case.\par\medskip
+        \underline{Uniform convergence intervals}: The series converges uniformly on any
+        \begin{equation*}
+            [a,b] \subset (-\infty,-1)\cup\left( \bigcup_{k=1}^\infty\left( -\frac{1}{k^2},-\frac{1}{(k+1)^2} \right) \right)\cup(0,\infty)
+        \end{equation*}
+        This is because any such interval will be a subset of either $(-\infty,-1)$, $(0,\infty)$, or a set of the form $(-1/k^2,-1/(k+1)^2)$ ($k\in\N$). Thus, we may take as $\sum M_n$ the supremum on $[a,b]$ of the appropriate bound derived above (either $c/x$, $c/(x+1)$, or $2c/\delta$, respectively; all supremums of which will exist by the definition of $[a,b]$) and apply Theorem 7.10.\par\medskip
+        \underline{Non-uniform convergence intervals}: Any interval containing one or more of the points in the set $\{0\}\cup\{-1/n^2\}_{n=1}^\infty$, by the above.\par\medskip
+        \underline{Points of continuity}: The series is continuous at all points at which it converges.\par
+        Let $x$ be a point at which $f$ converges. Then by the first part of the proof, $x$ is an element of an open set $G$. Thus, let $N_{2r}(x)\subset G$, and consider $[x-r,x+r]$. By the above, $f$ converges uniformly on this interval. Additionally, each $f_n$ is continuous on this interval by definition. Thus, by Theorem 7.12, $f$ is continuous at $x$, as desired.\par\medskip
+        \underline{Boundedness}: $f$ is not bounded.\par
+        If we suppose for the sake of contradiction that $f$ is bounded by $m$, we nevertheless find that
+        \begin{equation*}
+            f(\tfrac{1}{4m^2}) > \sum_{n=1}^{2m}\frac{1}{1+\frac{n^2}{4m^2}}
+            = \sum_{n=1}^{2m}\frac{(2m)^2}{(2m)^2+n^2}
+            \geq \sum_{n=1}^{2m}\frac{(2m)^2}{(2m)^2+(2m)^2}
+            = \sum_{n=1}^{2m}\frac{1}{2}
+            = m
+        \end{equation*}
+    \end{proof}
     \item Let
     \begin{equation*}
         f_n(x) =
@@ -31,11 +167,93 @@
         \end{cases}
     \end{equation*}
     Show that $\{f_n\}$ converges to a continuous function, but not uniformly. Use the series $\sum f_n$ to show that absolute convergence, even for all $x$, does not imply uniform convergence.
+    \begin{proof}
+        To prove that $\{f_n\}$ converges pointwise to the continuous function $f$ defined by $f(x)=0$ for all $x\in\R$, it will suffice to show that for every $\epsilon>0$ and for every $x\in\R$, there exists an integer $N$ such that if $n\geq N$, then $|f_n(x)|<\epsilon$. Let $\epsilon>0$ and $x\in\R$ be arbitrary. We divide into three cases ($x\in\{1/n\}_{n=1}^\infty$, $x\in[0,1]\setminus\{1/n\}_{n=1}^\infty$, and $x\notin[0,1]$).\par\smallskip
+        If $x\in\{1/n\}_{n=1}^\infty$, let $x=1/k$. Then by the definition of $f_n(x)$, we have that
+        \begin{equation*}
+            f_i(x) =
+            \begin{cases}
+                0 & i<k-1\\
+                \sin^2\frac{\pi}{1/k}=\sin^2k\pi=0 & i=k-1,k\\
+                0 & i>k
+            \end{cases}
+        \end{equation*}
+        Thus, choose $N=1$. It follows that if $n\geq N$, then
+        \begin{equation*}
+            |f_n(x)| = 0 < \epsilon
+        \end{equation*}
+        as desired.\par
+        If $x\in[0,1]\setminus\{1/n\}_{n=1}^\infty$, let $x\in(1/[(N-1)+1],1/(N-1))$ where $N\in\N$. Choose this $N$ to be our $N$. It follows that if $n\geq N$, then
+        \begin{equation*}
+            \frac{1}{n} \leq \frac{1}{N}
+            = \frac{1}{(N-1)+1}
+            < x
+        \end{equation*}
+        so by definition,
+        \begin{equation*}
+            |f_n(x)| = 0 < \epsilon
+        \end{equation*}
+        as desired.\par
+        If $x\notin[0,1]$, then either $x<1/(n+1)$ for all $n\in\N$ or $x>1/n$ for all $n\in\N$. Either way, we choosing $N=1$ yields that if $n\geq N$, then
+        \begin{equation*}
+            |f_n(x)| = 0 < \epsilon
+        \end{equation*}
+        as desired.\par\medskip
+        To prove that $\{f_n\}$ does not converge uniformly to $f$, Theorem 7.9 tells us that it will suffice to show that if $M_n=\sup_{x\in\R}|f_n(x)-f(x)|$, then $M_n\nrightarrow 0$ as $n\to\infty$. Let $n\in\N$ be arbitrary. Since $n<n+1/2<n+1$ and hence $1/(n+1)\leq 2/(2n+1)\leq 1/n$, we have by the properties of the sine function that
+        \begin{equation*}
+            f_n(\tfrac{2}{2n+1}) = \sin^2\left[ \frac{\pi}{2/(2n+1)} \right]
+            = \sin^2\left[ \frac{2n+1}{2}\pi \right]
+            = \sin^2\left[ \left( n+\frac{1}{2} \right)\pi \right]
+            = 1
+        \end{equation*}
+        and that $f_n(x)\leq 1$ everywhere else. Thus, $M_n=1$ for all $n\in\N$. But then $M_n\nrightarrow 0$ as $n\to\infty$, as desired.\par\medskip
+        It follows by an argument symmetric to the above that while $\sum f_n$ converges absolutely to
+        \begin{equation*}
+            f(x) =
+            \begin{cases}
+                0 & x\leq 0\\
+                \sin^2\frac{\pi}{x} & 0<x<1\\
+                0 & x\geq 1
+            \end{cases}
+        \end{equation*}
+        $M_n=1$ for all $n\in\N$.
+    \end{proof}
     \item Prove that the series
     \begin{equation*}
         \sum_{n=1}^\infty(-1)^n\frac{x^2+n}{n^2}
     \end{equation*}
     converges uniformly in every bounded interval, but does not converge absolutely for any value of $x$.
+    \begin{proof}
+        Let $[a,b]$ be an arbitrary bounded interval, and let $f_n(x)=(-1)^n\tfrac{x^2+n}{n^2}$. To prove that the series converges uniformly on $[a,b]$, Theorem 7.8 tells us that it will suffice to show that for every $\epsilon>0$, there exists an $N$ such that if $n,m\geq N$ (WLOG let $n\leq m$) and $x\in[a,b]$, then
+        \begin{equation*}
+            \left| \sum_{i=n}^mf_i(x) \right| < \epsilon
+        \end{equation*}
+        Let $\epsilon>0$ be arbitrary. Define $m=\max(|a|,|b|)$ (note that since $a\neq b$ by definition, $m>0$). By consecutive applications of Theorem 3.43, we know that both $\sum_{n=1}^\infty(-1)^n\tfrac{1}{n^2}$ and $\sum_{n=1}^\infty(-1)^n\tfrac{1}{n}$ converge. Thus, by consecutive applications of Theorem 3.22, there exist integers $N_1,N_2$ such that $m\geq n\geq N_1$ implies the left result below and $m\geq n\geq N_2$ implies the right result below.
+        \begin{align*}
+            \left| \sum_{k=n}^m(-1)^k\frac{1}{k^2} \right| &< \frac{\epsilon}{2m^2}&
+            \left| \sum_{k=n}^m(-1)^k\frac{1}{k} \right| &< \frac{\epsilon}{2}
+        \end{align*}
+        Choose $N=\max(N_1,N_2)$. Now let $n,m\geq N$ with WLOG $n\leq m$, and let $x\in[a,b]$. It follows that
+        \begingroup
+        \allowdisplaybreaks
+        \begin{align*}
+            \left| \sum_{k=n}^mf_k(x) \right| &= \left| \sum_{k=n}^m(-1)^k\frac{x^2+k}{k^2} \right|\\
+            &= \left| x^2\sum_{k=n}^m(-1)^k\frac{1}{k^2}+\sum_{k=n}^m(-1)^k\frac{1}{k} \right|\\
+            &\leq |x^2|\cdot\left| \sum_{k=n}^m(-1)^k\frac{1}{k^2} \right|+\left| \sum_{k=n}^m(-1)^k\frac{1}{k} \right|\\
+            &\leq m^2\cdot\left| \sum_{k=n}^m(-1)^k\frac{1}{k^2} \right|+\left| \sum_{k=n}^m(-1)^k\frac{1}{k} \right|\\
+            &< m^2\cdot\frac{\epsilon}{2m^2}+\frac{\epsilon}{2}\\
+            &= \epsilon
+        \end{align*}
+        \endgroup
+        as desired.\par
+        To prove that the series does not converge absolutely for any value of $x$, let $x\in\R$ be arbitrary. Then
+        \begin{align*}
+            \sum_{n=1}^\infty\left| (-1)^n\frac{x^2+n}{n^2} \right| &= x^2\sum_{n=1}^\infty\frac{1}{n^2}+\sum_{n=1}^\infty\frac{1}{n}\\
+            &= cx^2+\infty\tag*{Theorem 3.28}\\
+            &= \infty
+        \end{align*}
+        as desired.
+    \end{proof}
     \item For $n=1,2,3,\dots$ and $x$ real, put
     \begin{equation*}
         f_n(x) = \frac{x}{1+nx^2}
@@ -45,6 +263,39 @@
         f'(x) = \lim_{n\to\infty}f_n'(x)
     \end{equation*}
     is correct if $x\neq 0$ but false if $x=0$.
+    \begin{proof}
+        % Look on Desmos; $1/\sqrt{N}=\epsilon$.
+
+        % Each $f_n$ is an odd function:
+        % \begin{equation*}
+        %     f_n(-x) = \frac{-x}{1+n(-x)^2} = -\frac{x}{1+nx^2} = -f_n(x)
+        % \end{equation*}
+
+        To prove that $\{f_n\}$ converges uniformly to $f$ defined by $f(x)=0$ ($x\in\R$), Theorem 7.9 tells us that it will suffice to show that $\lim_{n\to\infty}f_n(x)=f(x)$ for all $x\in\R$ and that the sequence $\{M_n\}$ defined by $M_n=\sup_{x\in\R}|f_n(x)|$ tends to zero as $n\to\infty$.  Since
+        \begin{equation*}
+            f_n(x) = \frac{x}{1+nx^2} < \frac{x}{nx^2} = \frac{1}{x}\cdot\frac{1}{n} \to 0
+        \end{equation*}
+        as $n\to\infty$ for all $x\neq 0$ and $f_n(0)=0$ for all $n$, $\lim_{n\to\infty}f_n(x)=f(x)$ for all $x\in\R$, as desired. Additionally, by the Schwarz inequality, if $a_1,a_2,b_1,b_2$ are real numbers, then
+        \begin{equation*}
+            |a_1b_1+a_2b_2|^2 \leq (|a_1|^2+|a_2|^2)(|b_1|^2+|b_2|^2)
+        \end{equation*}
+        It follows that
+        \begin{align*}
+            |2\sqrt{n}x|^2 = |\underbrace{1\vphantom{\sqrt{n}x}}_{a_1}\cdot\underbrace{\sqrt{n}x}_{b_1}+\underbrace{\sqrt{n}x}_{a_2}\cdot\underbrace{1\vphantom{\sqrt{n}x}}_{b_2}|^2 &\leq (|1|^2+|\sqrt{n}x|^2)(|\sqrt{n}x|^2+|1|^2) = (1+nx^2)^2\\
+            |2\sqrt{n}x| &\leq |1+nx^2|\\
+            \frac{1}{|1+nx^2|} &\leq \frac{1}{2\sqrt{n}|x|}\\
+            \frac{|x|}{|1+nx^2|} &\leq \frac{1}{2\sqrt{n}}\\
+            \left| \frac{x}{1+nx^2} \right| &\leq \frac{1}{2\sqrt{n}}
+        \end{align*}
+        for all $x\neq 0$, $n\in\N$. This combined with the facts that $f_n(0)=0<\tfrac{1}{2\sqrt{n}}$ for all $n\in\N$ and $f_n(1/\sqrt{n})=1/2\sqrt{n}$ for all $n\in\N$ implies that $M_n=1/2\sqrt{n}$. Thus, $M_n\to 0$ as $n\to\infty$, as desired.\par
+        $f'(x)=0$ for all $x\in\R$. Additionally,
+        \begin{equation*}
+            f_n'(x) = \frac{1-nx^2}{(1+nx^2)^2}
+            \leq \frac{1-nx^2}{(nx^2)^2}
+            = \frac{1}{x^4}\cdot\frac{1}{n^2}-\frac{1}{x^2}\cdot\frac{1}{n} \to 0
+        \end{equation*}
+        as $n\to\infty$ for all $x\neq 0$, as desired. However, $f_n'(0)=1$ for all $n\in\N$, as desired.
+    \end{proof}
     \item If
     \begin{equation*}
         I(x) =
@@ -58,11 +309,29 @@
         f(x) = \sum_{n=1}^\infty c_nI(x-x_n)
     \end{equation*}
     converges uniformly on $[a,b]$, and that $f$ is continuous for every $x\neq x_n$.
+    \begin{proof}
+        Let $f_n(x)=c_nI(x-x_n)$ for all $n\in\N$. To prove that $f$ converges uniformly on $[a,b]$, Theorem 7.10 tells us that it will suffice to show that $|f_n(x)|\leq M_n$ for all $x\in[a,b]$ and $\sum M_n$ converges. Let $M_n=c_n$ for all $n\in\N$. Then for any $x\in[a,b]$,
+        \begin{equation*}
+            |f_n(x)| = c_nI(x-x_n) \leq c_n = M_n
+        \end{equation*}
+        as desired. Additionally, $\sum M_n=\sum c_n$ converges, as desired. This completes the proof.\par
+        For the second part of the proof, let $x\notin\{x_n\}$. Then every $f_n$ is continuous at $x$ by definition. Thus, $f$ is a uniformly convergent sequence of functions continuous at $x$, so by Theorem 7.12, $f$ is continuous at $x$.
+    \end{proof}
     \item Let $\{f_n\}$ be a sequence of continuous functions which converges uniformly to a function $f$ on a set $E$. Prove that
     \begin{equation*}
         \lim_{n\to\infty}f_n(x_n) = f(x)
     \end{equation*}
     for every sequence of points $x_n\in E$ such that $x_n\to x$ and $x\in E$. Is the converse of this true?
+    \begin{proof}
+        Let $\{x_n\}\subset E$ be an arbitrary sequence of points that converges to some $x\in E$. To prove that $\lim_{n\to\infty}f_n(x_n)=f(x)$, it will suffice to show that for every $\epsilon>0$, there exists an $N$ such that if $n\geq N$, then $|f_n(x_n)-f(x)|<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $\{f_n\}$ is a uniformly convergent sequence of continuous functions, Theorem 7.12 implies that $f$ is a continuous function. Thus, there exists a $\delta>0$ such that if $y\in E$ and $|y-x|<\delta$, then $|f(y)-f(x)|<\epsilon/2$. Additionally, since $x_n\to x$, there exists an $N_1$ such that if $n\geq N_1$, $|x_n-x|<\delta$. Furthermore, since $f_n\rightrightarrows f$, there exists $N_2$ such that if $n\geq N_2$, then $|f_n(y)-f(y)|<\epsilon/2$ for all $y\in E$. In particular, $|f_n(x_n)-f(x_n)|<\epsilon/2$. Choose $N=\max(N_1,N_2)$. Let $n\geq N$ be arbitrary. Then
+        \begin{align*}
+            |f_n(x_n)-f(x)| &\leq |f_n(x_n)-f(x_n)|+|f(x_n)-f(x)|\\
+            &< \frac{\epsilon}{2}+\frac{\epsilon}{2}\\
+            &= \epsilon
+        \end{align*}
+        as desired.\par
+        No, it is not true in general that if $\{f_n\}$ is a sequence of continuous functions for which $\lim_{n\to\infty}f_n(x_n)=f(x)$ for every sequence of points $x_n\in E$ such that $x_n\to x$ and $x\in E$, then $f_n$ converges uniformly. Consider the sequence of functions from Exercise 7.5. This is a sequence of continuous functions for which $\lim_{n\to\infty}f_n(x_n)=f(x)$ for any sequence $\{x_n\}$ of the desired type since we can always choose $N$ large enough so that the moving "hump" and neighborhood of $x$ containing all remaining $x_n$ are separated forever more. Moreover, by Exercise 7.5, $\{f_n\}$ does not converge uniformly, as desired.
+    \end{proof}
     \item Letting $(x)$ denote the fractional part of the real number $x$ (see Exercise 4.16 for the definition), consider the function
     \begin{equation*}
         f(x) = \sum_{n=1}^\infty\frac{(nx)}{n^2}
@@ -116,6 +385,9 @@
         t_0 = \sum_{i=1}^\infty 3^{-i-1}(2a_i)
     \end{equation*}
     show that $f(3^kt_0)=a_k$, and hence that $x(t_0)=x_0$, $y_0(t_0)=y_0$.) This simple example of a so-called \textbf{space-filling curve} is due to \textcite{bib:Schoenberg}.
+    \begin{proof}
+        Save for last.
+    \end{proof}
     \item Suppose $f$ is a real continuous function on $\R^1$, $f_n(t)=f(nt)$ for $n\in\N$, and $\{f_n\}$ is equicontinuous on $[0,1]$. What conclusion can you draw about $f$?
     \item Suppose $\{f_n\}$ is an equicontinuous sequence of functions on a compact set $K$, and $\{f_n\}$ converges pointwise on $K$. Prove that $\{f_n\}$ converges uniformly on $K$.
     \stepcounter{enumi}
