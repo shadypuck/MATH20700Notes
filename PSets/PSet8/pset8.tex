@@ -528,12 +528,8 @@
     \end{enumerate}
     \item Suppose $X,Y,Z$ are metric spaces, and $Y$ is compact. Let $f:X\to Y$, let $g:Y\to Z$ be continuous and 1-1, and let $h(x)=g(f(x))$ for all $x\in X$. Prove that $f$ is uniformly continuous if $h$ is uniformly continuous. (Hint: $g^{-1}$ has compact domain $g(Y)$, and $f(x)=g^{-1}(h(x))$.) Prove also that $f$ is continuous if $h$ is continuous. Show (by modifying Example 4.21, or by finding a different example) that the compactness of $Y$ cannot be omitted from the hypotheses, even when $X$ and $Z$ are compact.
     \begin{proof}
-        To prove that $f$ is uniformly continuous, it will suffice to show that for every $\epsilon>0$, there exists a $\delta>0$ such that if $x,y\in X$ and $d_X(x,y)<\delta$, then $d_Y(f(x),f(y))<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $g$ is continuous and 1-1 on $Y$ compact, Theorem 4.17 implies that $g^{-1}:g(Y)\to Y$ is continuous. Additionally, since $g$ is continuous and $Y$ is compact, $g(Y)$ is compact. The last two results imply by Theorem 4.19 that $g^{-1}$ is uniformly continuous. Thus, there exists an $\eta>0$ such that if $z,t\in g(Y)$ and $d_Z(z,t)<\eta$, then $d_Y(g^{-1}(z),g^{-1}(t))<\epsilon$. Additionally, since $h$ is uniformly continuous, there exists a $\delta>0$ such that if $x,y\in X$ and $d_X(x,y)<\delta$, then $d_Z(h(x),h(y))<\eta$. The previous two results combined with the fact that $h(x),h(y)\in g(Y)$ imply that
-        \begin{equation*}
-            d_Y(f(x),f(y)) = d_Y(g^{-1}(h(x)),g^{-1}(h(y))) < \epsilon
-        \end{equation*}
-        as desired.\par
-        The proof that $f$ is continuous given that $h$ is continuous is symmetric to the above, except that it must be done pointwise for an each $x\in X$.\par
+        To prove that $f$ is uniformly continuous, it will suffice to show that for every $\epsilon>0$, there exists a $\delta>0$ such that if $x,y\in X$ and $d_X(x,y)<\delta$, then $d_Y(f(x),f(y))<\epsilon$. Let $\epsilon>0$ be arbitrary. Since $g$ is continuous and 1-1 on $Y$ compact, Theorem 4.17 implies that $g^{-1}:g(Y)\to Y$ is continuous. Additionally, since $g$ is continuous and $Y$ is compact, $g(Y)$ is compact. The last two results imply by Theorem 4.19 that $g^{-1}$ is uniformly continuous. Therefore, since $f=g^{-1}\circ h$ where $g^{-1},h$ are uniformly continuous, Exercise 4.12 implies that $f$ is uniformly continuous.\par
+        The proof that $f$ is continuous given that $h$ is continuous is symmetric to the above, except that it uses Theorem 4.7.\par
         Let $X=[0,2\pi]$, $Y=[0,2\pi)$, and $Z=\{(r,\theta)\in\R^2:r=1,\theta\in\R\}$ be metric spaces under the normal Euclidean metric. Clearly $X$ and $Z$ are compact while $Y$ is not. Let $f:X\to Y$ be defined by
         \begin{equation*}
             f(x) =

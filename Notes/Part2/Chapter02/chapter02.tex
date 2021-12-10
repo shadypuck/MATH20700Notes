@@ -40,10 +40,10 @@
     \end{equation*}
     \item More facts.
     \begin{enumerate}
-        \item Every subset of a countable set is countable.
+        \item Every infinite subset of a countable set is countable.
         \item Unions of countable sets are countable.
         \begin{itemize}
-            \item If the sets $E_n$ for some finite list of numbers are countable, then $\bigcup_nE_n$ is countable.
+            \item If the sets $E_n$ for some at most countable list of numbers are countable, then $\bigcup_nE_n$ is countable.
             \item Soug goes over the diagonalization method of counting.
         \end{itemize}
         \item $n$-fold Cartesian products of countable sets are countable (we induct on $n$).
@@ -62,9 +62,9 @@
     \begin{itemize}
         \item We may define $d$ by
         \begin{equation*}
-            d(x,y) = \sqrt{\sum(x_i-y_i)^2}
+            d(x,y) = \sqrt[2]{\sum(x_i-y_i)^2}
         \end{equation*}
-        \item We can also define the $p$-metrics (recall normed spaces) with $p$ where 2 is.
+        \item We can also define the $p$-metrics (recall normed spaces) with $p$ where the 2's are.
     \end{itemize}
     \item Example ($X_p=\{f:Y\to\R:1\leq p<\infty,\int_Y|f|^p\dd{y}<\infty\}$):
     \begin{itemize}
@@ -129,7 +129,8 @@
         \end{itemize}
         \item $E=\bar{E}$ iff $E$ is closed.
         \begin{itemize}
-            \item Think $p\in\bigcap G_\alpha$?
+            \item $\bar{E}$ is closed (by the above), so $E=\bar{E}$ is closed.
+            \item $E$ is closed implies $E'\subset E$, so $E=E\cup E'=\bar{E}$.
         \end{itemize}
         \item $\bar{E}\subset F$ for any closed $F\supset E$.
         \begin{itemize}
@@ -168,12 +169,17 @@
     \item Compactness is "absolute" (i.e., it is not a relative property like openness).
     \begin{itemize}
         \item If $K\subset Y\subset X$, then $K$ is compact relative to $X$ iff $K$ is compact relative to $Y$.
-        \item $V$ is open relative to $Y$ iff $V=G\cap Y$ where $G$ is open relative to $X$.
     \end{itemize}
+    \item $V$ is open relative to $Y$ iff $V=G\cap Y$ where $G$ is open relative to $X$.
     \item Compact implies closed.
     \begin{itemize}
         \item We will show $K$ compact implies $K^c$ open.
-        \item WTS: For all $p\in K^c$, there exists $N_r(p)\subset K^c$ suh that $N_r(p)\cap K=\emptyset$.
+        \item WTS: For all $p\in K^c$, there exists $N_r(p)\subset K^c$ such that $N_r(p)\cap K=\emptyset$.
+        \item Let $p\in K^c$.
+        \item Define an open cover of $K$ by $G=\{N_{d(p,q)/2}(q):q\in K\}$.
+        \item Since $K$ is compact, there exists a finite subcover $\{N_{r_i}(q_i)\}\subset G$ of $K$.
+        \item Let $r=\min r_i$.
+        \item Then $N_r(p)$ does not intersect any $N_{r_i}(q_i)$, i.e., $N_r(p)$ does not contain any point of $K$, as desired.
     \end{itemize}
     \item A closed subset of a compact set is compact.
     \begin{itemize}
@@ -181,13 +187,23 @@
         \item Take any open cover of $F$. Extend it to an open cover of $K$. Take the finite subcover of $K$. Naturally, this finite subcover is also a finite cover of $F\subset K$.
     \end{itemize}
     \item $F$ closed, $K$ compact implies $F\cap K$ compact.
+    \begin{itemize}
+        \item $F\cap K$ is closed ($F,K$ are closed).
+        \item $F\cap K$ closed $\subset K$ compact implies $F\cap K$ closed.
+    \end{itemize}
     \item If $(K_\alpha)_{\alpha\in A}$ is compact in $X$ with finite intersection property (every intersection of any finite number of these sets is nonempty), then $\bigcap_{\alpha\in A}K_\alpha\neq\emptyset$.
     \begin{itemize}
         \item Argue by contradiction.
         \item Let $G_\alpha=K_\alpha^c$.
         \item Assume the intersection is empty. Assume WLOG that no point of $K_1$ is in any of the other $K_\alpha$'s.
         \item Then $\{G_\alpha\}_{\alpha\in A}$ be an open cover of $K_1$.
-        \item $K_1$ compact implies there is a finite subcover $G_{\alpha_1},\dots,G_{\alpha_n}$. Then $K\subset G_{\alpha_1}\cup\cdots\cup G_{\alpha_n}$. This implies that $K_1\cap K_{\alpha_1}\cap\cdots\cap K_{\alpha_n}=\emptyset$, a contradiction.
+        \item $K_1$ compact implies there is a finite subcover $G_{\alpha_1},\dots,G_{\alpha_n}$.
+        \item Then
+        \begin{equation*}
+            K_1 \subset G_{\alpha_1}\cup\cdots\cup G_{\alpha_n} = K_{\alpha_1}^c\cup\cdots\cup K_{\alpha_n}^c = (K_{\alpha_1}\cap\cdots\cap K_{\alpha_n})^c
+        \end{equation*}
+        where the last equality holds by De Morgan's law.
+        \item This implies that $K_1\cap(K_{\alpha_1}\cap\cdots\cap K_{\alpha_n})=\emptyset$, contradicting the finite intersection property.
     \end{itemize}
     \item Let $E$ be an infinite subset of a compact $K$. Then $E$ has a limit point in $K$.
     \begin{itemize}
@@ -225,11 +241,14 @@
     \end{itemize}
     \item Let $I_n=[a_n,b_n]\subset\R$ such that $I_{n+1}\subset I_n$. Then $\bigcap_{n=1}^\infty I_n\neq\emptyset$.
     \begin{itemize}
-        \item Let $I_k$ be a $k$-cell in $\R^k$ such that $I_k\supset I_{k+1}$. Then $\bigcap_kI_k\neq\emptyset$.
-        \item We know that $a_m\leq a_{m+n}\leq b_{m+n}\leq b_m$, so $\sup a_n\in\bigcap I_n$.
+        \item We know that $a_n\leq a_{m+n}\leq b_{m+n}\leq b_n$ for all $m$, so $\sup a_n\leq b_m$ for all $m$ (and $\sup a_n\geq a_m$ for all $m$ by definition). Thus, $\sup a_n\in\bigcap I_n$.
+    \end{itemize}
+    \item Let $I_k$ be a $k$-cell in $\R^k$ such that $I_k\supset I_{k+1}$. Then $\bigcap_kI_k\neq\emptyset$.
+    \begin{itemize}
+        \item Use the previous result once in each dimension to construct $\x=(x_1,\dots,x_k)\in\bigcap_kI_k\neq\emptyset$.
     \end{itemize}
     \item Every $k$-cell is compact.
-    \begin{figure}[H]
+    \begin{figure}[h!]
         \centering
         \begin{tikzpicture}[scale=1.5]
             \footnotesize
@@ -250,11 +269,12 @@
     \end{figure}
     \begin{itemize}
         \item Argue by contradiction.
-        \item Consider an open cover of the $k$-cell $I^1$. If it has a finite subcover, we're done. So suppose we have an open cover that doesn't have a finite subcover. Split the $k$-cell into $2^k$ chunks. At least one of the chunks $I^2$ must not have a finite subcover.
+        \item Consider an open cover $\{G_\alpha\}$ of the $k$-cell $I^1$. If it has a finite subcover, we're done. So suppose it doesn't have a finite subcover. Split the $k$-cell into $2^k$ chunks. At least one of the chunks $I^2$ must not have a finite subcover or $I^1$ would have a finite subcover.
         \item Split that one into $2^k$ chunks. At least one of the chunks $I^3$ must not have a finite subcover.
         \item Continue.
         \item Thus, we have a decreasing family of $k$-cells, so by the previous result, their $\bigcap I^n\neq\emptyset$.
-        \item Let $x\in\bigcap I^n$. Then the...
+        \item Let $\x\in\bigcap I^n$. Naturally, $\x\in G_\alpha$ for some $\alpha$. Since $G_\alpha$ is open, there exists $N_r(\x)\subset G_\alpha$.
+        \item However, since the $I^n$ keep shrinking in size forever, we can find an $I^n\subset N_r(\x)\subset G_\alpha$, contradicting the supposition that $I^n$ cannot be covered by finitely many (let alone 1) $G_\alpha$'s.
     \end{itemize}
     \item Heine-Borel theorem: Let $E\subset\R^k$. Then TFAE\footnote{The following are equivalent.}
     \begin{enumerate}
@@ -289,7 +309,7 @@
     \begin{itemize}
         \item $P$ perfect implies $P$ infinite.
         \item Suppose $P$ is countable. Let $P=\{x_1,x_2,\dots\}$.
-        \item Start with $x_1$. Take an open neighborhood $V_1$ of $x_1$. Since $x_1$ is a limit point of $P$, there will be another point $x_2\in P$ in $V_1$. Choose $V_2$ to be a neighborhood of $x_2$ such that $\bar{V_2}\subset V_1$.
+        \item Start with $x_1$. Take an open neighborhood $V_1$ of $x_1$. Since $x_1$ is a limit point of $P$, there will be another point $x_2\in P$ in $V_1$. Choose $V_2$ to be a neighborhood of $x_2$ such that $\bar{V}_2\subset V_1$ and $x_1\notin\bar{V}_2$.
         \item Keep going --- there is a point $x_3\in P$ in $V_2$, choose an appropriate neighborhood, etc.
         \item Thus, we have a sequence of closed compact sets such that $\bar{V}_n\supset\bar{V}_{n+1}$ ($n\in\N$). It follows that $\bigcap\bar{V}_n\neq\emptyset$.
         \item We also know that $V_n\cap P\neq\emptyset$ for each $n$.
@@ -364,7 +384,12 @@
     \item \marginnote{11/6:}\textbf{Countable} (set $A$): A set $A$ that is in bijective correspondence with the set of all positive integers. \emph{Also known as} \textbf{enumerable}, \textbf{denumerable}.
     \item \textbf{At most countable} (set $A$): A set $A$ that is finite or countable.
     \item An alternative definition of an \textbf{infinite} set would be a set that is equivalent to one of its proper subsets.
-    \item Theorem: Let $A$ be the set of all sequences whose elements are the digits 0 and 1. This set $A$ is uncountable.
+    \item Theorem 2.8: Infinite subsets of countable sets are countable.
+    \item Theorem 2.12: $\{E_n\}$ a countable family of countable sets implies $\bigcup E_n$ is countable.
+    \item Corollary: $A$ at most countable, $B_\alpha$ at most countable for all $\alpha\in A$ implies $\bigcup_\alpha B_\alpha$ is at most countable.
+    \item Theorem 2.13: Finite Cartesian products of countable sets are countable.
+    \item Corollary: $\Q$ is countable.
+    \item Theorem 2.14: Let $A$ be the set of all sequences whose elements are the digits 0 and 1. This set $A$ is uncountable.
     \begin{proof}
         Let $E=\{s_1,s_2,\dots\}$ be an arbitrary countable subset of $A$, where each $s_j$ is a sequence whose elements are the digits 0 and 1. Let $s$ be the sequence, the $n^\text{th}$ term of which is the opposite of the $n^\text{th}$ term of $s_n$ (i.e., if the $n^\text{th}$ term of $s_n$ is 0, we set the $n^\text{th}$ term of $s$ equal to 1). This guarantees that $s$ is distinct from each of the $s_j$, i.e., that $s\notin E$. It follows that $E\subsetneq A$, i.e., that every countable subset of $A$ is a proper subset of $A$. Therefore, $A$ must be uncountable (for otherwise $A$ would be a proper subset of $A$, a contradiction).
     \end{proof}
@@ -385,7 +410,7 @@
     \item \textbf{Interval} (from $a$ to $b$): The set of all real numbers $x$ such that $a\leq x\leq b$. \emph{Denoted by} $\bm{[a,b]}$.
     \item \textbf{$\bm{k}$-cell}: The set of all points $\x=(x_1,\dots,x_k)\in\R^k$ whose coordinates satisfy the inequalities $a_i\leq x_i\leq b_i$ where $a_i<b_i$ for each $1\leq i\leq k$.
     \begin{itemize}
-        \item Note that a 1-cell is an interval and a 2-cell is a rectangle.
+        \item Note that a 1-cell is an interval and a 2-cell is a \textbf{rectangle}.
     \end{itemize}
     \item \textbf{Convex} (set $E$): A subset $E$ of $\R^k$ such that
     \begin{equation*}
@@ -395,10 +420,51 @@
     \begin{itemize}
         \item Balls and $k$-cells are both convex.
     \end{itemize}
+    \item Theorem 2.19: Every neighborhood is open.
+    \item Theorem 2.20: $p$ a limit point of $E$ implies $N_r(p)$ contains infinitely many points of $E$.
+    \item Corollary: Finite sets have no limit points.
     \item The segment $(a,b)$ is open as a subset of $\R^1$, but not open as a subset of $\R^2$.
+    \item Theorem 2.22: $\{E_\alpha\}$ a collection of sets implies
+    \begin{equation*}
+        \left( \bigcup_\alpha E_\alpha \right)^c = \bigcap_\alpha E_\alpha^c
+    \end{equation*}
+    \item Theorem 2.23: $E$ open iff $E^c$ closed.
+    \item Corollary: $F$ closed iff $F^c$ open.
+    \item Theorem 2.24:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\bigcup G_\alpha$ open for any collection $\{G_\alpha\}$ of open sets.
+        \item $\bigcap F_\alpha$ closed for any collection $\{F_\alpha\}$ of closed sets.
+        \item $\bigcap G_\alpha$ open for any finite collection $\{G_\alpha\}$ of open sets.
+        \item $\bigcup F_\alpha$ closed for any finite collection $\{F_\alpha\}$ of closed sets.
+    \end{enumerate}
+    \item Theorem 2.27: $E\subset X$ a metric space implies
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\bar{E}$ closed.
+        \item $E=\bar{E}$ iff $E$ closed.
+        \item $\bar{E}\subset F$ for every closed $F\supset E$.
+    \end{enumerate}
+    \item Theorem 2.28: $E\subset\R$ nonempty and bounded above implies $\sup E\in\bar{E}$.
+    \item Theorem 2.30: $Y\subset X$ implies $E\subset Y$ open wrt $Y$ iff $E=Y\cap G$ for some open $G\subset X$.
+    \item Theorem 2.33: $K\subset Y\subset X$ implies $K$ compact wrt. $X$ iff $K$ compact wrt. $Y$.
     \item Since compactness is not relative, while it makes no sense to talk about \emph{open} or \emph{closed} metric spaces, it does make sense to talk about \emph{compact} metric spaces.
-    \item \textbf{Weierstrass theorem}: Every bounded infinite subset of $\R^k$ has a limit point in $\R^k$.
-    \item Theorem: Let $P$ be a nonempty perfect set in $\R^k$. Then $P$ is uncountable.
+    \item Theorem 2.34: $K\subset X$ ($K$ compact, $X$ a metric space) implies $K$ closed.
+    \item Theorem 2.35: $F\subset K$ ($F$ closed, $K$ compact) implies $F$ compact.
+    \item Corollary: $F$ closed and $K$ compact imply $F\cap K$ compact.
+    \item Theorem 2.36: $\{K_\alpha\}$ a collection of compact subsets of $X$ a metric space with the intersection of any finite subcollection of $\{K_\alpha\}$ nonempty implies $\bigcap K_\alpha$ nonempty.
+    \item \textbf{Decreasing} (sequence of sets $\{K_n\}$): A sequence of sets $\{K_n\}$ such that $K_n\supset K_{n+1}$ for all $n\in\N$.
+    \item Corollary: $\{K_n\}$ a decreasing sequence of nonempty compact sets implies $\bigcap_1^\infty K_n\neq\emptyset$.
+    \item Theorem 2.37: $E\subset K$ ($E$ infinite, $K$ compact) implies $E$ has a limit point in $K$.
+    \item Theorem 2.38: $\{I_n\}$ a decreasing sequence of intervals in $\R^1$ implies $\bigcap_1^\infty I_n\neq\emptyset$.
+    \item Theorem 2.39: $\{I_n\}$ a decreasing sequence of $k$-cells implies $\bigcap_1^\infty I_n\neq\emptyset$.
+    \item Theorem 2.40: $k$-cells are compact.
+    \item Theorem 2.41 (Heine-Borel Theorem): The following are equivalent for any $E\subset\R^k$.
+    \begin{enumerate}[label={(\alph*)}]
+        \item $E$ closed and bounded.
+        \item $E$ compact.
+        \item Every infinite subset of $E$ has a limit point in $E$.
+    \end{enumerate}
+    \item Theorem 2.42 (Weierstrass Theorem): Every bounded infinite subset of $\R^k$ has a limit point in $\R^k$.
+    \item Theorem 2.43: $P$ a nonempty perfect set in $\R^k$ implies $P$ is uncountable.
     \begin{proof}
         Since $P$ is nonempty and perfect, there exists a limit point of $P$. It follows that $P$ is infinite.\par
         Now suppose for the sake of contradiction that $P$ is countable, and denote the elements of $P$ by $\x_1,\x_2,\dots$. We now construct a sequence $\{V_n\}$ of neighborhoods, as follows. Let $V_1=N_r(\x_1)$. Clearly, $V_1\subset P$ since $\x_1\in P$. It follows that since $V_1$ is a neighborhood that $V_1$ contains infinitely many points of $P$. Now suppose inductively that $V_n$ has been constructed. Thus, by analogous conditions to those on $V_1$, we may let $V_{n+1}$ be a neighborhood such that (i) $\bar{V}_{n+1}\subset V_n$, (ii) $\x_n\notin\bar{V}_{n+1}$, and (iii) $V_{n+1}\cap P$ is nonempty. By (iii), we can continue on to construct $V_{n+2}$, and so on and so forth.\par
@@ -412,7 +478,7 @@
     \item \textbf{Separated} (sets $A,B$): Two subsets $A,B$ of a metric space $X$ such that $A\cap\bar{B}$ and $\bar{A}\cap B$ are empty.
     \item \textbf{Connected} (set $E$): A set $E$ that is not the union of two nonempty separated sets.
     \item Separated sets are disjoint, but disjoint sets are not necessarily separated (consider $[0,1]$ and $(1,2)$).
-    \item A subset $E$ of $\R^1$ is connected if and only if it has the following property: If $x,y\in E$ and $x<z<y$, then $z\in E$.
+    \item Theorem 2.47: $E\subset\R^1$ connected iff $x,y\in E$ and $x<z<y$ implies $z\in E$ for all such $x,y,z\in E$.
 \end{itemize}
 
 

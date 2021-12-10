@@ -28,9 +28,7 @@
     \end{enumerate}
     \item \textbf{Uniformly convergent} (sequence $(f_n)_{n\in\N}$ of functions on $E$): A sequence of functions $f_n:E\to\R$ such that for all $\epsilon>0$, there exists $N$ such that if $n\geq N$, then $|f_n(x)-f(x)|<\epsilon$ for all $x\in E$. \emph{Denoted by} $\bm{f_n\rightrightarrows f}$.
     \item Theorem: $f_n\rightrightarrows f$ iff $(f_n)_{n\in\N}$ is uniformly Cauchy (i.e., for all $\epsilon>0$, there exists $N$ such that if $n,m\geq N$ then $|f_n(x)-f_m(x)|<\epsilon$ for all $x\in E$).
-    \begin{itemize}
-        \item Let $M_n=\sup_{x\in E}|f_n(x)-f(x)|$. If $f_n\to f$ pointwise, then $f_n\rightrightarrows f$ if $M_n\to 0$.
-    \end{itemize}
+    \item Theorem: Let $M_n=\sup_{x\in E}|f_n(x)-f(x)|$. If $f_n\to f$ pointwise and $M_n\to 0$, then $f_n\rightrightarrows f$.
     \item Theorem: If $(f_n)_{n\in\N}$ and $|f_n(x)|\leq M_n$, then $\sum f_n\rightrightarrows f$ if $\sum M_n<\infty$.
     \item Theorem: If $E$ is a compact metric space, $f_n\rightrightarrows f$ in $E$, $x$ is a limit point of $E$, and $\lim_{t\to x}f_n(t)=A_n$ exists, then $(A_n)_{n\in\N}$ converges and $\lim_{t\to x}f(t)=\lim_{n\to\infty}A_n$.
     \item Corollary: $\lim_{t\to x}\lim_{n\to\infty}f_n(t)=\lim_{n\to\infty}\lim_{t\to x}f_n(t)$.
@@ -298,7 +296,7 @@
     for all $x\in E$.
     \item Theorem 7.8: Cauchy criterion for uniform convergence.
     \item Theorem 7.9: If $\lim_{n\to\infty}f_n(x)=f(x)$ for all $x\in E$ and $M_n=\sup_{x\in E}|f_n(x)-f(x)|$, then $f_n\to f$ uniformly on $E$ iff $M_n\to 0$ as $n\to\infty$.
-    \item Theorem 7.10: $|f_n(x)|\leq M_n$ for all $x\in E$ and $\sum M_n$ converges implies $\sum f_n$ converges uniformly.
+    \item Theorem 7.10 (Weierstrass M-test): $|f_n(x)|\leq M_n$ for all $x\in E$ and $\sum M_n$ converges implies $\sum f_n$ converges uniformly.
     \item Theorem 7.11: Suppose $f_n\to f$ uniformly on a set $E$ in a metric space. Let $x$ be a limit point of $E$, and suppose that
     \begin{equation*}
         \lim_{t\to x}f_n(t) = A_n

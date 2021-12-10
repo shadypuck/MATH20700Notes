@@ -29,8 +29,36 @@
     \begin{itemize}
         \item This definition squares nicely with the formal definition of a sequence as a function $p$ defined on $\N$.
     \end{itemize}
-    \item Theorem 3.6a: If $\{p_n\}$ is a sequence in a compact metric space $X$, then some subsequence of $\{p_n\}$ converges to a point of $X$.
-    \item Theorem 3.7: The subsequential limits of a sequence $\{p_n\}$ in a metric space $X$ form a closed subset of $X$.
+    \item Theorem 3.2: $\{p_n\}\subset X$ a metric space implies
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\{p_n\}$ converges to $p\in X$ iff every $N_r(p)$ contains all but finitely many $p_n$.
+        \item $p,p'\in X$, $p_n\to p$, and $p_n\to p'$ implies $p=p'$.
+        \item $\{p_n\}$ converges implies $\{p_n\}$ is bounded.
+        \item $E\subset X$ and $p$ a limit point of $E$ implies there exists $\{p_n\}\subset E$ such that $p=\lim_{n\to\infty}p_n$.
+    \end{enumerate}
+    \item Theorem 3.3: Let $\{s_n\},\{t_n\}\subset\C$, $\lim_{n\to\infty}s_n=s$, and $\lim_{n\to\infty}t_n=t$. Then
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\lim_{n\to\infty}(s_n+t_n)=s+t$.
+        \item $\lim_{n\to\infty}cs_n=cs$, $\lim_{n\to\infty}(c+s_n)=c+s$ for any $c\in\C$.
+        \item $\lim_{n\to\infty}s_nt_n=st$.
+        \item $\lim_{n\to\infty}1/s_n=1/s$, provided $s_n\neq 0$ ($n\in\N$) and $s\neq 0$.
+    \end{enumerate}
+    \item Theorem 3.4:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\{\x_n\}\subset\R^k$ and $\x_n=(\alpha_{1,n},\dots,\alpha_{k,n})$ ($n\in\N$) implies $\x_n\to\x=(\alpha_1,\dots,\alpha_k)$ iff $\lim_{n\to\infty}\alpha_{j,n}=\alpha_j$ for each $1\leq j\leq k$.
+        \item $\{\x_n\},\{\y_n\}\subset\R^k$, $\{\beta_n\}\subset\R$, and $\x_n\to\x$, $\y_n\to\y$, $\beta_n\to\beta$ imply
+        \begin{align*}
+            \lim_{n\to\infty}(\x_n+\y_n) &= \x+\y&
+            \lim_{n\to\infty}\x_n\cdot\y_n &= \x\cdot\y&
+            \lim_{n\to\infty}\beta_n\x_n &= \beta\x
+        \end{align*}
+    \end{enumerate}
+    \item Theorem 3.6:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\{p_n\}\subset X$ compact implies some subsequence of $\{p_n\}$ converges to a point of $X$.
+        \item Every bounded sequence in $\R^k$ contains a convergent subsequence.
+    \end{enumerate}
+    \item Theorem 3.7: The subsequential limits of $\{p_n\}\subset X$ form a closed subset of $X$.
     \item \textbf{Diameter} (of $E$): The supremum of the set
     \begin{equation*}
         S = \{d(p,q):p,q\in E\}
@@ -38,39 +66,78 @@
     where $E$ is a nonempty subset of a metric space $X$. \emph{Denoted by} $\bm{\diam E}$.
     \item Theorem 3.10:
     \begin{enumerate}[label={(\alph*)}]
-        \item If $\bar{E}$ is the closure of a set $E$ in a metric space $X$, then
+        \item $E\subset X$ implies
         \begin{equation*}
             \diam\bar{E} = \diam E
         \end{equation*}
-        \item If $K_n$ is a sequence of compact sets in $X$ such that $K_n\supset K_{n+1}$ ($n=1,2,3,\dots$) and if $\lim_{n\to\infty}\diam K_n=0$, then $\bigcap_1^\infty K_n$ consists of exactly one point.
+        \item $\{K_n\}\subset X$ a decreasing sequence of compact sets and $\lim_{n\to\infty}\diam K_n=0$ imply $\bigcap_1^\infty K_n$ consists of exactly one point.
+    \end{enumerate}
+    \item Theorem 3.11:
+    \begin{enumerate}[label={(\alph*)}]
+        \item Every convergent sequence in $X$ a metric space is Cauchy.
+        \item $\{p_n\}\subset X$ ($\{p_n\}$ Cauchy, $X$ compact) implies $\{p_n\}$ converges to some point of $X$.
+        \item Every Cauchy sequence converges in $\R^k$.
     \end{enumerate}
     \item \textbf{Complete} (metric space): A metric space in which every Cauchy sequence converges.
-    \item All compact metric spaces and all Euclidean spaces are complete.
+    \item Rephrasing Theorem 3.11b-c: All compact metric spaces and all Euclidean spaces are complete.
     \begin{itemize}
         \item The metric space $(\Q,|x-y|)$ is not complete.
     \end{itemize}
     \item \textbf{Monotonically increasing} (sequence $\{s_n\}$): A sequence $\{s_n\}$ of real numbers such that $s_n\leq s_{n+1}$ for each $n\in\N$.
     \item \textbf{Monotonically decreasing} (sequence $\{s_n\}$): A sequence $\{s_n\}$ of real numbers such that $s_n\geq s_{n+1}$ for each $n\in\N$.
     \item \textbf{Monotonic sequences}: The class of all sequences that are either monotonically increasing or monotonically decreasing.
+    \item Theorem 3.14: $\{s_n\}$ monotonic converges iff it is bounded.
     \item \textbf{Upper limit} (of $\{s_n\}$): The supremum of the set $E$ of all subsequential limits of $\{s_n\}$. \emph{Denoted by} $\bm{s^*}$, $\bm{\limsup_{n\to\infty}s_n}$.
     \item \textbf{Lower limit} (of $\{s_n\}$): The infimum of the set $E$ of all subsequential limits of $\{s_n\}$. \emph{Denoted by} $\bm{s_*}$, $\bm{\liminf_{n\to\infty}s_n}$.
-    \item Theorem 3.17: Let $\{s_n\}$ be a sequence of real numbers. Then $s^*$ has (and is the only number to have both of) the following two properties.
+    \item Theorem 3.17: $\{s_n\}\subset\R$ implies $s^*$ has (and is the only number to have both of) the following two properties.
     \begin{enumerate}[label={(\alph*)}]
         \item $s^*\in E$.
         \item If $x>s^*$, then there is an integer $N$ such that $n\geq N$ implies $s_n<x$.
     \end{enumerate}
     An analogous result holds for $s_*$.
+    \item Theorem 3.19: $s_n\leq t_n$ for all $n\geq N$ implies
+    \begin{align*}
+        \liminf_{n\to\infty}s_n &\leq \liminf_{n\to\infty}t_n&
+        \limsup_{n\to\infty}s_n &\leq \limsup_{n\to\infty}t_n
+    \end{align*}
+    \item Theorem 3.20:
+    \begin{enumerate}[label={(\alph*)}]
+        \item $p>0$ implies $\lim_{n\to\infty}1/n^p=0$.
+        \item $p>0$ implies $\lim_{n\to\infty}\sqrt[n]{p}=1$.
+        \item $\lim_{n\to\infty}\sqrt[n]{n}=1$.
+        \item $p>0$, $\alpha\in\R$ implies $\lim_{n\to\infty}n^\alpha/(1+p)^n=0$.
+        \item $|x|<1$ implies $\lim_{n\to\infty}x^n=0$.
+    \end{enumerate}
     \item \marginnote{11/8:}Series are defined in terms of sequences. Moreover, sequences can be defined in terms of series: Let $a_1=s_1$, $a_n=s_n-s_{n-1}$ ($n\in\N+1$). Thus, every theorem about sequences can be stated in terms of series and vice versa, but it is nevertheless useful to consider both concepts \parencite[59]{bib:Rudin}.
-    \item Theorem 3.27: Suppose $\{a_n\}$ is a monotonically decreasing sequence of nonnegative terms. Then the series $\sum_{n=1}^\infty a_n$ converges if and only if the series
+    \item Theorem 3.22: $\sum a_n$ converges iff for every $\epsilon>0$, there is an $N$ such that $m\geq n\geq N$ implies
+    \begin{equation*}
+        \left| \sum_{k=n}^ma_k \right| \leq \epsilon
+    \end{equation*}
+    \begin{itemize}
+        \item Analogous to Theorem 3.11.
+    \end{itemize}
+    \item Theorem 3.23: $\sum a_n$ converges implies $\lim_{n\to\infty}a_n=0$.
+    \item Theorem 3.24: $\{a_n\}\subset\R$ such that $a_n\geq 0$ ($n\in\N$) implies $\sum a_n$ converges iff its partial sums form a bounded sequence.
+    \item Theorem 3.25 (Comparison test):
+    \begin{enumerate}[label={(\alph*)}]
+        \item $|a_n|\leq c_n$ for all $n\geq N_0$ and $\sum c_n$ converges implies $\sum a_n$ converges.
+        \item $a_n\geq d_n\geq 0$ for all $n\geq N_0$ and $\sum d_n$ diverges implies $\sum a_n$ diverges.
+    \end{enumerate}
+    \item Theorem 3.26: $0\leq x<1$ implies
+    \begin{equation*}
+        \sum_{n=0}^\infty x^n = \frac{1}{1-x}
+    \end{equation*}
+    $x\geq 1$ implies the series diverges.
+    \item Theorem 3.27: $\{a_n\}$ a monotonically decreasing sequence of nonnegative terms implies the series $\sum_{n=1}^\infty a_n$ converges iff the series
     \begin{equation*}
         \sum_{k=0}^\infty 2^ka_{2^k} = a_1+2a_2+4a_4+8a_8+\cdots
     \end{equation*}
     converges.
-    \item Theorem 3.29: If $p>1$,
+    \item Theorem 3.29: $p>1$ implies
     \begin{equation*}
         \sum_{n=2}^\infty\frac{1}{n(\log n)^p}
     \end{equation*}
-    converges; if $p\leq 1$, the series diverges.
+    converges; $p\leq 1$ implies the series diverges.
     \begin{itemize}
         \item Note that $\log n=\ln n$.
         \item Note that we sum from $n=2$ since $\log 1=0$.
@@ -81,6 +148,22 @@
     \end{equation*}
     \item Theorem 3.31: $\lim_{n\to\infty}(1+1/n)^n=\e$.
     \item Theorem 3.32: $\e$ is irrational.
+    \item Theorem 3.33 (Root test): Given $\sum a_n$, put $\alpha=\limsup_{n\to\infty}\sqrt[n]{|a_n|}$. Then
+    \begin{enumerate}[label={(\alph*)}]
+        \item $\alpha<1$ implies $\sum a_n$ converges.
+        \item $\alpha>1$ implies $\sum a_n$ diverges.
+        \item $\alpha=1$ implies nothing; the test is inconclusive.
+    \end{enumerate}
+    \item Theorem 3.34 (Ratio test): The series $\sum a_n$\dots
+    \begin{enumerate}[label={(\alph*)}]
+        \item converges if $\limsup_{n\to\infty}|a_{n+1}/a_n|<1$;
+        \item diverges if $|a_{n+1}/a_n|\geq 1$ for all $n\geq N_0$.
+    \end{enumerate}
+    \item Theorem 3.37: $\{c_n\}\subset\R^+$ implies
+    \begin{align*}
+        \liminf_{n\to\infty}\frac{c_{n+1}}{c_n} &\leq \liminf_{n\to\infty}\sqrt[n]{c_n}&
+        \limsup_{n\to\infty}\sqrt[n]{c_n} &\leq \limsup_{n\to\infty}\frac{c_{n+1}}{c_n}
+    \end{align*}
     \item Theorem 3.39: Given the power series $\sum c_nz^n$, put
     \begin{align*}
         \alpha &= \limsup_{n\to\infty}\sqrt[n]{|c_n|}&
@@ -100,6 +183,11 @@
     \begin{equation*}
         \sum_{n=p}^qa_nb_n = \sum_{n=p}^{q-1}A_n(b_n-b_{n+1})+A_qb_q-A_{p-1}b_p
     \end{equation*}
+    \item Theorem 3.42: If the partial sums $A_n$ of $\sum a_n$ form a bounded sequence and $\{b_n\}$ is a monotonically decreasing sequence such that $b_n\to 0$, then $\sum a_nb_n$ converges.
+    \item Theorem 3.43: If $\{c_n\}$ is an alternating series that is absolutely monotonically decreasing such that $c_n\to 0$, then $\sum c_n$ converges.
+    \item Theorem 3.44: If the radius of convergence of $\sum c_nz^n$ is 1, $\{c_n\}$ is monotonically decreasing, and $c_n\to 0$, then $\sum c_nz^n$ converges at every point on the circle $|z|=1$ except possibly at $z=1$.
+    \item Theorem 3.45: $\sum a_n$ converges absolutely implies $\sum a_n$ converges.
+    \item Theorem 3.47: $\sum a_n=A$, $\sum b_n=B$, $c\in\R$ implies $\sum(a_n+b_n)=A+B$ and $\sum ca_n=cA$.
     \item \textbf{Product} (of $\sum a_n,\sum b_n$): The series $\sum c_n$ defined by
     \begin{equation*}
         c_n = \sum_{k=0}^na_kb_{n-k}
@@ -113,11 +201,11 @@
         \item Setting $z=1$ then yields the given definition.
     \end{itemize}
     \item The product of two convergent series may diverge. However\dots
-    \item Theorem 3.50 (by Mertens): Suppose (a) $\sum_{n=0}^\infty a_n$ converges absolutely, (b) $\sum_{n=0}^\infty a_n=A$, (c) $\sum_{n=0}^\infty b_n=B$, and (d) $\sum_{n=0}^\infty c_n$ is the product of $\sum_{n=0}^\infty a_n$ and $\sum_{n=0}^\infty b_n$. Then
+    \item Theorem 3.50: Suppose (a) $\sum_{n=0}^\infty a_n$ converges absolutely, (b) $\sum_{n=0}^\infty a_n=A$, (c) $\sum_{n=0}^\infty b_n=B$, and (d) $\sum_{n=0}^\infty c_n$ is the product of $\sum_{n=0}^\infty a_n$ and $\sum_{n=0}^\infty b_n$. Then
     \begin{equation*}
         \sum_{n=0}^\infty c_n = AB
     \end{equation*}
-    \item Theorem 3.51 (by Abel): If $\sum a_n,\sum b_n,\sum c_n$ converge to $A,B,C$, respectively, and $\sum c_n$ is the product of $\sum a_n,\sum b_n$, then $C=AB$.
+    \item Theorem 3.51: If $\sum a_n,\sum b_n,\sum c_n$ converge to $A,B,C$, respectively, and $\sum c_n$ is the product of $\sum a_n,\sum b_n$, then $C=AB$.
     \item \textbf{Rearrangement} (of $\sum a_n$): A series $\sum a_n'$ defined by $a_n'=a_{k_n}$ for each $n\in\N$, where $\{k_n\}$ is a sequence in which every positive integer appears once and only once (that is, $\{k_n\}$ is a 1-1 function from $\N$ onto $\N$).
     \item Theorem 3.54: Let $\sum a_n$ be a series of real number which converges, but not absolutely. Suppose $-\infty\leq\alpha\leq\beta\leq\infty$. Then there exists a rearrangement $\sum a_n'$ with partial sums $s_n'$ such that
     \begin{align*}
